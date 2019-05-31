@@ -1,0 +1,189 @@
+<html>
+<head>
+	<script src="plotly-latest.min.js"></script>
+	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>
+</head>
+<body>
+</body>
+    <script>
+    
+        
+        var FL_0_i = {
+            forLoop_0_i:0,
+            forLoopLength:15,
+            fn:function(   dev_obj   ){
+                var element11 = document.createElement("div")
+                document.body.appendChild(element11)
+                var node11 = document.querySelector('div')
+                id11 = document.createAttribute("id")
+                id11.value = 'myDiv' +FL_0_i.forLoop_0_i
+                element11.setAttributeNode(id11)
+            },
+            args: {}
+        }
+        ultraObject.forLoop(   FL_0_i   )
+        
+        /*Basic Pie Plot*/ //{
+        var data = [{
+          values: [19, 26, 55],
+          labels: ['Residential', 'Non-Residential', 'Utility'],
+          type: 'pie'
+        }];
+        
+        var layout = {
+          height: 400,
+          width: 500
+        };
+        
+        Plotly.newPlot('myDiv0', data, layout);
+        // }  /**/
+        
+        /*Pie Chart Subplots*/ //{
+var allLabels = ['1st', '2nd', '3rd', '4th', '5th'];
+
+var allValues = [
+  [38, 27, 18, 10, 7],
+  [28, 26, 21, 15, 10],
+  [38, 19, 16, 14, 13],
+  [31, 24, 19, 18, 8]
+];
+
+var ultimateColors = [
+  ['rgb(56, 75, 126)', 'rgb(18, 36, 37)', 'rgb(34, 53, 101)', 'rgb(36, 55, 57)', 'rgb(6, 4, 4)'],
+  ['rgb(177, 127, 38)', 'rgb(205, 152, 36)', 'rgb(99, 79, 37)', 'rgb(129, 180, 179)', 'rgb(124, 103, 37)'],
+  ['rgb(33, 75, 99)', 'rgb(79, 129, 102)', 'rgb(151, 179, 100)', 'rgb(175, 49, 35)', 'rgb(36, 73, 147)'],
+  ['rgb(146, 123, 21)', 'rgb(177, 180, 34)', 'rgb(206, 206, 40)', 'rgb(175, 51, 21)', 'rgb(35, 36, 21)']
+];
+
+var data = [{
+  values: allValues[0],
+  labels: allLabels,
+  type: 'pie',
+  name: 'Starry Night',
+  marker: {
+    colors: ultimateColors[0]
+  },
+  domain: {
+    row: 0,
+    column: 0
+  },
+  hoverinfo: 'label+percent+name',
+  textinfo: 'none'
+},{
+  values: allValues[1],
+  labels: allLabels,
+  type: 'pie',
+  name: 'Sunflowers',
+  marker: {
+    colors: ultimateColors[1]
+  },
+  domain: {
+    row: 1,
+    column: 0
+  },
+  hoverinfo: 'label+percent+name',
+  textinfo: 'none'
+},{
+  values: allValues[2],
+  labels: allLabels,
+  type: 'pie',
+  name: 'Irises',
+  marker: {
+    colors: ultimateColors[2]
+  },
+  domain: {
+    row: 0,
+    column: 1
+  },
+  hoverinfo: 'label+percent+name',
+  textinfo: 'none'
+},{
+  values: allValues[3],
+  labels: allLabels,
+  type: 'pie',
+  name: 'The Night Cafe',
+  marker: {
+    colors: ultimateColors[3]
+  },
+  domain: {
+    x: [0.52,1],
+    y: [0, 0.48]
+  },
+  hoverinfo: 'label+percent+name',
+  textinfo: 'none'
+}];
+
+var layout = {
+  height: 400,
+  width: 500,
+  grid: {rows: 2, columns: 2}
+};
+
+Plotly.newPlot('myDiv1', data, layout);
+        // }  /**/
+        
+        /*Donut Chart*/ //{  -- will use this to understand how to value each intergattion question on each proofObject
+var data = [{
+  values: [16, 15, 12, 6, 5, 4, 42],
+  labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
+  domain: {column: 0},
+  name: 'GHG Emissions',
+  hoverinfo: 'label+percent+name',
+  hole: .4,
+  type: 'pie'
+},{
+  values: [27, 11, 25, 8, 1, 3, 25],
+  labels: ['US', 'China', 'European Union', 'Russian Federation', 'Brazil', 'India', 'Rest of World' ],
+  text: 'CO2',
+  textposition: 'inside',
+  domain: {column: 1},
+  name: 'CO2 Emissions',
+  hoverinfo: 'label+percent+name',
+  hole: .4,
+  type: 'pie'
+}];
+
+var layout = {
+  title: 'Global Emissions 1990-2011',
+  annotations: [
+    {
+      font: {
+        size: 20
+      },
+      showarrow: false,
+      text: 'GHG',
+      x: 0.17,
+      y: 0.5
+    },
+    {
+      font: {
+        size: 20
+      },
+      showarrow: false,
+      text: 'CO2',
+      x: 0.82,
+      y: 0.5
+    }
+  ],
+  height: 400,
+  width: 600,
+  showlegend: false,
+  grid: {rows: 1, columns: 2}
+};
+
+Plotly.newPlot('myDiv2', data, layout);
+        // }  /**/
+        
+        /*Basic Pie Plot*/ //{
+        // }  /**/
+        
+        /*Basic Pie Plot*/ //{
+        // }  /**/
+        
+        /*Basic Pie Plot*/ //{
+        // }  /**/
+        
+        /*Basic Pie Plot*/ //{
+        // }  /**/
+    </script>
+</html>
