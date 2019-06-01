@@ -1688,4 +1688,569 @@ var layout = {
 
 Plotly.newPlot('myDiv', data, layout);
  
+
+
+
+sample charts
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+ 
+ 
+ 
+WebGL with 100,000 points
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+ function gaussianRand() {
+  var rand = 0;
+  for (var i = 0; i < 6; i += 1) {
+    rand += Math.random();
+  }
+  return (rand / 6)-0.5;
+}
+
+var X = [],
+    Y = [],
+    n = 100000,
+    i;
+
+for (i = 0; i < n; i += 1) {
+  X.push(gaussianRand());
+  Y.push(gaussianRand());
+}
+
+var data = [{
+    type: "scattergl",
+    mode: "markers",
+    marker: {
+        line: {
+            width: 1,
+            color: '#404040'}
+    },
+    x: X,
+    y: Y
+}]
+
+Plotly.plot('graph', data)
+
+
+
+WebGL with many traces
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+function gaussianRand() {
+  var rand = 0;
+  for (var i = 0; i < 6; i += 1) {
+    rand += Math.random();
+  }
+  return (rand / 6)-0.5;
+}
+
+
+var start_value = 0,
+     stop_value = 1,
+     point_num = 5000,
+     trace_num = 10;
+var curr_value = start_value;
+var step = (stop_value - start_value) / (point_num - 1);
+
+var data = [];
+for (var j = 0; j < trace_num; j++) {
+    var X = [],
+         Y = [];
+    for (var i = 0; i < point_num; i++) {
+        X.push(curr_value + (step * i));
+        Y.push((gaussianRand()*8)+(j*5));
+    }
+    data.push({
+        type: "scattergl",
+        mode: "line",
+        x: X,
+        y: Y
+    })
+}
+var layout = {showlegend: false}
+Plotly.plot('graph', data = data, layout = layout)
+
+
+
+Marker Size on Bubble Charts
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 11, 12, 13],
+  mode: 'markers',
+  marker: {
+    size: [40, 60, 80, 100]
+  }
+};
+
+var data = [trace1];
+
+var layout = {
+  title: 'Marker Size',
+  showlegend: false,
+  height: 600,
+  width: 600
+};
+
+Plotly.newPlot('myDiv', data, layout);
+ 
+ 
+Marker Size and Color on Bubble Charts
+
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 11, 12, 13],
+  mode: 'markers',
+  marker: {
+    color: ['rgb(93, 164, 214)', 'rgb(255, 144, 14)',  'rgb(44, 160, 101)', 'rgb(255, 65, 54)'],
+    opacity: [1, 0.8, 0.6, 0.4],
+    size: [40, 60, 80, 100]
+  }
+};
+
+var data = [trace1];
+
+var layout = {
+  title: 'Marker Size and Color',
+  showlegend: false,
+  height: 600,
+  width: 600
+};
+
+Plotly.newPlot('myDiv', data, layout);
+ 
+Bubble Size Scaling on Charts
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+// To scale the bubble size, use the attribute sizeref. We recommend using the following formula to calculate a sizeref value:
+// sizeref = 2.0 * Math.max(...size) / (desired_maximum_marker_size**2)
+// Note that setting 'sizeref' to a value greater than 1, decreases the rendered marker sizes, while setting 'sizeref' to less than 1, increases the rendered marker sizes. See https://plot.ly/python/reference/#scatter-marker-sizeref for more information. Additionally, we recommend setting the sizemode attribute: https://plot.ly/python/reference/#scatter-marker-sizemode to area.
+
+var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 11, 12, 13],
+  text: ['A<br>size: 40', 'B<br>size: 60', 'C<br>size: 80', 'D<br>size: 100'],
+  mode: 'markers',
+  marker: {
+    size: [400, 600, 800, 1000],
+    sizemode: 'area'
+  }
+};
+
+var trace2 = {
+  x: [1, 2, 3, 4],
+  y: [14, 15, 16, 17],
+  text: ['A</br>size: 40</br>sixeref: 0.2', 'B</br>size: 60</br>sixeref: 0.2', 'C</br>size: 80</br>sixeref: 0.2', 'D</br>size: 100</br>sixeref: 0.2'],
+  mode: 'markers',
+  marker: {
+    size: [400, 600, 800, 1000],
+    //setting 'sizeref' to lower than 1 decreases the rendered size
+    sizeref: 2,
+    sizemode: 'area'
+  }
+};
+
+var trace3 = {
+  x: [1, 2, 3, 4],
+  y: [20, 21, 22, 23],
+  text: ['A</br>size: 40</br>sixeref: 2', 'B</br>size: 60</br>sixeref: 2', 'C</br>size: 80</br>sixeref: 2', 'D</br>size: 100</br>sixeref: 2'],
+  mode: 'markers',
+  marker: {
+    size: [400, 600, 800, 1000],
+    //setting 'sizeref' to less than 1, increases the rendered marker sizes
+    sizeref: 0.2,
+    sizemode: 'area'
+  }
+};
+
+// sizeref using above forumla
+var desired_maximum_marker_size = 40;
+var size = [400, 600, 800, 1000];
+var trace4 = {
+  x: [1, 2, 3, 4],
+  y: [26, 27, 28, 29],
+  text: ['A</br>size: 40</br>sixeref: 1.25', 'B</br>size: 60</br>sixeref: 1.25', 'C</br>size: 80</br>sixeref: 1.25', 'D</br>size: 100</br>sixeref: 1.25'],
+  mode: 'markers',
+  marker: {
+    size: size,
+    //set 'sizeref' to an 'ideal' size given by the formula sizeref = 2. * max(array_of_size_values) / (desired_maximum_marker_size ** 2)
+    sizeref: 2.0 * Math.max(...size) / (desired_maximum_marker_size**2),
+    sizemode: 'area'
+  }
+};
+
+var data = [trace1, trace2, trace3, trace4];
+
+var layout = {
+  title: 'Bubble Chart Size Scaling',
+  showlegend: false,
+  height: 600,
+  width: 600
+};
+
+Plotly.newPlot('myDiv6', data, layout);
+ 
+Marker Size, Color, and Symbol as an Array
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+var trace1 = {
+          x: [1, 2, 3, 4],
+          y: [10, 11, 12, 13],
+          mode: 'markers',
+          marker: {
+            color: ['hsl(0,100,40)', 'hsl(33,100,40)', 'hsl(66,100,40)', 'hsl(99,100,40)'],
+            size: [12, 22, 32, 42],
+            opacity: [0.6, 0.7, 0.8, 0.9]
+          },
+          type: 'scatter'
+        };
+        
+        var trace2 = {
+          x: [1, 2, 3, 4],
+          y: [11, 12, 13, 14],
+          mode: 'markers',
+          marker: {
+            color: 'rgb(31, 119, 180)',
+            size: 18,
+            symbol: ['circle', 'square', 'diamond', 'cross']
+          },
+          type: 'scatter'
+        };
+        
+        var trace3 = {
+          x: [1, 2, 3, 4],
+          y: [12, 13, 14, 15],
+          mode: 'markers',
+          marker: {
+            size: 18,
+            line: {
+              color: ['rgb(120,120,120)', 'rgb(120,120,120)', 'red', 'rgb(120,120,120)'],
+              width: [2, 2, 6, 2]
+            }
+          },
+          type: 'scatter'
+        };
+        
+        var data = [trace1, trace2, trace3];
+        
+        var layout = {showlegend: false};
+        
+        Plotly.newPlot('myDiv7', data, layout);
+ 
+Cateogrical dot plot
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+       var country = ['Switzerland (2011)', 'Chile (2013)', 'Japan (2014)', 'United States (2012)', 'Slovenia (2014)', 'Canada (2011)', 'Poland (2010)', 'Estonia (2015)', 'Luxembourg (2013)', 'Portugal (2011)'];
+        
+        var votingPop = [40, 45.7, 52, 53.6, 54.1, 54.2, 54.5, 54.7, 55.1, 56.6];
+        
+        var regVoters = [49.1, 42, 52.7, 84.3, 51.7, 61.1, 55.3, 64.2, 91.1, 58.9];
+        
+        var trace1 = {
+          type: 'scatter',
+          x: votingPop,
+          y: country,
+          mode: 'scatter',
+          name: 'Percent of estimated voting age population',
+          marker: {
+            color: 'rgba(156, 165, 196, 0.95)',
+            line: {
+              color: 'rgba(156, 165, 196, 1.0)',
+              width: 1,
+            },
+            symbol: 'circle',
+            size: 16
+          }
+        };
+        
+        var trace2 = {
+          x: regVoters,
+          y: country,
+          mode: 'scatter',
+          name: 'Percent of estimated registered voters',
+          marker: {
+            color: 'rgba(204, 204, 204, 0.95)',
+            line: {
+              color: 'rgba(217, 217, 217, 1.0)',
+              width: 1,
+            },
+            symbol: 'circle',
+            size: 16
+          }
+        };
+        
+        var data = [trace1, trace2];
+        
+        var layout = {
+          title: 'Votes cast for ten lowest voting age population in OECD countries',
+          xaxis: {
+            showgrid: false,
+            showline: true,
+            linecolor: 'rgb(102, 102, 102)',
+            titlefont: {
+              font: {
+                color: 'rgb(204, 204, 204)'
+              }
+            },
+            tickfont: {
+              font: {
+                color: 'rgb(102, 102, 102)'
+              }
+            },
+            autotick: false,
+            dtick: 10,
+            ticks: 'outside',
+            tickcolor: 'rgb(102, 102, 102)'
+          },
+          margin: {
+            l: 140,
+            r: 40,
+            b: 50,
+            t: 80
+          },
+          legend: {
+            font: {
+              size: 10,
+            },
+            yanchor: 'middle',
+            xanchor: 'right'
+          },
+          width: 600,
+          height: 600,
+          paper_bgcolor: 'rgb(254, 247, 234)',
+          plot_bgcolor: 'rgb(254, 247, 234)',
+          hovermode: 'closest'
+        };
+        
+        Plotly.newPlot('myDiv8', data, layout);
+ 
+ 
+Filled Area Plots in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+Basic Overlaid Area Chart
+ 
+             .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+        var trace1 = {
+          x: [1, 2, 3, 4],
+          y: [0, 2, 3, 5],
+          fill: 'tozeroy',
+          type: 'scatter'
+        };
+        
+        var trace2 = {
+          x: [1, 2, 3, 4],
+          y: [3, 5, 1, 7],
+          fill: 'tonexty',
+          type: 'scatter'
+        };
+        
+        var data = [trace1, trace2];
+        
+        Plotly.newPlot('myDiv9', data);
+        
+        
+Overlaid Area Chart Without Boundary Lines
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [0, 2, 3, 5],
+  fill: 'tozeroy',
+  type: 'scatter',
+  mode: 'none'
+};
+
+var trace2 = {
+  x: [1, 2, 3, 4],
+  y: [3, 5, 1, 7],
+  fill: 'tonexty',
+  type: 'scatter',
+  mode: 'none'
+};
+
+var layout = {
+  title: 'Overlaid Chart Without Boundary Lines'
+};
+
+var data = [trace1, trace2];
+
+Plotly.newPlot('myDiv10', data, layout);
+      
+Stacked Area Chart
+
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+var plotDiv = document.getElementById('plot');
+var traces = [
+	{x: [1,2,3], y: [2,1,4], stackgroup: 'one'},
+	{x: [1,2,3], y: [1,1,2], stackgroup: 'one'},
+	{x: [1,2,3], y: [3,0,2], stackgroup: 'one'}
+];
+
+Plotly.newPlot(plotDiv, traces, {title: 'stacked and filled line chart'});
+      
+      
+Select Hover Points
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var data = [
+  {
+    x: [0,0.5,1,1.5,2],
+    y: [0,1,2,1,0],
+    fill: 'toself',
+    fillcolor: '#ab63fa',
+    hoveron: 'points+fills',
+    line: {
+      color: '#ab63fa'
+    },
+    text: "Points + Fills",
+    hoverinfo: 'text'
+  },
+  {
+    x: [3,3.5,4,4.5,5],
+    y: [0,1,2,1,0],
+    fill: 'toself',
+    fillcolor: '#e763fa',
+    hoveron: 'points',
+    line: {
+      color: '#e763fa'
+    },
+    text: "Points only",
+    hoverinfo: 'text'
+  }]
+
+var layout = {
+  title: 'Hover on <i>points</i> or <i>fill</i>',
+  xaxis: {
+    range: [0,5]
+  },
+  yaxis: {
+    range: [0,3]
+  }
+}
+
+Plotly.plot('graph', data, layout)
+      
+ 
+Select Hover Points
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]'
+ 
+ 
+ var data = [
+  {
+    x: [0,0.5,1,1.5,2],
+    y: [0,1,2,1,0],
+    fill: 'toself',
+    fillcolor: '#ab63fa',
+    hoveron: 'points+fills',
+    line: {
+      color: '#ab63fa'
+    },
+    text: "Points + Fills",
+    hoverinfo: 'text'
+  },
+  {
+    x: [3,3.5,4,4.5,5],
+    y: [0,1,2,1,0],
+    fill: 'toself',
+    fillcolor: '#e763fa',
+    hoveron: 'points',
+    line: {
+      color: '#e763fa'
+    },
+    text: "Points only",
+    hoverinfo: 'text'
+  }]
+
+var layout = {
+  title: 'Hover on <i>points</i> or <i>fill</i>',
+  xaxis: {
+    range: [0,5]
+  },
+  yaxis: {
+    range: [0,3]
+  }
+}
+
+Plotly.plot('graph', data, layout)
  
