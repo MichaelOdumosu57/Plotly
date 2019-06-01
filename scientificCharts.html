@@ -1,0 +1,1173 @@
+<html>
+<head>
+	<script src="plotly-latest.min.js"></script>
+	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>
+	<script src="./plotly"></script>
+	<!--<script src = "./ultraObject"></script>-->
+</head>
+<body>
+</body>
+    <script>
+     ultraObject = {
+        forLoop:function(   dev_obj   ){
+                //.forLoop_0_i the iteration
+                //.forLoopLength the length to iterate to
+                //.fn what to do
+                // .args, since they are out scroped this is a way to access the args
+                // .bubble 'true' or 'false' indicating whether to send the break back up nested
+                
+                var forLoopbreak = false
+                if(   dev_obj !== undefined   ){
+            
+                    if(   dev_obj.custom !== 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoop_0_i !== dev_obj.forLoopLength; dev_obj.forLoop_0_i++   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+    
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+            
+                    
+                    else if(   dev_obj.custom === 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoopLength_fn(); dev_obj.forLoop_0_i_fn()   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+                                
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+                    
+                    
+                }
+            },
+        open:function(   dev_obj   ){
+                
+                dev_obj.xhttp.open(   dev_obj.protocol,dev_obj.target,dev_obj.unk_bool   )
+            }, // gets in contact with the host
+        xhttp: (function(   dev_obj   ){
+                    
+                    
+                    if(   typeof(   XMLHttpRequest   ) !== 'undefined'   ){
+                        
+                        
+                        if(   dev_obj === undefined   ){
+                            
+                            
+                            var xhttp_0_i = new XMLHttpRequest()
+                            return xhttp_0_i
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj !== undefined   ){
+                            
+                            
+                            var xhttp_0_i = new XMLHttpRequest()
+                            return xhttp_0_i
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+            })(), // creates an xhr obj
+        DOM_child:{},
+        addEventListener:function(   dev_obj   ){
+                    var fn;
+                    
+                    
+                    if(   dev_obj !== undefined   ){
+                        
+                        
+                        if(   dev_obj.fn !== undefined   ){
+                            
+                            
+                            fn = dev_obj.fn
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj.xhttp === 'true'   ){
+                            
+                            
+                            fn= ultraObject.xhttpreadystatechange
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj.fn === undefined   ){
+                            
+                            
+                            fn = ultraObject.passing_args
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    else if(   dev_obj === undefined   ){
+                        
+                        
+                        fn = ultraObject.passing_args
+                        
+                        
+                    }
+                    
+                    
+                    
+                    ultraObject.DOM_child[0].addEventListener(   ultraObject.eventName,fn   )
+            }, //  dev_obj.fn is used for 1st party dev to add their custom function to the listener dev_obj.xhttp is for xhr
+        xhttpreadystatechange:function(   dev_obj   ){
+                console.log(    this   )
+                var dev_obj = undefined
+                
+                if (    this.readyState == 4 && this.status == 200   ) {
+                
+                
+                    if(   dev_obj !==undefined   ){
+                        
+                        
+                        dev_obj.fn()
+                        
+                        
+                    }
+                    
+                    
+                    else if(   dev_obj ===undefined   ){
+                        
+                        
+                        ultraObject.xhrResponse = this.responseText
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+            } // handles getting remote reposnes
+     }
+    var FL_0_i = {
+        forLoop_0_i:0,
+        forLoopLength:250,
+        fn:function(   dev_obj   ){
+            var element11 = document.createElement("div")
+            document.body.appendChild(element11)
+            var node11 = document.querySelector('div')
+            id11 = document.createAttribute("id")
+            id11.value = 'myDiv' +FL_0_i.forLoop_0_i
+            element11.setAttributeNode(id11)
+        },
+        args: {}
+    }
+    ultraObject.forLoop(   FL_0_i   )
+
+var trace1 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
+  type: 'scatter'
+};
+
+var trace2 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  type: 'scatter'
+};
+
+var data = [trace1, trace2];
+
+var layout = {
+  xaxis: {
+    type: 'log',
+    autorange: true
+  },
+  yaxis: {
+    type: 'log',
+    autorange: true
+  }
+};
+
+
+
+
+/* Logarithmic Axes*/ //{
+{
+
+var trace1 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
+  type: 'scatter'
+};
+
+var trace2 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  type: 'scatter'
+};
+
+var data = [trace1, trace2];
+
+var layout = {
+  xaxis: {
+    type: 'log',
+    autorange: true
+  },
+  yaxis: {
+    type: 'log',
+    autorange: true
+  }
+};
+  
+Plotly.newPlot('myDiv0', data,layout);
+    
+}
+//} /**/
+
+/* Simple Contour Plot */ //{
+{
+var size = 100, x = new Array(size), y = new Array(size), z = new Array(size), i, j;
+
+for(var i = 0; i < size; i++) {
+	x[i] = y[i] = -2 * Math.PI + 4 * Math.PI * i / size;
+  	z[i] = new Array(size);
+}
+
+for(var i = 0; i < size; i++) {
+  	for(j = 0; j < size; j++) {
+    	var r2 = x[i]*x[i] + y[j]*y[j];
+    	z[i][j] = Math.sin(x[i]) * Math.cos(y[j]) * Math.sin(r2) / Math.log(r2+1);
+ 	}
+}
+
+var data = [ {
+		z: z,
+		x: x,
+		y: y,
+		type: 'contour'
+	}
+];
+
+Plotly.newPlot('myDiv1', data);
+}
+//} /**/
+
+
+/*Basic Contour Plot*/ //{
+{
+var data = [ {
+		z: [[10, 10.625, 12.5, 15.625, 20],
+    [5.625, 6.25, 8.125, 11.25, 15.625],
+    [2.5, 3.125, 5.0, 8.125, 12.5],
+    [0.625, 1.25, 3.125, 6.25, 10.625],
+    [0, 0.625, 2.5, 5.625, 10]],
+		type: 'contour'
+	}
+];
+
+var layout = {
+  title: 'Basic Contour Plot'
+}
+
+Plotly.newPlot('myDiv2', data, layout);
+}
+//} /**/
+
+/* Setting X and Y Coordinates in a Contour Plot*/ //{
+{
+var data = [{
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  x: [-9, -6, -5 , -3, -1],
+  y: [0, 1, 4, 5, 7],
+  type: 'contour'
+}];
+
+var layout = {
+  title: 'Setting the X and Y Coordinates in a Contour Plot'
+};
+
+Plotly.newPlot('myDiv3', data, layout);
+    
+}
+//} /**/
+
+/* Colorscale for Contour Plot */ //{
+{
+var data = [{
+  z: [[10, 10.625, 12.5, 15.625, 20],
+     [5.625, 6.25, 8.125, 11.25, 15.625],
+     [2.5, 3.125, 5., 8.125, 12.5],
+     [0.625, 1.25, 3.125, 6.25, 10.625],
+     [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: 'Jet',
+}];
+
+var layout = {
+  title: 'Colorscale for Contour Plot'
+};
+
+Plotly.newPlot('myDiv4', data, layout);
+}
+//} /**/
+
+
+/* Customizing Size and Range of a Contour Plot's Contours */ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: 'Jet',
+  autocontour: false,
+  contours: {
+    start: 0,
+    end: 8,
+    size: 2
+  }
+}];
+
+var layout = {
+  title: 'Customizing Size and Range of Contours'
+};
+
+Plotly.newPlot('myDiv5', data, layout);
+}
+//} /**/
+
+/* Customizing Spacing Between X and Y Ticks*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: 'Jet',
+  dx: 10,
+  x0: 5,
+  dy: 10,
+  y0: 10
+}];
+
+var layout = {
+  title: 'Customizing Spacing Between X and Y Axis Ticks'
+};
+
+Plotly.newPlot('myDiv6', data, layout);
+}
+//} /**/
+
+/* Connect the Gaps between Null Values in the Z Matrix*/ //{
+{
+var trace1 = {
+  z: [[null, null, null, 12, 13, 14, 15, 16],
+      [null, 1, null, 11, null, null, null, 17],
+      [null, 2, 6, 7, null, null, null, 18],
+      [null, 3, null, 8, null, null, null, 19],
+      [5, 4, 10, 9, null, null, null, 20],
+      [null, null, null, 27, null, null, null, 21],
+      [null, null, null, 26, 25, 24, 23, 22]],
+  type: 'contour',
+  showscale: false,
+  xaxis: 'x1',
+  yaxis: 'y1'
+};
+
+var trace2 = {
+  z: [[null, null, null, 12, 13, 14, 15, 16],
+      [null, 1, null, 11, null, null, null, 17],
+      [null, 2, 6, 7, null, null, null, 18],
+      [null, 3, null, 8, null, null, null, 19],
+      [5, 4, 10, 9, null, null, null, 20],
+      [null, null, null, 27, null, null, null, 21],
+      [null, null, null, 26, 25, 24, 23, 22]],
+  connectgaps: true,
+  type: 'contour',
+  showscale: false,
+  xaxis: 'x2',
+  yaxis: 'y2'
+};
+
+var trace3 = {
+  z: [[null, null, null, 12, 13, 14, 15, 16],
+      [null, 1, null, 11, null, null, null, 17],
+      [null, 2, 6, 7, null, null, null, 18],
+      [null, 3, null, 8, null, null, null, 19],
+      [5, 4, 10, 9, null, null, null, 20],
+      [null, null, null, 27, null, null, null, 21],
+      [null, null, null, 26, 25, 24, 23, 22]],
+  zsmooth: 'best',
+  type: 'heatmap',
+  showscale: false,
+  xaxis: 'x3',
+  yaxis: 'y3'
+};
+
+var trace4 = {
+  z: [[null, null, null, 12, 13, 14, 15, 16],
+      [null, 1, null, 11, null, null, null, 17],
+      [null, 2, 6, 7, null, null, null, 18],
+      [null, 3, null, 8, null, null, null, 19],
+      [5, 4, 10, 9, null, null, null, 20],
+      [null, null, null, 27, null, null, null, 21],
+      [null, null, null, 26, 25, 24, 23, 22]],
+  zsmooth: 'best',
+  type: 'heatmap',
+  showscale: false,
+  connectgaps: true,
+  xaxis: 'x4',
+  yaxis: 'y4'
+};
+
+var data = [trace1, trace2, trace3, trace4];
+
+var layout = {
+  title: 'Connect the Gaps Between Null Values in the Z Matrix',
+  xaxis: {domain: [0, 0.45],
+    anchor: 'y1'},
+  yaxis: {domain: [0.55, 1],
+    anchor: 'x1'},
+  xaxis2: {domain: [0.55, 1],
+    anchor: 'y2'},
+  yaxis2: {domain: [0.55, 1],
+    anchor: 'x2'},
+  xaxis3: {domain: [0, 0.45],
+    anchor: 'y3'},
+  yaxis3: {domain: [0, 0.45],
+    anchor: 'x3'},
+  xaxis4: {domain: [0.55, 1],
+    anchor: 'y4'},
+  yaxis4: {domain: [0, 0.45],
+    anchor: 'x4'}
+};
+
+Plotly.newPlot('myDiv7', data, layout);
+}
+//} /**/
+
+
+/* Smoothing Contour Lines*/ //{
+{
+var data = [ {
+  z: [[2, 4, 7, 12, 13, 14, 15, 16],
+   [3, 1, 6, 11, 12, 13, 16, 17],
+   [4, 2, 7, 7, 11, 14, 17, 18],
+   [5, 3, 8, 8, 13, 15, 18, 19],
+   [7, 4, 10, 9, 16, 18, 20, 19],
+   [9, 10, 5, 27, 23, 21, 21, 21],
+   [11, 14, 17, 26, 25, 24, 23, 22]],
+  type: 'contour',
+  line:{
+    smoothing: 0
+  },
+  xaxis: 'x1',
+  yaxis: 'y1'
+},
+{
+  z: [[2, 4, 7, 12, 13, 14, 15, 16],
+   [3, 1, 6, 11, 12, 13, 16, 17],
+   [4, 2, 7, 7, 11, 14, 17, 18],
+   [5, 3, 8, 8, 13, 15, 18, 19],
+   [7, 4, 10, 9, 16, 18, 20, 19],
+   [9, 10, 5, 27, 23, 21, 21, 21],
+   [11, 14, 17, 26, 25, 24, 23, 22]],
+  type: 'contour',
+  line:{
+    smoothing: 120
+  },
+  xaxis: 'x2',
+  yaxis: 'y2'
+}];
+
+var layout = {
+  title: 'Smoothing Contour Lines',
+  xaxis: {domain: [0, 0.45],
+     anchor: 'y1'},
+  yaxis: {domain: [0, 1],
+         anchor: 'x1'},
+  xaxis2: {domain: [0.55, 1],
+         anchor: 'y2'},
+  yaxis2: {domain: [0, 1],
+         anchor: 'x2'}
+};
+
+Plotly.newPlot('myDiv8', data, layout);
+}
+//} /**/
+
+/*Smooth Contour Coloring*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  contours: {
+    coloring: 'heatmap'
+  }
+}];
+
+var layout = {
+  title: 'Smooth Contour Coloring'
+};
+
+Plotly.newPlot('myDiv9', data, layout);
+}
+//} /**/
+
+/* Countor Lines*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: 'Jet',
+  contours:{
+    coloring: 'lines'
+  }
+}];
+
+var layout = {
+  title: 'Contour Lines'
+};
+
+Plotly.newPlot('myDiv10', data, layout);
+}
+//} /**/
+
+
+/* Contour Line Labels*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+      [5.625, 6.25, 8.125, 11.25, 15.625],
+      [2.5, 3.125, 5.0, 8.125, 12.5],
+      [0.625, 1.25, 3.125, 6.25, 10.625],
+      [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  contours: {
+    coloring: 'lines',
+    showlabels: true,
+    labelfont: {
+      family: 'Raleway',
+      size: 24,
+      color: 'black',
+    }
+  }
+}];
+
+var layout = {
+  title: 'Contour with Labels'
+}
+
+Plotly.newPlot('myDiv11', data, layout);
+}
+//} /**/
+
+/*Custom Colorscale for Contour Plot*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: [[0, 'rgb(166,206,227)'], [0.25, 'rgb(31,120,180)'], [0.45, 'rgb(178,223,138)'], [0.65, 'rgb(51,160,44)'], [0.85, 'rgb(251,154,153)'], [1, 'rgb(227,26,28)']]
+}
+];
+
+var layout = {
+  title: 'Custom Contour Plot Colorscale'
+};
+
+Plotly.newPlot('myDiv12', data, layout);
+}
+//} /**/
+
+/* Color Bar Title*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorbar:{
+    title: 'Color Bar Title',
+    titleside: 'right',
+    titlefont: {
+      size: 14,
+      family: 'Arial, sans-serif'
+    }
+  }
+}];
+
+var layout = {
+  title: 'Colorbar with a Title'
+};
+
+Plotly.newPlot('myDiv13', data, layout);
+}
+//} /**/
+
+
+/* Color Bar Size*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorbar:{
+    thickness: 75,
+    thicknessmode: 'pixels',
+    len: 0.9,
+    lenmode: 'fraction',
+    outlinewidth: 0
+  }
+}];
+
+var layout = {
+  title: 'Colorbar Size for Contour Plots'
+};
+
+Plotly.newPlot('myDiv14', data, layout);
+}
+//} /**/
+
+/* Styling Color Bar Ticks for Contour Plots*/ //{
+{
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorbar:{
+    ticks: 'outside',
+    dtick: 1,
+    tickwidth: 2,
+    ticklen: 10,
+    tickcolor: 'grey',
+    showticklabels: true,
+    tickfont: {
+      size: 15
+    },
+    xpad: 50
+  }
+}];
+
+var layout = {
+  title: 'Styling Color Bar Ticks for Contour Plots'
+};
+
+Plotly.newPlot('myDiv15', data, layout);
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+}
+//} /**/
+
+
+Plotly.newPlot('myDiv', data);
+Plotly.newPlot('myDiv0', data, layout);
+                                                
+</script>
+</html>

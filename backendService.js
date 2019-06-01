@@ -14,7 +14,9 @@ const backend = express.Router()
 
 app.use(   '/backend',backend   )
 backend.get(   '/index',function(req,res){
-    res.sendFile(__dirname + '/statisticalCharts.html')
+    // res.sendFile(__dirname + '/charts.html')
+    // res.sendFile(__dirname + '/statisticalCharts.html')
+    res.sendFile(__dirname + '/scientificCharts.html')
 })
 backend.post(   '/linspace',function(req,res){
     
