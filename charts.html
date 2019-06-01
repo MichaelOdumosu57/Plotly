@@ -3,14 +3,93 @@
 	<script src="plotly-latest.min.js"></script>
 	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>
 	<script src="./plotly"></script>
-	<script src = "./ultraObject"></script>
+	<!--<script src = "./ultraObject"></script>-->
 </head>
 <body>
 </body>
     <script>
+    
+
+     ultraObject = {
+         forLoop:function forLoop(   dev_obj   ){
+                //.forLoop_0_i the iteration
+                //.forLoopLength the length to iterate to
+                //.fn what to do
+                // .args, since they are out scroped this is a way to access the args
+                // .bubble 'true' or 'false' indicating whether to send the break back up nested
+                
+                var forLoopbreak = false
+                if(   dev_obj !== undefined   ){
+            
+                    if(   dev_obj.custom !== 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoop_0_i !== dev_obj.forLoopLength; dev_obj.forLoop_0_i++   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+    
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+            
+                    
+                    else if(   dev_obj.custom === 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoopLength_fn(); dev_obj.forLoop_0_i_fn()   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+                                
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+                    
+                    
+                }
+            }
+         
+     }
         var FL_0_i = {
             forLoop_0_i:0,
-            forLoopLength:25,
+            forLoopLength:250,
             fn:function(   dev_obj   ){
                 var element11 = document.createElement("div")
                 document.body.appendChild(element11)
@@ -987,32 +1066,962 @@ Plotly.newPlot('myDiv20', data, layout);
         }
         //} /**/
         
-        /* WebGL with many traces*/ //{
+        /* Circular Gauge Chart*/ //{
+        {
+// Enter a speed between 0 and 180
+var level = 175;
+
+// Trig to calc meter point
+var degrees = 180 - level,
+     radius = .5;
+var radians = degrees * Math.PI / 180;
+var x = radius * Math.cos(radians);
+var y = radius * Math.sin(radians);
+
+// Path: may have to change to create a better triangle
+var mainPath = 'M -.0 -0.025 L .0 0.025 L ',
+     pathX = String(x),
+     space = ' ',
+     pathY = String(y),
+     pathEnd = ' Z';
+var path = mainPath.concat(pathX,space,pathY,pathEnd);
+
+var data = [{ type: 'scatter',
+   x: [0], y:[0],
+    marker: {size: 28, color:'850000'},
+    showlegend: false,
+    name: 'speed',
+    text: level,
+    hoverinfo: 'text+name'},
+  { values: [50/6, 50/6, 50/6, 50/6, 50/6, 50/6, 50],
+  rotation: 90,
+  text: ['TOO FAST!', 'Pretty Fast', 'Fast', 'Average',
+            'Slow', 'Super Slow', ''],
+  textinfo: 'text',
+  textposition:'inside',
+  marker: {colors:['rgba(14, 127, 0, .5)', 'rgba(110, 154, 22, .5)',
+                         'rgba(170, 202, 42, .5)', 'rgba(202, 209, 95, .5)',
+                         'rgba(210, 206, 145, .5)', 'rgba(232, 226, 202, .5)',
+                         'rgba(255, 255, 255, 0)']},
+  labels: ['151-180', '121-150', '91-120', '61-90', '31-60', '0-30', ''],
+  hoverinfo: 'label',
+  hole: .5,
+  type: 'pie',
+  showlegend: false
+}];
+
+var layout = {
+  shapes:[{
+      type: 'path',
+      path: path,
+      fillcolor: '850000',
+      line: {
+        color: '850000'
+      }
+    }],
+  title: '<b>Gauge</b> <br> Speed 0-100',
+  height: 1000,
+  width: 1000,
+  xaxis: {zeroline:false, showticklabels:false,
+             showgrid: false, range: [-1, 1]},
+  yaxis: {zeroline:false, showticklabels:false,
+             showgrid: false, range: [-1, 1]}
+};
+
+Plotly.newPlot('myDiv24', data, layout);
+        }
+        //} /**/
+        
+        /*  Basic Sankey Diagram*/ //{
+        {
+var data = {
+  type: "sankey",
+  orientation: "h",
+  node: {
+    pad: 15,
+    thickness: 30,
+    line: {
+      color: "black",
+      width: 0.5
+    },
+   label: ["A1", "A2", "B1", "B2", "C1", "C2"],
+   color: ["blue", "blue", "blue", "blue", "blue", "blue"]
+      },
+
+  link: {
+    source: [0,1,0,2,3,3],
+    target: [2,3,3,4,4,5],
+    value:  [8,4,2,8,4,2]
+  }
+}
+
+var data = [data]
+
+var layout = {
+  title: "Basic Sankey",
+  font: {
+    size: 10
+  }
+}
+
+Plotly.react('myDiv25', data, layout)
+        }
+        //} /**/
+        
+        /* Create Sankey Canvas*/ //{
+        {
+      
+var data = {
+  type: "sankey",
+  domain: {
+    x: [0,1],
+    y: [0,1]
+  },
+  orientation: "h",
+  valueformat: ".0f",
+  valuesuffix: "TWh"
+}
+
+var data = [data]
+
+var layout = {
+  title: "Energy forecast for 2050<br>Source: Department of Energy & Climate Change, Tom Counsell via <a href='https://bost.ocks.org/mike/sankey/'>Mike Bostock</a>",
+  width: 1118,
+  height: 772,
+  font: {
+    size: 10
+  }
+}
+
+
+
+                 
+        }
+        
+            /* adding nodes*/ //{
+            {
+    Plotly.d3.json('https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy.json', function(fig){
+    
+    var data = {
+      type: "sankey",
+      domain: {
+        x: [0,1],
+        y: [0,1]
+      },
+      orientation: "h",
+      valueformat: ".0f",
+      valuesuffix: "TWh",
+    
+      node: {
+        pad: 15,
+        thickness: 15,
+        line: {
+          color: "black",
+          width: 0.5
+        },
+       label: fig.data[0].node.label,
+       color: fig.data[0].node.color
+          }
+    }
+    
+    var data = [data]
+    
+    var layout = {
+      title: "Energy forecast for 2050<br>Source: Department of Energy & Climate Change, Tom Counsell via <a href='https://bost.ocks.org/mike/sankey/'>Mike Bostock</a>",
+      width: 1118,
+      height: 772,
+      font: {
+        size: 10
+      }
+    }
+    
+    });
+    
+    
+            }
+            //} /**/
+            
+            /* Add Links*/ //{
+            {
+    Plotly.d3.json('https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy.json', function(fig){
+    
+    var data = {
+      type: "sankey",
+      domain: {
+        x: [0,1],
+        y: [0,1]
+      },
+      orientation: "h",
+      valueformat: ".0f",
+      valuesuffix: "TWh",
+      node: {
+        pad: 15,
+        thickness: 15,
+        line: {
+          color: "black",
+          width: 0.5
+        },
+       label: fig.data[0].node.label,
+       color: fig.data[0].node.color
+          },
+    
+      link: {
+        source: fig.data[0].link.source,
+        target: fig.data[0].link.target,
+        value: fig.data[0].link.value,
+        label: fig.data[0].link.label
+      }
+    }
+    
+    var data = [data]
+    
+    var layout = {
+      title: "Energy forecast for 2050<br>Source: Department of Energy & Climate Change, Tom Counsell via <a href='https://bost.ocks.org/mike/sankey/'>Mike Bostock</a>",
+      width: 1118,
+      height: 772,
+      font: {
+        size: 10
+      }
+    }
+    
+    Plotly.plot('myDiv26', data, layout)
+    });
+            }
+            //} /**/
+            
+        //} /**/
+        
+        /* Style Sankey Diagram*/ //{
+        {
+            Plotly.d3.json('https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy_dark.json', function(fig){
+            
+            var data = {
+              type: "sankey",
+              domain: {
+                x: [0,1],
+                y: [0,1]
+              },
+              orientation: "h",
+              valueformat: ".0f",
+              valuesuffix: "TWh",
+              node: {
+                pad: 15,
+                thickness: 15,
+                line: {
+                  color: "black",
+                  width: 0.5
+                },
+               label: fig.data[0].node.label,
+               color: fig.data[0].node.color
+                  },
+              link: {
+                source: fig.data[0].link.source,
+                target: fig.data[0].link.target,
+                value: fig.data[0].link.value,
+                label: fig.data[0].link.label
+              }
+            }
+            
+            var data = [data]
+            
+            var layout = {
+              title: "Energy forecast for 2050<br>Source: Department of Energy & Climate Change, Tom Counsell via <a href='https://bost.ocks.org/mike/sankey/'>Mike Bostock</a>",
+              width: 1118,
+              height: 772,
+              font: {
+                size: 10,
+                color: 'white'
+              },
+              plot_bgcolor: 'black',
+              paper_bgcolor: 'black'
+            }
+            
+            Plotly.plot('myDiv27', data, layout)
+            });
+            
+        }
+        //} /**/
+        
+        /* Basic Point Cloud*/ //{
+        {
+        var xy = new Float32Array([1,2,3,4,5,6,0,4]);
+        
+        data = [{ xy: xy,  type: 'pointcloud' }];
+        layout = { };
+        
+        Plotly.newPlot('myDiv28', data, layout);
+        }
+        //} /**/
+        
+        /* Styled Point Cloud*/ //{
+        {
+            var trace1 = {
+              type: "pointcloud",
+              mode: "markers",
+              marker: {
+                sizemin: 0.5,
+                sizemax: 100,
+                arearatio: 0,
+                color: "rgba(255, 0, 0, 0.6)"
+              },
+              x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+              y: [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+            }
+            
+            var trace2 = {
+              type: "pointcloud",
+              mode: "markers",
+              marker: {
+                sizemin: 0.5,
+                sizemax: 100,
+                arearatio: 0,
+                color: "rgba(0, 0, 255, 0.9)",
+                opacity: 0.8,
+                blend: true
+              },
+              opacity: 0.7,
+              x: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+              y: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            }
+            
+            var trace3 = {
+              type: "pointcloud",
+              mode: "markers",
+              marker: {
+                sizemin: 0.5,
+                sizemax: 100,
+                border: {
+                  color: "rgb(0, 0, 0)",
+                  arearatio: 0.7071
+                },
+                color: "green",
+                opacity: 0.8,
+                blend: true
+              },
+              opacity: 0.7,
+              x: [3, 4.5, 6],
+              y: [9, 9, 9]
+            }
+            
+            var data = [trace1, trace2,trace3];
+            
+            var layout = {
+              title: "Basic Point Cloud",
+              xaxis: {
+                type: "linear",
+                range: [
+                  -2.501411175139456,
+                  43.340777299865266],
+                autorange: true
+              },
+              yaxis: {
+                type: "linear",
+                range: [4,6],
+                autorange: true
+              },
+              height: 598,
+              width: 1080,
+              autosize: true,
+              showlegend: false
+            }
+            
+            Plotly.newPlot('myDiv29', data, layout);
+        }
+        //} /**/
+        
+        /* Advanced Point Cloud*/ //{
+        {
+            
+                var element11 = document.createElement("canvas")
+                document.body.appendChild(element11)
+                var node11 = document.querySelector('canvas')
+                id11 = document.createAttribute("id")
+                id11.value = "canvas"
+                element11.setAttributeNode(id11)
+                
+                var element11 = document.createElement("div")
+                document.body.appendChild(element11)
+                var node11 = document.querySelectorAll('div')[document.querySelectorAll('div')[document.querySelectorAll('div').length-1]]
+                id11 = document.createAttribute("id")
+                id11.value = "graphDiv"
+                element11.setAttributeNode(id11)
+                                
+                
+var graphDiv = document.getElementById("graphDiv")
+var canvas = document.getElementById("canvas")
+var ctx = canvas.getContext("2d")
+
+
+
+
+var pointCount = 1e6
+var scaleX = 2000
+var scaleY = 1000
+var speed = 0.3
+
+// some non-uniform distribution
+function pseudogaussian() {return (Math.random() + Math.random() + Math.random() + Math.random() + Math.random() + Math.random()) - 3}
+
+// dataset xy array generator
+function gaussian(sd) {
+  var result = new Float32Array(2 * pointCount)
+  var f = 20 / 360 * 2 * Math.PI
+  var sin = Math.sin(f)
+  var cos = Math.cos(f)
+  var i, x, y
+  for(i = 0; i < pointCount; i++) {
+    x = scaleX * pseudogaussian() * sd
+    y = scaleY * pseudogaussian() * sd * 0.75
+    result[i * 2] = x * cos - y * sin + scaleX * 0.5
+    result[i * 2 + 1] = x * sin + y * cos + scaleY * 0.5
+  }
+
+  return result
+}
+
+// generate initial dataset
+var geom = gaussian(1/5)
+
+var plotData = {
+  data: [
+    {
+      type: 'pointcloud',
+      marker: {
+        sizemin: 0.05,
+        sizemax: 30,
+        color: 'darkblue',
+        opacity: 1,
+        blend: true
+      },
+      opacity: 1,
+      xy: geom, // instead of separate x and y arrays
+      indices: new Int32Array(pointCount).map(function(d, i) {return i;}),
+      xbounds: [0, scaleX],
+      ybounds: [0, scaleY]
+    }
+  ],
+  layout: {
+    title: 'Point Cloud - updating 1 million points in every single frame',
+    autosize: false,
+    width: 1000,
+    height: 600,
+    hovermode: false,
+    dragmode: "pan"
+  }
+}
+
+function reds (imageData) {
+  // uses the red channel for simplicity
+  var result = []
+  var data = imageData.data
+  var width = imageData.width
+  var height = imageData.height
+  var i, j
+  for(j =0; j < height; j++)
+    for(i = 0; i < width; i++)
+      if(data[4 * (i + width * j)])
+        result.push([i, j])
+  return result
+}
+
+function fillGeom(pixels, width, height) {
+  var result = new Float32Array(2 * pointCount)
+  var i
+  var pixel
+  var pixLength = pixels.length
+  for(i = 0; i < pointCount; i++) {
+    pixel = pixels[i % pixLength] // recycling and jittering points
+    result[2 * i] = scaleX * (pixel[0] + Math.random()) / width
+    result[2 * i + 1] = scaleY * (1 - (pixel[1] + Math.random()) / height)
+  }
+  return result
+}
+
+function recurrenceRelationGeom(target, geom, speed, maxVelo, fraction) {
+  // non-one fraction is for glitch effects
+  var i, ii, diff
+  var geomPointCount = geom.length
+  var changedCount = Math.round(geomPointCount * fraction)
+  var from = Math.floor(Math.random() * geomPointCount)
+  var to = from + changedCount
+  for(ii = from; ii < to; ii++) {
+    i = ii % geomPointCount
+    diff = speed * (target[i] - geom[i])
+    geom[i] += Math.min(maxVelo, diff) // capping for glitch effect
+  }
+}
+
+function clearCanvas(ctx, width, height) {
+  ctx.fillStyle = "black"
+  ctx.fillRect(0, 0, width, height)
+  ctx.fillStyle = "red"
+}
+
+function plotlyTextGeom(ctx, width, height) {
+
+  clearCanvas(ctx, width, height)
+  ctx.font = "bold 260px 'Open sans',verdana,arial,sans-serif"
+  ctx.textAlign = "center"
+  ctx.textBaseline = "middle"
+  ctx.fillText("Plotly", width / 2, height / 2)
+  var imageData = ctx.getImageData(0, 0, width, height)
+  var filledPixels = reds(imageData)
+
+  return fillGeom(filledPixels, width, height)
+}
+
+function pointcloudTextGeom(ctx, width, height) {
+
+  clearCanvas(ctx, width, height)
+  ctx.font = "bold 240px 'Open sans',verdana,arial,sans-serif"
+  ctx.textAlign = "center"
+  ctx.textBaseline = "alphabetic"
+  ctx.fillText("Point", width / 2, height / 2)
+  ctx.textBaseline = "hanging"
+  ctx.fillText("Cloud", width / 2, height / 2)
+  var imageData = ctx.getImageData(0, 0, width, height)
+  var filledPixels = reds(imageData)
+
+  return fillGeom(filledPixels, width, height)
+}
+
+function oneMillionTextGeom(ctx, width, height) {
+
+  clearCanvas(ctx, width, height)
+  ctx.font = "bold 144px 'Open sans',verdana,arial,sans-serif"
+  ctx.textAlign = "center"
+  ctx.textBaseline = "bottom"
+  ctx.fillText("1 million", width / 2, height / 2)
+  ctx.textBaseline = "top"
+  ctx.fillText("live points", width / 2, height / 2)
+  var imageData = ctx.getImageData(0, 0, width, height)
+  var filledPixels = reds(imageData)
+
+  return fillGeom(filledPixels, width, height)
+}
+
+function initializeCanvas(plotArea) {
+  canvas.style.left = plotArea.left + "px"
+  canvas.style.top = plotArea.top + "px"
+  canvas.setAttribute("width", plotArea.width)
+  canvas.setAttribute("height", plotArea.height)
+}
+
+
+// 'Open sans',verdana,arial,sans-serif
+// Plotly.plot(graphDiv, plotData.data, plotData.layout).then(function() {
+
+//   var plotArea = document.querySelector('.gl-container div').getBoundingClientRect()
+
+//   var width = plotArea.width
+//   var height = plotArea.height
+
+//   initializeCanvas(plotArea)
+
+//   var targetPlotly = {
+//     geom: plotlyTextGeom(ctx, width, height),
+//     color: "blue",
+//     speed: 2 - speed,
+//     maxVelo: Infinity,
+//     fraction: 1
+//   }
+//   var targetPointcloud = {
+//     geom: pointcloudTextGeom(ctx, width, height),
+//     color: "darkgreen",
+//     speed: speed,
+//     maxVelo: 100,
+//     fraction: 0.6
+//   }
+//   var targetOneMillion = {
+//     geom: oneMillionTextGeom(ctx, width, height),
+//     color: "darkpurple",
+//     speed: speed,
+//     maxVelo: 200,
+//     fraction: 0.6
+//   }
+//   var targetGaussian = {
+//     geom: gaussian(1/5),
+//     color: "darkblue",
+//     speed: 5 * speed,
+//     maxVelo: 50,
+//     fraction: 1
+//   }
+//   var targetGaussian2 = {
+//     geom: gaussian(100),
+//     color: "darkblue",
+//     speed: 0.2 * speed,
+//     maxVelo: 1000,
+//     fraction: 1
+//   }
+
+//   var currentIndex = 0
+//   var targets = [targetPlotly, targetPointcloud, targetOneMillion, targetGaussian, targetGaussian2]
+
+//   window.setInterval(function() {
+//     currentIndex = (currentIndex + 1) % targets.length
+//   }, 3000)
+
+//   function getIndex() {
+//     return currentIndex
+//   }
+
+//   window.requestAnimationFrame(function refresh() {
+//     var target = targets[getIndex()]
+//     recurrenceRelationGeom(target.geom, geom, target.speed, target.maxVelo, target.fraction)
+//     Plotly.restyle(graphDiv, {marker:{color: target.color}/*,xy: geom*/}, 0) // /*no need to include xy: geom*/
+//     window.requestAnimationFrame(refresh)
+//   })
+// })
+        }
+        //} /**/
+        
+        
+        /* Basic Table */ //{
+        {
+var values = [
+      ['Salaries', 'Office', 'Merchandise', 'Legal', '<b>TOTAL</b>'],
+      [1200000, 20000, 80000, 2000, 12120000],
+      [1300000, 20000, 70000, 2000, 130902000],
+      [1300000, 20000, 120000, 2000, 131222000],
+      [1400000, 20000, 90000, 2000, 14102000]]
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b>EXPENSES</b>"], ["<b>Q1</b>"],
+				 ["<b>Q2</b>"], ["<b>Q3</b>"], ["<b>Q4</b>"]],
+    align: "center",
+    line: {width: 1, color: 'black'},
+    fill: {color: "grey"},
+    font: {family: "Arial", size: 12, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "center",
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 11, color: ["black"]}
+  }
+}]
+
+Plotly.plot('myDiv31', data);
+        }
+        //} /**/
+        
+        /* Styled Table*/ //{
+        {
+            var values = [
+                  ['Salaries', 'Office', 'Merchandise', 'Legal', '<b>TOTAL</b>'],
+                  [1200000, 20000, 80000, 2000, 12120000],
+                  [1300000, 20000, 70000, 2000, 130902000],
+                  [1300000, 20000, 120000, 2000, 131222000],
+                  [1400000, 20000, 90000, 2000, 14102000]]
+            
+            var data = [{
+              type: 'table',
+              header: {
+                values: [["<b>EXPENSES</b>"], ["<b>Q1</b>"],
+            				 ["<b>Q2</b>"], ["<b>Q3</b>"], ["<b>Q4</b>"]],
+                align: ["left", "center"],
+                line: {width: 1, color: '#506784'},
+                fill: {color: '#119DFF'},
+                font: {family: "Arial", size: 12, color: "white"}
+              },
+              cells: {
+                values: values,
+                align: ["left", "center"],
+                line: {color: "#506784", width: 1},
+            	 fill: {color: ['#25FEFD', 'white']},
+                font: {family: "Arial", size: 11, color: ["#506784"]}
+              }
+            }]
+            
+            Plotly.plot('myDiv32', data);
+        }
+        //} /**/
+        
+        /* Table From a CSV*/ //{
+        {
+        Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/Mining-BTC-180.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  var headerNames = Plotly.d3.keys(rows[0]);
+
+  var headerValues = [];
+  var cellValues = [];
+  for (i = 0; i < headerNames.length; i++) {
+    headerValue = [headerNames[i]];
+    headerValues[i] = headerValue;
+    cellValue = unpack(rows, headerNames[i]);
+    cellValues[i] = cellValue;
+  }
+
+  // clean date
+  for (i = 0; i < cellValues[1].length; i++) {
+  var dateValue = cellValues[1][i].split(' ')[0]
+  cellValues[1][i] = dateValue
+  }
+
+
+var data = [{
+  type: 'table',
+  columnwidth: [200,500,600,600,400,400,600,600,600],
+  columnorder: [0,1,2,3,4,5,6,7,8,9],
+  header: {
+    values: headerValues,
+    align: "center",
+    line: {width: 1, color: 'rgb(50, 50, 50)'},
+    fill: {color: ['rgb(235, 100, 230)']},
+    font: {family: "Arial", size: 11, color: "white"}
+  },
+  cells: {
+    values: cellValues,
+    align: ["center", "center"],
+    line: {color: "black", width: 1},
+    fill: {color: ['rgba(228, 222, 249, 0.65)','rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)']},
+    font: {family: "Arial", size: 10, color: ["black"]}
+  }
+}]
+
+var layout = {
+  title: "Bitcoin mining stats for 180 days"
+}
+
+Plotly.plot('myDiv33', data, layout);
+});
+        }
+        //} /**/
+        
+        /* Changing Size of Rows and Columns*/ //{
+        {
+var values = [
+      ['Salaries', 'Office', 'Merchandise', 'Legal', '<b>TOTAL<br>EXPENSES</b>'],
+	["Lorem ipsum dolor sit amet, tollit discere inermis pri ut. Eos ea iusto timeam, an prima laboramus vim. Id usu aeterno adversarium, summo mollis timeam vel ad",
+	 "Lorem ipsum dolor sit amet, tollit discere inermis pri ut. Eos ea iusto timeam, an prima laboramus vim. Id usu aeterno adversarium, summo mollis timeam vel ad",
+	 "Lorem ipsum dolor sit amet, tollit discere inermis pri ut. Eos ea iusto timeam, an prima laboramus vim. Id usu aeterno adversarium, summo mollis timeam vel ad",
+	 "Lorem ipsum dolor sit amet, tollit discere inermis pri ut. Eos ea iusto timeam, an prima laboramus vim. Id usu aeterno adversarium, summo mollis timeam vel ad",
+	"Lorem ipsum dolor sit amet, tollit discere inermis pri ut. Eos ea iusto timeam, an prima laboramus vim. Id usu aeterno adversarium, summo mollis timeam vel ad"]]
+
+var data = [{
+  type: 'table',
+  columnorder: [1,2],
+  columnwidth: [80,400],
+  header: {
+    values: [["<b>EXPENSES</b><br>as of July 2017"], ["<b>DESCRIPTION</b>"]],
+	 align: ["left", "center"],
+	 height: 40,
+    line: {width: 1, color: '#506784'},
+    fill: {color: '#119DFF'},
+    font: {family: "Arial", size: 12, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: ["left", "center"],
+	 height: 30,
+    line: {color: "#506784", width: 1},
+	 fill: {color: ['#25FEFD', 'white']},
+    font: {family: "Arial", size: 11, color: ["#506784"]}
+  }
+}]
+
+Plotly.plot('graph', data);
+        }
+        //} /**/
+        
+        
+        /* Alternating Row Colors*/ //{
+        {
+var values = [
+      ['Salaries', 'Office', 'Merchandise', 'Legal', '<b>TOTAL</b>'],
+      [1200000, 20000, 80000, 2000, 12120000],
+      [1300000, 20000, 70000, 2000, 130902000],
+      [1300000, 20000, 120000, 2000, 131222000],
+      [1400000, 20000, 90000, 2000, 14102000]]
+
+var headerColor = "grey";
+var rowEvenColor = "lightgrey";
+var rowOddColor = "white";
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b>EXPENSES</b>"], ["<b>Q1</b>"],
+				 ["<b>Q2</b>"], ["<b>Q3</b>"], ["<b>Q4</b>"]],
+    align: "center",
+    line: {width: 1, color: 'black'},
+    fill: {color: headerColor},
+    font: {family: "Arial", size: 12, color: "white"}
+  },
+  cells: {
+    values: values,
+    align: "center",
+    line: {color: "black", width: 1},
+    fill: {color: [[rowOddColor,rowEvenColor,rowOddColor,
+						  rowEvenColor,rowOddColor]]},
+    font: {family: "Arial", size: 11, color: ["black"]}
+  }
+}]
+
+Plotly.plot('myDiv35', data);
+        }
+        //} /**/
+        
+        /* Table and Chart Subplot*/ //{
+        {
+        Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/Mining-BTC-180.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+  // header values
+  var headerNames = Plotly.d3.keys(rows[0]);
+  var headerValues = [headerNames[1],headerNames[2],
+                      headerNames[3],headerNames[4]];
+
+  // cell values
+  var cellValues = [];
+  for (i = 0; i < headerValues.length; i++) {
+    cellValue = unpack(rows, headerValues[i]);
+    cellValues[i] = cellValue;
+  }
+
+  // clean date
+  for (i = 0; i < cellValues[0].length; i++) {
+  var dateValue = cellValues[0][i].split(' ')[0]
+  cellValues[0][i] = dateValue
+  }
+
+  // create table
+  var table = {
+    type: 'table',
+    columnwidth: [150,200,200,150],
+    columnorder: [0,1,2,3],
+    header: {
+      values: headerValues,
+      align: "center",
+      line: {width: 1, color: 'rgb(50, 50, 50)'},
+      fill: {color: ['rgb(235, 100, 230)']},
+      font: {family: "Arial", size: 11, color: "white"}
+    },
+    cells: {
+      values: cellValues,
+      align: ["center", "center"],
+      line: {color: "black", width: 1},
+      fill: {color: ['rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)']},
+      font: {family: "Arial", size: 10, color: ["black"]}
+    },
+    xaxis: 'x',
+    yaxis: 'y',
+    domain: {x: [0,0.4], y: [0,1]}
+  }
+
+  // create 1st plot
+  var trace1 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Hash-rate'),
+    xaxis: 'x1',
+    yaxis: 'y1',
+    mode: 'lines',
+    line: {width: 2, color: '#9748a1'},
+    name: 'hash-rate-TH/s'
+  }
+  // create 2nd plot
+  var trace2 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Mining-revenue-USD'),
+    xaxis: 'x2',
+    yaxis: 'y2',
+    mode: 'lines',
+    line: {width: 2, color: '#b04553'},
+    name: 'Mining-revenue-USD'
+  }
+
+  // create 3rd plot
+  var trace3 = {
+    x: unpack(rows, 'Date'),
+    y: unpack(rows, 'Transaction-fees-BTC'),
+    xaxis: 'x3',
+    yaxis: 'y3',
+    mode: 'lines',
+    line: {width: 2, color: '#af7bbd'},
+    name: 'Transaction-fees-BTC'
+  }
+
+  var data = [table,trace1,trace2,trace3]
+
+  // define subplot axes
+  var axis = {
+    showline: true,
+    zeroline: false,
+    showgrid: true,
+    mirror:true,
+    ticklen: 4,
+    gridcolor: '#ffffff',
+    tickfont: {size: 10},
+  }
+
+  var axis1 = {domain: [0.5, 1], anchor: 'y1', showticklabels: false}
+  var axis2 = {domain: [0.5, 1], anchor: 'y2', showticklabels: false}
+  var axis3 = {domain: [0.5, 1], anchor: 'y3'}
+  var axis4 = {domain: [0.66, 0.98], anchor: 'x1', hoverformat: '.2f'}
+  var axis5 = {domain: [0.34, 0.64], anchor: 'x2', tickprefix: '$', hoverformat: '.2f'}
+  var axis6 = {domain: [0.0, 0.32], anchor: 'x3', tickprefix: '\u20BF', hoverformat: '.2f'}
+
+  // define layout
+  var layout = {
+    title: "Bitcoin mining stats for 180 days",
+    plot_bgcolor: 'rgba(228, 222, 249, 0.65)',
+    showlegend: false,
+    xaxis1: Object.assign(axis1,axis),
+    xaxis2: Object.assign(axis2,axis),
+    xaxis3: Object.assign(axis3,axis),
+    yaxis1: Object.assign(axis4,axis),
+    yaxis2: Object.assign(axis5,axis),
+    yaxis3: Object.assign(axis6,axis)
+  }
+
+  Plotly.plot('graph', data, layout);
+
+});
+        }
+        //} /**/
+        
+        /* Style Sankey Diagram*/ //{
         {
         }
         //} /**/
         
-        /* WebGL with many traces*/ //{
+        /* Style Sankey Diagram*/ //{
         {
         }
         //} /**/
         
-        /* WebGL with many traces*/ //{
+        
+        /* Style Sankey Diagram*/ //{
         {
         }
         //} /**/
         
-        /* WebGL with many traces*/ //{
+        /* Style Sankey Diagram*/ //{
         {
         }
         //} /**/
         
-        /* WebGL with many traces*/ //{
+        /* Style Sankey Diagram*/ //{
         {
         }
         //} /**/
         
-        /* WebGL with many traces*/ //{
+        /* Style Sankey Diagram*/ //{
+        {
+        }
+        //} /**/
+        
+        
+        /* Style Sankey Diagram*/ //{
         {
         }
         //} /**/
