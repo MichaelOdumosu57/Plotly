@@ -1,3 +1,6 @@
+intersted in table, sankey, parallel categories
+
+
             .___                        .___                        .___                        .___
          |  [__]
          [__]  |                 |   [__]                      | [__]
@@ -3935,8 +3938,51 @@ var data = [trace1, trace2];
 
 Plotly.newPlot('myDiv39', data);
             
-Basic Point Cloud
+            
+Statistical Charts
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
 
+
+Error Bars in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+                         
+ Basic Symmetric Error Bars
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+var data = [
+  {
+    x: [0, 1, 2],
+    y: [6, 10, 2],
+    error_y: {
+      type: 'data',
+      array: [1, 2, 3],
+      visible: true
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv', data);
+      
+
+
+Bar Chart with Error Bars
  
  
             .___
@@ -3944,8 +3990,58 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
             
-Basic Point Cloud
+var trace1 = {
+  x: ['Trial 1', 'Trial 2', 'Trial 3'],
+  y: [3, 6, 4],
+  name: 'Control',
+  error_y: {
+    type: 'data',
+    array: [1, 0.5, 1.5],
+    visible: true
+  },
+  type: 'bar'
+};
+var trace2 = {
+  x: ['Trial 1', 'Trial 2', 'Trial 3'],
+  y: [4, 7, 3],
+  name: 'Experimental',
+  error_y: {
+    type: 'data',
+    array: [0.5, 1, 2],
+    visible: true
+  },
+  type: 'bar'
+};
+var data = [trace1, trace2];
+var layout = {barmode: 'group'};
+Plotly.newPlot('myDiv', data, layout);
 
+
+            
+            
+Horizontal Error Bars
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+var data = [
+  {
+    x: [1, 2, 3, 4],
+    y: [2, 1, 3, 4],
+    error_x: {
+      type: 'percent',
+      value: 10
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv', data);
+            
+            
+Asymmetric Error Bars
  
  
             .___
@@ -3954,30 +4050,23 @@ Basic Point Cloud
       | [__]    [__]  |
             
             
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
+var data = [
+  {
+    x: [1, 2, 3, 4],
+    y: [2, 1, 3, 4],
+    error_y: {
+      type: 'data',
+      symmetric: false,
+      array: [0.1, 0.2, 0.1, 0.1],
+      arrayminus: [0.2, 0.4, 1, 0.2]
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv', data);
             
                                     
-                                    
-Basic Point Cloud
+Colored and Styled Error Bars
 
  
  
@@ -3987,6 +4076,1816 @@ Basic Point Cloud
       | [__]    [__]  |
             
             
+var linspace = require('linspace')
+x_theo = linspace(-4, 4, 100)
+sincx = Math.sin(x_theo) / x_theo
+var x = [-3.8, -3.03, -1.91, -1.46, -0.89, -0.24, -0.0, 0.41, 0.89, 1.01, 1.91, 2.28, 2.79, 3.56]
+var y = [-0.02, 0.04, -0.01, -0.27, 0.36, 0.75, 1.03, 0.65, 0.28, 0.02, -0.11, 0.16, 0.04, -0.15]
+
+var trace1 = {
+  x: x_theo,
+  y: sincx,
+  name: 'sinc(x)',
+  type: 'scatter'
+};
+var trace2 = {
+  x: x,
+  y: y,
+  mode: 'markers',
+  name: 'measured',
+  error_y: {
+    type: 'constant',
+    value: 0.1,
+    color: '#85144B',
+    thickness: 1.5,
+    width: 3,
+    opacity: 1
+  },
+  error_x: {
+    type: 'constant',
+    value: 0.2,
+    color: '#85144B',
+    thickness: 1.5,
+    width: 3,
+    opacity: 1
+  },
+  marker: {
+    color: '#85144B',
+    size: 8
+  },
+  type: 'scatter'
+};
+var data = [trace1, trace2];
+Plotly.newPlot('myDiv', data);
+            
+            
+Error Bars as a Percentage of the y-Value
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var data = [
+  {
+    x: [0, 1, 2],
+    y: [6, 10, 2],
+    error_y: {
+      type: 'percent',
+      value: 50,
+      visible: true
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv', data);
+            
+            
+            
+Asymmetric Error Bars with a Constant Offset
+
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+
+var data = [
+  {
+    x: [1, 2, 3, 4],
+    y: [2, 1, 3, 4],
+    error_y: {
+      type: 'percent',
+      symmetric: false,
+      value: 15,
+      valueminus: 25
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv', data);
+
+Continuous Error Bars in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+Filled Lines
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+var trace1 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+  y: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+  fill: "tozerox",
+  fillcolor: "rgba(0,100,80,0.2)",
+  line: {color: "transparent"},
+  name: "Fair",
+  showlegend: false,
+  type: "scatter"
+};
+var trace2 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+  y: [5.5, 3, 5.5, 8, 6, 3, 8, 5, 6, 5.5, 4.75, 5, 4, 7, 2, 4, 7, 4.4, 2, 4.5],
+  fill: "tozerox",
+  fillcolor: "rgba(0,176,246,0.2)",
+  line: {color: "transparent"},
+  name: "Premium",
+  showlegend: false,
+  type: "scatter"
+};
+var trace3 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+  y: [11, 9, 7, 5, 3, 1, 3, 5, 3, 1, -1, 1, 3, 1, -0.5, 1, 3, 5, 7, 9],
+  fill: "tozerox",
+  fillcolor: "rgba(231,107,243,0.2)",
+  line: {color: "transparent"},
+  name: "Fair",
+  showlegend: false,
+  type: "scatter"
+};
+var trace4 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  line: {color: "rgb(0,100,80)"},
+  mode: "lines",
+  name: "Fair",
+  type: "scatter"
+};
+var trace5 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [5, 2.5, 5, 7.5, 5, 2.5, 7.5, 4.5, 5.5, 5],
+  line: {color: "rgb(0,176,246)"},
+  mode: "lines",
+  name: "Premium",
+  type: "scatter"
+};
+var trace6 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [10, 8, 6, 4, 2, 0, 2, 4, 2, 0],
+  line: {color: "rgb(231,107,243)"},
+  mode: "lines",
+  name: "Ideal",
+  type: "scatter"
+};
+var data = [trace1, trace2, trace3, trace4, trace5, trace6];
+var layout = {
+  paper_bgcolor: "rgb(255,255,255)",
+  plot_bgcolor: "rgb(229,229,229)",
+  xaxis: {
+    gridcolor: "rgb(255,255,255)",
+    range: [1, 10],
+    showgrid: true,
+    showline: false,
+    showticklabels: true,
+    tickcolor: "rgb(127,127,127)",
+    ticks: "outside",
+    zeroline: false
+  },
+  yaxis: {
+    gridcolor: "rgb(255,255,255)",
+    showgrid: true,
+    showline: false,
+    showticklabels: true,
+    tickcolor: "rgb(127,127,127)",
+    ticks: "outside",
+    zeroline: false
+  }
+};
+Plotly.plot('plotly-div', data, layout);
+            
+            
+Continuous Error Bars in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+Basic 2D Histogram Contour
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    type: 'histogram2dcontour'
+  }
+];
+Plotly.newPlot('myDiv7', data);
+
+
+
+
+
+
+2D Histogram Contour Colorscale
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    colorscale: 'Blues',
+    type: 'histogram2dcontour'
+  }
+];
+Plotly.newPlot('myDiv8', data);
+
+
+
+                                             
+Styled 2D Histogram Contour
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    colorscale: 'Blues',
+    type: 'histogram2dcontour',
+    contours: {
+      showlabels: true,
+      labelfont: {
+        family: 'Raleway',
+        color: 'white'
+      }
+    },
+    hoverlabel: {
+      bgcolor: 'white',
+      bordercolor: 'black',
+      font: {
+        family: 'Raleway',
+        color: 'black'
+      }
+    }
+  }
+];
+Plotly.newPlot('graph', data);
+            
+Treemaps in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+
+            
+Treemaps (not working)
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+// declaring arrays
+var shapes = [];
+var annotations = [];
+var counter = 0;
+
+// For Hover Text
+var x_trace = [];
+var y_trace = [];
+var text = [];
+
+//colors
+var colors = ['rgb(166,206,227)', 'rgb(31,120,180)', 'rgb(178,223,138)', 'rgb(51,160,44)', 'rgb(251,154,153)', 'rgb(227,26,28)', 'rgb(253,191,111)', 'rgb(255,127,0)', 'rgb(202,178,214)', 'rgb(106,61,154)', 'rgb(255,255,153)', 'rgb(177,89,40)'];
+
+// Generate Rectangles using Treemap-Squared
+var values = [500, 433, 78, 25, 25, 7];
+var rectangles = Treemap.generate(values, 100, 100);
+
+for (var i in rectangles) {
+	var shape = {
+	        		type: 'rect',
+					x0: rectangles[i][0],
+					y0: rectangles[i][1],
+					x1: rectangles[i][2],
+					y1: rectangles[i][3],
+					line: {
+							width: 2
+						},
+					fillcolor: colors[counter]
+			};
+	shapes.push(shape);
+	var annotation = {
+	    				x: (rectangles[i][0] + rectangles[i][2]) / 2,
+						y: (rectangles[i][1] + rectangles[i][3]) / 2,
+						text: String(values[counter]),
+						showarrow: false
+			};
+	annotations.push(annotation);
+	
+	// For Hover Text
+	x_trace.push((rectangles[i][0] + rectangles[i][2]) / 2);
+	y_trace.push((rectangles[i][1] + rectangles[i][3]) / 2);
+	text.push(String(values[counter]));
+			
+	// Incrementing Counter
+	counter++;
+}
+
+// Generating Trace for Hover Text
+var trace0 = {
+			x: x_trace,
+			y: y_trace,
+			text: text,
+			mode: 'text',
+			type: 'scatter'
+    };
+
+var layout = {
+			height: 700,
+			width: 700,
+			shapes: shapes,
+			hovermode: 'closest',
+			annotations: annotations,
+			xaxis: {
+						showgrid: false,
+						zeroline: false
+			},
+			yaxis: {
+						showgrid: false,
+						zeroline: false
+			}
+};
+
+var data = {
+			data: [trace0]
+};
+
+Plotly.newPlot('myDiv', [trace0], layout);
+            
+            
+SPC Control Charts in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+
+            
+Basic SPC Control Chart
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var Data = {
+  type: 'scatter',
+  x: [1,2,3,4,5,6,7,8,9],
+  y: [4,2,-1,4,-5,-7,0,3,8],
+  mode: 'lines+markers',
+  name: 'Data',
+  showlegend: true,
+  hoverinfo: 'all',
+  line: {
+    color: 'blue',
+    width: 2
+  },
+  marker: {
+    color: 'blue',
+    size: 8,
+    symbol: 'circle'
+  }
+}
+
+var Viol = {
+  type: 'scatter',
+  x: [6,9],
+  y: [-7,8],
+  mode: 'markers',
+  name: 'Violation',
+  showlegend: true,
+  marker: {
+    color: 'rgb(255,65,54)',
+    line: {width: 3},
+    opacity: 0.5,
+    size: 12,
+    symbol: 'circle-open'
+  }
+}
+
+var CL = {
+  type: 'scatter',
+  x: [0.5, 10, null, 0.5, 10],
+  y: [-5, -5, null, 5, 5],
+  mode: 'lines',
+  name: 'LCL/UCL',
+  showlegend: true,
+  line: {
+    color: 'red',
+    width: 2,
+    dash: 'dash'
+  }
+}
+
+var Centre = {
+  type: 'scatter',
+  x: [0.5, 10],
+  y: [0, 0],
+  mode: 'lines',
+  name: 'Centre',
+  showlegend: true,
+  line: {
+    color: 'grey',
+    width: 2
+  }
+}
+
+var data = [Data,Viol,CL,Centre]
+
+var layout = {
+  title: 'Basic SPC Chart',
+  xaxis: {
+    zeroline: false
+  },
+  yaxis: {
+    range: [-10,10],
+    zeroline: false
+  }
+}
+
+Plotly.plot('myDiv', data,layout);
+      
+            
+            
+            
+SPC Control Chart & Distribution
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+var Data = {
+  type: 'scatter',
+  x: [1,2,3,4,5,6,7,8,9],
+  y: [4,2,-1,4,-5,-7,0,3,8],
+  mode: 'lines+markers',
+  name: 'Data',
+  showlegend: true,
+  hoverinfo: 'all',
+  line: {
+    color: 'blue',
+    width: 2
+  },
+  marker: {
+    color: 'blue',
+    size: 8,
+    symbol: 'circle'
+  }
+}
+
+var Viol = {
+  type: 'scatter',
+  x: [6,9],
+  y: [-7,8],
+  mode: 'markers',
+  name: 'Violation',
+  showlegend: true,
+  marker: {
+    color: 'rgb(255,65,54)',
+    line: {width: 3},
+    opacity: 0.5,
+    size: 12,
+    symbol: 'circle-open'
+  }
+}
+
+var CL = {
+  type: 'scatter',
+  x: [0.5, 10, null, 0.5, 10],
+  y: [-5, -5, null, 5, 5],
+  mode: 'lines',
+  name: 'LCL/UCL',
+  showlegend: true,
+  line: {
+    color: 'red',
+    width: 2,
+    dash: 'dash'
+  }
+}
+
+var Centre = {
+  type: 'scatter',
+  x: [0.5, 10],
+  y: [0, 0],
+  mode: 'lines',
+  name: 'Centre',
+  showlegend: true,
+  line: {
+    color: 'grey',
+    width: 2
+  }
+}
+
+var histo = {
+  type: 'histogram',
+  x: [1,2,3,4,5,6,7,8,9],
+  y: [4,2,-1,4,-5,-7,0,3,8],
+  name: 'Distribution',
+  orientation: 'h',
+  marker: {
+    color: 'blue',
+    line: {
+      color: 'white',
+      width: 1
+    }
+  },
+  xaxis: 'x2',
+  yaxis: 'y2'
+}
+
+var data = [Data,Viol,CL,Centre,histo]
+
+// layout
+var layout = {
+  title: 'Basic SPC Chart',
+  xaxis: {
+    domain: [0, 0.7], // 0 to 70% of width
+    zeroline: false
+  },
+  yaxis: {
+    range: [-10,10],
+    zeroline: false
+  },
+  xaxis2: {
+    domain: [0.8, 1] // 70 to 100% of width
+  },
+  yaxis2: {
+    anchor: 'x2',
+    showticklabels: false
+  }
+}
+
+Plotly.plot('myDiv', data,layout);
+
+
+
+Violin Plot in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+
+            
+Basic Violin plot  (WRONG)
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  y: unpack(rows, 'total_bill'),
+  points: 'none',
+  box: {
+    visible: true
+  },
+  boxpoints: false,
+  line: {
+    color: 'black'
+  },
+  fillcolor: '#8dd3c7',
+  opacity: 0.6,
+  meanline: {
+    visible: true
+  },
+  x0: "Total Bill"
+}]
+
+var layout = {
+  title: "",
+  yaxis: {
+    zeroline: false
+  }
+}
+
+Plotly.plot('graph', data, layout);
+});
+      
+      
+Multiple Traces Violin Plot
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  points: 'none',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'green',
+  },
+  meanline: {
+    visible: true
+  },
+  transforms: [{
+  	 type: 'groupby',
+	 groups: unpack(rows, 'day'),
+	 styles: [
+		{target: 'Sun', value: {line: {color: 'blue'}}},
+		{target: 'Sat', value: {line: {color: 'orange'}}},
+		{target: 'Thur', value: {line: {color: 'green'}}},
+		{target: 'Fri', value: {line: {color: 'red'}}}
+	 ]
+	}]
+}]
+
+var layout = {
+  title: "Multiple Traces Violin Plot",
+  yaxis: {
+    zeroline: false
+  }
+}
+
+Plotly.plot('graph', data, layout);
+});
+                                                                        
+            
+Grouped Violin Plot
+
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+// need to fix data
+
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'M',
+  scalegroup: 'M',
+  name: 'M',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'blue',
+  },
+  meanline: {
+    visible: true
+  }
+}, {
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'F',
+  scalegroup: 'F',
+  name: 'F',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'pink',
+  },
+  meanline: {
+    visible: true
+  }
+}]
+
+var layout = {
+  title: "Grouped Violin Plot",
+  yaxis: {
+    zeroline: false
+  },
+  violinmode: 'group'
+}
+
+Plotly.plot('graph', data, layout);
+});
+            
+            
+Horizontal Violin Plot (incorrect)
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'total_bill'),
+  points: 'none',
+  box: {
+    visible: true
+  },
+  boxpoints: false,
+  line: {
+    color: 'black'
+  },
+  fillcolor: '#8dd3c7',
+  opacity: 0.6,
+  meanline: {
+    visible: true
+  },
+  y0: "Total Bill"
+}]
+
+var layout = {
+  title: "Basic Horizontal Violin Plot",
+  xaxis: {
+    zeroline: false
+  }
+}
+
+Plotly.plot('graph', data, layout);
+});
+                                                                                                                                                                      
+Split Violin Plot
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'Yes',
+  scalegroup: 'Yes',
+  name: 'Yes',
+  side: 'negative',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'blue',
+    width: 2
+  },
+  meanline: {
+    visible: true
+  }
+}, {
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'No',
+  scalegroup: 'No',
+  name: 'No',
+  side: 'positive',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'green',
+    width: 2
+  },
+  meanline: {
+    visible: true
+  }
+}]
+
+var layout = {
+  title: "Split Violin Plot",
+  yaxis: {
+    zeroline: false
+  },
+  violingap: 0,
+  violingroupgap: 0,
+  violinmode: "overlay",
+}
+
+Plotly.plot('graph', data, layout);
+});
+            
+            
+            
+            
+Advanced Violin Plot
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                           
+var trace1 = {
+            text: "sample length: 32",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 1,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Thursday",
+            x: [
+                10.07,
+                34.83,
+                10.65,
+                12.43,
+                24.08,
+                13.42,
+                12.48,
+                29.8,
+                14.52,
+                11.38,
+                20.27,
+                11.17,
+                12.26,
+                18.26,
+                8.51,
+                10.33,
+                14.15,
+                13.16,
+                17.47,
+                27.05,
+                16.43,
+                8.35,
+                18.64,
+                11.87,
+                19.81,
+                43.11,
+                13.0,
+                12.74,
+                13.0,
+                16.4,
+                16.47,
+                18.78
+            ],
+            orientation: "h"
+        }
+
+
+var trace2 = {
+            text: "sample length: 30",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -0.6,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Thursday",
+            x: [
+                27.2,
+                22.76,
+                17.29,
+                19.44,
+                16.66,
+                32.68,
+                15.98,
+                13.03,
+                18.28,
+                24.71,
+                21.16,
+                11.69,
+                14.26,
+                15.95,
+                8.52,
+                22.82,
+                19.08,
+                16.0,
+                34.3,
+                41.19,
+                9.78,
+                7.51,
+                28.44,
+                15.48,
+                16.58,
+                7.56,
+                10.34,
+                13.51,
+                18.71,
+                20.53
+            ],
+            orientation: "h"
+        }
+
+var trace3 = {
+            text: "sample length: 9",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 0.4,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Friday",
+            x: [
+                5.75,
+                16.32,
+                22.75,
+                11.35,
+                15.38,
+                13.42,
+                15.98,
+                16.27,
+                10.09
+            ],
+            orientation: "h"
+        }
+
+
+var trace4= {
+            text: "sample length: 10",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -0.3,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Friday",
+            x: [
+                28.97,
+                22.49,
+                40.17,
+                27.28,
+                12.03,
+                21.01,
+                12.46,
+                12.16,
+                8.58,
+                13.42
+            ],
+            orientation: "h"
+        }
+
+var trace5 = {
+            text: "sample length: 28",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 0.55,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: true,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Saturday",
+            x: [
+                20.29,
+                15.77,
+                19.65,
+                15.06,
+                20.69,
+                16.93,
+                26.41,
+                16.45,
+                3.07,
+                17.07,
+                26.86,
+                25.28,
+                14.73,
+                44.3,
+                22.42,
+                20.92,
+                14.31,
+                7.25,
+                10.59,
+                10.63,
+                12.76,
+                13.27,
+                28.17,
+                12.9,
+                30.14,
+                22.12,
+                35.83,
+                27.18
+            ],
+            orientation: "h"
+        }
+
+var trace4 = {
+            text: "sample length: 59",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -1.1,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: true,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Saturday",
+            x: [
+                20.65,
+                17.92,
+                39.42,
+                19.82,
+                17.81,
+                13.37,
+                12.69,
+                21.7,
+                9.55,
+                18.35,
+                17.78,
+                24.06,
+                16.31,
+                18.69,
+                31.27,
+                16.04,
+                38.01,
+                11.24,
+                48.27,
+                20.29,
+                13.81,
+                11.02,
+                18.29,
+                17.59,
+                20.08,
+                20.23,
+                15.01,
+                12.02,
+                10.51,
+                17.92,
+                15.36,
+                20.49,
+                25.21,
+                18.24,
+                14.0,
+                50.81,
+                15.81,
+                26.59,
+                38.73,
+                24.27,
+                30.06,
+                25.89,
+                48.33,
+                28.15,
+                11.59,
+                7.74,
+                20.45,
+                13.28,
+                24.01,
+                15.69,
+                11.61,
+                10.77,
+                15.53,
+                10.07,
+                12.6,
+                32.83,
+                29.03,
+                22.67,
+                17.82
+            ],
+            orientation: "h"
+        }
+
+var trace6 = {
+            text: "sample length: 18",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 0.45,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Sunday",
+            x: [
+                16.99,
+                24.59,
+                35.26,
+                14.83,
+                10.33,
+                16.97,
+                10.29,
+                34.81,
+                25.71,
+                17.31,
+                29.85,
+                25.0,
+                13.39,
+                16.21,
+                17.51,
+                9.6,
+                20.9,
+                18.15
+            ],
+            orientation: "h"
+        }
+
+var trace7 = {
+            text: "sample length: 58",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -0.9,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Sunday",
+            x: [
+                10.34,
+                21.01,
+                23.68,
+                25.29,
+                8.77,
+                26.88,
+                15.04,
+                14.78,
+                10.27,
+                15.42,
+                18.43,
+                21.58,
+                16.29,
+                17.46,
+                13.94,
+                9.68,
+                30.4,
+                18.29,
+                22.23,
+                32.4,
+                28.55,
+                18.04,
+                12.54,
+                9.94,
+                25.56,
+                19.49,
+                38.07,
+                23.95,
+                29.93,
+                14.07,
+                13.13,
+                17.26,
+                24.55,
+                19.77,
+                48.17,
+                16.49,
+                21.5,
+                12.66,
+                13.81,
+                24.52,
+                20.76,
+                31.71,
+                7.25,
+                31.85,
+                16.82,
+                32.9,
+                17.89,
+                14.48,
+                34.63,
+                34.65,
+                23.33,
+                45.35,
+                23.17,
+                40.55,
+                20.69,
+                30.46,
+                23.1,
+                15.69
+            ],
+            orientation: "h"
+        }
+
+var data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7]
+
+var layout = {
+        hovermode: "closest",
+        width: 400,
+        yaxis: {
+            showgrid: true
+        },
+        title: "Total bill distribution<br><i>scaled by number of bills per gender",
+        legend: {
+            tracegroupgap: 0
+        },
+        violingap: 0,
+        violingroupgap: 0,
+        violinmode: "overlay",
+        height: 700
+    }
+
+Plotly.plot(graphDiv, data, layout)
+
+
+
+Parallel Categories Diagram in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+             
+this uses rectanges to represent one trait and ribbons to represent shared traits in a target group, helps visualize which single traint or trait combo has the highest mode in the target group
+             
+Basic Parallel Categories Diagram
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+var trace1 = {
+  type: 'parcats',
+  dimensions: [
+    {label: 'Hair',
+     values: ['Black', 'Black', 'Black', 'Brown',
+              'Brown', 'Brown', 'Red', 'Brown']},
+    {label: 'Eye',
+     values: ['Brown', 'Brown', 'Brown', 'Brown',
+              'Brown', 'Blue', 'Blue', 'Blue']},
+    {label: 'Sex',
+     values: ['Female', 'Female', 'Female', 'Male',
+              'Female', 'Male', 'Male', 'Male']}]
+};
+
+var data = [ trace1 ];
+
+var layout = {width: 600};
+
+Plotly.newPlot('myDiv', data, layout);
+
+
+Basic Parallel Categories Diagram with Counts
+
+ if the frquency is know this can be specifed with the counts property
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                            
+                            
+var trace1 = {
+  type: 'parcats',
+  dimensions: [
+    {label: 'Hair',
+     values: ['Black', 'Brown', 'Brown', 'Brown', 'Red']},
+    {label: 'Eye',
+     values: ['Brown', 'Brown', 'Brown', 'Blue', 'Blue']},
+    {label: 'Sex',
+     values: ['Female', 'Male', 'Female', 'Male', 'Male']}],
+  counts: [6, 10, 40, 23, 7]
+};
+
+var data = [ trace1 ];
+
+var layout = {width: 600};
+
+Plotly.newPlot('myDiv', data, layout);
+                                                                        
+                                                                        
+Mutli-Color Parallel Categories Diagram
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+use color and colorScale to make meaningful differations in your chart
+when arragement = 'freeform' you can move the rectangles arround for different views
+
+var gd = document.getElementById('myDiv');
+
+Plotly.d3.csv(
+  "https://raw.githubusercontent.com/plotly/datasets/master/titanic.csv",
+  function(titanicData) {
+    var classDim = {
+      values: titanicData.map(function(row) {return row['Pclass']}),
+      categoryorder: 'category ascending',
+      label: "Class"
+    };
+
+    var genderDim = {
+      values: titanicData.map(function(row) {return row['Sex']}),
+      label: "Gender"
+    };
+
+    var survivalDim = {
+      values: titanicData.map(function(row) {return row['Survived']}),
+      label: "Outcome",
+      categoryarray: [0, 1],
+      ticktext: ['perished', 'survived'],
+    };
+
+    var color = survivalDim.values;
+    var colorscale = [[0, 'lightsteelblue'], [1, 'mediumseagreen']];
+
+    // Build Traces
+    var traces = [
+      {type: 'parcats',
+       dimensions: [classDim, genderDim, survivalDim],
+       line: {color: color,
+              colorscale: colorscale},
+       hoveron: 'color',
+       hoverinfo: 'count+probability',
+       labelfont: {size: 14},
+       arrangement: 'freeform'
+      }
+    ];
+
+    var layout = {width: 600};
+
+    // Make plot
+    Plotly.newPlot(gd, traces, layout);
+  });
+            
+            
+Parallel Categories Linked Brushing
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+so to have 2 or more charts in traces, you must have the objects one next to another in an array
+                                                                        
+var gd = document.getElementById('myDiv');
+var categoricalDimensionLabels = [
+  'body-style',
+  'drive-wheels',
+  'fuel-type'
+];
+
+Plotly.d3.csv(
+  'https://raw.githubusercontent.com/plotly/datasets/master/imports-85.csv',
+  function(carsData) {
+    // Preprocess Data
+    var mpg = carsData.map(function(row) { return row['highway-mpg'] });
+    var horsepower = carsData.map(function(row) { return row['horsepower'] });
+
+    var categoricalDimensions = categoricalDimensionLabels.map(
+      function(dimLabel) {
+        // Extract column
+        var values = carsData.map(function(row) {
+          return row[dimLabel]
+        });
+
+        return {
+          values: values,
+          label: dimLabel
+        };
+      });
+
+    // Colors
+    var color = new Int8Array(carsData.length);
+    var colorscale = [[0, 'gray'], [1, 'firebrick']];
+
+    // Layout
+    var layout = {
+      width: 600,
+      height: 800,
+      xaxis: {title: 'Horsepower'},
+      yaxis: {domain: [0.6, 1], title: 'MPG'},
+      dragmode: 'lasso',
+      hovermode: 'closest'
+    };
+
+    // Build Traces
+    var traces = [
+      {type: 'scatter',
+       x: horsepower,
+       y: mpg,
+       marker: {color: 'gray'},
+       mode: 'markers',
+       selected: {'marker': {'color': 'firebrick'}},
+       unselected: {'marker': {'opacity': 0.3}}
+      },
+      {type: 'parcats',
+       domain: {y: [0, 0.4]},
+       dimensions:categoricalDimensions,
+       line: {
+         colorscale: colorscale,
+         cmin: 0,
+         cmax: 1,
+         color: color,
+         shape: 'hspline'},
+       labelfont: {size: 14}
+      }
+    ];
+
+    // Make plot
+    Plotly.newPlot(gd, traces, layout);
+
+    // Update color on selection and click
+    var update_color = function(points_data) {
+      var new_color = new Int8Array(carsData.length);
+      var selection = []
+      for(var i = 0; i < points_data.points.length; i++) {
+        new_color[points_data.points[i].pointNumber] = 1;
+        selection.push(points_data.points[i].pointNumber);
+      }
+
+      // Update selected points in scatter plot
+      Plotly.restyle(gd, {'selectedpoints': [selection]}, 0)
+
+      // Update color of selected paths in parallel categories diagram
+      Plotly.restyle(gd, {'line.color': [new_color]}, 1)
+    };
+
+    gd.on('plotly_selected', update_color);
+    gd.on('plotly_click', update_color);
+  });
+            
+
+
+Parallel Categories with Multi-Color Linked Brushing (incorrect radio buttons are not working properly)
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+This example extends the previous example to support brushing with multiple colors. The radio buttons above may be used to select the active color, and this color will be applied when points are selected in the scatter trace and when categories or ribbons are clicked in the parcats trace.
+
+var gd = document.getElementById('myDiv');
+var categoricalDimensionLabels = [
+  'body-style',
+  'drive-wheels',
+  'fuel-type'
+];
+
+Plotly.d3.csv(
+  'https://raw.githubusercontent.com/plotly/datasets/master/imports-85.csv',
+  function(carsData) {
+    // Preprocess Data
+    var mpg = carsData.map(function(row) { return row['highway-mpg'] });
+    var horsepower = carsData.map(function(row) { return row['horsepower'] });
+
+    var categoricalDimensions = categoricalDimensionLabels.map(
+      function(dimLabel) {
+        // Extract column
+        var values = carsData.map(function(row) {
+          return row[dimLabel]
+        });
+
+        return {
+          values: values,
+          label: dimLabel
+        };
+      }
+    );
+
+    // Colors
+    var color = new Int8Array(carsData.length);
+    var colorscale = [[0, 'gray'], [0.33, 'gray'],
+                      [0.33, 'firebrick'], [0.66, 'firebrick'],
+                      [0.66, 'blue'], [1.0, 'blue']];
+
+    // Layout
+    var layout = {
+      width: 600,
+      height: 800,
+      xaxis: {title: 'Horsepower'},
+      yaxis: {domain: [0.6, 1], title: 'MPG'},
+      dragmode: 'lasso',
+      hovermode: 'closest'
+    };
+
+    // Build Traces
+    var traces = [
+      {type: 'scatter',
+       x: horsepower,
+       y: mpg,
+       marker: {color: color,
+                colorscale: colorscale,
+                cmin: -0.5,
+                cmax: 2.5,
+                showscale: true,
+                colorbar: {tickvals: [0, 1, 2],
+                           ticktext: ['None', 'Red', 'Blue']}},
+       mode: 'markers',
+      },
+      {type: 'parcats',
+       domain: {y: [0, 0.4]},
+       dimensions:categoricalDimensions,
+       line: {
+         colorscale: colorscale,
+         cmin: -0.5,
+         cmax: 2.5,
+         color: color,
+         shape: 'hspline'},
+       labelfont: {size: 14}
+      }
+    ];
+
+    // Make plot
+    Plotly.newPlot(gd, traces, layout);
+
+    // Update color on selection and click
+    var update_color = function(points_data) {
+      var new_color = color;
+      var color_value = document.querySelector('input[name="rate"]:checked').value;
+      console.log(color_value);
+      var selection = []
+      for(var i = 0; i < points_data.points.length; i++) {
+        new_color[points_data.points[i].pointNumber] = color_value;
+        selection.push(points_data.points[i].pointNumber);
+      }
+
+      // Update selected points in scatter plot
+      Plotly.restyle(gd, {'marker.color': [new_color]}, 0)
+
+      // Update color of selected paths in parallel categories diagram
+      Plotly.restyle(gd,
+                     {'line.color': [new_color]}, 1)
+    };
+
+    gd.on('plotly_selected', update_color);
+    gd.on('plotly_click', update_color);
+  });
             
 Basic Point Cloud
 
@@ -3996,62 +5895,8 @@ Basic Point Cloud
             [__]
         .___    .___
       | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
+                                                                        
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-                                    
-                                    
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
             
 Basic Point Cloud
 
@@ -4073,3 +5918,618 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
                                                                         
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                                                                                                          
+                                                                                                                                                                      
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+
+Mutli-Color Parallel Categories Diagram
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                                                                                                          
+                                                                                                                                                                      
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                                                                                                                                                                                       
+Mutli-Color Parallel Categories Diagram
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                                                                                                          
+                                                                                                                                                                      
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+
+Mutli-Color Parallel Categories Diagram
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                                                                                                          
+                                                                                                                                                                      
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                                                                                                          
+Mutli-Color Parallel Categories Diagram
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                        
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+            
+            
+Basic Point Cloud
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+                                                                                                                                                          
+                                                                                                                                                                      
+                                                                                                                                                        

@@ -1,0 +1,2666 @@
+<html>
+<head>
+	<script src="plotly-latest.min.js"></script>
+	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>
+	<script src="./plotly"></script>
+	<!--<script src = "./ultraObject"></script>-->
+</head>
+<body>
+</body>
+    <script>
+     ultraObject = {
+        forLoop:function(   dev_obj   ){
+                //.forLoop_0_i the iteration
+                //.forLoopLength the length to iterate to
+                //.fn what to do
+                // .args, since they are out scroped this is a way to access the args
+                // .bubble 'true' or 'false' indicating whether to send the break back up nested
+                
+                var forLoopbreak = false
+                if(   dev_obj !== undefined   ){
+            
+                    if(   dev_obj.custom !== 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoop_0_i !== dev_obj.forLoopLength; dev_obj.forLoop_0_i++   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+    
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+            
+                    
+                    else if(   dev_obj.custom === 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoopLength_fn(); dev_obj.forLoop_0_i_fn()   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+                                
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+                    
+                    
+                }
+            },
+        open:function(   dev_obj   ){
+                
+                dev_obj.xhttp.open(   dev_obj.protocol,dev_obj.target,dev_obj.unk_bool   )
+            }, // gets in contact with the host
+        xhttp: (function(   dev_obj   ){
+                    
+                    
+                    if(   typeof(   XMLHttpRequest   ) !== 'undefined'   ){
+                        
+                        
+                        if(   dev_obj === undefined   ){
+                            
+                            
+                            var xhttp_0_i = new XMLHttpRequest()
+                            return xhttp_0_i
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj !== undefined   ){
+                            
+                            
+                            var xhttp_0_i = new XMLHttpRequest()
+                            return xhttp_0_i
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+            })(), // creates an xhr obj
+        DOM_child:{},
+        addEventListener:function(   dev_obj   ){
+                    var fn;
+                    
+                    
+                    if(   dev_obj !== undefined   ){
+                        
+                        
+                        if(   dev_obj.fn !== undefined   ){
+                            
+                            
+                            fn = dev_obj.fn
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj.xhttp === 'true'   ){
+                            
+                            
+                            fn= ultraObject.xhttpreadystatechange
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj.fn === undefined   ){
+                            
+                            
+                            fn = ultraObject.passing_args
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    else if(   dev_obj === undefined   ){
+                        
+                        
+                        fn = ultraObject.passing_args
+                        
+                        
+                    }
+                    
+                    
+                    
+                    ultraObject.DOM_child[0].addEventListener(   ultraObject.eventName,fn   )
+            }, //  dev_obj.fn is used for 1st party dev to add their custom function to the listener dev_obj.xhttp is for xhr
+        xhttpreadystatechange:function(   dev_obj   ){
+                console.log(    this   )
+                var dev_obj = undefined
+                
+                if (    this.readyState == 4 && this.status == 200   ) {
+                
+                
+                    if(   dev_obj !==undefined   ){
+                        
+                        
+                        dev_obj.fn()
+                        
+                        
+                    }
+                    
+                    
+                    else if(   dev_obj ===undefined   ){
+                        
+                        
+                        ultraObject.xhrResponse = this.responseText
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+            } // handles getting remote reposnes
+     }
+    var FL_0_i = {
+        forLoop_0_i:0,
+        forLoopLength:250,
+        fn:function(   dev_obj   ){
+            var element11 = document.createElement("div")
+            document.body.appendChild(element11)
+            var node11 = document.querySelector('div')
+            id11 = document.createAttribute("id")
+            id11.value = 'myDiv' +FL_0_i.forLoop_0_i
+            element11.setAttributeNode(id11)
+        },
+        args: {}
+    }
+    ultraObject.forLoop(   FL_0_i   )
+
+
+/* Basic Symmetric Error Bars*/ //{
+{
+var data = [
+  {
+    x: [0, 1, 2],
+    y: [6, 10, 2],
+    error_y: {
+      type: 'data',
+      array: [1, 2, 3],
+      visible: true
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv0', data);
+}
+//} /**/
+
+/* Bar Chart with Error Bars */ //{
+{
+var trace1 = {
+  x: ['Trial 1', 'Trial 2', 'Trial 3'],
+  y: [3, 6, 4],
+  name: 'Control',
+  error_y: {
+    type: 'data',
+    array: [1, 0.5, 1.5],
+    visible: true
+  },
+  type: 'bar'
+};
+var trace2 = {
+  x: ['Trial 1', 'Trial 2', 'Trial 3'],
+  y: [4, 7, 3],
+  name: 'Experimental',
+  error_y: {
+    type: 'data',
+    array: [0.5, 1, 2],
+    visible: true
+  },
+  type: 'bar'
+};
+var data = [trace1, trace2];
+var layout = {barmode: 'group'};
+Plotly.newPlot('myDiv1', data, layout);
+}
+//} /**/
+
+/* Horizontal Error Bars */ //{
+{
+    var data = [
+  {
+    x: [1, 2, 3, 4],
+    y: [2, 1, 3, 4],
+    error_x: {
+      type: 'percent',
+      value: 10
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv2', data);
+}
+//} /**/
+
+
+/* Asymmetric Error Bars */ //{
+{
+var data = [
+  {
+    x: [1, 2, 3, 4],
+    y: [2, 1, 3, 4],
+    error_y: {
+      type: 'data',
+      symmetric: false,
+      array: [0.1, 0.2, 0.1, 0.1],
+      arrayminus: [0.2, 0.4, 1, 0.2]
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv3', data);
+    
+}
+//} /**/
+
+/*  Colored and Styled Error Bars  */ //{
+{
+    
+ultraObject.DOM_child[0] = ultraObject.xhttp
+ultraObject.eventName = 'readystatechange'
+ultraObject.addEventListener({
+    xhttp:'true',
+    fn:function(){
+        x_theo =this.responseText
+        sincx = Math.sin(x_theo) / x_theo
+        var x = [-3.8, -3.03, -1.91, -1.46, -0.89, -0.24, -0.0, 0.41, 0.89, 1.01, 1.91, 2.28, 2.79, 3.56]
+        var y = [-0.02, 0.04, -0.01, -0.27, 0.36, 0.75, 1.03, 0.65, 0.28, 0.02, -0.11, 0.16, 0.04, -0.15]
+        
+        var trace1 = {
+          x: x_theo,
+          y: sincx,
+          name: 'sinc(x)',
+          type: 'scatter'
+        };
+        var trace2 = {
+          x: x,
+          y: y,
+          mode: 'markers',
+          name: 'measured',
+          error_y: {
+            type: 'constant',
+            value: 0.1,
+            color: '#85144B',
+            thickness: 1.5,
+            width: 3,
+            opacity: 1
+          },
+          error_x: {
+            type: 'constant',
+            value: 0.2,
+            color: '#85144B',
+            thickness: 1.5,
+            width: 3,
+            opacity: 1
+          },
+          marker: {
+            color: '#85144B',
+            size: 8
+          },
+          type: 'scatter'
+        };
+        var data = [trace1, trace2];
+        Plotly.newPlot('myDiv4', data);
+    }
+}) //your item is here
+ultraObject.open({
+        protocol: "POST",
+        xhttp:ultraObject.xhttp,
+        target:"http://24.189.66.225/backend/linspace",
+        unk_bool:true
+    })
+ultraObject.DOM_child[0].send(JSON.stringify({
+    'a': -4,
+    'b':  4,
+    'c': 100
+}))
+
+/*to use a promise*/ //{
+// var appendScript = new Promise((resolve,reject) => {
+// console.log('step 1')
+// ultraObject.DOM_child[0].send(JSON.stringify({'a':'b'}))
+// resolve()
+
+    
+// })
+// //} /**/
+
+// var appendScript2 = appendScript.then(function(){
+//      ultraObject.xhrResponse = this.responseText
+//       var a = document.createElement("script")
+//       var b = document.createTextNode(ultraObject.xhrResponse )
+//       console.log(b)
+//       a.appendChild(b)
+//       document.head.appendChild(a)
+//       console.log('step 2')
+//       return
+//     },function(err){console.log(err); return})
+    
+    
+// var appendScript3 =  appendScript2.then(function(){
+        
+//         console.log('step 3')
+// x_theo = linspace(-4, 4, 100)
+// sincx = Math.sin(x_theo) / x_theo
+// var x = [-3.8, -3.03, -1.91, -1.46, -0.89, -0.24, -0.0, 0.41, 0.89, 1.01, 1.91, 2.28, 2.79, 3.56]
+// var y = [-0.02, 0.04, -0.01, -0.27, 0.36, 0.75, 1.03, 0.65, 0.28, 0.02, -0.11, 0.16, 0.04, -0.15]
+
+// var trace1 = {
+//   x: x_theo,
+//   y: sincx,
+//   name: 'sinc(x)',
+//   type: 'scatter'
+// };
+// var trace2 = {
+//   x: x,
+//   y: y,
+//   mode: 'markers',
+//   name: 'measured',
+//   error_y: {
+//     type: 'constant',
+//     value: 0.1,
+//     color: '#85144B',
+//     thickness: 1.5,
+//     width: 3,
+//     opacity: 1
+//   },
+//   error_x: {
+//     type: 'constant',
+//     value: 0.2,
+//     color: '#85144B',
+//     thickness: 1.5,
+//     width: 3,
+//     opacity: 1
+//   },
+//   marker: {
+//     color: '#85144B',
+//     size: 8
+//   },
+//   type: 'scatter'
+// };
+// var data = [trace1, trace2];
+// Plotly.newPlot('myDiv', data);
+// })
+
+}
+//} /**/
+
+
+/*Error Bars as a Percentage of the y-Value  */ //{
+{
+var data = [
+  {
+    x: [0, 1, 2],
+    y: [6, 10, 2],
+    error_y: {
+      type: 'percent',
+      value: 50,
+      visible: true
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv5', data);
+}
+//} /**/
+
+/*Asymmetric Error Bars with a Constant Offset  */ //{
+{
+var data = [
+  {
+    x: [1, 2, 3, 4],
+    y: [2, 1, 3, 4],
+    error_y: {
+      type: 'percent',
+      symmetric: false,
+      value: 15,
+      valueminus: 25
+    },
+    type: 'scatter'
+  }
+];
+Plotly.newPlot('myDiv6', data);
+}
+//} /**/
+
+
+/* Filled Lines */ //{
+{
+var trace1 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+  y: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0],
+  fill: "tozerox",
+  fillcolor: "rgba(0,100,80,0.2)",
+  line: {color: "transparent"},
+  name: "Fair",
+  showlegend: false,
+  type: "scatter"
+};
+var trace2 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+  y: [5.5, 3, 5.5, 8, 6, 3, 8, 5, 6, 5.5, 4.75, 5, 4, 7, 2, 4, 7, 4.4, 2, 4.5],
+  fill: "tozerox",
+  fillcolor: "rgba(0,176,246,0.2)",
+  line: {color: "transparent"},
+  name: "Premium",
+  showlegend: false,
+  type: "scatter"
+};
+var trace3 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+  y: [11, 9, 7, 5, 3, 1, 3, 5, 3, 1, -1, 1, 3, 1, -0.5, 1, 3, 5, 7, 9],
+  fill: "tozerox",
+  fillcolor: "rgba(231,107,243,0.2)",
+  line: {color: "transparent"},
+  name: "Fair",
+  showlegend: false,
+  type: "scatter"
+};
+var trace4 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  line: {color: "rgb(0,100,80)"},
+  mode: "lines",
+  name: "Fair",
+  type: "scatter"
+};
+var trace5 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [5, 2.5, 5, 7.5, 5, 2.5, 7.5, 4.5, 5.5, 5],
+  line: {color: "rgb(0,176,246)"},
+  mode: "lines",
+  name: "Premium",
+  type: "scatter"
+};
+var trace6 = {
+  x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  y: [10, 8, 6, 4, 2, 0, 2, 4, 2, 0],
+  line: {color: "rgb(231,107,243)"},
+  mode: "lines",
+  name: "Ideal",
+  type: "scatter"
+};
+var data = [trace1, trace2, trace3, trace4, trace5, trace6];
+var layout = {
+  paper_bgcolor: "rgb(255,255,255)",
+  plot_bgcolor: "rgb(229,229,229)",
+  xaxis: {
+    gridcolor: "rgb(255,255,255)",
+    range: [1, 10],
+    showgrid: true,
+    showline: false,
+    showticklabels: true,
+    tickcolor: "rgb(127,127,127)",
+    ticks: "outside",
+    zeroline: false
+  },
+  yaxis: {
+    gridcolor: "rgb(255,255,255)",
+    showgrid: true,
+    showline: false,
+    showticklabels: true,
+    tickcolor: "rgb(127,127,127)",
+    ticks: "outside",
+    zeroline: false
+  }
+};
+Plotly.plot('myDiv6', data, layout);
+}
+//} /**/
+
+/* Asymmetric Error Bars with a Constant Offset */ //{
+{
+function random_date(start, end, mul)
+  {
+    return new Date(start.getTime() + mul * (end.getTime() - start.getTime()));
+  }
+
+function date_list(y1,m1,d1,y2,m2,d2,count)
+  {
+    var a =[];
+    for(i=0;i < count;i++)
+    {
+      a.push(random_date(new Date(y1, m1, d1), new Date(y2,m2,d2),i));
+    }
+      return a;
+  }
+
+function random_number(num , mul)
+  {
+     var value = [ ];
+     for(i=0;i <=num;i++)
+      {
+        var rand = Math.random() * mul;
+        value.push(rand);
+      }
+     return value;
+  }
+
+var trace1 = {
+  x: date_list(2001,01,01,2001,02,01,50),
+  y: random_number(50,20),
+  line: {width: 0},
+  marker: {color: "444"},
+  mode: "lines",
+  name: "Lower Bound",
+  type: "scatter"
+};
+
+var trace2 = {
+  x: date_list(2001,01,01,2001,02,01,50),
+  y: random_number(50,21),
+  fill: "tonexty",
+  fillcolor: "rgba(68, 68, 68, 0.3)",
+  line: {color: "rgb(31, 119, 180)"},
+  mode: "lines",
+  name: "Measurement",
+  type: "scatter"
+};
+
+var trace3 = {
+  x: date_list(2001,01,01,2001,02,01,50),
+  y: random_number(50,22),
+  fill: "tonexty",
+  fillcolor: "rgba(68, 68, 68, 0.3)",
+  line: {width: 0},
+  marker: {color: "444"},
+  mode: "lines",
+  name: "Upper Bound",
+  type: "scatter"
+}
+
+var data = [trace1, trace2, trace3];
+var layout = {
+  showlegend: false,
+  title: "Continuous, variable value error bars&lt;br&gt;Notice the hover text!",
+  yaxis: {title: "Wind speed (m/s)"}
+};
+Plotly.plot('myDiv7', data, layout);
+}
+//} /**/
+
+/* Basic 2D Histogram Contour  */ //{
+{
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    type: 'histogram2dcontour'
+  }
+];
+Plotly.newPlot('myDiv7', data);
+}
+//} /**/
+
+/* 2D Histogram Contour Colorscale */ //{
+{
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    colorscale: 'Blues',
+    type: 'histogram2dcontour'
+  }
+];
+Plotly.newPlot('myDiv8', data);
+}
+//} /**/
+
+
+/* Styled 2D Histogram Contour */ //{
+{
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    colorscale: 'Blues',
+    type: 'histogram2dcontour',
+    contours: {
+      showlabels: true,
+      labelfont: {
+        family: 'Raleway',
+        color: 'white'
+      }
+    },
+    hoverlabel: {
+      bgcolor: 'white',
+      bordercolor: 'black',
+      font: {
+        family: 'Raleway',
+        color: 'black'
+      }
+    }
+  }
+];
+Plotly.newPlot('myDiv9', data);
+}
+//} /**/
+
+/* Treemaps  */ //{
+{
+// declaring arrays
+var shapes = [];
+var annotations = [];
+var counter = 0;
+
+// For Hover Text
+var x_trace = [];
+var y_trace = [];
+var text = [];
+
+//colors
+var colors = ['rgb(166,206,227)', 'rgb(31,120,180)', 'rgb(178,223,138)', 'rgb(51,160,44)', 'rgb(251,154,153)', 'rgb(227,26,28)', 'rgb(253,191,111)', 'rgb(255,127,0)', 'rgb(202,178,214)', 'rgb(106,61,154)', 'rgb(255,255,153)', 'rgb(177,89,40)'];
+
+// Generate Rectangles using Treemap-Squared
+// ultraObject.DOM_child[0] = ultraObject.xhttp
+var values = [500, 433, 78, 25, 25, 7];
+// ultraObject.eventName = 'readystatechange'
+// ultraObject.addEventListener({
+//     xhttp:'true',
+//     fn:function(){
+// console.log(   this.responseText   )
+
+// var rectangles = this.responseText
+
+// for (var i in rectangles) {
+// 	var shape = {
+// 	        		type: 'rect',
+// 					x0: rectangles[i][0],
+// 					y0: rectangles[i][1],
+// 					x1: rectangles[i][2],
+// 					y1: rectangles[i][3],
+// 					line: {
+// 							width: 2
+// 						},
+// 					fillcolor: colors[counter]
+// 			};
+// 	shapes.push(shape);
+// 	var annotation = {
+// 	    				x: (rectangles[i][0] + rectangles[i][2]) / 2,
+// 						y: (rectangles[i][1] + rectangles[i][3]) / 2,
+// 						text: String(values[counter]),
+// 						showarrow: false
+// 			};
+// 	annotations.push(annotation);
+	
+// 	// For Hover Text
+// 	x_trace.push((rectangles[i][0] + rectangles[i][2]) / 2);
+// 	y_trace.push((rectangles[i][1] + rectangles[i][3]) / 2);
+// 	text.push(String(values[counter]));
+			
+// 	// Incrementing Counter
+// 	counter++;
+// }
+
+// // Generating Trace for Hover Text
+// var trace0 = {
+// 			x: x_trace,
+// 			y: y_trace,
+// 			text: text,
+// 			mode: 'text',
+// 			type: 'scatter'
+//     };
+
+// var layout = {
+// 			height: 700,
+// 			width: 700,
+// 			shapes: shapes,
+// 			hovermode: 'closest',
+// 			annotations: annotations,
+// 			xaxis: {
+// 						showgrid: false,
+// 						zeroline: false
+// 			},
+// 			yaxis: {
+// 						showgrid: false,
+// 						zeroline: false
+// 			}
+// };
+
+// var data = {
+// 			data: [trace0]
+// };
+
+// Plotly.newPlot('myDiv10', [trace0], layout);
+//         }
+// })
+// ultraObject.open({
+//         protocol: "POST",
+//         xhttp:ultraObject.xhttp,
+//         target:"http://24.189.66.225/backend/Treemap",
+//         unk_bool:true
+//     })
+// ultraObject.DOM_child[0].send(JSON.stringify({
+//     'a': values,
+//     'b':  100
+// }))
+
+
+
+
+}
+//} /**/
+
+
+/*Basic SPC Control Chart  */ //{
+{
+var Data = {
+  type: 'scatter',
+  x: [1,2,3,4,5,6,7,8,9],
+  y: [4,2,-1,4,-5,-7,0,3,8],
+  mode: 'lines+markers',
+  name: 'Data',
+  showlegend: true,
+  hoverinfo: 'all',
+  line: {
+    color: 'blue',
+    width: 2
+  },
+  marker: {
+    color: 'blue',
+    size: 8,
+    symbol: 'circle'
+  }
+}
+
+var Viol = {
+  type: 'scatter',
+  x: [6,9],
+  y: [-7,8],
+  mode: 'markers',
+  name: 'Violation',
+  showlegend: true,
+  marker: {
+    color: 'rgb(255,65,54)',
+    line: {width: 3},
+    opacity: 0.5,
+    size: 12,
+    symbol: 'circle-open'
+  }
+}
+
+var CL = {
+  type: 'scatter',
+  x: [0.5, 10, null, 0.5, 10],
+  y: [-5, -5, null, 5, 5],
+  mode: 'lines',
+  name: 'LCL/UCL',
+  showlegend: true,
+  line: {
+    color: 'red',
+    width: 2,
+    dash: 'dash'
+  }
+}
+
+var Centre = {
+  type: 'scatter',
+  x: [0.5, 10],
+  y: [0, 0],
+  mode: 'lines',
+  name: 'Centre',
+  showlegend: true,
+  line: {
+    color: 'grey',
+    width: 2
+  }
+}
+
+var data = [Data,Viol,CL,Centre]
+
+var layout = {
+  title: 'Basic SPC Chart',
+  xaxis: {
+    zeroline: false
+  },
+  yaxis: {
+    range: [-10,10],
+    zeroline: false
+  }
+}
+
+Plotly.plot('myDiv10', data,layout);
+}
+//} /**/
+
+/* SPC Control Chart & Distribution */ //{
+{
+var Data = {
+  type: 'scatter',
+  x: [1,2,3,4,5,6,7,8,9],
+  y: [4,2,-1,4,-5,-7,0,3,8],
+  mode: 'lines+markers',
+  name: 'Data',
+  showlegend: true,
+  hoverinfo: 'all',
+  line: {
+    color: 'blue',
+    width: 2
+  },
+  marker: {
+    color: 'blue',
+    size: 8,
+    symbol: 'circle'
+  }
+}
+
+var Viol = {
+  type: 'scatter',
+  x: [6,9],
+  y: [-7,8],
+  mode: 'markers',
+  name: 'Violation',
+  showlegend: true,
+  marker: {
+    color: 'rgb(255,65,54)',
+    line: {width: 3},
+    opacity: 0.5,
+    size: 12,
+    symbol: 'circle-open'
+  }
+}
+
+var CL = {
+  type: 'scatter',
+  x: [0.5, 10, null, 0.5, 10],
+  y: [-5, -5, null, 5, 5],
+  mode: 'lines',
+  name: 'LCL/UCL',
+  showlegend: true,
+  line: {
+    color: 'red',
+    width: 2,
+    dash: 'dash'
+  }
+}
+
+var Centre = {
+  type: 'scatter',
+  x: [0.5, 10],
+  y: [0, 0],
+  mode: 'lines',
+  name: 'Centre',
+  showlegend: true,
+  line: {
+    color: 'grey',
+    width: 2
+  }
+}
+
+var histo = {
+  type: 'histogram',
+  x: [1,2,3,4,5,6,7,8,9],
+  y: [4,2,-1,4,-5,-7,0,3,8],
+  name: 'Distribution',
+  orientation: 'h',
+  marker: {
+    color: 'blue',
+    line: {
+      color: 'white',
+      width: 1
+    }
+  },
+  xaxis: 'x2',
+  yaxis: 'y2'
+}
+
+var data = [Data,Viol,CL,Centre,histo]
+
+// layout
+var layout = {
+  title: 'Basic SPC Chart',
+  xaxis: {
+    domain: [0, 0.7], // 0 to 70% of width
+    zeroline: false
+  },
+  yaxis: {
+    range: [-10,10],
+    zeroline: false
+  },
+  xaxis2: {
+    domain: [0.8, 1] // 70 to 100% of width
+  },
+  yaxis2: {
+    anchor: 'x2',
+    showticklabels: false
+  }
+}
+
+Plotly.plot('myDiv11', data,layout);
+}
+//} /**/
+
+
+/* Basic Violin Plot */ //{
+{
+    Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  y: unpack(rows, 'total_bill'),
+  points: 'none',
+  box: {
+    visible: true
+  },
+  boxpoints: false,
+  line: {
+    color: 'black'
+  },
+  fillcolor: '#8dd3c7',
+  opacity: 0.6,
+  meanline: {
+    visible: true
+  },
+  x0: "Total Bill"
+}]
+
+var layout = {
+  title: "",
+  yaxis: {
+    zeroline: false
+  }
+}
+
+Plotly.plot('myDiv12', data, layout);
+});
+}
+//} /**/
+
+/* Multiple Traces Violin Plot */ //{
+{
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  points: 'none',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'green',
+  },
+  meanline: {
+    visible: true
+  },
+  transforms: [{
+  	 type: 'groupby',
+	 groups: unpack(rows, 'day'),
+	 styles: [
+		{target: 'Sun', value: {line: {color: 'blue'}}},
+		{target: 'Sat', value: {line: {color: 'orange'}}},
+		{target: 'Thur', value: {line: {color: 'green'}}},
+		{target: 'Fri', value: {line: {color: 'red'}}}
+	 ]
+	}]
+}]
+
+var layout = {
+  title: "Multiple Traces Violin Plot",
+  yaxis: {
+    zeroline: false
+  }
+}
+
+Plotly.plot('myDiv13', data, layout);
+});
+}
+//} /**/
+
+/*  Grouped Violin Plot*/ //{
+{
+// need to fix data
+
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'M',
+  scalegroup: 'M',
+  name: 'M',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'blue',
+  },
+  meanline: {
+    visible: true
+  }
+}, {
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'F',
+  scalegroup: 'F',
+  name: 'F',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'pink',
+  },
+  meanline: {
+    visible: true
+  }
+}]
+
+var layout = {
+  title: "Grouped Violin Plot",
+  yaxis: {
+    zeroline: false
+  },
+  violinmode: 'group'
+}
+
+Plotly.plot('myDiv14', data, layout);
+});
+    
+}
+//} /**/
+
+/* Horizontal Violin Plot */ //{
+{
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'total_bill'),
+  points: 'none',
+  box: {
+    visible: true
+  },
+  boxpoints: false,
+  line: {
+    color: 'black'
+  },
+  fillcolor: '#8dd3c7',
+  opacity: 0.6,
+  meanline: {
+    visible: true
+  },
+  y0: "Total Bill"
+}]
+
+var layout = {
+  title: "Basic Horizontal Violin Plot",
+  xaxis: {
+    zeroline: false
+  }
+}
+
+Plotly.plot('myDiv15', data, layout);
+});
+}
+//} /**/
+
+
+/*  */ //{
+{
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/violin_data.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+  }
+
+var data = [{
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'Yes',
+  scalegroup: 'Yes',
+  name: 'Yes',
+  side: 'negative',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'blue',
+    width: 2
+  },
+  meanline: {
+    visible: true
+  }
+}, {
+  type: 'violin',
+  x: unpack(rows, 'day'),
+  y: unpack(rows, 'total_bill'),
+  legendgroup: 'No',
+  scalegroup: 'No',
+  name: 'No',
+  side: 'positive',
+  box: {
+    visible: true
+  },
+  line: {
+    color: 'green',
+    width: 2
+  },
+  meanline: {
+    visible: true
+  }
+}]
+
+var layout = {
+  title: "Split Violin Plot",
+  yaxis: {
+    zeroline: false
+  },
+  violingap: 0,
+  violingroupgap: 0,
+  violinmode: "overlay",
+}
+
+Plotly.plot('myDiv16', data, layout);
+});
+}
+//} /**/
+
+/* Advanced Violin Plot */ //{
+{
+var trace1 = {
+            text: "sample length: 32",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 1,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Thursday",
+            x: [
+                10.07,
+                34.83,
+                10.65,
+                12.43,
+                24.08,
+                13.42,
+                12.48,
+                29.8,
+                14.52,
+                11.38,
+                20.27,
+                11.17,
+                12.26,
+                18.26,
+                8.51,
+                10.33,
+                14.15,
+                13.16,
+                17.47,
+                27.05,
+                16.43,
+                8.35,
+                18.64,
+                11.87,
+                19.81,
+                43.11,
+                13.0,
+                12.74,
+                13.0,
+                16.4,
+                16.47,
+                18.78
+            ],
+            orientation: "h"
+        }
+
+
+var trace2 = {
+            text: "sample length: 30",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -0.6,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Thursday",
+            x: [
+                27.2,
+                22.76,
+                17.29,
+                19.44,
+                16.66,
+                32.68,
+                15.98,
+                13.03,
+                18.28,
+                24.71,
+                21.16,
+                11.69,
+                14.26,
+                15.95,
+                8.52,
+                22.82,
+                19.08,
+                16.0,
+                34.3,
+                41.19,
+                9.78,
+                7.51,
+                28.44,
+                15.48,
+                16.58,
+                7.56,
+                10.34,
+                13.51,
+                18.71,
+                20.53
+            ],
+            orientation: "h"
+        }
+
+var trace3 = {
+            text: "sample length: 9",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 0.4,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Friday",
+            x: [
+                5.75,
+                16.32,
+                22.75,
+                11.35,
+                15.38,
+                13.42,
+                15.98,
+                16.27,
+                10.09
+            ],
+            orientation: "h"
+        }
+
+
+var trace4= {
+            text: "sample length: 10",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -0.3,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Friday",
+            x: [
+                28.97,
+                22.49,
+                40.17,
+                27.28,
+                12.03,
+                21.01,
+                12.46,
+                12.16,
+                8.58,
+                13.42
+            ],
+            orientation: "h"
+        }
+
+var trace5 = {
+            text: "sample length: 28",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 0.55,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: true,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Saturday",
+            x: [
+                20.29,
+                15.77,
+                19.65,
+                15.06,
+                20.69,
+                16.93,
+                26.41,
+                16.45,
+                3.07,
+                17.07,
+                26.86,
+                25.28,
+                14.73,
+                44.3,
+                22.42,
+                20.92,
+                14.31,
+                7.25,
+                10.59,
+                10.63,
+                12.76,
+                13.27,
+                28.17,
+                12.9,
+                30.14,
+                22.12,
+                35.83,
+                27.18
+            ],
+            orientation: "h"
+        }
+
+var trace4 = {
+            text: "sample length: 59",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -1.1,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: true,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Saturday",
+            x: [
+                20.65,
+                17.92,
+                39.42,
+                19.82,
+                17.81,
+                13.37,
+                12.69,
+                21.7,
+                9.55,
+                18.35,
+                17.78,
+                24.06,
+                16.31,
+                18.69,
+                31.27,
+                16.04,
+                38.01,
+                11.24,
+                48.27,
+                20.29,
+                13.81,
+                11.02,
+                18.29,
+                17.59,
+                20.08,
+                20.23,
+                15.01,
+                12.02,
+                10.51,
+                17.92,
+                15.36,
+                20.49,
+                25.21,
+                18.24,
+                14.0,
+                50.81,
+                15.81,
+                26.59,
+                38.73,
+                24.27,
+                30.06,
+                25.89,
+                48.33,
+                28.15,
+                11.59,
+                7.74,
+                20.45,
+                13.28,
+                24.01,
+                15.69,
+                11.61,
+                10.77,
+                15.53,
+                10.07,
+                12.6,
+                32.83,
+                29.03,
+                22.67,
+                17.82
+            ],
+            orientation: "h"
+        }
+
+var trace6 = {
+            text: "sample length: 18",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "F",
+            scalegroup: "F",
+            points: "all",
+            pointpos: 0.45,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#bebada"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "positive",
+            type: "violin",
+            name: "F",
+            span: [
+                0
+            ],
+            line: {
+                color: "#bebada"
+            },
+            y0: "Sunday",
+            x: [
+                16.99,
+                24.59,
+                35.26,
+                14.83,
+                10.33,
+                16.97,
+                10.29,
+                34.81,
+                25.71,
+                17.31,
+                29.85,
+                25.0,
+                13.39,
+                16.21,
+                17.51,
+                9.6,
+                20.9,
+                18.15
+            ],
+            orientation: "h"
+        }
+
+var trace7 = {
+            text: "sample length: 58",
+            hoveron: "points+kde",
+            meanline: {
+                visible: true
+            },
+            legendgroup: "M",
+            scalegroup: "M",
+            points: "all",
+            pointpos: -0.9,
+            box: {
+                visible: true
+            },
+            jitter: 0,
+            scalemode: "count",
+            marker: {
+                line: {
+                    width: 2,
+                    color: "#8dd3c7"
+                },
+                symbol: "line-ns"
+            },
+            showlegend: false,
+            side: "negative",
+            type: "violin",
+            name: "M",
+            span: [
+                0
+            ],
+            line: {
+                color: "#8dd3c7"
+            },
+            y0: "Sunday",
+            x: [
+                10.34,
+                21.01,
+                23.68,
+                25.29,
+                8.77,
+                26.88,
+                15.04,
+                14.78,
+                10.27,
+                15.42,
+                18.43,
+                21.58,
+                16.29,
+                17.46,
+                13.94,
+                9.68,
+                30.4,
+                18.29,
+                22.23,
+                32.4,
+                28.55,
+                18.04,
+                12.54,
+                9.94,
+                25.56,
+                19.49,
+                38.07,
+                23.95,
+                29.93,
+                14.07,
+                13.13,
+                17.26,
+                24.55,
+                19.77,
+                48.17,
+                16.49,
+                21.5,
+                12.66,
+                13.81,
+                24.52,
+                20.76,
+                31.71,
+                7.25,
+                31.85,
+                16.82,
+                32.9,
+                17.89,
+                14.48,
+                34.63,
+                34.65,
+                23.33,
+                45.35,
+                23.17,
+                40.55,
+                20.69,
+                30.46,
+                23.1,
+                15.69
+            ],
+            orientation: "h"
+        }
+
+var data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7]
+
+var layout = {
+        hovermode: "closest",
+        width: 400,
+        yaxis: {
+            showgrid: true
+        },
+        title: "Total bill distribution<br><i>scaled by number of bills per gender",
+        legend: {
+            tracegroupgap: 0
+        },
+        violingap: 0,
+        violingroupgap: 0,
+        violinmode: "overlay",
+        height: 700
+    }
+
+Plotly.plot("myDiv18", data, layout)
+}
+//} /**/
+
+
+/* Basic Parallel Categories Diagram */ //{
+{
+var trace1 = {
+  type: 'parcats',
+  dimensions: [
+    {label: 'Hair',
+     values: ['Black', 'Black', 'Black', 'Brown',
+              'Brown', 'Brown', 'Red', 'Brown']},
+    {label: 'Eye',
+     values: ['Brown', 'Brown', 'Brown', 'Brown',
+              'Brown', 'Blue', 'Blue', 'Blue']},
+    {label: 'Sex',
+     values: ['Female', 'Female', 'Female', 'Male',
+              'Female', 'Male', 'Male', 'Male']}]
+};
+
+var data = [ trace1 ];
+
+var layout = {width: 600};
+
+Plotly.newPlot('myDiv19', data, layout);
+    
+}
+//} /**/
+
+/*Basic Parallel Categories Diagram with Counts  */ //{
+{
+var trace1 = {
+  type: 'parcats',
+  dimensions: [
+    {label: 'Hair',
+     values: ['Black', 'Brown', 'Brown', 'Brown', 'Red']},
+    {label: 'Eye',
+     values: ['Brown', 'Brown', 'Brown', 'Blue', 'Blue']},
+    {label: 'Sex',
+     values: ['Female', 'Male', 'Female', 'Male', 'Male']}],
+  counts: [6, 10, 40, 23, 7]
+};
+
+var data = [ trace1,trace1 ];
+
+var layout = {width: 600};
+
+Plotly.newPlot('myDiv20', data, layout);
+}
+//} /**/
+
+
+/* Mutli-Color Parallel Categories Diagram */ //{
+{
+
+
+Plotly.d3.csv(
+  "https://raw.githubusercontent.com/plotly/datasets/master/titanic.csv",
+  function(titanicData) {
+    var classDim = {
+      values: titanicData.map(function(row) {return row['Pclass']}),
+      categoryorder: 'category ascending',
+      label: "Class"
+    };
+
+    var genderDim = {
+      values: titanicData.map(function(row) {return row['Sex']}),
+      label: "Gender"
+    };
+
+    var survivalDim = {
+      values: titanicData.map(function(row) {return row['Survived']}),
+      label: "Outcome",
+      categoryarray: [0, 1],
+      ticktext: ['perished', 'survived'],
+    };
+
+    var color = survivalDim.values;
+    var colorscale = [[0, 'lightsteelblue'], [1, 'mediumseagreen']];
+
+    // Build Traces
+    var traces = [
+      {type: 'parcats',
+       dimensions: [classDim, genderDim, survivalDim],
+       line: {color,
+              colorscale},
+       hoveron: 'color',
+       hoverinfo: 'count+probability',
+       labelfont: {size: 14},
+       arrangement: 'freeform'
+      }
+    ];
+
+    var layout = {width: 600};
+
+    // Make plot
+    Plotly.newPlot("myDiv21", traces, layout);
+  });
+}
+//} /**/
+
+/*  Parallel Categories Linked Brushing*/ //{
+{
+
+var categoricalDimensionLabels = [
+  'body-style',
+  'drive-wheels',
+  'fuel-type'
+];
+
+Plotly.d3.csv(
+  'https://raw.githubusercontent.com/plotly/datasets/master/imports-85.csv',
+  function(carsData) {
+    // Preprocess Data
+    var mpg = carsData.map(function(row) { return row['highway-mpg'] });
+    var horsepower = carsData.map(function(row) { return row['horsepower'] });
+
+    var categoricalDimensions = categoricalDimensionLabels.map(
+      function(dimLabel) {
+        // Extract column
+        var values = carsData.map(function(row) {
+          return row[dimLabel]
+        });
+
+        return {
+          values: values,
+          label: dimLabel
+        };
+      });
+
+    // Colors
+    var color = new Int8Array(carsData.length);
+    var colorscale = [[0, 'gray'], [1, 'firebrick']];
+
+    // Layout
+    var layout = {
+      width: 600,
+      height: 800,
+      xaxis: {title: 'Horsepower'},
+      yaxis: {domain: [0.6, 1], title: 'MPG'},
+      dragmode: 'lasso',
+      hovermode: 'closest'
+    };
+
+    // Build Traces
+    var traces = [
+      {type: 'scatter',
+       x: horsepower,
+       y: mpg,
+       marker: {color: 'gray'},
+       mode: 'markers',
+       selected: {'marker': {'color': 'firebrick'}},
+       unselected: {'marker': {'opacity': 0.3}}
+      },
+      {type: 'parcats',
+       domain: {y: [0, 0.4]},
+       dimensions:categoricalDimensions,
+       line: {
+         colorscale: colorscale,
+         cmin: 0,
+         cmax: 1,
+         color: color,
+         shape: 'hspline'},
+       labelfont: {size: 14}
+      }
+    ];
+
+    // Make plot
+    Plotly.newPlot('myDiv22', traces, layout);
+
+    // Update color on selection and click
+    var update_color = function(points_data) {
+      var new_color = new Int8Array(carsData.length);
+      var selection = []
+      for(var i = 0; i < points_data.points.length; i++) {
+        new_color[points_data.points[i].pointNumber] = 1;
+        selection.push(points_data.points[i].pointNumber);
+      }
+
+      // Update selected points in scatter plot
+      Plotly.restyle(gd, {'selectedpoints': [selection]}, 0)
+
+      // Update color of selected paths in parallel categories diagram
+      Plotly.restyle(gd, {'line.color': [new_color]}, 1)
+    };
+
+    gd.on('plotly_selected', update_color);
+    gd.on('plotly_click', update_color);
+  });
+}
+//} /**/
+
+/*  Parallel Categories with Multi-Color Linked Brushing */ //{
+{
+var gd = document.getElementById('myDiv');
+var categoricalDimensionLabels = [
+  'body-style',
+  'drive-wheels',
+  'fuel-type'
+];
+
+Plotly.d3.csv(
+  'https://raw.githubusercontent.com/plotly/datasets/master/imports-85.csv',
+  function(carsData) {
+    // Preprocess Data
+    var mpg = carsData.map(function(row) { return row['highway-mpg'] });
+    var horsepower = carsData.map(function(row) { return row['horsepower'] });
+
+    var categoricalDimensions = categoricalDimensionLabels.map(
+      function(dimLabel) {
+        // Extract column
+        var values = carsData.map(function(row) {
+          return row[dimLabel]
+        });
+
+        return {
+          values: values,
+          label: dimLabel
+        };
+      }
+    );
+
+    // Colors
+    var color = new Int8Array(carsData.length);
+    var colorscale = [[0, 'gray'], [0.33, 'gray'],
+                      [0.33, 'firebrick'], [0.66, 'firebrick'],
+                      [0.66, 'blue'], [1.0, 'blue']];
+
+    // Layout
+    var layout = {
+      width: 600,
+      height: 800,
+      xaxis: {title: 'Horsepower'},
+      yaxis: {domain: [0.6, 1], title: 'MPG'},
+      dragmode: 'lasso',
+      hovermode: 'closest'
+    };
+
+    // Build Traces
+    var traces = [
+      {type: 'scatter',
+       x: horsepower,
+       y: mpg,
+       marker: {color: color,
+                colorscale: colorscale,
+                cmin: -0.5,
+                cmax: 2.5,
+                showscale: true,
+                colorbar: {tickvals: [0, 1, 2],
+                           ticktext: ['None', 'Red', 'Blue']}},
+       mode: 'markers',
+      },
+      {type: 'parcats',
+       domain: {y: [0, 0.4]},
+       dimensions:categoricalDimensions,
+       line: {
+         colorscale: colorscale,
+         cmin: -0.5,
+         cmax: 2.5,
+         color: color,
+         shape: 'hspline'},
+       labelfont: {size: 14}
+      }
+    ];
+
+    // Make plot
+    Plotly.newPlot("myDiv23", traces, layout);
+
+    // Update color on selection and click
+    var update_color = function(points_data) {
+      var new_color = color;
+      var color_value = document.querySelector('input[name="rate"]:checked').value;
+      console.log(color_value);
+      var selection = []
+      for(var i = 0; i < points_data.points.length; i++) {
+        new_color[points_data.points[i].pointNumber] = color_value;
+        selection.push(points_data.points[i].pointNumber);
+      }
+
+      // Update selected points in scatter plot
+      Plotly.restyle(gd, {'marker.color': [new_color]}, 0)
+
+      // Update color of selected paths in parallel categories diagram
+      Plotly.restyle(gd,
+                     {'line.color': [new_color]}, 1)
+    };
+
+    gd.on('plotly_selected', update_color);
+    gd.on('plotly_click', update_color);
+  });
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+
+/*  */ //{
+{
+}
+//} /**/
+
+/*  */ //{
+{
+}
+//} /**/
+
+    </script>
+</html>
+
+
