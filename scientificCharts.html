@@ -733,24 +733,213 @@ Plotly.newPlot('myDiv15', data, layout);
 }
 //} /**/
 
-/* Basic Symmetric Error Bars*/ //{
+/* Heatmap with Unequal Block Sizes*/ //{
 {
+//number of spiral loops
+
+var nspiral = 2;
+
+// angle
+
+var th = numeric.linspace(((-Math.PI) / 13), (2 * Math.PI * nspiral), 1000);
+
+//Empty Value Containers
+
+var xValues = [];
+var yValues = [];
+var yShift = [];
+var finalX = [];
+var finalY = [];
+
+//spiral
+
+for(var i = 0; i < th.length; i++){
+  var a = 1.120529;
+  var b = 0.306349;
+  var r = a * Math.exp((-b) * th[i]);
+  var xResult = (r * Math.cos(th[i]));
+  var yResult = (r * Math.sin(th[i]));
+  xValues.push(xResult);
+  yValues.push(yResult);
+}
+
+function getMaxOfArray(numArray) {
+  return Math.max.apply(null, numArray);
+};
+
+function getMinOfArray(numArray) {
+  return Math.min.apply(null, numArray);
+};
+
+//Shift spiral north so that it is centered
+
+var yShift = (1.6 - (getMaxOfArray(yValues) - getMinOfArray(yValues))) / 2;
+
+var spiralTrace = {
+  x: xValues.map(function(xi) { return -(xi) + xValues[0]; }),
+  y: yValues.map(function(yi) { return yi - yValues[0] + yShift; }),
+  type: 'scatter',
+  line: {
+    color: 'white',
+    width: 3
+  }
+};
+
+//Build the rectangles as a heatmap and specify the edges of the heatmap squares
+
+var phi = (1 + Math.sqrt(5)) / 2;
+var xe = [0, 1, (1 + (1 / Math.pow(phi,4))), 1 + (1 / Math.pow(phi,3)), phi];
+var ye = [0, (1 / Math.pow(phi,3)), (1 / Math.pow(phi,3)) + (1 / Math.pow(phi,4)), (1 / Math.pow(phi,2)), 1];
+
+var zValues = [
+  [13, 3, 3, 5],
+  [13, 2, 1, 5],
+  [13, 10, 11, 12],
+  [13, 8, 8, 8]
+];
+
+var hm = {
+  x: xe,
+  y: ye.map(function(yi) { return yi + yShift; }),
+  z: zValues,
+  type: 'heatmap',
+  colorscale: 'Viridis'
+};
+
+var axisTemplate = {
+  range: [0, 1.6],
+  autorange: false,
+  showgrid: false,
+  zeroline: false,
+  linecolor: 'black',
+  showticklabels: false,
+  ticks: ''
+};
+
+var data = [spiralTrace, hm];
+
+var layout = {
+  title: 'Heatmap with Unequal Block Sizes',
+  margin: {
+    t: 200,
+    r: 200,
+    b: 200,
+    l: 200
+  },
+  xaxis: axisTemplate,
+  yaxis: axisTemplate,
+  showlegend: false,
+  with: 700,
+  height: 700,
+  autosize: false
+};
+
+Plotly.newPlot('myDiv16', data, layout);
 }
 //} /**/
 
 
-/* Basic Symmetric Error Bars*/ //{
+/* Basic Heatmap*/ //{
 {
+var data = [
+  {
+    z: [[1, 20, 30], [20, 1, 60], [30, 60, 1]],
+    type: 'heatmap'
+  }
+];
+
+Plotly.newPlot('myDiv17', data);
 }
 //} /**/
 
-/* Basic Symmetric Error Bars*/ //{
+/* Annotated Heatmap*/ //{
 {
+var xValues = ['A', 'B', 'C', 'D', 'E'];
+
+var yValues = ['W', 'X', 'Y', 'Z'];
+
+var zValues = [
+  [0.00, 0.00, 0.75, 0.75, 0.00],
+  [0.00, 0.00, 0.75, 0.75, 0.00],
+  [0.75, 0.75, 0.75, 0.75, 0.75],
+  [0.00, 0.00, 0.00, 0.75, 0.00]
+];
+
+var colorscaleValue = [
+  [0, '#3D9970'],
+  [1, '#001f3f']
+];
+
+var data = [{
+  x: xValues,
+  y: yValues,
+  z: zValues,
+  type: 'heatmap',
+  colorscale: colorscaleValue,
+  showscale: false
+}];
+
+var layout = {
+  title: 'Annotated Heatmap',
+  annotations: [],
+  xaxis: {
+    ticks: '',
+    side: 'top'
+  },
+  yaxis: {
+    ticks: '',
+    ticksuffix: ' ',
+    width: 700,
+    height: 700,
+    autosize: false
+  }
+};
+
+for ( var i = 0; i <  yValues.length; i++ ) {
+  for ( var j = 0; j < xValues.length; j++ ) {
+    var currentValue = zValues[i][j];
+    if (currentValue != 0.0) {
+      var textColor = 'white';
+    }else{
+      var textColor = 'black';
+    }
+    var result = {
+      xref: 'x1',
+      yref: 'y1',
+      x: xValues[j],
+      y: yValues[i],
+      text: zValues[i][j],
+      font: {
+        family: 'Arial',
+        size: 12,
+        color: 'rgb(50, 171, 96)'
+      },
+      showarrow: false,
+      font: {
+        color: textColor
+      }
+    };
+    layout.annotations.push(result);
+  }
+}
+
+Plotly.newPlot('myDiv18', data, layout);
 }
 //} /**/
 
-/* Basic Symmetric Error Bars*/ //{
+/* Heatmap with Categorical Axis Labels*/ //{
 {
+var data = [
+  {
+    z: [[1, 20, 30, 50, 1], [20, 1, 60, 80, 30], [30, 60, 1, -10, 20]],
+    x: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+    y: ['Morning', 'Afternoon', 'Evening'],
+    type: 'heatmap'
+  }
+];
+
+Plotly.newPlot('myDiv19', data);
+    
 }
 //} /**/
 

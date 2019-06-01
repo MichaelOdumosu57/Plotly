@@ -12,11 +12,78 @@ global.ultraObject = require('./ultraObject.js')
 const backend = express.Router()
 //
 
+/* Annotated Heatmap*/ //{
+var r_file = __dirname + '/scientificCharts.html'
+// __dirname + '/charts.html'
+// __dirname + '/statisticalCharts.html'
+var r_mode = 'rs+'
+var w_file =  r_file
+var w_mode = 'w'
+//} /**/
+
 app.use(   '/backend',backend   )
 backend.get(   '/index',function(req,res){
-    // res.sendFile(__dirname + '/charts.html')
-    // res.sendFile(__dirname + '/statisticalCharts.html')
-    res.sendFile(__dirname + '/scientificCharts.html')
+ 
+        var response = res
+    
+      
+        
+
+        // const w_stream = fs.createWriteStream(w_file,{
+        //       start:0,
+        //       autoClose:true
+        // })
+        // // w_stream.on('process_uncaught',function(  err   ){
+        // //     console.log('error thrown in writeStream close everything ',err)
+        // //     this.end()
+        // // })
+        // w_stream.on('error',  function(err){
+        //     setImmediate(() => {
+        //         console.log('error thrown in writeStream close everything ',err)
+        //         this.end()
+        //         // console.log(this)
+        //         close_file(rr_fd,'read_file',this)
+        //         close_file(ww_fd,'write_file',this)
+        //     });
+        // });
+        // w_stream.once('finish',function(   ){
+        //     console.log('All writes are now complete. writestream closed');
+        // })
+        // w_stream.on('pipe', (src) => {
+        //   console.error('something is piping into the writer');
+        //   // assert.equal(src, r_stream);
+        // });
+        // w_stream.on('unpipe', (src) => {
+        //   console.error('Something has stopped piping into the writer.');
+        //   // assert.equal(src, r_stream);
+        // });
+        // console.log('writable stream intializaed')
+        const r_stream = fs.createReadStream(r_file,{
+          start:0,
+          autoClose:true
+        })
+        r_stream.on('end',()=>{
+          setImmediate(() => {
+            console.log('nothing more to read closing  readstream')
+            console.log(typeof(r_stream),typeof(w_stream))
+            r_stream.resume(); //this helps clear the buffer
+          })
+        })
+        r_stream.on('close',()=>{
+          setImmediate(() =>{
+            console.log("looks like the fd was closed by the stream ")
+            response.sendFile(r_file)
+          })
+        })
+        r_stream.on('data',(   chunk  )=>{
+            setImmediate(() =>{
+                chunk = chunk.toString().split("&lt;").join("< ")
+            })
+        })
+        console.log('readable stream intializaed')
+        
+        
+        
 })
 backend.post(   '/linspace',function(req,res){
     
