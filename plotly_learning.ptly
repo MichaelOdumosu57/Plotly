@@ -5790,6 +5790,8 @@ Parallel Categories with Multi-Color Linked Brushing (incorrect radio buttons ar
             
 This example extends the previous example to support brushing with multiple colors. The radio buttons above may be used to select the active color, and this color will be applied when points are selected in the scatter trace and when categories or ribbons are clicked in the parcats trace.
 
+
+you jave to apply functions and the radio boxes theirselves
 var gd = document.getElementById('myDiv');
 var categoricalDimensionLabels = [
   'body-style',
@@ -5883,30 +5885,137 @@ Plotly.d3.csv(
                      {'line.color': [new_color]}, 1)
     };
 
-    gd.on('plotly_selected', update_color);
-    gd.on('plotly_click', update_color);
+    document.querySelector('#myDiv23').on('plotly_selected', update_color);
+    document.querySelector('#myDiv23').on('plotly_click', update_color);
   });
             
-Basic Point Cloud
+Splom in plotly.js
 
+ uncommon uses multiple scatterplots to determine the correlation (if any) between a series of variables.
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Splom of Iris Dataset
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+                             
+var x = [];
+var y = [];
+for (var i = 0; i < 500; i ++) {
+	x[i] = Math.random();
+	y[i] = Math.random() + 1;
+}
+
+var data = [
+  {
+    x: x,
+    y: y,
+    type: 'histogram2dcontour'
+  }
+];
+Plotly.newPlot('graph', data);
+
+            
+Splom of Diabetes Dataset
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-
             
-Basic Point Cloud
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv', function(err, rows){
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });
+    }
+
+    text = []
+    for (i=0; i < unpack(rows, 'Outcome').length; i++) {
+      if (unpack(rows, 'Outcome')[i] == "0") {
+        text.push("Diabetic")
+      } else {
+        text.push("Non-Diabetic")
+      }
+    }
+
+    var pl_colorscale=[
+      [0.0, '#119dff'],
+      [0.5, '#119dff'],
+      [0.5, '#ef553b'],
+      [1, '#ef553b']
+    ]
+
+    var axis = () => ({
+      showline:false,
+      zeroline:false,
+      gridcolor:'#ffff',
+      ticklen:2,
+      tickfont:{size:10},
+      titlefont:{size:12}
+    })
+
+    var data = [{
+      type: 'splom',
+      dimensions: [
+        {label:'Pregnancies', values:unpack(rows, 'Pregnancies')},
+        {label:'Glucose', values:unpack(rows, 'Glucose')},
+        {label:'BloodPressure', values:unpack(rows, 'BloodPressure')},
+        {label:'SkinThickness', values:unpack(rows, 'SkinThickness')},
+        {label:'Insulin', values:unpack(rows, 'Insulin')},
+        {label:'BMI', values:unpack(rows, 'BMI')},
+        {label:'DiabPedigreeFun', values:unpack(rows, 'DiabetesPedigreeFunction')},
+        {label:'Age', values:unpack(rows, 'Age')}
+      ],
+      text:text,
+      marker: {
+        color: unpack(rows, 'Outcome'),
+        colorscale:pl_colorscale,
+        size: 5,
+        line: {
+          color: 'white',
+          width: 0.5
+        }
+      }
+    }]
+
+    var layout = {
+      title:"Scatterplot Matrix (SPLOM) for Diabetes Dataset<br>Data source: <a href='https://www.kaggle.com/uciml/pima-indians-diabetes-database/data'>[1]</a>",
+      height: 1000,
+      width: 1000,
+      autosize: false,
+      hovermode:'closest',
+      dragmode:'select',
+      plot_bgcolor:'rgba(240,240,240, 0.95)',
+      xaxis:axis(),
+      yaxis:axis(),
+      xaxis2:axis(),
+      xaxis3:axis(),
+      xaxis4:axis(),
+      xaxis5:axis(),
+      xaxis6:axis(),
+      xaxis7:axis(),
+      xaxis8:axis(),
+      yaxis2:axis(),
+      yaxis3:axis(),
+      yaxis4:axis(),
+      yaxis5:axis(),
+      yaxis6:axis(),
+      yaxis7:axis(),
+      yaxis8:axis()
+    }
+
+    Plotly.react('graph', data, layout);
+
+});
             
             
 Basic Point Cloud

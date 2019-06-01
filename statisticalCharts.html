@@ -1999,8 +1999,8 @@ Plotly.d3.csv(
       Plotly.restyle(gd, {'line.color': [new_color]}, 1)
     };
 
-    gd.on('plotly_selected', update_color);
-    gd.on('plotly_click', update_color);
+    document.querySelector('#myDiv22').on('plotly_selected', update_color);
+    document.querySelector('#myDiv22').on('plotly_click', update_color);
   });
 }
 //} /**/
@@ -2100,20 +2100,181 @@ Plotly.d3.csv(
                      {'line.color': [new_color]}, 1)
     };
 
-    gd.on('plotly_selected', update_color);
-    gd.on('plotly_click', update_color);
+    document.querySelector('#myDiv23').on('plotly_selected', update_color);
+    document.querySelector('#myDiv23').on('plotly_click', update_color);
   });
 }
 //} /**/
 
-/*  */ //{
+
+
+/* Splom of Iris Dataset */ //{
 {
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/iris-data.csv', function(err, rows){
+
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key.replace('.',' ')]; });
+    }
+
+    colors = []
+    for (i=0; i < unpack(rows, 'class').length; i++) {
+      if (unpack(rows, 'class')[i] == "Iris-setosa") {
+        colors.push(0)
+      } else if (unpack(rows, 'class')[i] == "Iris-versicolor") {
+        colors.push(0.5)
+      } else if (unpack(rows, 'class')[i] == "Iris-virginica") {
+        colors.push(1)
+      }
+    }
+
+    var pl_colorscale=[
+               [0.0, '#19d3f3'],
+               [0.333, '#19d3f3'],
+               [0.333, '#e763fa'],
+               [0.666, '#e763fa'],
+               [0.666, '#636efa'],
+               [1, '#636efa']
+    ]
+
+    var axis = () => ({
+      showline:false,
+      zeroline:false,
+      gridcolor:'#ffff',
+      ticklen:4
+    })
+
+    var data = [{
+      type: 'splom',
+      dimensions: [
+        {label:'sepal length', values:unpack(rows,'sepal length')},
+        {label:'sepal width', values:unpack(rows,'sepal width')},
+        {label:'petal length', values:unpack(rows,'petal length')},
+        {label:'petal width', values:unpack(rows,'petal width')}
+      ],
+      text: unpack(rows, 'class'),
+      marker: {
+        color: colors,
+        colorscale:pl_colorscale,
+        size: 7,
+        line: {
+          color: 'white',
+          width: 0.5
+        }
+      }
+    }]
+
+    var layout = {
+      title:'Iris Data set',
+      height: 800,
+      width: 800,
+      autosize: false,
+      hovermode:'closest',
+      dragmode:'select',
+      plot_bgcolor:'rgba(240,240,240, 0.95)',
+      xaxis:axis(),
+      yaxis:axis(),
+      xaxis2:axis(),
+      xaxis3:axis(),
+      xaxis4:axis(),
+      yaxis2:axis(),
+      yaxis3:axis(),
+      yaxis4:axis()
+    }
+
+    Plotly.react('myDiv24', data, layout)
+
+});
+    
 }
 //} /**/
 
 
-/*  */ //{
+/* Splom of Diabetes Dataset */ //{
 {
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/diabetes.csv', function(err, rows){
+
+    function unpack(rows, key) {
+        return rows.map(function(row) { return row[key]; });
+    }
+
+    text = []
+    for (i=0; i < unpack(rows, 'Outcome').length; i++) {
+      if (unpack(rows, 'Outcome')[i] == "0") {
+        text.push("Diabetic")
+      } else {
+        text.push("Non-Diabetic")
+      }
+    }
+
+    var pl_colorscale=[
+      [0.0, '#119dff'],
+      [0.5, '#119dff'],
+      [0.5, '#ef553b'],
+      [1, '#ef553b']
+    ]
+
+    var axis = () => ({
+      showline:false,
+      zeroline:false,
+      gridcolor:'#ffff',
+      ticklen:2,
+      tickfont:{size:10},
+      titlefont:{size:12}
+    })
+
+    var data = [{
+      type: 'splom',
+      dimensions: [
+        {label:'Pregnancies', values:unpack(rows, 'Pregnancies')},
+        {label:'Glucose', values:unpack(rows, 'Glucose')},
+        {label:'BloodPressure', values:unpack(rows, 'BloodPressure')},
+        {label:'SkinThickness', values:unpack(rows, 'SkinThickness')},
+        {label:'Insulin', values:unpack(rows, 'Insulin')},
+        {label:'BMI', values:unpack(rows, 'BMI')},
+        {label:'DiabPedigreeFun', values:unpack(rows, 'DiabetesPedigreeFunction')},
+        {label:'Age', values:unpack(rows, 'Age')}
+      ],
+      text:text,
+      marker: {
+        color: unpack(rows, 'Outcome'),
+        colorscale:pl_colorscale,
+        size: 5,
+        line: {
+          color: 'white',
+          width: 0.5
+        }
+      }
+    }]
+
+    var layout = {
+      title:"Scatterplot Matrix (SPLOM) for Diabetes Dataset<br>Data source: <a href='https://www.kaggle.com/uciml/pima-indians-diabetes-database/data'>[1]</a>",
+      height: 1000,
+      width: 1000,
+      autosize: false,
+      hovermode:'closest',
+      dragmode:'select',
+      plot_bgcolor:'rgba(240,240,240, 0.95)',
+      xaxis:axis(),
+      yaxis:axis(),
+      xaxis2:axis(),
+      xaxis3:axis(),
+      xaxis4:axis(),
+      xaxis5:axis(),
+      xaxis6:axis(),
+      xaxis7:axis(),
+      xaxis8:axis(),
+      yaxis2:axis(),
+      yaxis3:axis(),
+      yaxis4:axis(),
+      yaxis5:axis(),
+      yaxis6:axis(),
+      yaxis7:axis(),
+      yaxis8:axis()
+    }
+
+    Plotly.react('myDiv25', data, layout);
+
+});
 }
 //} /**/
 
