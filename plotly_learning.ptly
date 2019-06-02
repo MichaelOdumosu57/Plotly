@@ -6827,8 +6827,220 @@ var data = [
 
 Plotly.newPlot('myDiv', data);
                                                                                                                                                           
-                                                                                                                                                                      
-Basic Point Cloud
+
+WebGL Heatmaps in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ WebGL Heatmaps
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+function HeatmapGLfromImage() {
+    var img = new Image();
+    img.setAttribute(
+        "src",
+        processdata(
+            "https://images.plot.ly/plotly-documentation/images/heatmap-galaxy.jpg")
+    );
+}
+function processdata(url) {
+    var canvas = document.getElementById("canvas");
+    var img = new Image();
+    img.crossOrigin = "anonymous";
+    img.src = url;
+    var context = canvas.getContext("2d");
+    context.drawImage(img, 0, 0);
+    var w = img.width; var h = img.height;
+    var l = w * h;
+    var arr = context.getImageData(0, 0, w, h).data;
+
+    var zdata = [];
+    for (var i = 0; i < l; i++) {
+        // get color of pixel
+        var r = arr[i * 4]; // Red
+        var g = arr[i * 4 + 1]; // Green
+        var b = arr[i * 4 + 2]; // Blue
+        var a = arr[i * 4 + 3]; // Alpha
+        zdata.push(r + g + b + a);
+    }
+    var createGroupedArray = function(arr, chunkSize) {
+        var groups = [],
+            i;
+        for (i = 0; i < arr.length; i += chunkSize) {
+            groups.push(arr.slice(i, i + chunkSize));
+        }
+        return groups;
+    };
+    // Grouping zdata into 500x500
+    var zdata = createGroupedArray(zdata, 500);
+
+    var data = [
+        {
+            z: zdata,
+            type: "heatmapgl",
+            colorscale: "Picnic"
+        }
+    ];
+
+    Plotly.plot("myDiv", data);
+}
+
+HeatmapGLfromImage();
+      
+Wind Rose Charts in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+Wind Rose Chart
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var trace1 = {
+  r: [77.5, 72.5, 70.0, 45.0, 22.5, 42.5, 40.0, 62.5],
+  t: ['North', 'N-E', 'East', 'S-E', 'South', 'S-W', 'West', 'N-W'],
+  name: '11-14 m/s',
+  marker: {color: 'rgb(106,81,163)'},
+  type: 'barpolar'
+};
+
+var trace2 = {
+  r: [57.5, 50.0, 45.0, 35.0, 20.0, 22.5, 37.5, 55.0],
+  t: ['North', 'N-E', 'East', 'S-E', 'South', 'S-W', 'West', 'N-W'],
+  name: '8-11 m/s',
+  marker: {color: 'rgb(158,154,200)'},
+  type: 'barpolar'
+};
+
+var trace3 = {
+  r: [40.0, 30.0, 30.0, 35.0, 7.5, 7.5, 32.5, 40.0],
+  t: ['North', 'N-E', 'East', 'S-E', 'South', 'S-W', 'West', 'N-W'],
+  name: '5-8 m/s',
+  marker: {color: 'rgb(203,201,226)'},
+  type: 'barpolar'
+};
+
+var trace4 = {
+  r: [20.0, 7.5, 15.0, 22.5, 2.5, 2.5, 12.5, 22.5],
+  t: ['North', 'N-E', 'East', 'S-E', 'South', 'S-W', 'West', 'N-W'],
+  name: '&lt; 5 m/s',
+  marker: {color: 'rgb(242,240,247)'},
+  type: 'barpolar'
+};
+
+var data = [trace1, trace2, trace3, trace4];
+
+var layout = {
+  title: 'Wind Speed Distribution in Laurel, NE',
+  font: {size: 16},
+  legend: {font: {size: 16}},
+  radialaxis: {ticksuffix: '%'},
+  orientation: 270
+};
+
+Plotly.newPlot('myDiv', data, layout);
+            
+
+
+
+Ternary Plots in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+            
+Basic Ternary Plot with Markers
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+var rawData = [
+    {journalist:75,developer:25,designer:0,label:'point 1'},
+    {journalist:70,developer:10,designer:20,label:'point 2'},
+    {journalist:75,developer:20,designer:5,label:'point 3'},
+    {journalist:5,developer:60,designer:35,label:'point 4'},
+    {journalist:10,developer:80,designer:10,label:'point 5'},
+    {journalist:10,developer:90,designer:0,label:'point 6'},
+    {journalist:20,developer:70,designer:10,label:'point 7'},
+    {journalist:10,developer:20,designer:70,label:'point 8'},
+    {journalist:15,developer:5,designer:80,label:'point 9'},
+    {journalist:10,developer:10,designer:80,label:'point 10'},
+    {journalist:20,developer:10,designer:70,label:'point 11'},
+];
+
+Plotly.plot('graph', [{
+    type: 'scatterternary',
+    mode: 'markers',
+    a: rawData.map(function(d) { return d.journalist; }),
+    b: rawData.map(function(d) { return d.developer; }),
+    c: rawData.map(function(d) { return d.designer; }),
+    text: rawData.map(function(d) { return d.label; }),
+    marker: {
+        symbol: 100,
+        color: '#DB7365',
+        size: 14,
+        line: { width: 2 }
+    },
+}], {
+    ternary: {
+        sum: 100,
+        aaxis: makeAxis('Journalist', 0),
+        baxis: makeAxis('<br>Developer', 45),
+        caxis: makeAxis('<br>Designer', -45),
+        bgcolor: '#fff1e0'
+    },
+    annotations: [{
+      showarrow: false,
+      text: 'Replica of Tom Pearson\'s <a href="http://bl.ocks.org/tomgp/7674234">block</a>',
+        x: 1.0,
+        y: 1.3,
+        font: { size: 15 }
+    }],
+    paper_bgcolor: '#fff1e0',
+});
+
+function makeAxis(title, tickangle) {
+    return {
+      title: title,
+      titlefont: { size: 20 },
+      tickangle: tickangle,
+      tickfont: { size: 15 },
+      tickcolor: 'rgba(0,0,0,0)',
+      ticklen: 5,
+      showline: true,
+      showgrid: true
+    };
+}
+                                                                        
+
+            
+Soil Types Ternary Plot
 
  
  
@@ -6838,42 +7050,368 @@ Basic Point Cloud
       | [__]    [__]  |
             
             
-            
-Basic Point Cloud
+var url = 'https://gist.githubusercontent.com/davenquinn/988167471993bc2ece29/raw/f38d9cb3dd86e315e237fde5d65e185c39c931c2/data.json';
 
+Plotly.d3.json(url, function(err, rawData) {
+    if(err) throw err;
+
+    plot(rawData);
+});
+
+function plot(rawData) {
+    var data = Object.keys(rawData).map(function(k) {
+        var pts = rawData[k];
+
+        return {
+            type: 'scatterternary',
+            mode: 'lines',
+            name: k,
+            a: pts.map(function(d) { return d.clay }),
+            b: pts.map(function(d) { return d.sand }),
+            c: pts.map(function(d) { return d.silt }),
+            line: { color: '#c00' }
+        };
+    });
+
+    var layout = {
+        ternary: {
+            sum: 100,
+            aaxis: makeAxis('Clay'),
+            baxis: makeAxis('Sand'),
+            caxis: makeAxis('Silt')
+        },
+        showlegend: false,
+        width: 700,
+        annotations: [{
+            showarrow: false,
+            text: 'Replica of Daven Quinn\'s <a href="http://bl.ocks.org/davenquinn/988167471993bc2ece29">block</a>',
+            x: 0.15,
+            y: 1.1
+        }]
+    };
+
+    Plotly.plot('graph', data, layout);
+}
+
+function makeAxis(title) {
+  return {
+      title: title,
+      ticksuffix: '%',
+      min: 0.01,
+      linewidth: 2,
+      ticks: 'outside',
+      ticklen: 8,
+      showgrid: true,
+  };
+}
+
+Ternary Contour Plots in plotly.js
+            
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ Basic Filled Ternary Contour Plot
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+var url = 'https://gist.githubusercontent.com/davenquinn/988167471993bc2ece29/raw/f38d9cb3dd86e315e237fde5d65e185c39c931c2/data.json';
+
+var colors = ['#8dd3c7','#ffffb3','#bebada','#fb8072','#80b1d3','#fdb462','#b3de69','#fccde5','#d9d9d9','#bc80bd','#ccebc5','#ffed6f'];
+
+
+Plotly.d3.json(url, function(err, rawData) {
+    if(err) throw err;
+
+    plot(rawData);
+});
+
+function plot(rawData) {
+    var data = Object.keys(rawData).map(function(k, i) {
+        var pts = rawData[k];
+        pts = pts.concat(pts[0]);
+
+        return {
+            type: 'scatterternary',
+            mode: 'lines',
+            name: k,
+            a: pts.map(function(d) { return d.clay }),
+            b: pts.map(function(d) { return d.sand }),
+            c: pts.map(function(d) { return d.silt }),
+            line: { color: '#444' },
+            fill: 'toself',
+            fillcolor: colors[i],
+            hoveron:'fills+points'
+        };
+    });
+
+    var layout = {
+        ternary: {
+            sum: 100,
+            aaxis: makeAxis('Clay'),
+            baxis: makeAxis('Sand'),
+            caxis: makeAxis('Silt')
+        },
+        showlegend: false,
+        width: 700,
+        annotations: [{
+            showarrow: false,
+            text: 'Soil Types Fill Plot',
+            x: 0.15,
+            y: 1.1
+        }]
+    };
+
+    Plotly.plot('graph', data, layout);
+}
+
+function makeAxis(title) {
+  return {
+      title: title,
+      ticksuffix: '%',
+      min: 0.01,
+      linewidth: 2,
+      ticks: 'outside',
+      ticklen: 8,
+      showgrid: true,
+  };
+}
  
  
+Radar Charts in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+       
+Basic Radar Chart
+
             .___
             [__]
         .___    .___
       | [__]    [__]  |
                                                                         
+data = [{
+  type: 'scatterpolar',
+  r: [39, 28, 8, 7, 28, 39],
+  theta: ['A','B','C', 'D', 'E', 'A'],
+  fill: 'toself'
+}]
 
-            
-Basic Point Cloud
+layout = {
+  polar: {
+    radialaxis: {
+      visible: true,
+      range: [0, 50]
+    }
+  },
+  showlegend: false
+}
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
+Plotly.plot("myDiv", data, layout)
                                                                         
             
-Basic Point Cloud
+Multiple Trace Radar Chart
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+data = [
+  {
+  type: 'scatterpolar',
+  r: [39, 28, 8, 7, 28, 39],
+  theta: ['A','B','C', 'D', 'E', 'A'],
+  fill: 'toself',
+  name: 'Group A'
+  },
+  {
+  type: 'scatterpolar',
+  r: [1.5, 10, 39, 31, 15, 1.5],
+  theta: ['A','B','C', 'D', 'E', 'A'],
+  fill: 'toself',
+  name: 'Group B'
+  }
+]
+
+layout = {
+  polar: {
+    radialaxis: {
+      visible: true,
+      range: [0, 50]
+    }
+  }
+}
+
+Plotly.plot("myDiv", data, layout)
+            
+Parallel Coordinates Plot in plotly.js
+          
+          
+Add Points and Contours
+To add points and lines see Carpet Scatter Plots or to add contours see Carpet Contour Plots
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+Adding Dimensions
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                 
+                 
+var trace = {
+  type: 'parcoords',
+  line: {
+    color: 'blue'
+  },
+  
+  dimensions: [{
+    range: [1, 5],
+    constraintrange: [1, 2],
+    label: 'A',
+    values: [1,4]
+  }, {
+    range: [1,5],
+    label: 'B',
+    values: [3,1.5],
+    tickvals: [1.5,3,4.5]
+  }, {
+    range: [1, 5],
+    label: 'C',
+    values: [2,4],
+    tickvals: [1,2,4,5],
+    ticktext: ['text 1','text 2','text 4','text 5']
+  }, {
+    range: [1, 5],
+    label: 'D',
+    values: [4,2]
+  }]
+};
+
+var data = [trace]
+
+Plotly.plot('graphDiv', data);
+                 
+                 
+                 
+                 
+                 
+                  
+/* Basic Parallel Coordinates Plot*/ //{
+{
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.d3.csv('https://raw.githubusercontent.com/bcdunbar/datasets/master/iris.csv', function(err, rows){
+      
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var data = [{
+  type: 'parcoords',
+  pad: [80,80,80,80],
+  line: {
+    color: unpack(rows, 'species_id'),
+    colorscale: [[0, 'red'], [0.5, 'green'], [1, 'blue']]
+  },
+
+  dimensions: [{
+    range: [2, 4.5],
+    label: 'sepal_width',
+    values: unpack(rows, 'sepal_width')
+  }, {
+    constraintrange: [5, 6],
+    range: [4,8],
+    label: 'sepal_length',
+    values: unpack(rows, 'sepal_length')
+  }, {
+    label: 'petal_width',
+    range: [0, 2.5],
+    values: unpack(rows, 'petal_width')
+  }, {
+    label: 'petal_length',
+    range: [1, 7],
+    values: unpack(rows, 'petal_length')
+  }]
+}];
+
+var layout = {
+  width: 800
+};
+
+Plotly.plot('graphDiv', data, layout);
+  
+});
+
+Carpet Plot in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+Set X and Y Coordinates
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var data = {
+    type: 'carpet',
+    y: [2, 3.5, 4, 3, 4.5, 5, 5.5, 6.5, 7.5, 8, 8.5, 10]
+}
+
+var data = [data]
+
+Plotly.plot('plotly-div', data);
+
+var data = {
+    type: 'carpet',
+    a: [4, 4, 4, 4.5, 4.5, 4.5, 5, 5, 5, 6, 6, 6],
+    b: [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+    y: [2, 3.5, 4, 3, 4.5, 5, 5.5, 6.5, 7.5, 8, 8.5, 10]
+}
+
+var data = [data]
+
+Plotly.plot('plotly-div', data);
+      
+      
+                                                                                                                                                                                                                                             
+Add A and B axis
 
  
  
@@ -6882,59 +7420,382 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
             
-            
-            
-Basic Point Cloud
 
+var data = {
+    type: 'carpet',
+    a: [4, 4, 4, 4.5, 4.5, 4.5, 5, 5, 5, 6, 6, 6],
+    b: [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+    y: [2, 3.5, 4, 3, 4.5, 5, 5.5, 6.5, 7.5, 8, 8.5, 10],
+    aaxis: {
+      tickprefix: 'a = ',
+      ticksuffix: 'm',
+      smoothing: 1,
+      minorgridcount: 9
+    },
+    baxis: {
+      tickprefix: 'b = ',
+      ticksuffix: 'Pa',
+      smoothing: 1,
+      minorgridcount: 9
+    }
+}
+
+var data = [data]
+
+Plotly.plot('myDiv32', data);
+            
+            
+            
+            
+            
+Style A and B axis
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                                                                                                                                                                                       
-Mutli-Color Parallel Categories Diagram
+                                
+var trace1 = {
+    type: "carpet",
+    a: [4, 4, 4, 4.5, 4.5, 4.5, 5, 5, 5, 6, 6, 6],
+    b: [1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3],
+    y: [2, 3.5, 4, 3, 4.5, 5, 5.5, 6.5, 7.5, 8, 8.5, 10],
+    aaxis: {
+        tickprefix: 'a = ',
+        ticksuffix: 'm',
+        smoothing: 1,
+        minorgridcount: 9,
+        minorgridcolor: 'white',
+        gridcolor: 'white',
+        color: 'white'
+    },
+    baxis: {
+        tickprefix: 'b = ',
+        ticksuffix: 'pa',
+        smoothing: 1,
+        minorgridcount: 9,
+        minorgridcolor: 'white',
+        gridcolor: 'white',
+        color: 'white'
+    }
+}
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
+var layout = {
+  plot_bgcolor: 'black',
+  paper_bgcolor: 'black'
+}
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
+Plotly.plot('myDiv33', [trace1], layout)
                                                                         
-                                                                        
             
-Basic Point Cloud
-
+Carpet Contour Plot in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+Basic Carpet Plot
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
+      
 
- 
+var trace1  = {
+    type: 'carpet',
+    a: [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3],
+    b: [4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6],
+    x: [2, 3, 4, 5, 2.2, 3.1, 4.1, 5.1, 1.5, 2.5, 3.5, 4.5],
+    y: [1, 1.4, 1.6, 1.75, 2, 2.5, 2.7, 2.75, 3, 3.5, 3.7, 3.75],
+    aaxis: {
+      tickprefix: "a = ",
+      smoothing: 0,
+      minorgridcount: 9,
+      type: 'linear'
+},
+    baxis: {
+      tickprefix: "b = ",
+      smoothing: 0,
+      minorgridcount: 9,
+      type: 'linear'
+    }
+}
+
+var layout = {
+    title: "Cheater plot with 1d input",
+    margin: {
+      t: 40, r: 30, b: 30, l: 30
+    },
+    yaxis: {
+      range: [0.388,4.361]
+    },
+    xaxis: {
+      range: [0.667,5.932]
+    }
+}
+
+var data = [trace1]
+
+Plotly.plot('plotly-div', data, layout)
+
+
+
+                  
+Add Contours
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
+            
+var trace1 = {
+    type: 'contourcarpet',
+    a: [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3],
+    b: [4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6],
+    z: [1, 1.96, 2.56, 3.0625, 4, 5.0625, 1, 7.5625, 9, 12.25, 15.21, 14.0625],
+    autocontour: false,
+    contours: {
+      start: 1,
+      end: 14,
+      size: 1
+    },
+    line: {
+      width: 2,
+      smoothing: 0
+    },
+    colorbar: {
+      len: 0.4,
+      y: 0.25
+    }
+}
+
+var trace2  = {
+    type: 'carpet',
+    a: [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3],
+    b: [4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6],
+    x: [2, 3, 4, 5, 2.2, 3.1, 4.1, 5.1, 1.5, 2.5, 3.5, 4.5],
+    y: [1, 1.4, 1.6, 1.75, 2, 2.5, 2.7, 2.75, 3, 3.5, 3.7, 3.75],
+    aaxis: {
+      tickprefix: "a = ",
+      smoothing: 0,
+      minorgridcount: 9,
+      type: 'linear'
+},
+    baxis: {
+      tickprefix: "b = ",
+      smoothing: 0,
+      minorgridcount: 9,
+      type: 'linear'
+    }
+}
+
+var layout = {
+    title: "Cheater plot with 1d input",
+    margin: {
+      t: 40, r: 30, b: 30, l: 30
+    },
+    yaxis: {
+      range: [0.388,4.361]
+    },
+    xaxis: {
+      range: [0.667,5.932]
+    }
+}
+
+var data = [trace1,trace2]
+
+Plotly.plot('plotly-div', data, layout)
+            
+            
+
+Add Multiple Traces
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                        
+function Get(url){
+    var Httpreq = new XMLHttpRequest();
+    Httpreq.open("GET",url,false);
+    Httpreq.send(null);
+    return Httpreq.responseText;
+}
+
+var json_obj = JSON.parse(Get("https://raw.githubusercontent.com/bcdunbar/datasets/master/airfoil_data.json"));
+
+var trace1 = {
+      a: json_obj[0].a,
+      b: json_obj[0].b,
+      baxis: {
+        startline: false,
+        endline: false,
+        showticklabels: "none",
+        smoothing: 0,
+        showgrid: false
+      },
+      x: json_obj[0].x,
+      y: json_obj[0].y,
+      type: "carpet",
+      aaxis:{
+        startlinewidth: 2,
+        startline: true,
+        showticklabels: "none",
+        endline: true,
+        showgrid: false,
+        endlinewidth: 2,
+        smoothing: 0
+      }
+    }
+
+ var trace2 = {
+      autocolorscale: false,
+      zmax: 1,
+      name: "Pressure",
+      colorscale: "Viridis",
+      zmin: -8,
+      colorbar: {
+        y: 0,
+        yanchor: "bottom",
+        titleside: "right",
+        len: 0.75,
+        title: "Pressure coefficient, c<sub>p</sub>"
+      },
+      contours: {
+        start: -1,
+        size: 0.025,
+        end: 1.000,
+        showlines: false
+      },
+      line: {
+        smoothing: 0
+      },
+      z: json_obj[1].z,
+      type: "contourcarpet",
+      autocontour: false,
+      zauto: false
+    }
+
+ var trace3 = {
+      opacity: 0.300,
+      showlegend: true,
+      name: "Streamlines",
+      autocontour: true,
+      ncontours: 50,
+      contours: {
+        coloring: "none"
+      },
+      line: {
+        color: "white",
+        width: 1
+      },
+      z: json_obj[2].z,
+      type: "contourcarpet"
+    }
+
+ var trace4 = {
+      showlegend: true,
+      name: "Pressure<br>contours",
+      autocontour: false,
+      z: json_obj[3].z,
+      type: "contourcarpet",
+      line: {
+        color: "rgba(0, 0, 0, 0.5)",
+        smoothing: 1
+      },
+      contours: {
+        size: 0.250,
+        start: -4,
+        coloring: "none",
+        end: 1.000,
+        showlines: true
+      }
+    }
+
+ var trace5 = {
+      legendgroup: "g1",
+      name: "Surface<br>pressure",
+      mode: "lines",
+      hoverinfo: "skip",
+      x: json_obj[4].x,
+      y: json_obj[4].y,
+      line: {
+        color: "rgba(255, 0, 0, 0.5)",
+        width: 1,
+        shape: "spline",
+        smoothing: 1
+      },
+      fill: "toself",
+      type: "scatter",
+      fillcolor: "rgba(255, 0, 0, 0.2)"
+    }
+
+ var trace6 = {
+      showlegend: false,
+      legendgroup: "g1",
+      mode: "lines",
+      hoverinfo: "skip",
+      x: json_obj[5].x,
+      y: json_obj[5].y,
+      line: {
+        color: "rgba(255, 0, 0, 0.3)",
+        width: 1
+      },
+      type: "scatter"
+    }
+
+ var trace7 = {
+      showlegend: false,
+      legendgroup: "g1",
+      name: "cp",
+      text: json_obj[6].text,
+      mode: "lines",
+      hoverinfo: "text",
+      x: json_obj[6].x,
+      y: json_obj[6].y,
+      line: {
+        color: "rgba(255, 0, 0, 0.2)",
+        width: 0
+      },
+      type: "scatter"
+    }
+
+data = [trace1,trace2,trace3,trace4,trace5,trace6,trace7]
+
+var layout = {
+    yaxis: {
+      zeroline: false,
+      range: [-1.800,1.800],
+      showgrid: false
+    },
+    dragmode: "pan",
+    height: 700,
+    xaxis: {
+      zeroline: false,
+      scaleratio: 1,
+      scaleanchor: "y",
+      range: [-3.800,3.800],
+      showgrid: false
+    },
+    title: "Flow over a Karman-Trefftz airfoil",
+    hovermode: "closest",
+    margin: {
+      r: 60,
+      b: 40,
+      l: 40,
+      t: 80
+    },
+    width: 900
+  }
+
+Plotly.plot('plotly-div', data, layout);
 
             
 Basic Point Cloud

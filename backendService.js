@@ -12,7 +12,7 @@ global.ultraObject = require('./ultraObject.js')
 const backend = express.Router()
 //
 
-/* Annotated Heatmap*/ //{
+/* FS API*/ //{
 var r_file = __dirname + '/scientificCharts.html'
 // __dirname + '/charts.html'
 // __dirname + '/statisticalCharts.html'
@@ -21,6 +21,7 @@ var w_file =  __dirname + '/modified.html'
 var w_mode = 'w'
 //} /**/
 
+app.use(  cors()   )
 app.use(   '/backend',backend   )
 backend.get(   '/index',function(req,res){
  
@@ -84,7 +85,9 @@ backend.get(   '/index',function(req,res){
         setImmediate(() =>{
             if(   !w_stream.write(   chunk.toString().split("&lt;").join("< ")  )  ){
                 r_stream.off('data',a)
+                r_stream.pause()
                 w_stream.on('drain',function(){
+                     r_stream.resume()
                      r_stream.on('data',a)
                 })
             }
