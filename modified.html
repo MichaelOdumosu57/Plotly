@@ -741,8 +741,26 @@ var nspiral = 2;
 
 // angle
 
-var th = numeric.linspace(((-Math.PI) / 13), (2 * Math.PI * nspiral), 1000);
-
+ultraObject.DOM_child[0] = ultraObject.xhttp
+ultraObject.eventName = 'readystatechange'
+ultraObject.addEventListener({
+    xhttp:'true',
+    fn:function(){
+        
+        var th
+        
+        
+        if(   this.responseText.length !== 0   ){
+            
+            
+            var th = JSON.parse(   this.responseText   )
+            
+            
+        }
+        
+        else{
+            var th = [2,3,4,5,1]
+            }
 //Empty Value Containers
 
 var xValues = [];
@@ -829,12 +847,27 @@ var layout = {
   xaxis: axisTemplate,
   yaxis: axisTemplate,
   showlegend: false,
-  with: 700,
+  width: 700,
   height: 700,
   autosize: false
 };
 
 Plotly.newPlot('myDiv16', data, layout);
+        }
+}) //your item is here
+ultraObject.open({
+        protocol: "POST",
+        xhttp:ultraObject.xhttp,
+        target:"http://24.189.66.225/backend/linspace",
+        unk_bool:true
+    })
+ultraObject.DOM_child[0].send(JSON.stringify({
+    'a': (-Math.PI) / 13,
+    'b':  (2 * Math.PI * nspiral),
+    'c': 1000
+}))
+
+
 }
 //} /**/
 
@@ -848,7 +881,12 @@ var data = [
   }
 ];
 
-Plotly.newPlot('myDiv17', data);
+var layout = {
+  title: 'Basic Heatmap',
+};
+
+
+Plotly.newPlot('myDiv17', data, layout);
 }
 //} /**/
 
@@ -938,7 +976,10 @@ var data = [
   }
 ];
 
-Plotly.newPlot('myDiv19', data);
+layout = {
+    title:'Heatmap with Categorical Axis Labels'
+}
+Plotly.newPlot('myDiv19', data, layout);
     
 }
 //} /**/
@@ -1355,8 +1396,6 @@ Plotly.newPlot('myDiv19', data);
 //} /**/
 
 
-Plotly.newPlot('myDiv', data);
-Plotly.newPlot('myDiv0', data, layout);
                                                 
 </script>
-</html>
+</ht
