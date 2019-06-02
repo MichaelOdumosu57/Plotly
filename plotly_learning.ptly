@@ -34,6 +34,9 @@ section
  |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
 .___                   .___ .___                   .___.___                   .___ .___                   .___
 [__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+
             .___
             [__]
         .___    .___
@@ -7798,10 +7801,88 @@ var layout = {
 Plotly.plot('plotly-div', data, layout);
 
             
-Basic Point Cloud
+Polar Charts in plotly.js
 
+             .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
  
  
+ 
+ Line Polar Plot
+ 
+ Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/polar_dataset.csv', function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+var trace1 = {
+  r: unpack(rows, 'x1'),
+  theta: unpack(rows, 'y'),
+  mode: 'lines',
+  name: 'Figure8',
+  line: {color: 'peru'},
+  type: 'scatterpolar'
+};
+
+var trace2 = {
+  r: unpack(rows, 'x2'),
+  theta: unpack(rows, 'y'),
+  mode: 'lines',
+  name: 'Cardioid',
+  line: {color: 'darkviolet'},
+  type: 'scatterpolar'
+};
+
+var trace3 = {
+  r: unpack(rows, 'x3'),
+  theta: unpack(rows, 'y'),
+  mode: 'lines',
+  name: 'Hypercardioid',
+  line: {color: 'deepskyblue'},
+  type: 'scatterpolar'
+};
+
+var trace4 = {
+
+  r: unpack(rows, 'x4'),
+  theta: unpack(rows, 'y'),
+  mode: 'lines',
+  name: 'Subcardioid',
+  line: {color: 'orangered'},
+  type: 'scatterpolar'
+};
+
+var trace5 = {
+
+  r: unpack(rows, 'x5'),
+  theta: unpack(rows, 'y'),
+  mode: 'lines',
+  name: 'Supercardioid',
+  marker: {
+    color: 'none',
+    line: {color: 'green'}
+  },
+  type: 'scatterpolar'
+};
+
+var data = [trace1, trace2, trace3, trace4, trace5];
+
+var layout = {
+  title: 'Mic Patterns',
+  font: {
+    family: 'Arial, sans-serif;',
+    size: 12,
+    color: '#000'
+  },
+  showlegend: true,
+  orientation: -90
+};
+Plotly.plot('myDiv', data, layout);
+});
             .___
             [__]
         .___    .___
@@ -7809,8 +7890,78 @@ Basic Point Cloud
             
             
             
-Basic Point Cloud
+Area Polar Chart
 
+
+data = [
+  {
+    type: "scatterpolar",
+    mode: "lines",
+    r: [0, 1.5, 1.5, 0, 2.5, 2.5, 0],
+    theta: [0, 10, 25, 0, 205, 215, 0],
+    fill: "toself",
+    fillcolor: '#709BFF',
+    line: {
+      color: 'black'
+    }
+  },
+  {
+    type: "scatterpolar",
+    mode: "lines",
+    r: [0, 3.5, 3.5, 0],
+    theta: [0, 55, 75, 0],
+    fill: "toself",
+    fillcolor: '#E4FF87',
+    line: {
+      color: 'black'
+    }
+  },
+  {
+    type: "scatterpolar",
+    mode: "lines",
+    r: [0, 4.5, 4.5, 0, 4.5, 4.5, 0],
+    theta: [0, 100, 120, 0, 305, 320, 0],
+    fill: "toself",
+    fillcolor: '#FFAA70',
+    line: {
+      color: 'black'
+    }
+  },
+  {
+    type: "scatterpolar",
+    mode: "lines",
+    r: [0, 4, 4, 0],
+    theta: [0, 165, 195, 0],
+    fill: "toself",
+    fillcolor: '#FFDF70',
+    line: {
+      color: 'black'
+    }
+  },
+  {
+    type: "scatterpolar",
+    mode: "lines",
+    r: [0, 3, 3, 0],
+    theta: [0, 262.5, 277.5, 0],
+    fill: "toself",
+    fillcolor: '#B6FFB4',
+    line: {
+      color: 'black'
+    }
+  }
+]
+
+layout = {
+  polar: {
+    radialaxis: {
+      visible: true,
+      range: [0, 5]
+    }
+  },
+  showlegend: false
+}
+
+Plotly.newPlot('myDiv', data, layout)
  
  
             .___
@@ -7821,18 +7972,114 @@ Basic Point Cloud
                                                                         
                                                                         
             
-Basic Point Cloud
-
+Categorical Polar Chart
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+      
+      
+var data = [
+    {
+      type: "scatterpolar",
+      name: "angular categories",
+      r: [5, 4, 2, 4, 5],
+      theta: ["a", "b", "c", "d", "a"],
+      fill: "toself"
+    },
+    {
+      type: "scatterpolar",
+      name: "radial categories",
+      r: ["a", "b", "c", "d", "b", "f", "a"],
+      theta: [1, 4, 2, 1.5, 1.5, 6, 5],
+      thetaunit: "radians",
+      fill: "toself",
+      subplot: "polar2"
+    },
+    {
+      type: "scatterpolar",
+      name: "angular categories (w/ categoryarray)",
+      r: [5, 4, 2, 4, 5],
+      theta: ["a", "b", "c", "d", "a"],
+      fill: "toself",
+      subplot: "polar3"
+    },
+    {
+      type: "scatterpolar",
+      name: "radial categories (w/ category descending)",
+      r: ["a", "b", "c", "d", "b", "f", "a", "a"],
+      theta: [45, 90, 180, 200, 300, 15, 20, 45],
+      fill: "toself",
+      subplot: "polar4"
+    },
+    {
+      type: "scatterpolar",
+      name: "angular categories (w/ extra category)",
+      r: [5, 4, 2, 4, 5, 5],
+      theta: ["b", "c", "d", "e", "a", "b"],
+      fill: "toself"
+    }
+  ]
+
+var layout = {
+    polar: {
+      domain: {
+        x: [0, 0.46],
+        y: [0.56, 1]
+      },
+      radialaxis: {
+        angle: 45
+      },
+      angularaxis: {
+        direction: "clockwise",
+        period: 6
+      }
+    },
+    polar2: {
+      domain: {
+        x: [0, 0.46],
+        y: [0, 0.44]
+      },
+      radialaxis: {
+        angle: 180,
+        tickangle: -180
+      }
+    },
+    polar3: {
+      domain: {
+        x: [0.54, 1],
+        y: [0.56, 1]
+      },
+      sector: [150, 400],
+      radialaxis: {
+        angle: -45
+      },
+      angularaxis: {
+        categoryarray: ["d", "a", "c", "b"]
+      }
+    },
+    polar4: {
+      domain: {
+        x: [0.54, 1],
+        y: [0, 0.44]
+      },
+      radialaxis: {
+        categoryorder: "category descending"
+      },
+      angularaxis: {
+        thetaunit: "radians",
+        dtick: 0.3141592653589793
+      }
+    }
+  }
+
+Plotly.newPlot('myDiv', data, layout)
             
             
             
-Basic Point Cloud
+Polar Chart Directions
 
  
  
@@ -7841,10 +8088,83 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
                                                                         
-                                                                        
+var data = [
+    {
+      type: "scatterpolar",
+      mode: "lines+markers",
+      r: [1,2,3,4,5],
+      theta: [0,90,180,360,0],
+      line: {
+        color: "#ff66ab"
+      },
+      marker: {
+        color: "#8090c7",
+        symbol: "square",
+        size: 8
+      },
+      subplot: "polar"
+    },
+    {
+      type: "scatterpolar",
+      mode: "lines+markers",
+      r: [1,2,3,4,5],
+      theta: [0,90,180,360,0],
+      line: {
+        color: "#ff66ab"
+      },
+      marker: {
+        color: "#8090c7",
+        symbol: "square",
+        size: 8
+      },
+      subplot: "polar2"
+    }
+  ]
+
+var layout = {
+    showlegend: false,
+    polar: {
+      domain: {
+        x: [0,0.4],
+        y: [0,1]
+      },
+      radialaxis: {
+        tickfont: {
+          size: 8
+        }
+      },
+      angularaxis: {
+        tickfont: {
+          size: 8
+        },
+        rotation: 90,
+        direction: "counterclockwise"
+      }
+    },
+    polar2: {
+      domain: {
+        x: [0.6,1],
+        y: [0,1]
+      },
+      radialaxis: {
+        tickfont: {
+          size: 8
+        }
+      },
+      angularaxis: {
+        tickfont: {
+          size: 8
+        },
+        direction: "clockwise"
+      }
+    }
+  }
+
+Plotly.plot('myDiv', data, layout)
+                                                                                                                                                          
                                                                                                                                                           
                                                                                                                                                                       
-Basic Point Cloud
+Polar Chart Sector
 
  
  
@@ -7853,97 +8173,81 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
             
-            
-            
-Basic Point Cloud
+var data = [
+    {
+      type: "scatterpolar",
+      mode: "lines+markers",
+      r: [1,2,3,4,5],
+      theta: [0,90,180,360,0],
+      line: {
+        color: "#ff66ab"
+      },
+      marker: {
+        color: "#8090c7",
+        symbol: "square",
+        size: 8
+      },
+      subplot: "polar"
+    },
+    {
+      type: "scatterpolar",
+      mode: "lines+markers",
+      r: [1,2,3,4,5],
+      theta: [0,90,180,360,0],
+      line: {
+        color: "#ff66ab"
+      },
+      marker: {
+        color: "#8090c7",
+        symbol: "square",
+        size: 8
+      },
+      subplot: "polar2"
+    }
+  ]
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
+var layout = {
+    showlegend: false,
+    polar: {
+		sector: [145,215],
+      domain: {
+        x: [0,0.4],
+        y: [0,1]
+      },
+      radialaxis: {
+        tickfont: {
+          size: 8
+        }
+      },
+      angularaxis: {
+        tickfont: {
+          size: 8
+        }
+      }
+    },
+    polar2: {
+      domain: {
+        x: [0.6,1],
+        y: [0,1]
+      },
+      radialaxis: {
+        tickfont: {
+          size: 8
+        }
+      },
+      angularaxis: {
+        tickfont: {
+          size: 8
+        }
+      }
+    }
+  }
 
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
+Plotly.plot('myDiv', data, layout)
             
             
             
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-                                                                        
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-
-
-Mutli-Color Parallel Categories Diagram
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-            
-Basic Point Cloud
-
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
+Polar Chart Subplots
 
  
  
@@ -7953,8 +8257,755 @@ Basic Point Cloud
       | [__]    [__]  |
                                                                         
 
+var data = [{
+    type: "scatterpolargl",
+    r: [1, 2, 3],
+    theta: [50, 100, 200],
+    marker: {symbol: "square"}
+  }, {
+    type: "scatterpolargl",
+    r: [1, 2, 3],
+    theta: [1, 2, 3],
+    thetaunit: "radians"
+  }, {
+    type: "scatterpolargl",
+    r: ["a", "b", "c", "b"],
+    theta: ["D", "C", "B", "A"],
+    subplot: "polar2"
+  }, {
+    type: "scatterpolargl",
+    r: [50, 300, 900],
+    theta: [0, 90, 180],
+    subplot: "polar3"
+  }, {
+    type: "scatterpolargl",
+    mode: "lines",
+    r: [3, 3, 4, 3],
+    theta: [0, 45, 90, 270],
+    fill: "toself",
+    subplot: "polar4"
+  }]
+
+var layout =  {
+    polar: {
+      domain: {
+        x: [0, 0.46],
+        y: [0.56, 1]
+      },
+      radialaxis: {
+        range: [1, 4]
+      },
+      angularaxis: {
+        thetaunit: "radians"
+      }
+    },
+    polar2: {
+      domain: {
+        x: [0, 0.46],
+        y: [0, 0.42]
+      }
+    },
+    polar3: {
+      domain: {
+        x: [0.54, 1],
+        y: [0.56, 1]
+      },
+      radialaxis: {
+        type: "log",
+        tickangle: 45
+      },
+      sector: [0, 180]
+    },
+    polar4: {
+      domain: {
+        x: [0.54, 1],
+        y: [0, 0.44]
+      },
+      radialaxis: {
+          visible: false,
+          range: [0, 6]
+      }
+    },
+    showlegend: false
+  }
+
+
+Plotly.newPlot('myDiv', data, layout);
+
+
+Webgl Polar Chart
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
             
-Basic Point Cloud
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/hobbs-pearson-trials.csv', function(err, rows){
+      function unpack(rows, key) {
+          return rows.map(function(row) { return row[key]; });
+      }
+
+var data = [
+    {
+      type: "scatterpolargl",
+      r: unpack(rows, 'trial_1_r'),
+      theta: unpack(rows, 'trial_1_theta'),
+      mode: "markers",
+      name: "Trial 1",
+      marker: {
+        color: "rgb(27,158,119)",
+        size: 15,
+        line: {
+          color: "white"
+        },
+        opacity: 0.7
+      },
+      cliponaxis: false
+    },
+    {
+      type: "scatterpolargl",
+      r: unpack(rows, "trial_2_r"),
+      theta: unpack(rows, "trial_2_theta"),
+      mode: "markers",
+      name: "Trial 2",
+      marker: {
+        color: "rgb(217,95,2)",
+        size: 20,
+        line: {
+          color: "white"
+        },
+        "opacity": 0.7
+      },
+      "cliponaxis": false
+    },
+    {
+      type: "scatterpolargl",
+      r: unpack(rows, "trial_3_r"),
+      theta: unpack(rows, "trial_3_theta"),
+      mode: "markers",
+      name: "Trial 3",
+      marker: {
+        color: "rgb(117,112,179)",
+        size: 12,
+        line: {
+          color: "white"
+        },
+        opacity: 0.7
+      },
+      cliponaxis: false
+    },
+    {
+      type: "scatterpolargl",
+      r: unpack(rows, "trial_4_r"),
+      theta: unpack(rows, "trial_4_theta"),
+      mode: "markers",
+      name: "Trial 4",
+      marker: {
+        color: "rgb(231,41,138)",
+        size: 22,
+        line: {
+          color: "white"
+        },
+        opacity: 0.7
+      },
+      cliponaxis: false
+    },
+    {
+      type: "scatterpolargl",
+      r: unpack(rows, "trial_5_r"),
+      theta: unpack(rows, "trial_5_theta"),
+      mode: "markers",
+      name: "Trial 5",
+      marker: {
+        color: "rgb(102,166,30)",
+        size: 19,
+        line: {
+          color: "white"
+        },
+        opacity: 0.7
+      },
+      cliponaxis: false
+    },
+    {
+      type: "scatterpolargl",
+      r: unpack(rows, "trial_6_r"),
+      theta: unpack(rows, "trial_6_theta"),
+      mode: "markers",
+      name: "Trial 6",
+      marker: {
+        color: "rgb(230,171,2)",
+        size: 10,
+        line: {
+          color: "white"
+        },
+        opacity: 0.7
+      },
+      cliponaxis: false
+    }
+  ]
+
+var layout = {
+    title: "Hobbs-Pearson Trials",
+    font: {
+      size: 15
+    },
+    showlegend: false,
+    polar: {
+      bgcolor: "rgb(223, 223, 223)",
+      angularaxis: {
+        tickwidth: 2,
+        linewidth: 3,
+        layer: "below traces"
+      },
+      radialaxis: {
+        side: "counterclockwise",
+        showline: true,
+        linewidth: 2,
+        tickwidth: 2,
+        gridcolor: "white",
+        gridwidth: 2
+      }
+    },
+    paper_bgcolor: "rgb(223, 223, 223)",
+  }
+
+Plotly.plot('myDiv', data, layout);
+})
+            
+
+
+Financial Charts
+
+
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+Date Strings
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+  
+
+Date Strings
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                      
+ var data = [
+  {
+    x: ['2013-10-04 22:23:00', '2013-11-04 22:23:00', '2013-12-04 22:23:00'],
+    y: [1, 3, 6],
+    type: 'scatter'
+  }
+];
+
+Plotly.newPlot('myDiv', data);
+                                                                        
+                                                                        
+            
+Basic Time Series
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+
+
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+
+var trace1 = {
+  type: "scatter",
+  mode: "lines",
+  name: 'AAPL High',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'AAPL.High'),
+  line: {color: '#17BECF'}
+}
+
+var trace2 = {
+  type: "scatter",
+  mode: "lines",
+  name: 'AAPL Low',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'AAPL.Low'),
+  line: {color: '#7F7F7F'}
+}
+
+var data = [trace1,trace2];
+
+var layout = {
+  title: 'Basic Time Series',
+};
+
+Plotly.newPlot('myDiv', data, layout);
+})
+            
+            
+Manually Set Range
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+
+var trace1 = {
+  type: "scatter",
+  mode: "lines",
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'AAPL.High'),
+  line: {color: '#17BECF'}
+}
+
+var trace2 = {
+  type: "scatter",
+  mode: "lines",
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'AAPL.Low'),
+  line: {color: '#7F7F7F'}
+}
+
+var data = [trace1,trace2];
+
+var layout = {
+  title: 'Custom Range',
+  xaxis: {
+    range: ['2016-07-01', '2016-12-31'],
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    range: [86.8700008333, 138.870004167],
+    type: 'linear'
+  }
+};
+
+Plotly.newPlot('myDiv', data, layout);
+})
+
+
+
+
+
+
+
+
+Time Series with Rangeslider
+
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+
+var trace1 = {
+  type: "scatter",
+  mode: "lines",
+  name: 'AAPL High',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'AAPL.High'),
+  line: {color: '#17BECF'}
+}
+
+var trace2 = {
+  type: "scatter",
+  mode: "lines",
+  name: 'AAPL Low',
+  x: unpack(rows, 'Date'),
+  y: unpack(rows, 'AAPL.Low'),
+  line: {color: '#7F7F7F'}
+}
+
+var data = [trace1,trace2];
+
+var layout = {
+  title: 'Time Series with Rangeslider',
+  xaxis: {
+    autorange: true,
+    range: ['2015-02-17', '2017-02-16'],
+    rangeselector: {buttons: [
+        {
+          count: 1,
+          label: '1m',
+          step: 'month',
+          stepmode: 'backward'
+        },
+        {
+          count: 6,
+          label: '6m',
+          step: 'month',
+          stepmode: 'backward'
+        },
+        {step: 'all'}
+      ]},
+    rangeslider: {range: ['2015-02-17', '2017-02-16']},
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    range: [86.8700008333, 138.870004167],
+    type: 'linear'
+  }
+};
+
+Plotly.newPlot('myDiv', data, layout);
+})
+            
+            
+            
+            
+OHLC Charts in plotly.js
+
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+Simple OHLC Chart
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+
+var trace1 = {
+  
+  x: ['2017-01-17', '2017-01-18', '2017-01-19', '2017-01-20', '2017-01-23', '2017-01-24', '2017-01-25', '2017-01-26', '2017-01-27', '2017-01-30', '2017-01-31', '2017-02-01', '2017-02-02', '2017-02-03', '2017-02-06', '2017-02-07', '2017-02-08', '2017-02-09', '2017-02-10'],
+  
+  close: [120, 119.989998, 119.779999, 120, 120.080002, 119.970001, 121.879997, 121.940002, 121.949997, 121.629997, 121.349998, 128.75, 128.529999, 129.080002, 130.289993, 131.529999, 132.039993, 132.419998, 132.119995],
+  
+  decreasing: {line: {color: '#7F7F7F'}},
+  
+  high: [120.239998, 120.5, 120.089996, 120.449997, 120.809998, 120.099998, 122.099998, 122.440002, 122.349998, 121.629997, 121.389999, 130.490005, 129.389999, 129.190002, 130.5, 132.089996, 132.220001, 132.449997, 132.940002],
+  
+  increasing: {line: {color: '#17BECF'}},
+  
+  line: {color: 'rgba(31,119,180,1)'},
+  
+  low: [118.220001, 119.709999, 119.370003, 119.730003, 119.769997, 119.5, 120.279999, 121.599998, 121.599998, 120.660004, 120.620003, 127.010002, 127.779999, 128.160004, 128.899994, 130.449997, 131.220001, 131.119995, 132.050003],
+  open: [118.339996, 120, 119.400002, 120.449997, 120, 119.550003, 120.419998, 121.669998, 122.139999, 120.93, 121.150002, 127.029999, 127.980003, 128.309998, 129.130005, 130.539993, 131.350006, 131.649994, 132.460007],
+  
+  type: 'ohlc',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace1];
+
+var layout = {
+  dragmode: 'zoom',
+  margin: {
+    r: 10,
+    t: 25,
+    b: 40,
+    l: 60
+  },
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    rangeslider: {range: ['2017-01-17 12:00', '2017-02-10 12:00']},
+    title: 'Date',
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    type: 'linear'
+  }
+};
+
+Plotly.plot('plotly-div', data, layout);
+                                                                        
+                                                                        
+            
+
+Customizing the Figure with Shapes and Annotations
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+
+  type: 'ohlc',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    rangeslider: {
+		 visible: false
+	 }
+  }
+};
+
+Plotly.plot('graph', data, layout);
+});
+            
+            
+Customise OHLC Chart Colors
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                          
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+      
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+  
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+	
+  type: 'ohlc',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+  
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    title: 'Date'
+  },
+  yaxis: {
+    autorange: true,
+  }
+};
+
+Plotly.plot('myDiv', data, layout);
+});
+
+            
+
+
+Add Rangeselector
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+            
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+
+  type: 'ohlc',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    title: 'Date',
+	 rangeselector: {
+        x: 0,
+        y: 1.2,
+        xanchor: 'left',
+        font: {size:8},
+        buttons: [{
+            step: 'month',
+            stepmode: 'backward',
+            count: 1,
+            label: '1 month'
+        }, {
+            step: 'month',
+            stepmode: 'backward',
+            count: 6,
+            label: '6 months'
+        }, {
+            step: 'all',
+            label: 'All dates'
+        }]
+      }
+  },
+  yaxis: {
+    autorange: true,
+  }
+};
+
+Plotly.plot('myDiv7', data, layout);
+});
+
+
+
+            
+Candlestick Charts in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ Simple Candlestick Chart
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+                                                       
+var trace1 = {
+  
+  x: ['2017-01-04', '2017-01-05', '2017-01-06', '2017-01-09', '2017-01-10', '2017-01-11', '2017-01-12', '2017-01-13', '2017-01-17', '2017-01-18', '2017-01-19', '2017-01-20', '2017-01-23', '2017-01-24', '2017-01-25', '2017-01-26', '2017-01-27', '2017-01-30', '2017-01-31', '2017-02-01', '2017-02-02', '2017-02-03', '2017-02-06', '2017-02-07', '2017-02-08', '2017-02-09', '2017-02-10', '2017-02-13', '2017-02-14', '2017-02-15'],
+  
+  close: [116.019997, 116.610001, 117.910004, 118.989998, 119.110001, 119.75, 119.25, 119.040001, 120, 119.989998, 119.779999, 120, 120.080002, 119.970001, 121.879997, 121.940002, 121.949997, 121.629997, 121.349998, 128.75, 128.529999, 129.080002, 130.289993, 131.529999, 132.039993, 132.419998, 132.119995, 133.289993, 135.020004, 135.509995],
+  
+  decreasing: {line: {color: '#7F7F7F'}},
+  
+  high: [116.510002, 116.860001, 118.160004, 119.43, 119.379997, 119.93, 119.300003, 119.620003, 120.239998, 120.5, 120.089996, 120.449997, 120.809998, 120.099998, 122.099998, 122.440002, 122.349998, 121.629997, 121.389999, 130.490005, 129.389999, 129.190002, 130.5, 132.089996, 132.220001, 132.449997, 132.940002, 133.820007, 135.089996, 136.270004],
+  
+  increasing: {line: {color: '#17BECF'}},
+  
+  line: {color: 'rgba(31,119,180,1)'},
+  
+  low: [115.75, 115.809998, 116.470001, 117.940002, 118.300003, 118.599998, 118.209999, 118.809998, 118.220001, 119.709999, 119.370003, 119.730003, 119.769997, 119.5, 120.279999, 121.599998, 121.599998, 120.660004, 120.620003, 127.010002, 127.779999, 128.160004, 128.899994, 130.449997, 131.220001, 131.119995, 132.050003, 132.75, 133.25, 134.619995],
+  
+  open: [115.849998, 115.919998, 116.779999, 117.949997, 118.769997, 118.739998, 118.900002, 119.110001, 118.339996, 120, 119.400002, 120.449997, 120, 119.550003, 120.419998, 121.669998, 122.139999, 120.93, 121.150002, 127.029999, 127.980003, 128.309998, 129.130005, 130.539993, 131.350006, 131.649994, 132.460007, 133.080002, 133.470001, 135.520004],
+  
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace1];
+
+var layout = {
+  dragmode: 'zoom',
+  margin: {
+    r: 10,
+    t: 25,
+    b: 40,
+    l: 60
+  },
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    domain: [0, 1],
+    range: ['2017-01-03 12:00', '2017-02-15 12:00'],
+    rangeslider: {range: ['2017-01-03 12:00', '2017-02-15 12:00']},
+    title: 'Date',
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    domain: [0, 1],
+    range: [114.609999778, 137.410004222],
+    type: 'linear'
+  }
+};
+
+Plotly.plot('plotly-div', data, layout);
+                                                                        
+            
+Candlestick Chart without Rangeslider
 
  
  
@@ -7964,8 +9015,47 @@ Basic Point Cloud
       | [__]    [__]  |
             
             
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    rangeslider: {
+		 visible: false
+	 }
+  }
+};
+
+Plotly.plot('graph', data, layout);
+});
             
-Basic Point Cloud
+            
+Customise Candlestick Chart with Shapes and Annotations
 
  
  
@@ -7975,33 +9065,87 @@ Basic Point Cloud
       | [__]    [__]  |
                                                                         
                                                                         
-                                                                        
-            
-Basic Point Cloud
+var trace1 = {
+  
+  x: ['2017-01-17', '2017-01-18', '2017-01-19', '2017-01-20', '2017-01-23', '2017-01-24', '2017-01-25', '2017-01-26', '2017-01-27', '2017-01-30', '2017-01-31', '2017-02-01', '2017-02-02', '2017-02-03', '2017-02-06', '2017-02-07', '2017-02-08', '2017-02-09', '2017-02-10'],
+  
+  close: [120, 119.989998, 119.779999, 120, 120.080002, 119.970001, 121.879997, 121.940002, 121.949997, 121.629997, 121.349998, 128.75, 128.529999, 129.080002, 130.289993, 131.529999, 132.039993, 132.419998, 132.119995],
+  
+  decreasing: {line: {color: '#7F7F7F'}},
+  
+  high: [120.239998, 120.5, 120.089996, 120.449997, 120.809998, 120.099998, 122.099998, 122.440002, 122.349998, 121.629997, 121.389999, 130.490005, 129.389999, 129.190002, 130.5, 132.089996, 132.220001, 132.449997, 132.940002],
+  
+  increasing: {line: {color: '#17BECF'}},
+  
+  line: {color: 'rgba(31,119,180,1)'},
+  
+  low: [118.220001, 119.709999, 119.370003, 119.730003, 119.769997, 119.5, 120.279999, 121.599998, 121.599998, 120.660004, 120.620003, 127.010002, 127.779999, 128.160004, 128.899994, 130.449997, 131.220001, 131.119995, 132.050003],
+  
+  open: [118.339996, 120, 119.400002, 120.449997, 120, 119.550003, 120.419998, 121.669998, 122.139999, 120.93, 121.150002, 127.029999, 127.980003, 128.309998, 129.130005, 130.539993, 131.350006, 131.649994, 132.460007],
+  
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
+var data = [trace1];
 
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-                                                                                                                                                          
+var layout = {
+  dragmode: 'zoom',
+  margin: {
+    r: 10,
+    t: 25,
+    b: 40,
+    l: 60
+  },
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    rangeslider: {range: ['2017-01-17 12:00', '2017-02-10 12:00']},
+    title: 'Date',
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    type: 'linear'
+  },
+  
+  annotations: [
+    {
+      x: '2017-01-31',
+      y: 0.9,
+      xref: 'x',
+      yref: 'paper',
+      text: 'largest movement',
+      font: {color: 'magenta'},
+      showarrow: true,
+      xanchor: 'right',
+      ax: -20,
+      ay: 0
+    }
+  ],
+  
+  shapes: [
+      {
+          type: 'rect',
+          xref: 'x',
+          yref: 'paper',
+          x0: '2017-01-31',
+          y0: 0,
+          x1: '2017-02-01',
+          y1: 1,
+          fillcolor: '#d3d3d3',
+          opacity: 0.2,
+          line: {
+              width: 0
+          }
+      }
+    ]
+};
+
+Plotly.plot('plotly-div', data, layout);
                                                                                                                                                                       
-Basic Point Cloud
-
+Customizing Candlestick Chart Colors
  
  
             .___
@@ -8009,10 +9153,49 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
             
-            
-            
-Basic Point Cloud
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+      
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+  
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
 
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+  
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+  
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    title: 'Date',
+   range: ['2016-06-01 12:00', '2017-01-01 12:00']
+  },
+  yaxis: {
+    autorange: true,
+  }
+};
+
+Plotly.plot('myDiv', data, layout);
+});
+            
+            
+Add Rangeselector
  
  
             .___
@@ -8021,29 +9204,190 @@ Basic Point Cloud
       | [__]    [__]  |
                                                                         
 
-            
-Basic Point Cloud
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
 
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    title: 'Date',
+	 rangeselector: {
+        x: 0,
+        y: 1.2,
+        xanchor: 'left',
+        font: {size:8},
+        buttons: [{
+            step: 'month',
+            stepmode: 'backward',
+            count: 1,
+            label: '1 month'
+        }, {
+            step: 'month',
+            stepmode: 'backward',
+            count: 6,
+            label: '6 months'
+        }, {
+            step: 'all',
+            label: 'All dates'
+        }]
+      }
+  },
+  yaxis: {
+    autorange: true,
+  }
+};
+
+Plotly.plot('myDiv', data, layout);
+});
+
+
+Candlestick Charts in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+ Simple Candlestick Chart
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                                                                                                          
-Mutli-Color Parallel Categories Diagram
+      
 
+var trace1 = {
+  
+  x: ['2017-01-04', '2017-01-05', '2017-01-06', '2017-01-09', '2017-01-10', '2017-01-11', '2017-01-12', '2017-01-13', '2017-01-17', '2017-01-18', '2017-01-19', '2017-01-20', '2017-01-23', '2017-01-24', '2017-01-25', '2017-01-26', '2017-01-27', '2017-01-30', '2017-01-31', '2017-02-01', '2017-02-02', '2017-02-03', '2017-02-06', '2017-02-07', '2017-02-08', '2017-02-09', '2017-02-10', '2017-02-13', '2017-02-14', '2017-02-15'],
+  
+  close: [116.019997, 116.610001, 117.910004, 118.989998, 119.110001, 119.75, 119.25, 119.040001, 120, 119.989998, 119.779999, 120, 120.080002, 119.970001, 121.879997, 121.940002, 121.949997, 121.629997, 121.349998, 128.75, 128.529999, 129.080002, 130.289993, 131.529999, 132.039993, 132.419998, 132.119995, 133.289993, 135.020004, 135.509995],
+  
+  decreasing: {line: {color: '#7F7F7F'}},
+  
+  high: [116.510002, 116.860001, 118.160004, 119.43, 119.379997, 119.93, 119.300003, 119.620003, 120.239998, 120.5, 120.089996, 120.449997, 120.809998, 120.099998, 122.099998, 122.440002, 122.349998, 121.629997, 121.389999, 130.490005, 129.389999, 129.190002, 130.5, 132.089996, 132.220001, 132.449997, 132.940002, 133.820007, 135.089996, 136.270004],
+  
+  increasing: {line: {color: '#17BECF'}},
+  
+  line: {color: 'rgba(31,119,180,1)'},
+  
+  low: [115.75, 115.809998, 116.470001, 117.940002, 118.300003, 118.599998, 118.209999, 118.809998, 118.220001, 119.709999, 119.370003, 119.730003, 119.769997, 119.5, 120.279999, 121.599998, 121.599998, 120.660004, 120.620003, 127.010002, 127.779999, 128.160004, 128.899994, 130.449997, 131.220001, 131.119995, 132.050003, 132.75, 133.25, 134.619995],
+  
+  open: [115.849998, 115.919998, 116.779999, 117.949997, 118.769997, 118.739998, 118.900002, 119.110001, 118.339996, 120, 119.400002, 120.449997, 120, 119.550003, 120.419998, 121.669998, 122.139999, 120.93, 121.150002, 127.029999, 127.980003, 128.309998, 129.130005, 130.539993, 131.350006, 131.649994, 132.460007, 133.080002, 133.470001, 135.520004],
+  
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace1];
+
+var layout = {
+  dragmode: 'zoom',
+  margin: {
+    r: 10,
+    t: 25,
+    b: 40,
+    l: 60
+  },
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    domain: [0, 1],
+    range: ['2017-01-03 12:00', '2017-02-15 12:00'],
+    rangeslider: {range: ['2017-01-03 12:00', '2017-02-15 12:00']},
+    title: 'Date',
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    domain: [0, 1],
+    range: [114.609999778, 137.410004222],
+    type: 'linear'
+  }
+};
+
+Plotly.plot('plotly-div', data, layout);
  
  
+ 
+Candlestick Chart without Rangeslider
             .___
             [__]
         .___    .___
       | [__]    [__]  |
             
-            
-            
-Basic Point Cloud
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
 
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    rangeslider: {
+		 visible: false
+	 }
+  }
+};
+
+Plotly.plot('graph', data, layout);
+});
+
+
+            
+Customise Candlestick Chart with Shapes and Annotations
  
  
             .___
@@ -8051,27 +9395,207 @@ Basic Point Cloud
         .___    .___
       | [__]    [__]  |
                                                                         
-                                                                        
-            
-Basic Point Cloud
+var trace1 = {
+  
+  x: ['2017-01-17', '2017-01-18', '2017-01-19', '2017-01-20', '2017-01-23', '2017-01-24', '2017-01-25', '2017-01-26', '2017-01-27', '2017-01-30', '2017-01-31', '2017-02-01', '2017-02-02', '2017-02-03', '2017-02-06', '2017-02-07', '2017-02-08', '2017-02-09', '2017-02-10'],
+  
+  close: [120, 119.989998, 119.779999, 120, 120.080002, 119.970001, 121.879997, 121.940002, 121.949997, 121.629997, 121.349998, 128.75, 128.529999, 129.080002, 130.289993, 131.529999, 132.039993, 132.419998, 132.119995],
+  
+  decreasing: {line: {color: '#7F7F7F'}},
+  
+  high: [120.239998, 120.5, 120.089996, 120.449997, 120.809998, 120.099998, 122.099998, 122.440002, 122.349998, 121.629997, 121.389999, 130.490005, 129.389999, 129.190002, 130.5, 132.089996, 132.220001, 132.449997, 132.940002],
+  
+  increasing: {line: {color: '#17BECF'}},
+  
+  line: {color: 'rgba(31,119,180,1)'},
+  
+  low: [118.220001, 119.709999, 119.370003, 119.730003, 119.769997, 119.5, 120.279999, 121.599998, 121.599998, 120.660004, 120.620003, 127.010002, 127.779999, 128.160004, 128.899994, 130.449997, 131.220001, 131.119995, 132.050003],
+  
+  open: [118.339996, 120, 119.400002, 120.449997, 120, 119.550003, 120.419998, 121.669998, 122.139999, 120.93, 121.150002, 127.029999, 127.980003, 128.309998, 129.130005, 130.539993, 131.350006, 131.649994, 132.460007],
+  
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
 
+var data = [trace1];
+
+var layout = {
+  dragmode: 'zoom',
+  margin: {
+    r: 10,
+    t: 25,
+    b: 40,
+    l: 60
+  },
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    rangeslider: {range: ['2017-01-17 12:00', '2017-02-10 12:00']},
+    title: 'Date',
+    type: 'date'
+  },
+  yaxis: {
+    autorange: true,
+    type: 'linear'
+  },
+  
+  annotations: [
+    {
+      x: '2017-01-31',
+      y: 0.9,
+      xref: 'x',
+      yref: 'paper',
+      text: 'largest movement',
+      font: {color: 'magenta'},
+      showarrow: true,
+      xanchor: 'right',
+      ax: -20,
+      ay: 0
+    }
+  ],
+  
+  shapes: [
+      {
+          type: 'rect',
+          xref: 'x',
+          yref: 'paper',
+          x0: '2017-01-31',
+          y0: 0,
+          x1: '2017-02-01',
+          y1: 1,
+          fillcolor: '#d3d3d3',
+          opacity: 0.2,
+          line: {
+              width: 0
+          }
+      }
+    ]
+};
+
+Plotly.plot('plotly-div', data, layout);
+            
+
+
+Customizing Candlestick Chart Colors
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-            
-            
-            
-Basic Point Cloud
 
- 
+
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+      
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+  
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+  
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+  
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    title: 'Date',
+   range: ['2016-06-01 12:00', '2017-01-01 12:00']
+  },
+  yaxis: {
+    autorange: true,
+  }
+};
+
+Plotly.plot('myDiv', data, layout);
+});
+            
+            
+            
+Add Rangeselector
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+
+function unpack(rows, key) {
+  return rows.map(function(row) {
+    return row[key];
+  });
+}
+
+var trace = {
+  x: unpack(rows, 'Date'),
+  close: unpack(rows, 'AAPL.Close'),
+  high: unpack(rows, 'AAPL.High'),
+  low: unpack(rows, 'AAPL.Low'),
+  open: unpack(rows, 'AAPL.Open'),
+
+  // cutomise colors
+  increasing: {line: {color: 'black'}},
+  decreasing: {line: {color: 'red'}},
+
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+};
+
+var data = [trace];
+
+var layout = {
+  dragmode: 'zoom',
+  showlegend: false,
+  xaxis: {
+    autorange: true,
+    title: 'Date',
+	 rangeselector: {
+        x: 0,
+        y: 1.2,
+        xanchor: 'left',
+        font: {size:8},
+        buttons: [{
+            step: 'month',
+            stepmode: 'backward',
+            count: 1,
+            label: '1 month'
+        }, {
+            step: 'month',
+            stepmode: 'backward',
+            count: 6,
+            label: '6 months'
+        }, {
+            step: 'all',
+            label: 'All dates'
+        }]
+      }
+  },
+  yaxis: {
+    autorange: true,
+  }
+};
+
+Plotly.plot('myDiv', data, layout);
+});
                                                                         
 
             

@@ -13,7 +13,8 @@ const backend = express.Router()
 //
 
 /* FS API*/ //{
-var r_file = __dirname + '/scientificCharts.html'
+var r_file = __dirname + '/financialCharts.html'
+// __dirname + '/scientificCharts.html'
 // __dirname + '/charts.html'
 // __dirname + '/statisticalCharts.html'
 var r_mode = 'rs+'

@@ -1,0 +1,219 @@
+<html>
+<head>
+	<script src="plotly-latest.min.js"></script>
+	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>
+	<script src="./plotly"></script>
+	<!--<script src = "./ultraObject"></script>-->
+</head>
+<body>
+</body>
+    <script>
+    ultraObject = {
+        forLoop:function(   dev_obj   ){
+                //.forLoop_0_i the iteration
+                //.forLoopLength the length to iterate to
+                //.fn what to do
+                // .args, since they are out scroped this is a way to access the args
+                // .bubble 'true' or 'false' indicating whether to send the break back up nested
+                
+                var forLoopbreak = false
+                if(   dev_obj !== undefined   ){
+            
+                    if(   dev_obj.custom !== 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoop_0_i !== dev_obj.forLoopLength; dev_obj.forLoop_0_i++   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+    
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+            
+                    
+                    else if(   dev_obj.custom === 'true'   ){
+                        
+                        
+                        for(   dev_obj.forLoop_0_i; dev_obj.forLoopLength_fn(); dev_obj.forLoop_0_i_fn()   ){ // change this to be a fuctiont that allow the dev to do anything here
+                            // console.log(   dev_obj.forLoop_0_i   )
+                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
+                            
+                                            
+                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
+                                // premature  provided when you dont want to bubble up the value just break
+                                
+                                if(   dev_obj.bubble === 'true'   ){
+                                    
+                                    
+                                    return forLoopbreak
+                                    
+                                    
+                                }
+                                break;
+                                
+                                
+                            }
+                            
+                            
+                        }
+                        dev_obj.forLoop_0_i = 0
+                        
+                        
+                    }
+                    
+                    
+                }
+            },
+        open:function(   dev_obj   ){
+                
+                dev_obj.xhttp.open(   dev_obj.protocol,dev_obj.target,dev_obj.unk_bool   )
+            }, // gets in contact with the host
+        xhttp: (function(   dev_obj   ){
+                    
+                    
+                    if(   typeof(   XMLHttpRequest   ) !== 'undefined'   ){
+                        
+                        
+                        if(   dev_obj === undefined   ){
+                            
+                            
+                            var xhttp_0_i = new XMLHttpRequest()
+                            return xhttp_0_i
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj !== undefined   ){
+                            
+                            
+                            var xhttp_0_i = new XMLHttpRequest()
+                            return xhttp_0_i
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    
+            })(), // creates an xhr obj
+        DOM_child:{},
+        addEventListener:function(   dev_obj   ){
+                    var fn;
+                    
+                    
+                    if(   dev_obj !== undefined   ){
+                        
+                        
+                        if(   dev_obj.fn !== undefined   ){
+                            
+                            
+                            fn = dev_obj.fn
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj.xhttp === 'true'   ){
+                            
+                            
+                            fn= ultraObject.xhttpreadystatechange
+                            
+                            
+                        }
+                        
+                        
+                        else if(   dev_obj.fn === undefined   ){
+                            
+                            
+                            fn = ultraObject.passing_args
+                            
+                            
+                        }
+                        
+                        
+                    }
+                    
+                    
+                    else if(   dev_obj === undefined   ){
+                        
+                        
+                        fn = ultraObject.passing_args
+                        
+                        
+                    }
+                    
+                    
+                    
+                    ultraObject.DOM_child[0].addEventListener(   ultraObject.eventName,fn   )
+            }, //  dev_obj.fn is used for 1st party dev to add their custom function to the listener dev_obj.xhttp is for xhr
+        xhttpreadystatechange:function(   dev_obj   ){
+                console.log(    this   )
+                var dev_obj = undefined
+                
+                if (    this.readyState == 4 && this.status == 200   ) {
+                
+                
+                    if(   dev_obj !==undefined   ){
+                        
+                        
+                        dev_obj.fn()
+                        
+                        
+                    }
+                    
+                    
+                    else if(   dev_obj ===undefined   ){
+                        
+                        
+                        ultraObject.xhrResponse = this.responseText
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+            } // handles getting remote reposnes
+     }
+    var FL_0_i = {
+        forLoop_0_i:0,
+        forLoopLength:250,
+        fn:function(   dev_obj   ){
+            var element11 = document.createElement("div")
+            document.body.appendChild(element11)
+            var node11 = document.querySelector('div')
+            id11 = document.createAttribute("id")
+            id11.value = 'myDiv' +FL_0_i.forLoop_0_i
+            element11.setAttributeNode(id11)
+        },
+        args: {}
+    }
+    ultraObject.forLoop(   FL_0_i   )
+    /*Date Strings*///{
+    {
+    }
+    //}/**/
+</script>
+</html>
