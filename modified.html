@@ -170,15 +170,15 @@
             }, //  dev_obj.fn is used for 1st party dev to add their custom function to the listener dev_obj.xhttp is for xhr
         xhttpreadystatechange:function(   dev_obj   ){
                 console.log(    this   )
-                var dev_obj = undefined
                 
                 if (    this.readyState == 4 && this.status == 200   ) {
                 
-                
+
                     if(   dev_obj !==undefined   ){
                         
                         
                         dev_obj.fn()
+
                         
                         
                     }
@@ -730,62 +730,160 @@ Plotly.plot('myDiv11', data, {title:'3D Mesh Tetrahedron '});
     /*   3D Mesh Cube   *///{
     {
 // have to import the numeric.js in order to call `numeric.linspace`
-var data;
+
+
+
+// var resolveDiv12 = new Promise((resolve,reject)=>{
+//     // console.log('promise initialed')
+//     // console.log(   ultraObject.DOM_child[0]   )
+
+// ultraObject.DOM_child[0] = ultraObject.xhttp
+// ultraObject.eventName = 'readystatechange'
+// ultraObject.addEventListener({
+//     xhttp:'true',
+//     fn:function(){
+//         }
+        
+// }) //your item is here
+// ultraObject.open({
+//         protocol: "POST",
+//         xhttp:ultraObject.xhttp,
+//         target:"http://24.189.66.225/backend/linspace",
+//         unk_bool:true
+//     })
+// ultraObject.DOM_child[0].send(JSON.stringify({
+//     'a': 0,
+//     'b': 1,
+//     'c': 8
+// }))
+//     ultraObject.DOM_child[0].onload =function(){
+//         // console.log('received answer from backend ready to resolve')
+//         // console.log(   ultraObject.DOM_child[0].responseText   )
+//         resolve()
+//     }
+//     }).then(()=>{
+        
+//         console.log(   ultraObject.DOM_child[0].responseText   )
+//         var intensity = JSON.parse(   ultraObject.DOM_child[0].responseText   )
+//         var data = [{
+//             type: "mesh3d",
+//             x: [0, 0, 1, 1, 0, 0, 1, 1],
+//             y: [0, 1, 1, 0, 0, 1, 1, 0],
+//             z: [0, 0, 0, 0, 1, 1, 1, 1],
+//             i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+//             j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+//             k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
+//             intensity: intensity,
+//             colorscale: [
+//               [0, 'rgb(255, 0, 255)'],
+//               [0.5, 'rgb(0, 255, 0)'],
+//               [1, 'rgb(0, 0, 255)']
+//             ]
+//           }
+//         ];
+// Plotly.plot('myDiv12', data, {});
+
+//     }).then(() =>{
+//         ultraObject.DOM_child[0].removeEventListener(   ultraObject.eventName,ultraObject.xhttpreadystatechange   )
+//         ultraObject.DOM_child[0].onload  = null
+//     })
+
+        }
+    //}/**/
+
+    /*  Basic Trisurf Plot    *///{
+    {
+
+
+
 ultraObject.DOM_child[0] = ultraObject.xhttp
 ultraObject.eventName = 'readystatechange'
 ultraObject.addEventListener({
     xhttp:'true',
     fn:function(){
+        if (    ultraObject.DOM_child[0].readyState == 4 && ultraObject.DOM_child[0].status == 200   ) {
+            console.log(ultraObject.DOM_child[0].responseText)
+            var data =  JSON.parse(   JSON.parse(JSON.stringify(ultraObject.DOM_child[0].responseText))   )
+            console.log(typeof data)
+            console.log(data)
+            Plotly.plot('myDiv13', [data], {title:'Basic Trisurf Plot'});
         }
+    }
         
 }) //your item is here
 ultraObject.open({
         protocol: "POST",
-        xhttp:ultraObject.xhttp,
-        target:"http://24.189.66.225/backend/linspace",
+        xhttp:ultraObject.DOM_child[0],
+        target:"http://24.189.66.225/backend/trisurf",
         unk_bool:true
     })
-ultraObject.DOM_child[0].send(JSON.stringify({
-    'a': 0,
-    'b': 1,
-    'c': 8
-}))
-
-var resolveDiv12 = new Promise((resolve,reject)=>{
-    console.log('loaded')
-    console.log(   ultraObject.DOM_child[0]   )
-    ultraObject.DOM_child[0].onload =function(){
-        console.log('GOD damn')
-        console.log(   ultraObject.DOM_child[0]   )
-        resolve()
-    }
-    }).then(()=>{
+ultraObject.DOM_child[0].send(JSON.stringify([
+    [0, 1, 2],
+    [0, 2, 3],
+    [0, 3, 1],
+    [1, 2, 3]
+  ],
+  [0, 1, 0, 0],
+  [0, 0, 1, 0],
+  [0, 0, 0, 1],
+  [
+    'rgb(0, 0, 0)',
+    'rgb(255, 0, 0)',
+    'rgb(0, 255, 0)',
+    'rgb(0, 0, 255)'
+  ]))
+               
+               
+// var resolveDiv13 = new Promise((resolve,reject)=>{
+//     // console.log('promise initialed')
+//     // console.log(   ultraObject.DOM_child[0]   )
+// ultraObject.DOM_child[0] = ultraObject.xhttp
+// ultraObject.eventName = 'readystatechange'
+// ultraObject.addEventListener({
+//     xhttp:'true',
+//     fn:function(){
+//         Plotly.plot('myDiv13', [JSON.parse(   ultraObject.DOM_child[0].responseText   )], {title:'Basic Trisurf Plot'});
+//         }
         
-        var intensity = JSON.parse(   ultraObject.DOM_child[0].responseText   )
-        var data = [{
-            type: "mesh3d",
-            x: [0, 0, 1, 1, 0, 0, 1, 1],
-            y: [0, 1, 1, 0, 0, 1, 1, 0],
-            z: [0, 0, 0, 0, 1, 1, 1, 1],
-            i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
-            j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
-            k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
-            intensity: intensity,
-            colorscale: [
-              [0, 'rgb(255, 0, 255)'],
-              [0.5, 'rgb(0, 255, 0)'],
-              [1, 'rgb(0, 0, 255)']
-            ]
-          }
-        ];
-Plotly.plot('myDiv12', data, {});
-    })
-
+// }) //your item is here
+// ultraObject.open({
+//         protocol: "POST",
+//         xhttp:ultraObject.xhttp,
+//         target:"http://24.189.66.225/backend/trisurf",
+//         unk_bool:true
+//     })
+// ultraObject.DOM_child[0].send(JSON.stringify( [
+//     [0, 1, 2],
+//     [0, 2, 3],
+//     [0, 3, 1],
+//     [1, 2, 3]
+//   ],
+//   [0, 1, 0, 0],
+//   [0, 0, 1, 0],
+//   [0, 0, 0, 1],
+//   [
+//     'rgb(0, 0, 0)',
+//     'rgb(255, 0, 0)',
+//     'rgb(0, 255, 0)',
+//     'rgb(0, 0, 255)'
+//   ]))
+    
+//     ultraObject.DOM_child[0].onload =function(){
+//         // console.log('received answer from backend ready to resolve')
+//         // console.log(   ultraObject.DOM_child[0].responseText   )
+//         resolve()
+//     }
+//     }).then(()=>{
+        
+//     console.log(   ultraObject.DOM_child[0].responseText   )
+//     Plotly.plot('myDiv13', [JSON.parse(   ultraObject.DOM_child[0].responseText   )], {title:'Basic Trisurf Plot'});
+    
+//     }).then(() =>{
+//         ultraObject.DOM_child[0].removeEventListener(   ultraObject.eventName,ultraObject.xhttpreadystatechange   )
+//         ultraObject.DOM_child[0].onload  = null
+//     })
         }
-    //}/**/
 
-    /*      *///{
-    {}
     //}/**/
 
     /*      *///{

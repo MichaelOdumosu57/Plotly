@@ -24,15 +24,30 @@ var w_file =  __dirname + '/modified.html'
 var w_mode = 'w'
 //} /**/
 
+/* plotly software*/ //{
+function trisurf(Tri, X, Y, Z, C) {
+  return {
+    type: 'mesh3d',
+    x: X,
+    y: Y,
+    z: Z,
+    i: Tri.map(function(f) { return f[0] }),
+    j: Tri.map(function(f) { return f[1] }),
+    k: Tri.map(function(f) { return f[2] }),
+    facecolor: C,
+    flatshading: true,
+  }
+  
+  
+}
+//} /**/
+
 app.use(  cors()   )
 app.use(   '/backend',backend   )
 backend.get(   '/index',function(req,res){
  
         var response = res
         
-      
-        
-
         const w_stream = fs.createWriteStream(w_file,{
               start:0,
               autoClose:true
@@ -105,6 +120,7 @@ backend.post(   '/linspace',function(req,res){
 	ultraObject.reqBody({
 		stream:req,
 		fn:function(dev_obj){
+		    console.log('linspace')
 		},
 		keep:'true',
 		finish:function(dev_obj){
@@ -115,8 +131,26 @@ backend.post(   '/linspace',function(req,res){
 	})
 
     
-    // res.send(JSON.stringify(linspace))
 })
+backend.post(   '/trisurf',function(req,res){
+    
+    
+	ultraObject.reqBody({
+		stream:req,
+		fn:function(dev_obj){
+		    console.log('trisurf')
+		},
+		keep:'true',
+		finish:function(dev_obj){
+		    dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
+		    res.send(   trisurf(   dev_obj.stream.body   )   )
+		}
+		
+	})
+
+    
+})
+
 
 backend.post(   '/Treemap',function(req,res){
     
