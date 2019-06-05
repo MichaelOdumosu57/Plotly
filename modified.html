@@ -730,35 +730,14 @@ Plotly.plot('myDiv11', data, {title:'3D Mesh Tetrahedron '});
     /*   3D Mesh Cube   *///{
     {
 // have to import the numeric.js in order to call `numeric.linspace`
-
+var data;
 ultraObject.DOM_child[0] = ultraObject.xhttp
 ultraObject.eventName = 'readystatechange'
 ultraObject.addEventListener({
     xhttp:'true',
     fn:function(){
-        console.log(typeof this.responseText)
-var intensity = JSON.parse(   this.responseText   )
-
-
-var data = [{
-    type: "mesh3d",
-    x: [0, 0, 1, 1, 0, 0, 1, 1],
-    y: [0, 1, 1, 0, 0, 1, 1, 0],
-    z: [0, 0, 0, 0, 1, 1, 1, 1],
-    i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
-    j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
-    k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
-    intensity: intensity,
-    colorscale: [
-      [0, 'rgb(255, 0, 255)'],
-      [0.5, 'rgb(0, 255, 0)'],
-      [1, 'rgb(0, 0, 255)']
-    ]
-  }
-];
-
-Plotly.plot('myDiv12', data, {});
         }
+        
 }) //your item is here
 ultraObject.open({
         protocol: "POST",
@@ -771,6 +750,36 @@ ultraObject.DOM_child[0].send(JSON.stringify({
     'b': 1,
     'c': 8
 }))
+
+var resolveDiv12 = new Promise((resolve,reject)=>{
+    console.log('loaded')
+    console.log(   ultraObject.DOM_child[0]   )
+    ultraObject.DOM_child[0].onload =function(){
+        console.log('GOD damn')
+        console.log(   ultraObject.DOM_child[0]   )
+        resolve()
+    }
+    }).then(()=>{
+        
+        var intensity = JSON.parse(   ultraObject.DOM_child[0].responseText   )
+        var data = [{
+            type: "mesh3d",
+            x: [0, 0, 1, 1, 0, 0, 1, 1],
+            y: [0, 1, 1, 0, 0, 1, 1, 0],
+            z: [0, 0, 0, 0, 1, 1, 1, 1],
+            i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+            j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+            k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
+            intensity: intensity,
+            colorscale: [
+              [0, 'rgb(255, 0, 255)'],
+              [0.5, 'rgb(0, 255, 0)'],
+              [1, 'rgb(0, 0, 255)']
+            ]
+          }
+        ];
+Plotly.plot('myDiv12', data, {});
+    })
 
         }
     //}/**/
