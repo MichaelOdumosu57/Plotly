@@ -523,7 +523,7 @@ function unpack(rows, key) {
 }
   
 var z_data=[ ]
-for(i=0;i< 24;i++)
+for(i=0;i&lt;24;i++)
 {
   z_data.push(unpack(rows,i));
 }
@@ -615,18 +615,18 @@ z1 = [
 ];
 
 z2 = [];
-for (var i=0;i< z1.length;i++ ) {
+for (var i=0;i&lt;z1.length;i++ ) {
   z2_row = [];
-    for(var j=0;j< z1[i].length;j++) {
+    for(var j=0;j&lt;z1[i].length;j++) {
       z2_row.push(z1[i][j]+1);
     }
     z2.push(z2_row);
 }
 
 z3 = []
-for (var i=0;i< z1.length;i++ ) {
+for (var i=0;i&lt;z1.length;i++ ) {
   z3_row = [];
-    for(var j=0;j< z1[i].length;j++) {
+    for(var j=0;j&lt;z1[i].length;j++) {
       z3_row.push(z1[i][j]-1);
     }
     z3.push(z3_row);
@@ -676,7 +676,7 @@ Plotly.newPlot('myDiv9', data);
     {
 // Generating random data..
 a=[]; b=[]; c=[];
-for(i=0;i< 50;i++)
+for(i=0;i&lt50;i++)
   {
   var a_ = Math.random();
    a.push(a_);

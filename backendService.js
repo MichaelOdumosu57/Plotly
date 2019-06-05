@@ -13,7 +13,9 @@ const backend = express.Router()
 //
 
 /* FS API*/ //{
-var r_file = __dirname + '/financialCharts.html'
+var r_file = __dirname + '/3dCharts.html'
+// __dirname + '/mapsCharts.html'
+// __dirname + '/financialCharts.html'
 // __dirname + '/scientificCharts.html'
 // __dirname + '/charts.html'
 // __dirname + '/statisticalCharts.html'
@@ -49,7 +51,7 @@ backend.get(   '/index',function(req,res){
             });
         });
         w_stream.once('finish',function(   ){
-            console.log('All writes are now complete. writestream closed');
+            // console.log('All writes are now complete. writestream closed');
             response.sendFile(w_file)
         })
         w_stream.on('pipe', (src) => {
@@ -67,15 +69,15 @@ backend.get(   '/index',function(req,res){
         })
         r_stream.on('end',()=>{
           setImmediate(() => {
-            console.log('nothing more to read closing  readstream')
-            console.log(typeof(r_stream),typeof(w_stream))
+            // console.log('nothing more to read closing  readstream')
+            // console.log(typeof(r_stream),typeof(w_stream))
             r_stream.resume(); //this helps clear the buffer
             w_stream.end()
           })
         })
         r_stream.on('close',()=>{
           setImmediate(() =>{
-            console.log("looks like the fd was closed by the stream ")
+            // console.log("looks like the fd was closed by the stream ")
           })
         })
         r_stream.on('data',a)
@@ -84,10 +86,10 @@ backend.get(   '/index',function(req,res){
  function a(chunk){
         console.log(chunk)
         setImmediate(() =>{
-            if(   !w_stream.write(   chunk.toString().split("&lt;").join("< ")  )  ){
+            if(   !w_stream.write(   chunk.toString().split("&lt;").join("< ").split("&lt").join("< ")  )  ){
                 r_stream.off('data',a)
                 r_stream.pause()
-                w_stream.on('drain',function(){
+                w_stream.once('drain',function(){
                      r_stream.resume()
                      r_stream.on('data',a)
                 })
