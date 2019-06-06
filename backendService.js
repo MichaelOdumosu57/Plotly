@@ -143,7 +143,8 @@ backend.post(   '/trisurf',function(req,res){
 		keep:'true',
 		finish:function(dev_obj){
 		    dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
-		    res.send(   trisurf(   dev_obj.stream.body   )   )
+		  //  console.log(   dev_obj.stream.body   )
+		    res.send(   trisurf(   ...dev_obj.stream.body   )   )
 		}
 		
 	})
