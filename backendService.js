@@ -48,15 +48,15 @@ backend.get(   '/index',function(req,res){
  
         var response = res
         
-        const w_stream = fs.createWriteStream(w_file,{
+        const wStream = fs.createWriteStream(w_file,{
               start:0,
               autoClose:true
         })
-        // // w_stream.on('process_uncaught',function(  err   ){
+        // // wStream.on('process_uncaught',function(  err   ){
         // //     console.log('error thrown in writeStream close everything ',err)
         // //     this.end()
         // // })
-        w_stream.on('error',  function(err){
+        wStream.on('error',  function(err){
             setImmediate(() => {
                 console.log('error thrown in writeStream close everything ',err)
                 this.end()
@@ -65,15 +65,15 @@ backend.get(   '/index',function(req,res){
                 close_file(ww_fd,'write_file',this)
             });
         });
-        w_stream.once('finish',function(   ){
+        wStream.once('finish',function(   ){
             // console.log('All writes are now complete. writestream closed');
             response.sendFile(w_file)
         })
-        w_stream.on('pipe', (src) => {
+        wStream.on('pipe', (src) => {
           console.error('something is piping into the writer');
           // assert.equal(src, r_stream);
         });
-        w_stream.on('unpipe', (src) => {
+        wStream.on('unpipe', (src) => {
           console.error('Something has stopped piping into the writer.');
           // assert.equal(src, r_stream);
         });
@@ -85,9 +85,9 @@ backend.get(   '/index',function(req,res){
         r_stream.on('end',()=>{
           setImmediate(() => {
             // console.log('nothing more to read closing  readstream')
-            // console.log(typeof(r_stream),typeof(w_stream))
+            // console.log(typeof(r_stream),typeof(wStream))
             r_stream.resume(); //this helps clear the buffer
-            w_stream.end()
+            wStream.end()
           })
         })
         r_stream.on('close',()=>{
@@ -101,10 +101,10 @@ backend.get(   '/index',function(req,res){
  function a(chunk){
         console.log(chunk)
         setImmediate(() =>{
-            if(   !w_stream.write(   chunk.toString().split("&lt;").join("< ").split("&lt").join("< ")  )  ){
+            if(   !wStream.write(   chunk.toString().split("&lt;").join("< ").split("&lt").join("< ")  )  ){
                 r_stream.off('data',a)
                 r_stream.pause()
-                w_stream.once('drain',function(){
+                wStream.once('drain',function(){
                      r_stream.resume()
                      r_stream.on('data',a)
                 })
@@ -115,12 +115,84 @@ backend.get(   '/index',function(req,res){
         
         
 })
+backend.post(   '/saveFile/',function(req,res){
+ 
+        var response = res
+        var request = req
+        // console.log(req.query)
+        const wStream = fs.createWriteStream(req.query.location,{
+              start:0,
+              autoClose:true
+        })
+        wStream.on('error',  function(err){
+            setImmediate(() => {
+                console.log('error thrown in writeStream close everything ',err)
+                this.end()
+            });
+        });
+        wStream.on('finish',function(   ){
+            console.log('All writes are now complete. writestream closed');
+        })
+        
+        wStream.on('pipe', (src) => {
+          console.error('something is piping into the writer');
+          // assert.equal(src, r_stream);
+        });
+        wStream.on('unpipe', (src) => {
+          console.error('Something has stopped piping into the writer.');
+           wStream.end()
+           res.end()
+          // assert.equal(src, r_stream);
+        });
+        
+        req.pipe(wStream)
+        
+        // var brokenWriteStream = new Promise((resolve,reject) =>{
+        //     wStream.once('ready',()=>{
+        //         console.log('ready to save this file')
+        //         resolve()
+        //     })
+        // }).then((resolve,reject)=>{
+        //     req.on('data',a)
+            
+         
+        //     req.once('end',()=> {
+        //         console.log('will close stream')
+        //         req.off('data',a)
+        //         wStream.end()
+        //         res.end()
+        //     })
+        // })
+
+function a(chunk){
+        process.nextTick(()=>{
+            if(   !wStream.write(   chunk.toString()  )  ){
+                console.log('still writing')
+                req.off('data',a)
+                req.pause()
+                wStream.once('drain',function(){
+                     req.resume()
+                     req.on('data',a)
+                })
+            }
+        })
+}
+    
+
+
+        
+        
+
+        
+        
+        
+})
 backend.post(   '/linspace',function(req,res){
     
 	ultraObject.reqBody({
 		stream:req,
 		fn:function(dev_obj){
-		    console.log('linspace')
+		  //  console.log('linspace')
 		},
 		keep:'true',
 		finish:function(dev_obj){
@@ -138,7 +210,7 @@ backend.post(   '/trisurf',function(req,res){
 	ultraObject.reqBody({
 		stream:req,
 		fn:function(dev_obj){
-		    console.log('trisurf')
+		  //  console.log('trisurf')
 		},
 		keep:'true',
 		finish:function(dev_obj){
