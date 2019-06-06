@@ -195,11 +195,588 @@
                     
                 }
                 
-            } // handles getting remote reposnes
+            }, // handles getting remote reposnes
+        endpoint: function(   dev_obj   ){
+                /*
+                    key points
+                    the developer places into XHR itO what function they will use to make the request
+                    you provide functionality to help make goobly gook easier like inserting all values into a function then giving it a go
+                */
+                /* ablelasts
+                    1 for XHR
+                */
+                /*
+                    .xhttp:the xhr functionality the developer wants to use
+                        what goes here is an itO for all the items the dev needs to get the job done
+                    .instruct: telling the function how to use what in XHR[index] to get the job done
+                    .eventName: in case of  XMLHttpRequest i need to a function as an event handler to make use of the responseText
+                    .eventHandler:in case of  XMLHttpRequest  fn for eventName
+                    .protocol :  in case of  XMLHttpRequest  HTTP methods for XHR
+                    .target:  string location
+                    .asyncBool: unkwown use best to leave on true
+                    .body: in case of  XMLHttpRequest for certain http methods this is the important data the endpoint needs, should be a string or one object
+                */
+                
+                /*adding the dev_obj to args*/ //{
+                var endpoint_dev_obj = ultraObject.args.add(   {value:ultraObject.iterify(   {iterify:dev_obj}   )   }   )
+                // }  /**/
+                
+                /*XHR +scope +self +abelast */ //{
+                var ePXHR_0_i = ultraObject.scope.add(   {value:ultraObject.XHR.add(   {value:dev_obj.xhttp}   )}   )
+                ultraObject.XHR.abelast.add(   {value:ultraObject.scope[ePXHR_0_i ]}   )
+                // }  /**/
+                
+                /*XHR +scope +self +abelast */ //{
+                
+                    /* XMLHttpRequest*/ //{
+                    if(   dev_obj.instruct === 'XMLHttpRequest'   ){
+                        
+                        
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventName = dev_obj.eventName
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventHandler = dev_obj.eventHandler
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ][0].addEventListener(   ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventName,ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventHandler   )
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].protocol = dev_obj.protocol
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].target = dev_obj.target
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].asyncBool = dev_obj.asyncBool
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].body = dev_obj.body
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ][0].open(
+                            ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].protocol,
+                            ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].target,
+                            ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].asyncBool
+                        )
+                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ][0].send(   ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].body   )
+                        
+                        
+                    }
+                    // }  /**/
+                    
+                // }  /**/
+                
+                /*XHR -scope */ //{
+                var ePXHR_0_i = ultraObject.scope.minus(   {index:ePXHR_0_i}   )
+                // }  /**/
+                
+            },// function handling all things endpoint
+        iterify: function(   dev_obj   ){
+                //. iterify the item to turn into an iterableObject
+            
+                if(   dev_obj !== undefined   ){
+                    
+                    
+                    var iterableO = ultraObject.iterableObject()
+                    
+                    
+                    if(   ultraObject.isArray(   {type:dev_obj.iterify}   ) || ultraObject.isNodeList(   {type:dev_obj.iterify}   )   ){
+                        
+                        
+                        var iterableFL_0_i = {
+                            forLoop_0_i:0,
+                            forLoopLength:dev_obj.iterify.length,
+                            fn:function(   dev_obj   ){
+                                iterableO.add(   {value:dev_obj.iterify[iterableFL_0_i.forLoop_0_i]}   )
+                            },
+                            args:{iterify:dev_obj.iterify}
+                        }
+                        ultraObject.forLoop(   iterableFL_0_i   )
+                        
+                        
+                    }
+                    
+                    
+                    else if(   ultraObject.isObject(   {type:dev_obj.iterify}   )   ){
+                        //places the key and value inside every index , So 0,1 represents the key and 1 the value
+                        
+                        var iterableArr = Object.entries(   dev_obj.iterify   )
+                        var iterableFL_0_i = {
+                            forLoop_0_i:0,
+                            forLoopLength:iterableArr.length,
+                            fn:function(   dev_obj   ){
+                                iterableO.add({
+                                    value:ultraObject.iterify({iterify:iterableArr[iterableFL_0_i.forLoop_0_i]})
+                                })
+                            },
+                            args:{iterify:dev_obj.iterify}
+                        }
+                        ultraObject.forLoop(   iterableFL_0_i   )
+                        
+                        
+                    }
+                    
+                    
+                    else if(   ultraObject.isPrimitive(   {type:dev_obj.iterify}   )   ){
+                        //for strings it neatly splits it into an itO
+                        
+                        var iterableFL_0_i = {
+                            forLoop_0_i:0,
+                            forLoopLength:dev_obj.iterify.length,
+                            fn:function(   dev_obj   ){
+                                iterableO.add(   {value:dev_obj.iterify[iterableFL_0_i.forLoop_0_i]}   )
+                            },
+                            args:{iterify:dev_obj.iterify}
+                        }
+                        ultraObject.forLoop(   iterableFL_0_i   )
+                        
+                        
+                    }
+                    
+                    
+                    return iterableO
+                    
+                                    
+                }
+                
+                
+            },
+        iterableObject: iterableObject,
+        isArray: function(   dev_obj   ){ // should combine all type query or keep seperate??
+                //.type the item in question
+                
+                 if(   dev_obj !== undefined   ){
+                     
+                     
+                    if(   Array.isArray(dev_obj.type) && typeof(   dev_obj.type   ) === 'object'   ){
+                         //an array
+                         
+                        return true
+                        
+                        
+                    }
+                    
+                    
+                 }
+                 
+                 
+                 return false
+            }, // is item an object will be upgraded to test for more objects, you can use instance of but its not available everywher
+        isObject:  function(   dev_obj   ){ // should combine all type query or keep seperate??
+                //.type the item in question
+                
+                 if(   dev_obj !== undefined   ){
+                     
+                     
+                    if(   !Array.isArray(dev_obj.type) && typeof(   dev_obj.type   ) === 'object' && dev_obj.type.isitO === undefined   ){
+                         //an array
+                         
+                        return true
+                        
+                        
+                    }
+                    
+                    
+                 }
+                 
+                 
+                 return false
+            },
+        isPrimitive:  function(   dev_obj   ){
+            
+            
+                if(   dev_obj !== undefined   ){
+                    
+                    
+                    if(   dev_obj.type !== Object(   dev_obj.type   )   ){
+                        
+                        
+                        return true
+                        
+                        
+                    }
+                    
+                    
+                }
+                
+                
+                return false
+            },
+        isNodeList: function(   dev_obj   ){
+            
+            
+                if(   dev_obj !== undefined   ){
+                    
+                    
+                    if(   (   dev_obj.type.toString() || dev_obj.type.toLocaleString() || 'str'   ) === '[object NodeList]'   ){
+                        // if a polyfill is needed use severalOr to get a string
+                        
+                        return true
+                        
+                        
+                    }
+                    
+                    
+                    else if(   (   dev_obj.type.toString() || dev_obj.type.toLocaleString() || 'str'   ) !== '[object NodeList]'   ){
+                        
+                        
+                        return false
+                        
+                        
+                    }
+                    
+                }
+                
+                
+            },
+        args:iterableObject(),
+        scope:iterableObject(),
+        XHR:iterableObject(),
+        objectLength: function(   dev_obj   ){ // finds object lenghts
+                    //.val the object itself
+                    // .getLen function descrbing how to get the length
+                    // .result if function reutrns it equal increase the length by one
+                    dev_obj.val.length = 0
+                    var objectLengthFL_0_i = {
+                        forLoop_0_i:0,
+                        forLoopLength:Object.keys(   dev_obj.val   ).length,
+                        fn:function(   dev_obj   ){
+                            
+                             
+                            if(   dev_obj.getLen(   {val:dev_obj.val,   index:objectLengthFL_0_i.forLoop_0_i}   ) === dev_obj.result    ){
+                                                    
+                                
+                                dev_obj.val.length += 1
+                                
+                                
+                            }
+                            
+                            
+                        },
+                        args:{
+                            val:dev_obj.val,
+                            getLen:dev_obj.getLen,
+                            result:dev_obj.result
+                            }
+                    }
+                    ultraObject.forLoop(   objectLengthFL_0_i   )
+                
+            }
      }
+    function iterableObject(   dev_obj   ){
+                /*
+                    key points
+                    when you add with index & value NEVER minus with index, ALWAYS minus with index & dev_obj.messy = 'true'
+                */
+                // .stop for the abelast
+                
+                 var iterableObjectO = {
+                    length:0,
+                    
+                    add:function(   dev_obj   ){// returns the index that it was added to an object
+                            
+                            
+                            if(   dev_obj.index !== undefined   ){
+                                
+                                
+                                if(   Object.keys(iterableObjectO).indexOf(dev_obj.index.toString()) === -1   ){
+                                //hopefully this is es5
+                                
+                                    iterableObjectO.length += 1
+                                
+                                
+                                }
+                                
+                                
+                                iterableObjectO[dev_obj.index] = dev_obj.value
+                                return dev_obj.index
+                                
+                                
+                            }
+                            
+                            
+                            else if(   dev_obj.index === undefined   ){
+                                
+                                
+                                iterableObjectO[iterableObjectO.length] = dev_obj.value
+                                iterableObjectO.length += 1
+                                return iterableObjectO.length -1
+                                
+                                
+                            }
+                            
+                        },// adds a value and retuns its place in the array
+                    minus:function(   dev_obj   ){
+                        //.value value to remove
+                        //.index remove and index
+                        if(   dev_obj.index !== undefined   ){
+                            
+                            
+                            delete iterableObjectO[dev_obj.index]
+                            iterableObjectO.resetLength()// resets the length
+                            
+                            
+                            if(   dev_obj.messy !== 'true'   ){
+                                
+                                
+                                var iterableObjectFL_0_i = {
+                                    forLoop_0_i:0,
+                                    forLoopLength:iterableObjectO.length,
+                                    fn:function(   dev_obj   ){
+                                        
+                                        /*fixing the array part of the itO*/ //{
+                                        if(   dev_obj.index <= iterableObjectFL_0_i.forLoop_0_i && iterableObjectFL_0_i.forLoop_0_i !== iterableObjectO.length   ){ // at that point something must be missing
+                                            
+                                            
+                                            iterableObjectO[iterableObjectFL_0_i.forLoop_0_i] =  iterableObjectO[iterableObjectFL_0_i.forLoop_0_i+1]
+                                            delete iterableObjectO[iterableObjectFL_0_i.forLoop_0_i+1]//problems look here usually wants a variable or primitive to properly delete
+                                            
+                                            
+                                        }
+                                        // } /**/
+                                        
+                                    },
+                                    args:{
+                                        index:dev_obj.index
+                                        }
+                                }
+                                ultraObject.forLoop(   iterableObjectFL_0_i   ) // realigns the iterable so the index are consecutive again
+                            
+                            
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        if(   dev_obj.value !== undefined   ){
+                            
+                            
+                            var iterableObjectO_BOOL = {0:false}
+                            iterableObjectO_BOOL = ultraObject.severalOr({
+                                        compTo: dev_obj.value,
+                                        compAgn: iterableObjectO,
+                                        boolean:iterableObjectO_BOOL,
+                                        which:0
+                            })
+                            
+                            
+                            if(   iterableObjectO_BOOL[0]   ){
+                                
+                                
+                                var iterableObjectTDI = iterableObjectO_BOOL.spot // index to remove
+                                delete iterableObjectO[iterableObjectTDI]
+                                iterableObjectO.resetLength()
+                                var iterableObjectFL_1_i = {
+                                    forLoop_0_i:0,
+                                    forLoopLength:iterableObjectO.length,
+                                    fn:function(   dev_obj   ){
+                                        
+                                        
+                                        if(   iterableObjectTDI <= iterableObjectFL_1_i.forLoop_0_i && iterableObjectFL_1_i.forLoop_0_i !== iterableObjectO.length  ){ // at that point something must be missing
+                                            
+                                            
+                                            iterableObjectO[iterableObjectFL_1_i.forLoop_0_i] =  iterableObjectO[iterableObjectFL_1_i.forLoop_0_i+1]
+                                            delete iterableObjectO[iterableObjectFL_1_i.forLoop_0_i+1 ]//problems look here usually wants a variable or primitive to properly delete
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    },
+                                    args:{}
+                                }
+                                ultraObject.forLoop(   iterableObjectFL_1_i   ) // realigns the iterable so the index are consecutive again
+                                
+                                
+                                if(    dev_obj.correct === 'false'   ){
+                                    
+                                    
+                                    //leave the index alone
+                                    
+                                    
+                                }
+            
+                            }
+                            
+                            
+                        }
+                        
+                        
+                    },// removes an item from an array if its there
+                    resetLength:function(   dev_obj   ){
+                        ultraObject.objectLength({
+                                val:iterableObjectO,
+                                getLen:function(   dev_obj   ){
+                                    
+                                    
+                                    if(   !isNaN(   Object.keys(   dev_obj.val   )[dev_obj.index]   )   ){
+                                        
+                                        
+                                        return 'true'
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                },
+                                result:'true'
+                        })
+                    }, //if corrputed resets the lengths
+                    isitO:function(   dev_obj   ){
+                        return 'true'
+                    }//confirms if its an itO, make it refuse to bind
+                 }
+                 iterableObjectO.abelast = {
+                    length:0,
+                    
+                    add:function(   dev_obj   ){// returns the index that it was added to an object
+                    
+                    
+                            if(   dev_obj.index !== undefined   ){
+                                
+                                
+                                if(   Object.keys(iterableObjectO.abelast).indexOf(dev_obj.index.toString()) === -1   ){
+                                
+                                
+                                    iterableObjectO.abelast.length += 1
+                                
+                                
+                                }
+                                                                
+                                iterableObjectO.abelast[dev_obj.index] = dev_obj.value
+                                return dev_obj.index
+                                
+                                
+                            }
+                            
+                            
+                            else if(   dev_obj.index === undefined   ){
+                                
+                                
+                                iterableObjectO.abelast[iterableObjectO.abelast.length] = dev_obj.value
+                                iterableObjectO.abelast.length += 1
+                                // iterableObjectO.abelast['q'+(iterableObjectO.abelast.length -1).toString()] = iterableObjectO.abelast.length -1
+                                return iterableObjectO.abelast.length -1
+                                
+                            
+                            }
+                            
+                            
+                        },// adds a value and retuns its place in the array
+                    minus:function(   dev_obj   ){
+                        //.value value to remove
+                        //.index remove and index
+                        
+                        if(   dev_obj.index !== undefined   ){
+                            
+                            
+                            delete iterableObjectO.abelast[dev_obj.index]
+                            iterableObjectO.abelast.resetLength()// resets the length
+                            
+                            
+                            if(   dev_obj.messy !== 'true'   ){
+                                
+                                
+                                var iterableObjectFL_0_i = {
+                                    forLoop_0_i:0,
+                                    forLoopLength:iterableObjectO.abelast.length,
+                                    fn:function(   dev_obj   ){
+                                        
+                                        
+                                        if(   dev_obj.index <= iterableObjectFL_0_i.forLoop_0_i && iterableObjectFL_0_i.forLoop_0_i !== iterableObjectO.abelast.length  ){ // at that point something must be missing
+                                            
+                                            
+                                            iterableObjectO.abelast[iterableObjectFL_0_i.forLoop_0_i] =  iterableObjectO.abelast[iterableObjectFL_0_i.forLoop_0_i+1]
+                                            delete iterableObjectO.abelast[iterableObjectFL_0_i.forLoop_0_i+1]//problems look here usually wants a variable or primitive to properly delete
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    },
+                                    args:{
+                                        index:dev_obj.index
+                                        }
+                                }
+                                ultraObject.forLoop(   iterableObjectFL_0_i   ) // realigns the iterable so the index are consecutive again
+                            
+                            
+                            }
+                            
+                            
+                        }
+                        
+                        
+                        if(   dev_obj.value !== undefined   ){
+                            
+                            
+                            var iterableObjectO_abelast_BOOL = {0:false}
+                            iterableObjectO_abelast_BOOL = ultraObject.severalOr({
+                                        compTo: dev_obj.value,
+                                        compAgn: iterableObjectO.abelast,
+                                        boolean:iterableObjectO_abelast_BOOL,
+                                        which:0
+                            })
+                            
+                            
+                            if(   iterableObjectO_abelast_BOOL[0]   ){
+                                
+                                
+                                var iterableObjectTDI = iterableObjectO_abelast_BOOL.spot // index to remove
+                                delete iterableObjectO.abelast[iterableObjectTDI]
+                                iterableObjectO.abelast.resetLength()
+                                var iterableObjectFL_1_i = {
+                                    forLoop_0_i:0,
+                                    forLoopLength:iterableObjectO.abelast.length,
+                                    fn:function(   dev_obj   ){
+                                        
+                                        
+                                        if(   iterableObjectTDI <= iterableObjectFL_1_i.forLoop_0_i && iterableObjectFL_1_i.forLoop_0_i !== iterableObjectO.abelast.length  ){ // at that point something must be missing
+                                            
+                                            
+                                            iterableObjectO.abelast[iterableObjectFL_1_i.forLoop_0_i] =  iterableObjectO.abelast[iterableObjectFL_1_i.forLoop_0_i+1]
+                                            delete iterableObjectO.abelast[iterableObjectFL_1_i.forLoop_0_i+1 ]//problems look here usually wants a variable or primitive to properly delete
+                                            
+                                            
+                                        }
+                                        
+                                        
+                                    },
+                                    args:{}
+                                }
+                                ultraObject.forLoop(   iterableObjectFL_1_i   ) // realigns the iterable so the index are consecutive again
+                                
+                                
+                                if(    dev_obj.correct === 'false'   ){
+                                    
+                                    
+                                    //leave the index alone
+                                    
+                                    
+                                }
+            
+                            }
+                            
+                            
+                        }
+                        
+                        
+                    },// removes an item from an array if its there
+                    resetLength:function(   dev_obj   ){
+                        ultraObject.objectLength({
+                                val:iterableObjectO.abelast,
+                                getLen:function(   dev_obj   ){
+                                    
+                                    
+                                    if(   !isNaN(   Object.keys(   dev_obj.val   )[dev_obj.index]   )   ){
+                                        
+                                        
+                                        return 'true'
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                },
+                                result:'true'
+                        })
+                    }, //if corrputed resets the lengths
+                    isAbelast:function(   dev_obj   ){
+                        return 'true'
+                    }//confirms if its an itO, make it refuse to bind
+                 }  // make a deep copy if outer function do not have access to scope from the inner functions, the inner function places the required info heree
+                 return iterableObjectO
+            } //retuns or converts an object with which you can easily iterate but this is an array accroding to chrome 72
     var FL_0_i = {
         forLoop_0_i:0,
-        forLoopLength:50,
+        forLoopLength:35,
         fn:function(   dev_obj   ){
             var element11 = document.createElement("div")
             document.body.appendChild(element11)
@@ -213,1052 +790,1237 @@
     ultraObject.forLoop(   FL_0_i   )
     
     /*3D Line Plot*///{
-    {
-        Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-line1.csv', function(err, rows){
-              function unpack(rows, key) {
-                  return rows.map(function(row)
-                  { return row[key]; }); }
+    // {
+    //     Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-line1.csv', function(err, rows){
+    //           function unpack(rows, key) {
+    //               return rows.map(function(row)
+    //               { return row[key]; }); }
                   
-        var x = unpack(rows , 'x');
-        var y = unpack(rows , 'y');
-        var z = unpack(rows , 'z');
-        var c = unpack(rows , 'color');
-        Plotly.plot('myDiv0', [{
-          type: 'scatter3d',
-          mode: 'lines',
-          x: x,
-          y: y,
-          z: z,
-          opacity: 1,
-          line: {
-            width: 6,
-            color: c,
-            reversescale: false
-          }
-        }], {
-          height: 640
-        });
-        });
-    }
+    //     var x = unpack(rows , 'x');
+    //     var y = unpack(rows , 'y');
+    //     var z = unpack(rows , 'z');
+    //     var c = unpack(rows , 'color');
+    //     Plotly.plot('myDiv0', [{
+    //       type: 'scatter3d',
+    //       mode: 'lines',
+    //       x: x,
+    //       y: y,
+    //       z: z,
+    //       opacity: 1,
+    //       line: {
+    //         width: 6,
+    //         color: c,
+    //         reversescale: false
+    //       }
+    //     }], {
+    //       height: 640
+    //     });
+    //     });
+    // }
     //}/**/
     
     /*  3D Line + Markers Plot    *///{
-    {
-var pointCount = 31;
-var i, r;
+//     {
+// var pointCount = 31;
+// var i, r;
 
-var x = [];
-var y = [];
-var z = [];
-var c = [];
+// var x = [];
+// var y = [];
+// var z = [];
+// var c = [];
 
-for(i = 0; i < pointCount; i++)
-{
-   r = 10 * Math.cos(i / 10);
-   x.push(r * Math.cos(i));
-   y.push(r * Math.sin(i));
-   z.push(i);
-   c.push(i)
-}
+// for(i = 0; i < pointCount; i++)
+// {
+//   r = 10 * Math.cos(i / 10);
+//   x.push(r * Math.cos(i));
+//   y.push(r * Math.sin(i));
+//   z.push(i);
+//   c.push(i)
+// }
 
-Plotly.plot('myDiv1', [{
-  type: 'scatter3d',
-  mode: 'lines+markers',
-  x: x,
-  y: y,
-  z: z,
-  line: {
-    width: 6,
-    color: c,
-    colorscale: "Viridis"},
-  marker: {
-    size: 3.5,
-    color: c,
-    colorscale: "Greens",
-    cmin: -20,
-    cmax: 50
-  }},
-]);
-        }
+// Plotly.plot('myDiv1', [{
+//   type: 'scatter3d',
+//   mode: 'lines+markers',
+//   x: x,
+//   y: y,
+//   z: z,
+//   line: {
+//     width: 6,
+//     color: c,
+//     colorscale: "Viridis"},
+//   marker: {
+//     size: 3.5,
+//     color: c,
+//     colorscale: "Greens",
+//     cmin: -20,
+//     cmax: 50
+//   }},
+// ]);
+//         }
     //}/**/
 
     /* 3D Line Spiral Plot     *///{
-    {
-var pointCount = 3142;
-var i, r;
+//     {
+// var pointCount = 3142;
+// var i, r;
 
-var x = [];
-var y = [];
-var z = [];
-var c = [];
+// var x = [];
+// var y = [];
+// var z = [];
+// var c = [];
 
-for(i = 0; i < pointCount; i++)
- {
-     r = i * (pointCount - i);
-     x.push(r * Math.cos(i / 30));
-     y.push(r * Math.sin(i / 30));
-     z.push(i);
-     c.push(i)
- }
+// for(i = 0; i < pointCount; i++)
+//  {
+//      r = i * (pointCount - i);
+//      x.push(r * Math.cos(i / 30));
+//      y.push(r * Math.sin(i / 30));
+//      z.push(i);
+//      c.push(i)
+//  }
 
-Plotly.plot('myDiv2', [{
-     type: 'scatter3d',
-     mode: 'lines',
-     x: x,
-     y: y,
-     z: z,
-     opacity: 0,
-     line: {
-       width: 10,
-       color: c,
-       colorscale: 'Viridis'}
-    }]);
-        }
+// Plotly.plot('myDiv2', [{
+//      type: 'scatter3d',
+//      mode: 'lines',
+//      x: x,
+//      y: y,
+//      z: z,
+//      opacity: 0,
+//      line: {
+//       width: 10,
+//       color: c,
+//       colorscale: 'Viridis'}
+//     }]);
+//         }
     //}/**/
 
         /*   3D Random Walk Plot   *///{
-    {
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/_3d-line-plot.csv', function(err, rows){
-      function unpack(rows, key) {
-          return rows.map(function(row)
-          { return row[key]; });
-      }
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/_3d-line-plot.csv', function(err, rows){
+//       function unpack(rows, key) {
+//           return rows.map(function(row)
+//           { return row[key]; });
+//       }
 
-var trace1 = {
-  x: unpack(rows, 'x1'),
-  y: unpack(rows, 'y1'),
-  z: unpack(rows, 'z1'),
-  mode: 'lines',
-  marker: {
-    color: '#1f77b4',
-    size: 12,
-    symbol: 'circle',
-    line: {
-      color: 'rgb(0,0,0)',
-      width: 0
-    }},
-  line: {
-    color: '#1f77b4',
-    width: 1
-  },
-  type: 'scatter3d'
-};
+// var trace1 = {
+//   x: unpack(rows, 'x1'),
+//   y: unpack(rows, 'y1'),
+//   z: unpack(rows, 'z1'),
+//   mode: 'lines',
+//   marker: {
+//     color: '#1f77b4',
+//     size: 12,
+//     symbol: 'circle',
+//     line: {
+//       color: 'rgb(0,0,0)',
+//       width: 0
+//     }},
+//   line: {
+//     color: '#1f77b4',
+//     width: 1
+//   },
+//   type: 'scatter3d'
+// };
 
-var trace2 = {
-  x: unpack(rows, 'x2'),
-  y: unpack(rows, 'y2'),
-  z: unpack(rows, 'z2'),
-  mode: 'lines',
-  marker: {
-    color: '#9467bd',
-    size: 12,
-    symbol: 'circle',
-    line: {
-      color: 'rgb(0,0,0)',
-      width: 0
-    }},
-  line: {
-    color: 'rgb(44, 160, 44)',
-    width: 1
-  },
-  type: 'scatter3d'
-};
+// var trace2 = {
+//   x: unpack(rows, 'x2'),
+//   y: unpack(rows, 'y2'),
+//   z: unpack(rows, 'z2'),
+//   mode: 'lines',
+//   marker: {
+//     color: '#9467bd',
+//     size: 12,
+//     symbol: 'circle',
+//     line: {
+//       color: 'rgb(0,0,0)',
+//       width: 0
+//     }},
+//   line: {
+//     color: 'rgb(44, 160, 44)',
+//     width: 1
+//   },
+//   type: 'scatter3d'
+// };
 
-var trace3 = {
-  x: unpack(rows, 'x3'),
-  y: unpack(rows, 'y3'),
-  z: unpack(rows, 'z3'),
-  mode: 'lines',
-  marker: {
-    color: '#bcbd22',
-    size: 12,
-    symbol: 'circle',
-    line: {
-      color: 'rgb(0,0,0)',
-      width: 0
-    }},
-  line: {
-    color: '#bcbd22',
-    width: 1
-  },
-  type: 'scatter3d'
-};
+// var trace3 = {
+//   x: unpack(rows, 'x3'),
+//   y: unpack(rows, 'y3'),
+//   z: unpack(rows, 'z3'),
+//   mode: 'lines',
+//   marker: {
+//     color: '#bcbd22',
+//     size: 12,
+//     symbol: 'circle',
+//     line: {
+//       color: 'rgb(0,0,0)',
+//       width: 0
+//     }},
+//   line: {
+//     color: '#bcbd22',
+//     width: 1
+//   },
+//   type: 'scatter3d'
+// };
 
-var data = [trace1, trace2, trace3];
-var layout = {
-  title: '3D Line Plot',
-  autosize: false,
-  width: 500,
-  height: 500,
-  margin: {
-    l: 0,
-    r: 0,
-    b: 0,
-    t: 65
-  }
-};
-Plotly.newPlot('myDiv3', data, layout);
-});
-        }
+// var data = [trace1, trace2, trace3];
+// var layout = {
+//   title: '3D Line Plot',
+//   autosize: false,
+//   width: 500,
+//   height: 500,
+//   margin: {
+//     l: 0,
+//     r: 0,
+//     b: 0,
+//     t: 65
+//   }
+// };
+// Plotly.newPlot('myDiv3', data, layout);
+// });
+//         }
     //}/**/
 
     /*   3D Scatter Plot   *///{
-    {
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
-    if(err){console.log(err)}
-function unpack(rows, key) {
-	return rows.map(function(row)
-	{ return row[key]; });}
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/3d-scatter.csv', function(err, rows){
+//     if(err){console.log(err)}
+// function unpack(rows, key) {
+// 	return rows.map(function(row)
+// 	{ return row[key]; });}
 
-var trace1 = {
-	x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
-	mode: 'markers',
-	marker: {
-		size: 12,
-		line: {
-		color: 'rgba(217, 217, 217, 0.14)',
-		width: 0.5},
-		opacity: 0.8},
-	type: 'scatter3d'
-};
+// var trace1 = {
+// 	x:unpack(rows, 'x1'), y: unpack(rows, 'y1'), z: unpack(rows, 'z1'),
+// 	mode: 'markers',
+// 	marker: {
+// 		size: 12,
+// 		line: {
+// 		color: 'rgba(217, 217, 217, 0.14)',
+// 		width: 0.5},
+// 		opacity: 0.8},
+// 	type: 'scatter3d'
+// };
 
-var trace2 = {
-	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
-	mode: 'markers',
-	marker: {
-		color: 'rgb(127, 127, 127)',
-		size: 12,
-		symbol: 'circle',
-		line: {
-		color: 'rgb(204, 204, 204)',
-		width: 1},
-		opacity: 0.8},
-	type: 'scatter3d'};
+// var trace2 = {
+// 	x:unpack(rows, 'x2'), y: unpack(rows, 'y2'), z: unpack(rows, 'z2'),
+// 	mode: 'markers',
+// 	marker: {
+// 		color: 'rgb(127, 127, 127)',
+// 		size: 12,
+// 		symbol: 'circle',
+// 		line: {
+// 		color: 'rgb(204, 204, 204)',
+// 		width: 1},
+// 		opacity: 0.8},
+// 	type: 'scatter3d'};
 
-var data = [trace1, trace2];
-var layout = {margin: {
-	l: 0,
-	r: 0,
-	b: 0,
-	t: 0
-  }};
-Plotly.newPlot('myDiv4', data, layout);
-});
-        }
+// var data = [trace1, trace2];
+// var layout = {margin: {
+// 	l: 0,
+// 	r: 0,
+// 	b: 0,
+// 	t: 0
+//   }};
+// Plotly.newPlot('myDiv4', data, layout);
+// });
+//         }
     //}/**/
 
     /*Basic Ribbon Plot*///{
-    {
-Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/3d-ribbon.json', function(figure){
+//     {
+// Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/3d-ribbon.json', function(figure){
 
-  var trace1 = {
-	  x:figure.data[0].x, y:figure.data[0].y, z:figure.data[0].z,
-	  name: '',
-      colorscale: figure.data[0].colorscale,
-      showscale: false
-  }
-  var trace2 = {
-	  x:figure.data[1].x, y:figure.data[1].y, z:figure.data[1].z,
-	  name: '',
-	  colorscale: figure.data[1].colorscale,
-	  type: 'surface',
-	  showscale: false
-  }
-  var trace3 = {
-	  x:figure.data[2].x, y:figure.data[2].y, z:figure.data[2].z,
-	  colorscale: figure.data[2].colorscale,
-	  type: 'surface',
-	  showscale: false
-  }
-  var trace4 = {
-	  x:figure.data[3].x, y:figure.data[3].y, z:figure.data[3].z,
-	  colorscale: figure.data[3].colorscale,
-	  type: 'surface',
-	  showscale: false
-  }
-  var trace5 = {
-	  x:figure.data[4].x, y:figure.data[4].y, z:figure.data[4].z,
-	  colorscale: figure.data[4].colorscale,
-	  type: 'surface',
-	  showscale: false
-  }
-  var trace6 = {
-	  x:figure.data[5].x, y:figure.data[5].y, z:figure.data[5].z,
-	  colorscale: figure.data[5].colorscale,
-	  type: 'surface',
-	  showscale: false
-  }
-  var trace7 = {
-	  x:figure.data[6].x, y:figure.data[6].y, z:figure.data[6].z,
-	  name: '',
-	  colorscale: figure.data[6].colorscale,
-	  type: 'surface',
-	  showscale: false
-  }
+//   var trace1 = {
+// 	  x:figure.data[0].x, y:figure.data[0].y, z:figure.data[0].z,
+// 	  name: '',
+//       colorscale: figure.data[0].colorscale,
+//       showscale: false
+//   }
+//   var trace2 = {
+// 	  x:figure.data[1].x, y:figure.data[1].y, z:figure.data[1].z,
+// 	  name: '',
+// 	  colorscale: figure.data[1].colorscale,
+// 	  type: 'surface',
+// 	  showscale: false
+//   }
+//   var trace3 = {
+// 	  x:figure.data[2].x, y:figure.data[2].y, z:figure.data[2].z,
+// 	  colorscale: figure.data[2].colorscale,
+// 	  type: 'surface',
+// 	  showscale: false
+//   }
+//   var trace4 = {
+// 	  x:figure.data[3].x, y:figure.data[3].y, z:figure.data[3].z,
+// 	  colorscale: figure.data[3].colorscale,
+// 	  type: 'surface',
+// 	  showscale: false
+//   }
+//   var trace5 = {
+// 	  x:figure.data[4].x, y:figure.data[4].y, z:figure.data[4].z,
+// 	  colorscale: figure.data[4].colorscale,
+// 	  type: 'surface',
+// 	  showscale: false
+//   }
+//   var trace6 = {
+// 	  x:figure.data[5].x, y:figure.data[5].y, z:figure.data[5].z,
+// 	  colorscale: figure.data[5].colorscale,
+// 	  type: 'surface',
+// 	  showscale: false
+//   }
+//   var trace7 = {
+// 	  x:figure.data[6].x, y:figure.data[6].y, z:figure.data[6].z,
+// 	  name: '',
+// 	  colorscale: figure.data[6].colorscale,
+// 	  type: 'surface',
+// 	  showscale: false
+//   }
   
-var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7];
+// var data = [trace1, trace2, trace3, trace4, trace5, trace6, trace7];
 
-var layout = {
-  title: 'Ribbon Plot',
-  showlegend: false,
-  autosize: true,
-  width: 600,
-  height: 600,
-  scene: {
-    xaxis: {title: 'Sample #'},
-    yaxis: {title: 'Wavelength'},
-    zaxis: {title: 'OD'}
-  }
-};
-Plotly.newPlot('myDiv5', data, layout);
-});
-        }
+// var layout = {
+//   title: 'Ribbon Plot',
+//   showlegend: false,
+//   autosize: true,
+//   width: 600,
+//   height: 600,
+//   scene: {
+//     xaxis: {title: 'Sample #'},
+//     yaxis: {title: 'Wavelength'},
+//     zaxis: {title: 'OD'}
+//   }
+// };
+// Plotly.newPlot('myDiv5', data, layout);
+// });
+//         }
     //}/**/
 
     /*  Topographical 3D Surface Plot    *///{
-    {
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
-function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+// function unpack(rows, key) {
+//   return rows.map(function(row) { return row[key]; });
+// }
   
-var z_data=[ ]
-for(i=0;i&lt;24;i++)
-{
-  z_data.push(unpack(rows,i));
-}
+// var z_data=[ ]
+// for(i=0;i&lt;24;i++)
+// {
+//   z_data.push(unpack(rows,i));
+// }
 
-var data = [{
-           z: z_data,
-           type: 'surface'
-        }];
+// var data = [{
+//           z: z_data,
+//           type: 'surface'
+//         }];
   
-var layout = {
-  title: 'Mt Bruno Elevation',
-  autosize: false,
-  width: 500,
-  height: 500,
-  margin: {
-    l: 65,
-    r: 50,
-    b: 65,
-    t: 90,
-  }
-};
-Plotly.newPlot('myDiv6', data, layout);
-});
-        }
+// var layout = {
+//   title: 'Mt Bruno Elevation',
+//   autosize: false,
+//   width: 500,
+//   height: 500,
+//   margin: {
+//     l: 65,
+//     r: 50,
+//     b: 65,
+//     t: 90,
+//   }
+// };
+// Plotly.newPlot('myDiv6', data, layout);
+// });
+//         }
     //}/**/
 
     /*  Surface Plot With Contours    *///{
-    {
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
-function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
-var z_data=[ ]
-for(i=0;i<24;i++)
-{
-  z_data.push(unpack(rows,i));
-}
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+// function unpack(rows, key) {
+//   return rows.map(function(row) { return row[key]; });
+// }
+// var z_data=[ ]
+// for(i=0;i<24;i++)
+// {
+//   z_data.push(unpack(rows,i));
+// }
 
-var data = [{
-  z: z_data,
-  type: 'surface',
-  contours: {
-    z: {
-      show:true,
-      usecolormap: true,
-      highlightcolor:"#42f462",
-      project:{z: true}
-    }
-  }
-}];
+// var data = [{
+//   z: z_data,
+//   type: 'surface',
+//   contours: {
+//     z: {
+//       show:true,
+//       usecolormap: true,
+//       highlightcolor:"#42f462",
+//       project:{z: true}
+//     }
+//   }
+// }];
 
-var layout = {
-  title: 'Mt Bruno Elevation With Projected Contours',
-  scene: {camera: {eye: {x: 1.87, y: 0.88, z: -0.64}}},
-  autosize: false,
-  width: 500,
-  height: 500,
-  margin: {
-    l: 65,
-    r: 50,
-    b: 65,
-    t: 90,
-  }
-};
+// var layout = {
+//   title: 'Mt Bruno Elevation With Projected Contours',
+//   scene: {camera: {eye: {x: 1.87, y: 0.88, z: -0.64}}},
+//   autosize: false,
+//   width: 500,
+//   height: 500,
+//   margin: {
+//     l: 65,
+//     r: 50,
+//     b: 65,
+//     t: 90,
+//   }
+// };
 
-Plotly.newPlot('myDiv7', data, layout);
-});
-        }
+// Plotly.newPlot('myDiv7', data, layout);
+// });
+//         }
     //}/**/
 
     /*Multiple 3D Surface Plots*///{
-    {
-z1 = [
-    [8.83,8.89,8.81,8.87,8.9,8.87],
-    [8.89,8.94,8.85,8.94,8.96,8.92],
-    [8.84,8.9,8.82,8.92,8.93,8.91],
-    [8.79,8.85,8.79,8.9,8.94,8.92],
-    [8.79,8.88,8.81,8.9,8.95,8.92],
-    [8.8,8.82,8.78,8.91,8.94,8.92],
-    [8.75,8.78,8.77,8.91,8.95,8.92],
-    [8.8,8.8,8.77,8.91,8.95,8.94],
-    [8.74,8.81,8.76,8.93,8.98,8.99],
-    [8.89,8.99,8.92,9.1,9.13,9.11],
-    [8.97,8.97,8.91,9.09,9.11,9.11],
-    [9.04,9.08,9.05,9.25,9.28,9.27],
-    [9,9.01,9,9.2,9.23,9.2],
-    [8.99,8.99,8.98,9.18,9.2,9.19],
-    [8.93,8.97,8.97,9.18,9.2,9.18]
-];
+//     {
+// z1 = [
+//     [8.83,8.89,8.81,8.87,8.9,8.87],
+//     [8.89,8.94,8.85,8.94,8.96,8.92],
+//     [8.84,8.9,8.82,8.92,8.93,8.91],
+//     [8.79,8.85,8.79,8.9,8.94,8.92],
+//     [8.79,8.88,8.81,8.9,8.95,8.92],
+//     [8.8,8.82,8.78,8.91,8.94,8.92],
+//     [8.75,8.78,8.77,8.91,8.95,8.92],
+//     [8.8,8.8,8.77,8.91,8.95,8.94],
+//     [8.74,8.81,8.76,8.93,8.98,8.99],
+//     [8.89,8.99,8.92,9.1,9.13,9.11],
+//     [8.97,8.97,8.91,9.09,9.11,9.11],
+//     [9.04,9.08,9.05,9.25,9.28,9.27],
+//     [9,9.01,9,9.2,9.23,9.2],
+//     [8.99,8.99,8.98,9.18,9.2,9.19],
+//     [8.93,8.97,8.97,9.18,9.2,9.18]
+// ];
 
-z2 = [];
-for (var i=0;i&lt;z1.length;i++ ) {
-  z2_row = [];
-    for(var j=0;j&lt;z1[i].length;j++) {
-      z2_row.push(z1[i][j]+1);
-    }
-    z2.push(z2_row);
-}
+// z2 = [];
+// for (var i=0;i&lt;z1.length;i++ ) {
+//   z2_row = [];
+//     for(var j=0;j&lt;z1[i].length;j++) {
+//       z2_row.push(z1[i][j]+1);
+//     }
+//     z2.push(z2_row);
+// }
 
-z3 = []
-for (var i=0;i&lt;z1.length;i++ ) {
-  z3_row = [];
-    for(var j=0;j&lt;z1[i].length;j++) {
-      z3_row.push(z1[i][j]-1);
-    }
-    z3.push(z3_row);
-}
-var data_z1 = {z: z1, type: 'surface'};
-var data_z2 = {z: z2, showscale: false, opacity:0.9, type: 'surface'};
-var data_z3 = {z: z3, showscale: false, opacity:0.9, type: 'surface'};
+// z3 = []
+// for (var i=0;i&lt;z1.length;i++ ) {
+//   z3_row = [];
+//     for(var j=0;j&lt;z1[i].length;j++) {
+//       z3_row.push(z1[i][j]-1);
+//     }
+//     z3.push(z3_row);
+// }
+// var data_z1 = {z: z1, type: 'surface'};
+// var data_z2 = {z: z2, showscale: false, opacity:0.9, type: 'surface'};
+// var data_z3 = {z: z3, showscale: false, opacity:0.9, type: 'surface'};
 
 
 
-Plotly.newPlot('myDiv8', [data_z1, data_z2, data_z3]);
+// Plotly.newPlot('myDiv8', [data_z1, data_z2, data_z3]);
         
-        }
+//         }
     //}/**/
 
     /*   Simple 3D Mesh Plot   *///{
-    {
-// Generating random data..
-a=[]; b=[]; c=[];
-for(i=0;i < 50;i++)
-  {
-    var a_ = Math.random();
-    a.push(a_);
+//     {
+// // Generating random data..
+// a=[]; b=[]; c=[];
+// for(i=0;i < 50;i++)
+//   {
+//     var a_ = Math.random();
+//     a.push(a_);
     
-    var b_ = Math.random();
-    b.push(b_);
+//     var b_ = Math.random();
+//     b.push(b_);
     
-    var c_ = Math.random();
-    c.push(c_);
-  }
-// Plotting the mesh
-var data=[
-    {
-      opacity:0.8,
-      color:'rgb(300,100,200)',
-      type: 'mesh3d',
-      x: a,
-      y: b,
-      z: c,
-    }
-];
-Plotly.newPlot('myDiv9', data);
-}
+//     var c_ = Math.random();
+//     c.push(c_);
+//   }
+// // Plotting the mesh
+// var data=[
+//     {
+//       opacity:0.8,
+//       color:'rgb(300,100,200)',
+//       type: 'mesh3d',
+//       x: a,
+//       y: b,
+//       z: c,
+//     }
+// ];
+// Plotly.newPlot('myDiv9', data);
+// }
     //}/**/
 
     /*   3D Mesh Plot with Alphahull   *///{
-    {
-// Generating random data..
-a=[]; b=[]; c=[];
-for(i=0;i&lt50;i++)
-  {
-  var a_ = Math.random();
-   a.push(a_);
+//     {
+// // Generating random data..
+// a=[]; b=[]; c=[];
+// for(i=0;i&lt50;i++)
+//   {
+//   var a_ = Math.random();
+//   a.push(a_);
   
-  var b_ = Math.random();
-   b.push(b_);
+//   var b_ = Math.random();
+//   b.push(b_);
   
-  var c_ = Math.random();
-   c.push(c_);
-  }
-// Plotting the mesh
-var data=[
-  {
-    alphahull:5,
-    opacity:0.8,
-    color:'rgb(200,100,300)',
-    type: 'mesh3d',
-    x: a,
-    y: b,
-    z: c,
-  },
+//   var c_ = Math.random();
+//   c.push(c_);
+//   }
+// // Plotting the mesh
+// var data=[
+//   {
+//     alphahull:5,
+//     opacity:0.8,
+//     color:'rgb(200,100,300)',
+//     type: 'mesh3d',
+//     x: a,
+//     y: b,
+//     z: c,
+//   },
  
-];
-Plotly.newPlot('myDiv10', data,{title:"3D Mesh Plot with Alphahull"});
-        }
+// ];
+// Plotly.newPlot('myDiv10', data,{title:"3D Mesh Plot with Alphahull"});
+//         }
     //}/**/
 
     /*  3D Mesh Tetrahedron    *///{
-    {
-var data = [{
-    type: "mesh3d",
-    x: [0, 1, 2, 0],
-    y: [0, 0, 1, 2],
-    z: [0, 2, 0, 1],
-    i: [0, 0, 0, 1],
-    j: [1, 2, 3, 2],
-    k: [2, 3, 1, 3],
-    intensity: [0, 0.33, 0.66, 1],
-    colorscale: [
-      [0, 'rgb(255, 0, 0)'],
-      [0.5, 'rgb(0, 255, 0)'],
-      [1, 'rgb(0, 0, 255)']
-    ]
-  }
-];
+//     {
+// var data = [{
+//     type: "mesh3d",
+//     x: [0, 1, 2, 0],
+//     y: [0, 0, 1, 2],
+//     z: [0, 2, 0, 1],
+//     i: [0, 0, 0, 1],
+//     j: [1, 2, 3, 2],
+//     k: [2, 3, 1, 3],
+//     intensity: [0, 0.33, 0.66, 1],
+//     colorscale: [
+//       [0, 'rgb(255, 0, 0)'],
+//       [0.5, 'rgb(0, 255, 0)'],
+//       [1, 'rgb(0, 0, 255)']
+//     ]
+//   }
+// ];
 
-Plotly.plot('myDiv11', data, {title:'3D Mesh Tetrahedron '});
-        }
+// Plotly.plot('myDiv11', data, {title:'3D Mesh Tetrahedron '});
+//         }
     //}/**/
 
     /*   3D Mesh Cube   *///{
-    {
-// have to import the numeric.js in order to call `numeric.linspace`
+//     {
+// // have to import the numeric.js in order to call `numeric.linspace`
 
-var resolveDiv12 = new Promise((resolve,reject)=>{
-    // console.log('promise initialed')
-    // console.log(   ultraObject.DOM_child[0]   )
+// var resolveDiv12 = new Promise((resolve,reject)=>{
+//     // console.log('promise initialed')
+//     // console.log(   ultraObject.DOM_child[0]   )
 
-ultraObject.DOM_child[0] = new XMLHttpRequest()
-ultraObject.eventName = 'readystatechange'
-ultraObject.addEventListener({
-    xhttp:'true',
-    fn:function(){
-        }
+// ultraObject.endpoint({
+//     xhttp:ultraObject.iterify({iterify:[new XMLHttpRequest()]}),
+//     instruct:'XMLHttpRequest',
+//     eventName:'load',
+//     eventHandler:()=>{
+//         console.log(ultraObject.XHR[0][0].responseText)
+//     },
+//     protocol:"POST",
+//     target:"http://24.189.66.225/backend/linspace",
+//     asyncBool:true,
+//     body:JSON.stringify({
+//         'a': 0,
+//         'b': 1,
+//         'c': 8
+//     })
+// })
+//     ultraObject.XHR[0][0].onload =function(){
+//         // console.log('received answer from backend ready to resolve')
+//         // console.log(   ultraObject.DOM_child[0].responseText   )
+//         resolve()
+//     }
+//     }).then(()=>{
         
-}) //your item is here
-ultraObject.open({
-        protocol: "POST",
-        xhttp:ultraObject.DOM_child[0],
-        target:"http://24.189.66.225/backend/linspace",
-        unk_bool:true
-    })
-ultraObject.DOM_child[0].send(JSON.stringify({
-    'a': 0,
-    'b': 1,
-    'c': 8
-}))
-    ultraObject.DOM_child[0].onload =function(){
-        // console.log('received answer from backend ready to resolve')
-        // console.log(   ultraObject.DOM_child[0].responseText   )
-        resolve()
-    }
-    }).then(()=>{
-        
-        console.log(   ultraObject.DOM_child[0].responseText   )
-        var intensity = JSON.parse(   ultraObject.DOM_child[0].responseText   )
-        var data = [{
-            type: "mesh3d",
-            x: [0, 0, 1, 1, 0, 0, 1, 1],
-            y: [0, 1, 1, 0, 0, 1, 1, 0],
-            z: [0, 0, 0, 0, 1, 1, 1, 1],
-            i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
-            j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
-            k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
-            intensity: intensity,
-            colorscale: [
-              [0, 'rgb(255, 0, 255)'],
-              [0.5, 'rgb(0, 255, 0)'],
-              [1, 'rgb(0, 0, 255)']
-            ]
-          }
-        ];
-Plotly.plot('myDiv12', data, {});
+//         console.log(   ultraObject.XHR[0][0].responseText   )
+//         var intensity = JSON.parse(   ultraObject.XHR[0][0].responseText   )
+//         var data = [{
+//             type: "mesh3d",
+//             x: [0, 0, 1, 1, 0, 0, 1, 1],
+//             y: [0, 1, 1, 0, 0, 1, 1, 0],
+//             z: [0, 0, 0, 0, 1, 1, 1, 1],
+//             i: [7, 0, 0, 0, 4, 4, 6, 6, 4, 0, 3, 2],
+//             j: [3, 4, 1, 2, 5, 6, 5, 2, 0, 1, 6, 3],
+//             k: [0, 7, 2, 3, 6, 7, 1, 1, 5, 5, 7, 6],
+//             intensity: intensity,
+//             colorscale: [
+//               [0, 'rgb(255, 0, 255)'],
+//               [0.5, 'rgb(0, 255, 0)'],
+//               [1, 'rgb(0, 0, 255)']
+//             ]
+//           }
+//         ];
+// Plotly.plot('myDiv12', data, {});
 
-    })
+//     })
 
-        }
+//         }
     //}/**/
 
     /*  Basic Trisurf Plot    *///{
-    {
-
-
-
-    
-               
-var resolveDiv13 = new Promise((resolve,reject)=>{
-    // console.log('promise initialed')
-    // console.log(   ultraObject.DOM_child[0]   )
-// cannot not use the same XHR especially in promises you ovveride their event handlers
-ultraObject.DOM_child[1] = ultraObject.xhttp
-ultraObject.eventName = 'readystatechange'
-ultraObject.addEventListener({
-    xhttp:'true',
-    fn:function(){
-        }
-        
-}) //your item is here
-ultraObject.open({
-        protocol: "POST",
-        xhttp:ultraObject.DOM_child[1] ,
-        target:"http://24.189.66.225/backend/trisurf",
-        unk_bool:true
-    })
-// must send a single object or a single string with the XMLHttpRequest Obj
-ultraObject.DOM_child[1].send(JSON.stringify(
-    
-  [
-      [
-        [0, 1, 2],
-        [0, 2, 3],
-        [0, 3, 1],
-        [1, 2, 3]
-      ],
-      [0, 1, 0, 0],
-      [0, 0, 1, 0],
-      [0, 0, 0, 1],
-      [
-        'rgb(0, 0, 0)',
-        'rgb(255, 0, 0)',
-        'rgb(0, 255, 0)',
-        'rgb(0, 0, 255)'
-      ]
-  ]
+//     {
+      
+// var resolveDiv13 = new Promise((resolve,reject)=>{
+//     // console.log('promise initialed')
+//     // console.log(   ultraObject.DOM_child[0]   )
+// // cannot not use the same XHR especially in promises you ovveride their event handlers
+// // must send a single object or a single string with the XMLHttpRequest Obj
   
-  ))
+//  ultraObject.endpoint({
+//     xhttp:ultraObject.iterify({iterify:[new XMLHttpRequest()]}),
+//     instruct:'XMLHttpRequest',
+//     eventName:'load',
+//     eventHandler:()=>{
+//         console.log(ultraObject.XHR[1][0].responseText)
+//     },
+//     protocol:"POST",
+//     target:"http://24.189.66.225/backend/trisurf",
+//     asyncBool:true,
+//     body:JSON.stringify(
     
-    ultraObject.DOM_child[1].onload =function(){
-        // console.log('received answer from backend ready to resolve')
-        // console.log(   ultraObject.DOM_child[0].responseText   )
-        resolve()
-    }
-    }).then(()=>{
+//   [
+//       [
+//         [0, 1, 2],
+//         [0, 2, 3],
+//         [0, 3, 1],
+//         [1, 2, 3]
+//       ],
+//       [0, 1, 0, 0],
+//       [0, 0, 1, 0],
+//       [0, 0, 0, 1],
+//       [
+//         'rgb(0, 0, 0)',
+//         'rgb(255, 0, 0)',
+//         'rgb(0, 255, 0)',
+//         'rgb(0, 0, 255)'
+//       ]
+//   ]
+  
+//   )
+// })
+    
+//     ultraObject.XHR[1][0].onload =function(){
+//         // console.log('received answer from backend ready to resolve')
+//         // console.log(   ultraObject.DOM_child[0].responseText   )
+//         resolve()
+//     }
+//     }).then(()=>{
         
     
-            if (    ultraObject.DOM_child[1].readyState == 4 && ultraObject.DOM_child[1].status == 200   ) {
-            console.log(ultraObject.DOM_child[1].responseText)
-            var data =  JSON.parse(   JSON.parse(   JSON.stringify(ultraObject.DOM_child[1].responseText)   )   )
-            console.log(typeof data)
-            console.log(data)
-            Plotly.newPlot('myDiv13', [data]);
-        }
+
+//             console.log( ultraObject.XHR[1][0].responseText)
+//             var data =  JSON.parse(   JSON.parse(   JSON.stringify( ultraObject.XHR[1][0].responseText)   )   )
+//             console.log(typeof data)
+//             console.log(data)
+//             Plotly.newPlot('myDiv13', [data]);
+        
     
-    })
-        }
+//     })
+//         }
 
     //}/**/
 
     /*Trisurf Cube      *///{
-    {
+//     {
         
-var resolveDiv14 = new Promise(()=>{
-var x = [0, 0, 1, 1, 0, 0, 1, 1]
-var y = [0, 1, 1, 0, 0, 1, 1, 0]
-var z = [0, 0, 0, 0, 1, 1, 1, 1]
-var i = [7, 0, 0, 0, 4, 4, 2, 6, 4, 0, 3, 7]
-var j = [3, 4, 1, 2, 5, 6, 5, 5, 0, 1, 2, 2]
-var k = [0, 7, 2, 3, 6, 7, 1, 2, 5, 5, 7, 6]
+// var resolveDiv14 = new Promise((resolve,reject)=>{
+// var x = [0, 0, 1, 1, 0, 0, 1, 1]
+// var y = [0, 1, 1, 0, 0, 1, 1, 0]
+// var z = [0, 0, 0, 0, 1, 1, 1, 1]
+// var i = [7, 0, 0, 0, 4, 4, 2, 6, 4, 0, 3, 7]
+// var j = [3, 4, 1, 2, 5, 6, 5, 5, 0, 1, 2, 2]
+// var k = [0, 7, 2, 3, 6, 7, 1, 2, 5, 5, 7, 6]
 
-var facecolor = [
-	'rgb(50, 200, 200)',
-	'rgb(100, 200, 255)',
-	'rgb(150, 200, 115)',
-	'rgb(200, 200, 50)',
-	'rgb(230, 200, 10)',
-	'rgb(255, 140, 0)'
-]
+// var facecolor = [
+// 	'rgb(50, 200, 200)',
+// 	'rgb(100, 200, 255)',
+// 	'rgb(150, 200, 115)',
+// 	'rgb(200, 200, 50)',
+// 	'rgb(230, 200, 10)',
+// 	'rgb(255, 140, 0)'
+// ]
 
-facecolor2 = new Array(facecolor.length * 2);
+// facecolor2 = new Array(facecolor.length * 2);
 
-facecolor.forEach(function(x, i) {
-	facecolor2[i * 2 + 1] = facecolor2[i * 2] = x;
-});
+// facecolor.forEach(function(x, i) {
+// 	facecolor2[i * 2 + 1] = facecolor2[i * 2] = x;
+// });
 
-var data = {
-	x: x,
-	y: y,
-	z: z,
-	i: i,
-	j: j,
-	k: k,
-	facecolor: facecolor2,
-	type: 'mesh3d'
-}
+// var data = {
+// 	x: x,
+// 	y: y,
+// 	z: z,
+// 	i: i,
+// 	j: j,
+// 	k: k,
+// 	facecolor: facecolor2,
+// 	type: 'mesh3d'
+// }
 
-Plotly.newPlot('myDiv14', [data])
-resolve()
+// Plotly.newPlot('myDiv14', [data])
+// resolve()
     
-    })
+//     })
     
 
-        }
+//         }
     //}/**/
 
     /*   Extending the Cube Example for Boxes   *///{
-    {
+//     {
         
-var resolveDiv15 = new Promise(()=>{
-// Note x, y, z define the vertices for a unit cube
+// var resolveDiv15 = new Promise((resolve)=>{
+// // Note x, y, z define the vertices for a unit cube
 
-var x = [0, 0, 1, 1, 0, 0, 1, 1];
-var y = [0, 1, 1, 0, 0, 1, 1, 0];
-var z = [0, 0, 0, 0, 1, 1, 1, 1];
-var i = [7, 0, 0, 0, 4, 4, 2, 6, 4, 0, 3, 7];
-var j = [3, 4, 1, 2, 5, 6, 5, 5, 0, 1, 2, 2];
-var k = [0, 7, 2, 3, 6, 7, 1, 2, 5, 5, 7, 6];
+// var x = [0, 0, 1, 1, 0, 0, 1, 1];
+// var y = [0, 1, 1, 0, 0, 1, 1, 0];
+// var z = [0, 0, 0, 0, 1, 1, 1, 1];
+// var i = [7, 0, 0, 0, 4, 4, 2, 6, 4, 0, 3, 7];
+// var j = [3, 4, 1, 2, 5, 6, 5, 5, 0, 1, 2, 2];
+// var k = [0, 7, 2, 3, 6, 7, 1, 2, 5, 5, 7, 6];
 
-var range_x = [-2, 2];
-var range_y = [-3, 3];
-var range_z = [-1, 1];
+// var range_x = [-2, 2];
+// var range_y = [-3, 3];
+// var range_z = [-1, 1];
 
-function rectangle(x, y, z, range_x, range_y, range_z) {
+// function rectangle(x, y, z, range_x, range_y, range_z) {
 
-  if (range_x.length !== 2 || range_y.length !== 2 || range_z.length !== 2) {
-    throw 'Ranges must contain 2 values';
-  }
-	// we will forego other checks for to limit the length of the example
-	x = x.map(function(e, i) {
-    return range_x[e];
-  });
+//   if (range_x.length !== 2 || range_y.length !== 2 || range_z.length !== 2) {
+//     throw 'Ranges must contain 2 values';
+//   }
+// 	// we will forego other checks for to limit the length of the example
+// 	x = x.map(function(e, i) {
+//     return range_x[e];
+//   });
 
-  y = y.map(function(e, i) {
-    return range_y[e];
-  });
+//   y = y.map(function(e, i) {
+//     return range_y[e];
+//   });
 
-  z = z.map(function(e, i) {
-    return range_z[e];
-  });
+//   z = z.map(function(e, i) {
+//     return range_z[e];
+//   });
 
-	return {x: x, y: y, z: z};
-}
+// 	return {x: x, y: y, z: z};
+// }
 
-result = rectangle(x, y, z, range_x, range_y, range_z);
+// result = rectangle(x, y, z, range_x, range_y, range_z);
 
-// x, y, z now represent the vertices for the rectangular box with
-// the ranges specified above
-x = result.x;
-y = result.y;
-z = result.z;
+// // x, y, z now represent the vertices for the rectangular box with
+// // the ranges specified above
+// x = result.x;
+// y = result.y;
+// z = result.z;
 
-var facecolor = [
-    'rgb(50, 200, 200)',
-    'rgb(100, 200, 255)',
-    'rgb(150, 200, 115)',
-    'rgb(200, 200, 50)',
-    'rgb(230, 200, 10)',
-    'rgb(255, 140, 0)'
-];
+// var facecolor = [
+//     'rgb(50, 200, 200)',
+//     'rgb(100, 200, 255)',
+//     'rgb(150, 200, 115)',
+//     'rgb(200, 200, 50)',
+//     'rgb(230, 200, 10)',
+//     'rgb(255, 140, 0)'
+// ];
 
-facecolor2 = new Array(facecolor.length * 2);
-facecolor.forEach(function(x, i) {
-    facecolor2[i * 2 + 1] = facecolor2[i * 2] = x;
-});
+// facecolor2 = new Array(facecolor.length * 2);
+// facecolor.forEach(function(x, i) {
+//     facecolor2[i * 2 + 1] = facecolor2[i * 2] = x;
+// });
 
-var data = {
-    x: x,
-    y: y,
-    z: z,
-    i: i,
-    j: j,
-    k: k,
-    facecolor: facecolor2,
-    type: 'mesh3d'
-};
+// var data = {
+//     x: x,
+//     y: y,
+//     z: z,
+//     i: i,
+//     j: j,
+//     k: k,
+//     facecolor: facecolor2,
+//     type: 'mesh3d'
+// };
 
-Plotly.newPlot('myDiv15', [data]);
-resolve()
-})
+// Plotly.newPlot('myDiv15', [data]);
+// resolve()
+// })
   
-        }
+//         }
     //}/**/
 
     /* 3D Point Clustering     *///{
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/alpha_shape.csv', function(err, rows){
+
+//     function unpack(rows, key) {
+//         return rows.map(function(row) { return row[key]; });
+//     }
+
+//     var data = [{
+//         x: unpack(rows, 'x'),
+//         y: unpack(rows, 'y'),
+//         z: unpack(rows, 'z'),
+//         mode: 'markers',
+//         type: 'scatter3d',
+//         marker: {
+//           color: 'rgb(23, 190, 207)',
+//           size: 2
+//         }
+//     },{
+//         alphahull: 7,
+//         opacity: 0.1,
+//         type: 'mesh3d',
+//         x: unpack(rows, 'x'),
+//         y: unpack(rows, 'y'),
+//         z: unpack(rows, 'z')
+//     }];
+
+//     var layout = {
+//         autosize: true,
+//         height: 480,
+//         scene: {
+//             aspectratio: {
+//                 x: 1,
+//                 y: 1,
+//                 z: 1
+//             },
+//             camera: {
+//                 center: {
+//                     x: 0,
+//                     y: 0,
+//                     z: 0
+//                 },
+//                 eye: {
+//                     x: 1.25,
+//                     y: 1.25,
+//                     z: 1.25
+//                 },
+//                 up: {
+//                     x: 0,
+//                     y: 0,
+//                     z: 1
+//                 }
+//             },
+//             xaxis: {
+//                 type: 'linear',
+//                 zeroline: false
+//             },
+//             yaxis: {
+//                 type: 'linear',
+//                 zeroline: false
+//             },
+//             zaxis: {
+//                 type: 'linear',
+//                 zeroline: false
+//             }
+//         },
+//         title: '3d point clustering',
+//         width: 477
+//     };
+
+//     Plotly.newPlot('myDiv16', data, layout);
+
+// });
+//         }
+    //}/**/
+
+    /*   Basic 3D Cone   *///{
+//     {
+// var resolveDiv17 = new Promise((resolve,reject)=>{
+// var data = [{
+//   type: "cone",
+//   x: [1], y: [1], z: [1],
+//   u: [1], v: [1], w: [0]
+// }]
+
+// var layout = {
+//   "scene": {
+//     "camera": {
+//       "eye": {x: -0.76, y: 1.8, z: 0.92}
+//     }
+//   }
+// }
+
+// Plotly.plot('myDiv17',data,layout)
+// resolve()
+// })
+        
+//         }
+    //}/**/
+
+    /*    Multiple 3D Cone*///{
+//     {
+// var resolveDiv18 = new Promise((resolve,reject)=>{
+// var data = [{
+//       type: "cone",
+//       x: [1, 2, 3],
+//       y: [1, 2, 3],
+//       z: [1, 2, 3],
+//       u: [1, 0, 0],
+//       v: [0, 3, 0],
+//       w: [0, 0, 2],
+//       sizemode: "absolute",
+//       sizeref: 2,
+//       anchor: "tip",
+//       colorbar: {
+//         x: 0,
+//         xanchor: "right",
+//         side: "left"
+//       }
+// }]
+
+// var layout = {
+//     scene: {
+//       domain: {x: [0, 1]},
+//       camera: {
+//         eye: {x: -1.57, y: 1.36, z: 0.58}
+//       }
+//     },
+//     width: 800
+// }
+
+// Plotly.plot('myDiv18', data, layout)
+// resolve()
+// })
+//         }
+    //}/**/
+
+/*   3D Cone Lighting   *///{
+//     {
+        
+// var resolveDiv19 = new Promise((resolve,reject)=>{
+// var data = [{
+//     type: "cone",
+//     name: "base",
+//     x: [1, 1, 1],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false
+//   },
+//   {
+//     type: "cone",
+//     name: "opacity:0.3",
+//     x: [2, 2, 2],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     opacity: 0.3
+//   },
+//   {
+//     type: "cone",
+//     name: "lighting.ambient:0.3",
+//     x: [3, 3, 3],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     lighting: {ambient: 0.3}
+//   },
+//   {
+//     type: "cone",
+//     name: "lighting.diffuse:0.3",
+//     x: [4, 4, 4],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     lighting: {diffuse: 0.3}
+//   },
+//   {
+//     type: "cone",
+//     name: "lighting.specular:2",
+//     x: [5, 5, 5],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     lighting: {specular: 2}
+//   },
+//   {
+//     type: "cone",
+//     name: "lighting.roughness:1",
+//     x: [6, 6, 6],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     lighting: {roughness: 1}
+//   },
+//   {
+//     type: "cone",
+//     name: "lighting.fresnel:2",
+//     x: [7, 7, 7],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     lighting: {fresnel: 2}
+//   },
+//   {
+//     type: "cone",
+//     name: "lighting.position x:0,y:0,z:1e5",
+//     x: [8, 8, 8],
+//     y: [1, 2, 3],
+//     z: [1, 1, 1],
+//     u: [1, 2, 3],
+//     v: [1, 1, 2],
+//     w: [4, 4, 1],
+//     hoverinfo: "u+v+w+name",
+//     showscale: false,
+//     lightposition: {x: 0, y: 0, z: 1e5}
+// }]
+
+// var layout = {
+//   scene: {
+//     aspectmode: "data",
+//     camera: {
+//       eye: {x: 0.05, y: -2.6, z: 2}
+//     }
+//   },
+//   width: 500,
+//   height: 500,
+//   margin: {t: 0, b: 0, l: 0, r: 0}
+// }
+
+// Plotly.plot('myDiv19',data,layout)
+// })
+//         }
+    //}/**/
+
+    /*  Basic Streamtube Plot    *///{
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/streamtube-basic.csv', function(err, rows){
+
+//     function unpack(rows, key) {
+//         return rows.map(function(row) { return row[key]; });
+//     }
+
+//     var data = [{
+//       type: "streamtube",
+//       x: unpack(rows, 'x'),
+//       y: unpack(rows, 'y'),
+//       z: unpack(rows, 'z'),
+//       u: unpack(rows, 'u'),
+//       v: unpack(rows, 'v'),
+//       w: unpack(rows, 'w'),
+//       sizeref: 0.5,
+//       cmin: 0,
+//       cmax: 3
+//     }]
+
+//     var layout = {
+//       title:'Basic Streamtube Plot',
+//       scene: {
+//         camera: {
+//           eye: {
+//           	x: -0.7243612458865182,
+//           	y: 1.9269804254717962,
+//           	z: 0.6704828299861716
+//           }
+//         }
+//       }
+//     }
+
+//     Plotly.newPlot('myDiv20', data, layout)
+
+// });
+//         }
+    //}/**/
+
+    /*  Starting Position and Segments    *///{
+//     {
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/streamtube-wind.csv', function(err, rows){
+
+//     function unpack(rows, key) {
+//         return rows.map(function(row) { return row[key]; });
+//     }
+
+//     var data = [{
+//       type: 'streamtube',
+//       x: unpack(rows, 'x'),
+//       y: unpack(rows, 'y'),
+//       z: unpack(rows, 'z'),
+//       u: unpack(rows, 'u'),
+//       v: unpack(rows, 'v'),
+//       w: unpack(rows, 'w'),
+//       starts: {
+//         x: Array(16).fill(80),
+//         y: [20,30,40,50,20,30,40,50,20,30,40,50,20,30,40,50],
+//         z: [0,0,0,0,5,5,5,5,10,10,10,10,15,15,15,15]
+//       },
+//       sizeref: 0.3,
+//       colorscale: "Portland",
+//       showscale: false,
+//       maxdisplayed: 3000
+//     }]
+
+//     var layout = {
+//       scene: {
+//         aspectratio: {
+//           x: 2,
+//           y: 1,
+//           z: 0.3
+//         }
+//       },
+//       margin: {
+//         t: 20,
+//         b: 20,
+//         l: 20,
+//         r: 20
+//       },
+//       width: 600,
+//       height: 400
+//     }
+
+//     Plotly.newPlot('myDiv21', data, layout);
+
+// });
+//         }
+    //}/**/
+
+    /*   Basic Isosurface Plot   *///{
     {
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/alpha_shape.csv', function(err, rows){
+        
+var resolveDiv22 = new Promise((resolve,reject)=>{
+    var data = [
+        {
+            type: "isosurface",
+            x: [0,0,0,0,1,1,1,1],
+            y: [0,1,0,1,0,1,0,1],
+            z: [1,1,0,0,1,1,0,0],
+            value: [1,2,3,4,5,6,7,8],
+            isomin: 2,
+            isomax: 6,
+            colorscale: "Reds"
+        }
+    ];
+    var layout = {
+        margin: {t:0, l:0, b:0},
+        scene: {
+            camera: {
+                eye: {
+                    x: 1.88,
+                    y: -2.12,
+                    z: 0.96
+                }
+            }
+        }
+    };
+    Plotly.newPlot('myDiv22', data, layout, {showSendToCloud: true});
+})
+        }
+    //}/**/
 
-    function unpack(rows, key) {
-        return rows.map(function(row) { return row[key]; });
-    }
+    /*   Isosurface with Additional Slices   *///{
+    {
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/clebsch-cubic.csv', function(err, rows){
+  function unpack(rows, key) {
+  return rows.map(function(row) {return parseFloat(row[key]); });
+}
 
-    var data = [{
+var data = [
+    {
+        type: "isosurface",
         x: unpack(rows, 'x'),
         y: unpack(rows, 'y'),
         z: unpack(rows, 'z'),
-        mode: 'markers',
-        type: 'scatter3d',
-        marker: {
-          color: 'rgb(23, 190, 207)',
-          size: 2
-        }
-    },{
-        alphahull: 7,
-        opacity: 0.1,
-        type: 'mesh3d',
-        x: unpack(rows, 'x'),
-        y: unpack(rows, 'y'),
-        z: unpack(rows, 'z')
-    }];
-
-    var layout = {
-        autosize: true,
-        height: 480,
-        scene: {
-            aspectratio: {
-                x: 1,
-                y: 1,
-                z: 1
-            },
-            camera: {
-                center: {
-                    x: 0,
-                    y: 0,
-                    z: 0
-                },
-                eye: {
-                    x: 1.25,
-                    y: 1.25,
-                    z: 1.25
-                },
-                up: {
-                    x: 0,
-                    y: 0,
-                    z: 1
-                }
-            },
-            xaxis: {
-                type: 'linear',
-                zeroline: false
-            },
-            yaxis: {
-                type: 'linear',
-                zeroline: false
-            },
-            zaxis: {
-                type: 'linear',
-                zeroline: false
-            }
+        value: unpack(rows, 'value'),
+        isomin: -100,
+        isomax: 100,
+        surface: {show: true, count: 1, fill: 0.8},
+        slices: {z: {
+          show: true, locations: [-0.3, 0.5]
+        }},
+        caps: {
+            x: {show: false},
+            y: {show: false},
+            z: {show: false}
         },
-        title: '3d point clustering',
-        width: 477
-    };
+    }
+];
 
-    Plotly.newPlot('myDiv16', data, layout);
+var layout = {
+    margin: {t:0, l:0, b:0},
+    scene: {
+        camera: {
+            eye: {
+                x: 1.86,
+                y: 0.61,
+                z: 0.98
+            }
+        }
+    }
+};
 
+Plotly.newPlot('myDiv23', data, layout, {showSendToCloud: true});
 });
         }
     //}/**/
 
-    /*   Basic 3D Cone   *///{
+    /*  Multiple Isosurfaces with Caps  *///{
     {
-var resolveDiv17 = new Promise((resolve,reject)=>{
-var data = [{
-  type: "cone",
-  x: [1], y: [1], z: [1],
-  u: [1], v: [1], w: [0]
-}]
-
-var layout = {
-  "scene": {
-    "camera": {
-      "eye": {x: -0.76, y: 1.8, z: 0.92}
-    }
-  }
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/clebsch-cubic.csv', function(err, rows){
+  function unpack(rows, key) {
+  return rows.map(function(row) {return parseFloat(row[key]); });
 }
 
-Plotly.plot('myDiv17',data,layout)
-resolve()
-})
-        
-        }
-    //}/**/
-
-    /*    Multiple 3D Cone*///{
+var data = [
     {
-var resolveDiv18 = new Promise((resolve,reject)=>{
-var data = [{
-      type: "cone",
-      x: [1, 2, 3],
-      y: [1, 2, 3],
-      z: [1, 2, 3],
-      u: [1, 0, 0],
-      v: [0, 3, 0],
-      w: [0, 0, 2],
-      sizemode: "absolute",
-      sizeref: 2,
-      anchor: "tip",
-      colorbar: {
-        x: 0,
-        xanchor: "right",
-        side: "left"
-      }
-}]
+        type: "isosurface",
+        x: unpack(rows, 'x'),
+        y: unpack(rows, 'y'),
+        z: unpack(rows, 'z'),
+        value: unpack(rows, 'value'),
+        isomin: -10,
+        isomax: 10,
+        surface: {show: true, count: 4, fill: 1, pattern: 'odd'},
+        caps: {
+            x: {show: true},
+            y: {show: true},
+            z: {show: true}
+        },
+    }
+];
 
 var layout = {
+    margin: {t:0, l:0, b:0},
     scene: {
-      domain: {x: [0, 1]},
-      camera: {
-        eye: {x: -1.57, y: 1.36, z: 0.58}
-      }
-    },
-    width: 800
-}
-
-Plotly.plot('myDiv18', data, layout)
-resolve()
-})
+        camera: {
+            eye: {
+                x: 1.86,
+                y: 0.61,
+                z: 0.98
+            }
         }
-    //}/**/
-
-    /*   3D Cone Lighting   *///{
-    {
-        
-var resolveDiv19 = new Promise((resolve,reject)=>{
-var data = [{
-    type: "cone",
-    name: "base",
-    x: [1, 1, 1],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false
-  },
-  {
-    type: "cone",
-    name: "opacity:0.3",
-    x: [2, 2, 2],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    opacity: 0.3
-  },
-  {
-    type: "cone",
-    name: "lighting.ambient:0.3",
-    x: [3, 3, 3],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    lighting: {ambient: 0.3}
-  },
-  {
-    type: "cone",
-    name: "lighting.diffuse:0.3",
-    x: [4, 4, 4],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    lighting: {diffuse: 0.3}
-  },
-  {
-    type: "cone",
-    name: "lighting.specular:2",
-    x: [5, 5, 5],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    lighting: {specular: 2}
-  },
-  {
-    type: "cone",
-    name: "lighting.roughness:1",
-    x: [6, 6, 6],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    lighting: {roughness: 1}
-  },
-  {
-    type: "cone",
-    name: "lighting.fresnel:2",
-    x: [7, 7, 7],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    lighting: {fresnel: 2}
-  },
-  {
-    type: "cone",
-    name: "lighting.position x:0,y:0,z:1e5",
-    x: [8, 8, 8],
-    y: [1, 2, 3],
-    z: [1, 1, 1],
-    u: [1, 2, 3],
-    v: [1, 1, 2],
-    w: [4, 4, 1],
-    hoverinfo: "u+v+w+name",
-    showscale: false,
-    lightposition: {x: 0, y: 0, z: 1e5}
-}]
-
-var layout = {
-  scene: {
-    aspectmode: "data",
-    camera: {
-      eye: {x: 0.05, y: -2.6, z: 2}
     }
-  },
-  width: 500,
-  height: 500,
-  margin: {t: 0, b: 0, l: 0, r: 0}
-}
+};
 
-Plotly.plot('myDiv19',data,layout)
-})
+Plotly.newPlot('myDiv24', data, layout, {showSendToCloud: true});
+});
+        
         }
-    //}/**/
-
-    /*      *///{
-    {}
-    //}/**/
-
-    /*      *///{
-    {}
-    //}/**/
-
-    /*      *///{
-    {}
-    //}/**/
-
-    /*      *///{
-    {}
-    //}/**/
-
-    /*      *///{
-    {}
     //}/**/
 
     /*      *///{

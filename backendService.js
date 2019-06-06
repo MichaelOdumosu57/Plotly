@@ -192,7 +192,7 @@ backend.post(   '/linspace',function(req,res){
 	ultraObject.reqBody({
 		stream:req,
 		fn:function(dev_obj){
-		  //  console.log('linspace')
+		    console.log('linspace')
 		},
 		keep:'true',
 		finish:function(dev_obj){
@@ -210,7 +210,7 @@ backend.post(   '/trisurf',function(req,res){
 	ultraObject.reqBody({
 		stream:req,
 		fn:function(dev_obj){
-		  //  console.log('trisurf')
+		    console.log('trisurf')
 		},
 		keep:'true',
 		finish:function(dev_obj){
