@@ -788,820 +788,1211 @@
         args: {}
     }
     ultraObject.forLoop(   FL_0_i   )
-
     
-    /*Basic Example */ //{
+    /*   */ //{
     {
-        var resolveDiv0 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'filter',
-                target: 'y',
-                operation: '>',
-                value: 4
-              }]
-            }]
-            
-            var layout = {
-            	title: 'Filter Scores > 4'
-            }
-            
-            Plotly.plot('myDiv0', data, layout)
-        })
-    }
-    // } /**/
-    
-    /*Groupby Example */ //{
-    {
-        var resolveDiv1 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'groupby',
-                groups: subject,
-                styles: [
-                  {target: 'Moe', value: {marker: {color: 'blue'}}},
-                  {target: 'Larry', value: {marker: {color: 'red'}}},
-                  {target: 'Curly', value: {marker: {color: 'black'}}}
-                ]
-              }]
-            }]
-            
-            Plotly.plot('myDiv1', data)
-        })
-    }
-    // } /**/
-    
-    /* Basic Aggregations */ //{
-    {
-        var resolveDiv2 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'aggregate',
-                groups: subject,
-                aggregations: [
-                  {target: 'y', func: 'avg', enabled: true},
-                ]
-              }]
-            }]
-            
-            Plotly.plot('myDiv2', data)
-            
-        })
-    }
-    // } /**/
-
-    /*Aggregate Functions */ //{
-    {
-        var resolveDiv3 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'aggregate',
-                groups: subject,
-                aggregations: [
-                  {target: 'y', func: 'avg', enabled: true},
-                ]
-              }]
-            }]
-            layout = {
-              title: '<b>Plotly Aggregations</b><br>use dropdown to change aggregation',
-              xaxis: {title: 'Subject'},
-              yaxis: {title: 'Score', range: [0,22]},
-              height: 600,
-              width: 900,
-              updatemenus: [{
-                    x: 0.85,
-                    y: 1.15,
-                    xref: 'paper',
-                    yref: 'paper',
-                    yanchor: 'top',
-                    active: 0,
-                    showactive: false,
-                    buttons: [{
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'avg'],
-                        label: 'Avg'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'sum'],
-                        label: 'Sum'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'min'],
-                        label: 'Min'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'max'],
-                        label: 'Max'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'mode'],
-                        label: 'Mode'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'median'],
-                        label: 'Median'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'count'],
-                        label: 'Count'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'stddev'],
-                        label: 'Std.Dev'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'first'],
-                        label: 'First'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'last'],
-                        label: 'Last'
-                    }]
-              }]
-            }
-            
-            Plotly.plot('myDiv3', data, layout)
-        })
-    }
-    // } /**/
-    
-    /*Histogram Binning */ //{
-    {
-        var resolveDiv4 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv("https://plot.ly/~public.health/17.csv", function(err, rows){
-                  function unpack(rows, key) {
-                      return rows.map(function(row) { return row[key]; });
-                  }
-            
-            trace1 = {
-              x: unpack(rows, 'date'),
-              autobinx: false,
-              autobiny: true,
-              marker: {color: 'rgb(68, 68, 68)'},
-              name: 'date',
-              type: 'histogram',
-              xbins: {
-                end: '2016-12-31 12:00',
-                size: 'M1',
-                start: '1983-12-31 12:00'
-              }
-            };
-            
-            data = [trace1];
-            
-            layout = {
-              paper_bgcolor: 'rgb(240, 240, 240)',
-              plot_bgcolor: 'rgb(240, 240, 240)',
-              title: '',
-              xaxis: {
-                autorange: true,
-                range: ['1984-07-01 06:00', '2016-07-30 18:00'],
-                title: '',
-                type: 'date'
-              },
-              yaxis: {
-                autorange: true,
-                range: [0, 92.6315789474],
-                title: 'Shootings incidents',
-                type: 'linear'
-              },
-              updatemenus: [{
-                    x: 0.1,
-                    y: 1.15,
-                    xref: 'paper',
-                    yref: 'paper',
-                    yanchor: 'top',
-                    active: 0,
-                    showactive: true,
-                    buttons: [{
-                        args: ['xbins.size', 'M1'],
-                        label: 'Month',
-                        method: 'restyle',
-                    }, {
-                        args: ['xbins.size', 'M3'],
-                        label: 'Quater',
-                        method: 'restyle',
-                    }, {
-                        args: ['xbins.size', 'M6'],
-                        label: 'Half Year',
-                        method: 'restyle',
-                    }, {
-                        args: ['xbins.size', 'M12'],
-                        label: 'Year',
-                        method: 'restyle',
-                    }]
-              }]
-            };
-            
-            Plotly.plot('myDiv4', data, layout);
-            
-            });
-        })
-    }
-    // } /**/
-    
-    /*Mapping with Aggregates */ //{
-    {
-        var resolveDiv5 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv('https://raw.githubusercontent.com/bcdunbar/datasets/master/worldhappiness.csv', function(err, rows){
-                  function unpack(rows, key) {
-                      return rows.map(function(row) { return row[key]; });
-                  }
-            
-              var data = [{
-                    type: 'choropleth',
-                    locationmode: 'country names',
-                    locations: unpack(rows, 'Country'),
-                    z: unpack(rows, 'HappinessScore'),
-                    autocolorscale: false,
-                    reversescale: true,
-                    colorscale: 'Portland',
-                    transforms: [{
-                      type: 'aggregate',
-                      groups: unpack(rows, 'Country'),
-                      aggregations: [
-                        {target: 'z', func: 'avg', enabled: true},
-                    ]
-                }]
-               }];
-            
-                var layout = {
-                  title: '<b>World Happiness</b><br>2015 - 2017',
-                  geo: {
-                      showframe: false,
-                      showcoastlines: false,
-                      projection:{
-                         type: 'orthographic'
-                      }
-                  },
-                  updatemenus: [{
-                    x: 0.85,
-                    y: 1.15,
-                    xref: 'paper',
-                    yref: 'paper',
-                    yanchor: 'top',
-                    active: 0,
-                    showactive: true,
-                    buttons: [{
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'avg'],
-                        label: 'Avg'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'sum'],
-                        label: 'Sum'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'min'],
-                        label: 'Min'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'max'],
-                        label: 'Max'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'mode'],
-                        label: 'Mode'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'median'],
-                        label: 'Median'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'first'],
-                        label: 'First'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'last'],
-                        label: 'Last'
-                    }]
-              }]
+        var resolveDiv0 = new Promise((resolve,reject)=>{
+            function makeTrace(i) {
+                return {
+                    y: Array.apply(null, Array(10)).map(() => Math.random()),
+                    line: {
+                        shape: 'spline' ,
+                        color: 'red'
+                    },
+                    visible: i === 0,
+                    name: 'Data set ' + i,
                 };
+            }
             
-                Plotly.plot('myDiv5', data, layout);
-            
+            Plotly.plot('myDiv0', [0, 1, 2, 3].map(makeTrace), {
+                updatemenus: [{
+                    y: 0.8,
+                    yanchor: 'top',
+                    buttons: [{
+                        method: 'restyle',
+                        args: ['line.color', 'red'],
+                        label: 'red'
+                    }, {
+                        method: 'restyle',
+                        args: ['line.color', 'blue'],
+                        label: 'blue'
+                    }, {
+                        method: 'restyle',
+                        args: ['line.color', 'green'],
+                        label: 'green'
+                    }]
+                }, {
+                    y: 1,
+                    yanchor: 'top',
+                    buttons: [{
+                        method: 'restyle',
+                        args: ['visible', [true, false, false, false]],
+                        label: 'Data set 0'
+                    }, {
+                        method: 'restyle',
+                        args: ['visible', [false, true, false, false]],
+                        label: 'Data set 1'
+                    }, {
+                        method: 'restyle',
+                        args: ['visible', [false, false, true, false]],
+                        label: 'Data set 2'
+                    }, {
+                        method: 'restyle',
+                        args: ['visible', [false, false, false, true]],
+                        label: 'Data set 3'
+                    }]
+                }],
             });
         })
     }
-    // } /**/
-    
-    /*Filter and Group By */ //{
+   // } /**/
+   
+    /*Bind dropdown events to Plotly.js charts*/ //{
     {
-        // var resolveDiv6 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv", function(err, rows){
+        // var resolveDiv1 = new Promise((resolve,reject)=>{
             
-              function unpack(rows, key) {
-              return rows.map(function(row) { return row[key]; });
-            }
-            
-            var data = [{
-                  type: 'scatter',
-                  mode: 'markers',
-                  x: unpack(rows, 'lifeExp'),
-                  y: unpack(rows, 'gdpPercap'),
-                  text: unpack(rows, 'continent'),
-                  marker: {
-                    size: unpack(rows, 'pop'),
-                    sizemode: "area",
-                    sizeref: 200000
-                  },
-                  transforms: [
-                    {
-                    type: 'filter',
-                    target: unpack(rows, 'year'),
-                    operation: '=',
-                    value: '2007'
-                    }, {
-                    type: 'groupby',
-                    groups: unpack(rows, 'continent'),
-                    styles: [
-                      {target: 'Asia', value: {marker: {color: 'red'}}},
-                      {target: 'Europe', value: {marker: {color: 'blue'}}},
-                      {target: 'Americas', value: {marker: {color: 'orange'}}},
-                      {target: 'Africa', value: {marker: {color: 'green'}}},
-                      {target: 'Oceania', value: {marker: {color: 'purple'}}}
-                    ]
-              }]
-                }]
-            
-            var layout = {
-              yaxis: {
-                type: 'log'
-              }
-            }
-            
-            Plotly.plot('myDiv6', data, layout)
-            });
-        // })
-    }
-    // } /**/
-    
-    /*Filter and Aggregates */ //{
-    {
-        // var resolveDiv7 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv", function(err, rows){
-            
-              function unpack(rows, key) {
-              return rows.map(function(row) { return row[key]; });
-            }
-            
-              var data = [{
-                  type: 'scatter',
-                  mode: 'markers',
-                  x: unpack(rows, 'lifeExp'),
-                  y: unpack(rows, 'gdpPercap'),
-                  text: unpack(rows, 'continent'),
-                  marker: {
-                    size: unpack(rows, 'pop'),
-                    sizemode: "area",
-                    sizeref: 200000
-                  },
-                  transforms: [
-                    {
-                      type: 'filter',
-                      target: unpack(rows, 'year'),
-                      operation: '=',
-                      value: '2007'
-                    }, {
-                      type: 'aggregate',
-                      groups: unpack(rows, 'continent'),
-                      aggregations: [
-                        {target: 'x', func: 'avg'},
-                        {target: 'y', func: 'avg'},
-                        {target: 'marker.size', func: 'sum'}
-                      ]
-                   }]
-                }]
-            
-            var layout = {
-              yaxis: {
-                type: 'log'
-              }
-            }
-            
-            Plotly.plot('myDiv7', data, layout)
-            });
             
         // })
+        
+        Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function(err, rows){
+        
+            function unpack(rows, key) {
+                return rows.map(function(row) { return row[key]; });
+            }
+        
+            var allCountryNames = unpack(rows, 'country'),
+                allYear = unpack(rows, 'year'),
+                allGdp = unpack(rows, 'gdpPercap'),
+                listofCountries = [],
+                currentCountry,
+                currentGdp = [],
+                currentYear = [];
+        
+            for (var i = 0; i < allCountryNames.length; i++ ){
+                if (listofCountries.indexOf(allCountryNames[i]) === -1 ){
+                    listofCountries.push(allCountryNames[i]);
+                }
+            }
+        
+            function getCountryData(chosenCountry) {
+                currentGdp = [];
+                currentYear = [];
+                for (var i = 0 ; i < allCountryNames.length ; i++){
+                    if ( allCountryNames[i] === chosenCountry ) {
+                        currentGdp.push(allGdp[i]);
+                        currentYear.push(allYear[i]);
+                    }
+                }
+            };
+        
+            // Default Country Data
+            setBubblePlot('Afghanistan');
+        
+            function setBubblePlot(chosenCountry) {
+                getCountryData(chosenCountry);
+        
+                var trace1 = {
+                    x: currentYear,
+                    y: currentGdp,
+                    mode: 'lines+markers',
+                    marker: {
+                        size: 12,
+                        opacity: 0.5
+                    }
+                };
+        
+                var data = [trace1];
+        
+                var layout = {
+                    title:'Line and Scatter Plot',
+                    height: 400,
+                    width: 480
+                };
+        
+                Plotly.newPlot('myDiv1', data, layout);
+            };
+        
+            var innerContainer = document.querySelector('[data-num="0"]'),
+                plotEl = innerContainer.querySelector('.plot'),
+                countrySelector = innerContainer.querySelector('.countrydata');
+        
+            function assignOptions(textArray, selector) {
+                for (var i = 0; i < textArray.length;  i++) {
+                    var currentOption = document.createElement('option');
+                    currentOption.text = textArray[i];
+                    selector.appendChild(currentOption);
+                }
+            }
+        
+            assignOptions(listofCountries, countrySelector);
+        
+            function updateCountry(){
+                setBubblePlot(countrySelector.value);
+            }
+        
+            countrySelector.addEventListener('change', updateCountry, false);
+        });
     }
-    // } /**/
-    
-    /*All Transforms */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv", function(err, rows){
+   // } /**/
+   
+   
+    /* Restyle Button Single Attribute  */ //{
+    // {
+    //     // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+    //     // })
+    //     Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+    //     function unpack(rows, key) {
+    //       return rows.map(function(row) { return row[key]; });
+    //     }
+    //     var z_data=[ ]
+    //     for(i=0;i<24;i++)
+    //     {
+    //       z_data.push(unpack(rows,i));
+    //     }
+        
+    //     var data = [{
+    //             z: z_data,
+    //             type:'surface',
+    //             colorscale:'Viridis'
+    //     }]
+        
+    //     var updatemenus=[
+    //         {
+    //             buttons: [
+    //                 {
+    //                     args: ['type', 'surface'],
+    //                     label: '3D Surface',
+    //                     method: 'restyle'
+    //                 },
+    //                 {
+    //                     args: ['type', 'heatmap'],
+    //                     label:'Heatmap',
+    //                     method:'restyle'
+    //                 }
+    //             ],
+    //             direction: 'left',
+    //             pad: {'r': 10, 't': 10},
+    //             showactive: true,
+    //             type: 'buttons',
+    //             x: 0.1,
+    //             xanchor: 'left',
+    //             y: 1.1,
+    //             yanchor: 'top'
+    //         }
+    //     ]
+        
+    //     var annotations = [
+    //         {
+    //           text: 'Trace type:',
+    //           x: 0,
+    //           y: 1.085,
+    //           yref: 'paper',
+    //           align: 'left',
+    //           showarrow: false
+    //         }
+    //     ]
+        
+    //     var layout = {
+    //         width: 800,
+    //         height: 900,
+    //         autosize: false,
+    //         margin: {t: 0, b: 0, l: 0, r: 0},
+    //         updatemenus: updatemenus,
+    //         annotations: annotations,
+    //         scene: {
+    //             xaxis:{
+    //                 gridcolor: 'rgb(255, 255, 255)',
+    //                 zerolinecolor: 'rgb(255, 255, 255)',
+    //                 showbackground: true,
+    //                 backgroundcolor:'rgb(230, 230,230)'
+    //             },
+    //             yaxis: {
+    //                 gridcolor: 'rgb(255, 255, 255)',
+    //                 zerolinecolor: 'rgb(255, 255, 255)',
+    //                 showbackground: true,
+    //                 backgroundcolor: 'rgb(230, 230, 230)'
+    //             },
+    //             zaxis: {
+    //                 gridcolor: 'rgb(255, 255, 255)',
+    //                 zerolinecolor: 'rgb(255, 255, 255)',
+    //                 showbackground: true,
+    //                 backgroundcolor: 'rgb(230, 230,230)'
+    //             },
+    //             aspectratio: {x: 1, y: 1, z: 0.7},
+    //             aspectmode: 'manual'
+    //       }
+    //     }
+        
+        
+    //     Plotly.plot("myDiv3", data, layout);
+        
+    //     });
+    // }
+   // } /**/
+   
+    /* Restyle Button Multiple Attributes  */ //{
+//     {
+//         // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+//         // })
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+// function unpack(rows, key) {
+//   return rows.map(function(row) { return row[key]; });
+// }
 
-  function unpack(rows, key) {
+// var button_layer_1_height = 1.12
+// var button_layer_2_height = 1.0
+// var annotation_offset = 0.04
+
+// var z_data=[ ]
+// for(i=0;i<24;i++)
+// {
+//   z_data.push(unpack(rows,i));
+// }
+
+// var data = [{
+//         z: z_data,
+//         type:'surface',
+//         colorscale:'Viridis'
+// }]
+
+// var updatemenus=[
+//     {
+//         buttons: [
+//             {
+//                 args: ['type', 'surface'],
+//                 label: '3D Surface',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['type', 'heatmap'],
+//                 label:'Heatmap',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['type', 'contour'],
+//                 label:'Contour',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'left',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'buttons',
+//         x: 0.15,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top'
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: ['reversescale', true],
+//                 label: 'Reverse',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['reversescale', false],
+//                 label:'Undo Reverse',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'down',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'dropdown',
+//         x: 0.56,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top'
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: [{'contours.showlines':false, 'type':'contour'}],
+//                 label: 'Hide lines',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: [{'contours.showlines':true, 'type':'contour'}],
+//                 label:'Show lines',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'down',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'dropdown',
+//         x: 0.78,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top'
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: ['colorscale', 'Viridis'],
+//                 label: 'Viridis',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Electric'],
+//                 label:'Electric',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Earth'],
+//                 label:'Earth',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Hot'],
+//                 label:'Hot',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Jet'],
+//                 label:'Jet',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Portland'],
+//                 label:'Portland',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Rainbow'],
+//                 label:'Rainbow',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Blackbody'],
+//                 label:'Blackbody',
+//                 method:'restyle'
+//             },
+
+//             {
+//                 args: ['colorscale', 'Cividis'],
+//                 label:'Cividis',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'left',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'buttons',
+//         x: 0.15,
+//         xanchor: 'left',
+//         y: button_layer_1_height,
+//         yanchor: 'top'
+//     },
+// ]
+
+// var annotations = [
+//     {
+//       text: 'Trace type:',
+//       x: 0,
+//       y: button_layer_2_height - annotation_offset,
+//       yref: 'paper',
+//       align: 'left',
+//       showarrow: false
+//     },
+//     {
+//       text: 'Colorscale:',
+//       x: 0,
+//       y: button_layer_1_height - annotation_offset,
+//       yref: 'paper',
+//       align: 'left',
+//       showarrow: false
+//     },
+// ]
+
+// var layout = {
+//     margin: {t: 0, b: 0, l: 0, r: 0},
+//     updatemenus: updatemenus,
+//     annotations: annotations,
+//     scene: {
+//         xaxis:{
+//             gridcolor: 'rgb(255, 255, 255)',
+//             zerolinecolor: 'rgb(255, 255, 255)',
+//             showbackground: true,
+//             backgroundcolor:'rgb(230, 230,230)'
+//         },
+//         yaxis: {
+//             gridcolor: 'rgb(255, 255, 255)',
+//             zerolinecolor: 'rgb(255, 255, 255)',
+//             showbackground: true,
+//             backgroundcolor: 'rgb(230, 230, 230)'
+//         },
+//         zaxis: {
+//             gridcolor: 'rgb(255, 255, 255)',
+//             zerolinecolor: 'rgb(255, 255, 255)',
+//             showbackground: true,
+//             backgroundcolor: 'rgb(230, 230,230)'
+//         },
+//         aspectratio: {x: 1, y: 1, z: 0.7},
+//         aspectmode: 'manual'
+//   }
+// }
+
+
+// Plotly.plot("myDiv4", data, layout);
+
+// });
+//     }
+   // } /**/
+   
+    /* Relayout Button  */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/normal-clusters.csv', function(err, rows){
+function unpack(rows, key) {
+  return rows.map(function(row) { return parseFloat(row[key]); });
+}
+
+var button_layer_height = 1.2
+var x0 = unpack(rows,'x0')
+var x1 = unpack(rows,'x1')
+var x2 = unpack(rows,'x2')
+var y0 = unpack(rows,'y0')
+var y1 = unpack(rows,'y1')
+var y2 = unpack(rows,'y2')
+
+var data = [{
+    x: x0,
+    y: y0,
+    mode: 'markers',
+    marker: {color: '#835AF1'}
+  },
+  {
+    x: x1,
+    y: y1,
+    mode: 'markers',
+    marker: {color: '#7FA6EE'}
+  },
+  {
+    x: x2,
+    y: y2,
+    mode: 'markers',
+    marker: {color: '#B8F7D4'}
+  },
+
+]
+
+var cluster0 = {type: 'circle',
+                 xref: 'x', yref: 'y',
+                 x0: Math.min(...x0), y0: Math.min(...y0),
+                 x1: Math.max(...x0), y1: Math.max(...y0),
+                 opacity: 0.25,
+                 line: {color: '#835AF1'},
+                 fillcolor: '#835AF1'}
+
+var cluster1 = {type: 'circle',
+                 xref: 'x', yref: 'y',
+                 x0: Math.min(...x1), y0: Math.min(...y1),
+                 x1: Math.max(...x1), y1: Math.max(...y1),
+                 opacity: 0.25,
+                 line: {color: '#7FA6EE'},
+                 fillcolor: '#7FA6EE'}
+
+var cluster2 = {type: 'circle',
+                 xref: 'x', yref: 'y',
+                 x0: Math.min(...x2), y0: Math.min(...y2),
+                 x1: Math.max(...x2), y1: Math.max(...y2),
+                 opacity: 0.25,
+                 line: {color: '#B8F7D4'},
+                 fillcolor: '#B8F7D4'}
+
+var updatemenus=[
+    {
+        buttons: [
+            {
+                args: ['shapes', []],
+                label: 'None',
+                method: 'relayout'
+            },
+            {
+                args: ['shapes', [cluster0]],
+                label: 'Cluster 0',
+                method: 'relayout'
+            },
+            {
+                args: ['shapes', [cluster1]],
+                label: 'Cluster 1',
+                method: 'relayout'
+            },
+            {
+                args: ['shapes', [cluster2]],
+                label: 'Cluster 2',
+                method: 'relayout'
+            },
+            {
+                args: ['shapes', [cluster0, cluster1, cluster2]],
+                label: 'All',
+                method: 'relayout'
+            },
+        ],
+        direction: 'left',
+        pad: {'r': 10, 't': 10},
+        showactive: true,
+        type: 'buttons',
+        x: 0.1,
+        xanchor: 'left',
+        y: button_layer_height,
+        yanchor: 'top'
+    },
+
+]
+
+var layout = {
+    updatemenus: updatemenus,
+    showlegend: false
+}
+
+
+Plotly.plot("myDiv5", data, layout);
+
+});
+    }
+   // } /**/
+   
+    /* Update Button  */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv', function(err, rows){
+function unpack(rows, key) {
   return rows.map(function(row) { return row[key]; });
 }
 
-  var data = [{
-      type: 'scatter',
-      mode: 'markers',
-      x: unpack(rows, 'lifeExp'),
-      y: unpack(rows, 'gdpPercap'),
-      text: unpack(rows, 'continent'),
-      marker: {
-        size: unpack(rows, 'pop'),
-        sizemode: "area",
-        sizeref: 200000
-      },
-      transforms: [
-        {
-          type: 'filter',
-          target: unpack(rows, 'year'),
-          operation: '=',
-          value: '2007'
-        }, {
-          type: 'groupby',
-          groups: unpack(rows, 'continent'),
-          styles: [
-            {target: 'Asia', value: {marker: {color: 'red'}}},
-            {target: 'Europe', value: {marker: {color: 'blue'}}},
-            {target: 'Americas', value: {marker: {color: 'orange'}}},
-            {target: 'Africa', value: {marker: {color: 'green'}}},
-            {target: 'Oceania', value: {marker: {color: 'purple'}}}
-        ]
-        }, {
-          type: 'aggregate',
-          groups: unpack(rows, 'continent'),
-          aggregations: [
-            {target: 'x', func: 'avg'},
-            {target: 'y', func: 'avg'},
-            {target: 'marker.size', func: 'sum'}
-          ]
-       }]
-    }]
+const arrAvg = arr => arr.reduce((a,b) => a + b, 0) / arr.length
+
+var button_layer_2_height = 1.2
+var high = unpack(rows, 'AAPL.High').map(x => parseFloat(x))
+var low = unpack(rows, 'AAPL.Low').map(x => parseFloat(x))
+var date = unpack(rows, 'Date')
+
+
+var high_ave = arrAvg(high)
+var high_max = Math.max(...high)
+var low_ave = arrAvg(low)
+var low_min = Math.min(...low)
+
+var data = [{
+    x: date,
+    y: high,
+    mode: 'lines',
+    name: 'High',
+    marker: {color: '#33CFA5'}
+  },
+  {
+    x: date,
+    y: date.map(a => high_ave),
+    mode: 'lines',
+    name: 'Low Average',
+    line: {color: '#33CFA5', dash: 'dash'},
+    visible: false
+  },
+  {
+    x: date,
+    y: low,
+    name: 'Low',
+    mode: 'lines',
+    marker: {color: '#F06A6A'}
+  },
+  {
+    x: date,
+    y: date.map(a => low_ave),
+    mode: 'lines',
+    name: 'High Average',
+    visible: false,
+    line: {color: '#F06A6A', dash: 'dash'}
+  },
+
+]
+
+var high_annotations = [
+    {
+      text: 'High Average:<br>' + high_ave.toFixed(2),
+      x: '2016-03-01',
+      y: high_ave,
+      yref: 'y', xref: 'x',
+      ay: -40, ax: 0
+    },
+    {
+      text: 'High Max:<br>' + high_max.toFixed(2),
+      x: date[high.indexOf(high_max)],
+      y: high_max,
+      yref: 'y', xref: 'x',
+      ay: -40, ax: 0
+    },
+]
+
+var low_annotations = [{
+      text: 'Low Average:<br>' + low_ave.toFixed(2),
+      x: '2015-05-01',
+      y: low_ave,
+      yref: 'y', xref: 'x',
+      ay: 40, ax: 0
+    },
+    {
+      text: 'Low Min:<br>' + low_min.toFixed(2),
+      x: date[low.indexOf(low_min)],
+      y: low_min,
+      yref: 'y', xref: 'x',
+      ay: 40, ax: 0
+    }
+ ]
+
+var updatemenus=[
+    {
+        buttons: [
+            {
+                args: [{'visible': [true, true, false, false]},
+                       {'title': 'Yahoo High',
+                        'annotations': high_annotations}],
+                label: 'High',
+                method: 'update'
+            },
+            {
+                args: [{'visible': [false, false, true, true,]},
+                       {'title': 'Yahoo Low',
+                        'annotations': low_annotations}],
+                label: 'Low',
+                method: 'update'
+            },
+            {
+                args: [{'visible': [true, true, true, true,]},
+                       {'title': 'Yahoo',
+                        'annotations': [...low_annotations, ...high_annotations]}],
+                label: 'Both',
+                method: 'update'
+            },
+            {
+                args: [{'visible': [true, false, true, false,]},
+                       {'title': 'Yahoo',
+                        'annotations': []}],
+                label: 'Reset',
+                method: 'update'
+            },
+
+        ],
+        direction: 'left',
+        pad: {'r': 10, 't': 10},
+        showactive: true,
+        type: 'buttons',
+        x: 0.1,
+        xanchor: 'left',
+        y: button_layer_2_height,
+        yanchor: 'top'
+    },
+
+]
 
 var layout = {
-  title: '<b>Gapminder</b><br>2007 Average GDP Per Cap & Life Exp. by Continent',
-  yaxis: {
-    type: 'log'
-  }
+    title: 'Yahoo',
+    updatemenus: updatemenus,
+    showlegend: false
 }
 
-Plotly.plot('myDiv8', data, layout)
+
+Plotly.plot("myDiv6", data, layout);
+
 });
-        // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Style the Buttons  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+// function unpack(rows, key) {
+//   return rows.map(function(row) { return row[key]; });
+// }
+
+// var button_layer_1_height = 1.12
+// var button_layer_2_height = 1.0
+// var annotation_offset = 0.04
+
+// var z_data=[ ]
+// for(i=0;i<24;i++)
+// {
+//   z_data.push(unpack(rows,i));
+// }
+
+// var data = [{
+//         z: z_data,
+//         type:'surface',
+//         colorscale:'Viridis'
+// }]
+
+// var updatemenus=[
+//     {
+//         buttons: [
+//             {
+//                 args: ['type', 'surface'],
+//                 label: '3D Surface',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['type', 'heatmap'],
+//                 label:'Heatmap',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['type', 'contour'],
+//                 label:'Contour',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'left',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'buttons',
+//         x: 0.15,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top',
+//         font: {color: '#5072a8'}
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: ['reversescale', true],
+//                 label: 'Reverse',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['reversescale', false],
+//                 label:'Undo Reverse',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'down',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'dropdown',
+//         x: 0.56,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top',
+//         active: 1,
+//         font: {color: '#5072a8'}
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: [{'contours.showlines':false, 'type':'contour'}],
+//                 label: 'Hide lines',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: [{'contours.showlines':true, 'type':'contour'}],
+//                 label:'Show lines',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'down',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'dropdown',
+//         x: 0.78,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top',
+//         font: {color: '#5072a8'}
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: ['colorscale', 'Viridis'],
+//                 label: 'Viridis',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Electric'],
+//                 label:'Electric',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Earth'],
+//                 label:'Earth',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Hot'],
+//                 label:'Hot',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Jet'],
+//                 label:'Jet',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Portland'],
+//                 label:'Portland',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Rainbow'],
+//                 label:'Rainbow',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Blackbody'],
+//                 label:'Blackbody',
+//                 method:'restyle'
+//             },
+
+//             {
+//                 args: ['colorscale', 'Cividis'],
+//                 label:'Cividis',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'left',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'buttons',
+//         x: 0.15,
+//         xanchor: 'left',
+//         y: button_layer_1_height,
+//         yanchor: 'top',
+//         active: 1,
+//         bgcolor: '#aaaaaa',
+//         bordercolor: '#FFFFFF'
+//     },
+// ]
+
+// var annotations = [
+//     {
+//       text: 'Trace type:',
+//       x: 0,
+//       y: button_layer_2_height - annotation_offset,
+//       yref: 'paper',
+//       align: 'left',
+//       showarrow: false
+//     },
+//     {
+//       text: 'Colorscale:',
+//       x: 0,
+//       y: button_layer_1_height - annotation_offset,
+//       yref: 'paper',
+//       align: 'left',
+//       showarrow: false
+//     },
+// ]
+
+// var layout = {
+//     paper_bgcolor: 'black',
+//     margin: {t: 0, b: 0, l: 0, r: 0},
+//     updatemenus: updatemenus,
+//     annotations: annotations,
+//     scene: {
+//         bgcolor: 'black',
+//         aspectratio: {x: 1, y: 1, z: 0.7},
+//         aspectmode: 'manual'
+//   }
+// }
+
+
+// Plotly.plot("myDiv7", data, layout);
+
+// });
+    }
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
+   // } /**/
+   
+    /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
-    /*Basic Example */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-            
-        // })
-    }
-    // } /**/
-    
+   // } /**/
+   
     
 </script>
 </html>

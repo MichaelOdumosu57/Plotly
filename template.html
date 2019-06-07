@@ -788,820 +788,2203 @@
         args: {}
     }
     ultraObject.forLoop(   FL_0_i   )
-
     
     /*Basic Example */ //{
     {
-        var resolveDiv0 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'filter',
-                target: 'y',
-                operation: '>',
-                value: 4
-              }]
-            }]
-            
-            var layout = {
-            	title: 'Filter Scores > 4'
-            }
-            
-            Plotly.plot('myDiv0', data, layout)
-        })
-    }
-    // } /**/
-    
-    /*Groupby Example */ //{
-    {
-        var resolveDiv1 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'groupby',
-                groups: subject,
-                styles: [
-                  {target: 'Moe', value: {marker: {color: 'blue'}}},
-                  {target: 'Larry', value: {marker: {color: 'red'}}},
-                  {target: 'Curly', value: {marker: {color: 'black'}}}
-                ]
-              }]
-            }]
-            
-            Plotly.plot('myDiv1', data)
-        })
-    }
-    // } /**/
-    
-    /* Basic Aggregations */ //{
-    {
-        var resolveDiv2 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'aggregate',
-                groups: subject,
-                aggregations: [
-                  {target: 'y', func: 'avg', enabled: true},
-                ]
-              }]
-            }]
-            
-            Plotly.plot('myDiv2', data)
-            
-        })
-    }
-    // } /**/
-
-    /*Aggregate Functions */ //{
-    {
-        var resolveDiv3 = new Promise((resolve,reject) =>{
-            var subject = ['Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly','Moe','Larry','Curly']
-            var score = [1,6,2,8,2,9,4,5,1,5,2,8]
-            
-            var data = [{
-              type: 'scatter',
-              x: subject,
-              y: score,
-              mode: 'markers',
-              transforms: [{
-                type: 'aggregate',
-                groups: subject,
-                aggregations: [
-                  {target: 'y', func: 'avg', enabled: true},
-                ]
-              }]
-            }]
-            layout = {
-              title: '<b>Plotly Aggregations</b><br>use dropdown to change aggregation',
-              xaxis: {title: 'Subject'},
-              yaxis: {title: 'Score', range: [0,22]},
-              height: 600,
-              width: 900,
-              updatemenus: [{
-                    x: 0.85,
-                    y: 1.15,
-                    xref: 'paper',
-                    yref: 'paper',
-                    yanchor: 'top',
-                    active: 0,
-                    showactive: false,
-                    buttons: [{
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'avg'],
-                        label: 'Avg'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'sum'],
-                        label: 'Sum'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'min'],
-                        label: 'Min'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'max'],
-                        label: 'Max'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'mode'],
-                        label: 'Mode'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'median'],
-                        label: 'Median'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'count'],
-                        label: 'Count'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'stddev'],
-                        label: 'Std.Dev'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'first'],
-                        label: 'First'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'last'],
-                        label: 'Last'
-                    }]
-              }]
-            }
-            
-            Plotly.plot('myDiv3', data, layout)
-        })
-    }
-    // } /**/
-    
-    /*Histogram Binning */ //{
-    {
-        var resolveDiv4 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv("https://plot.ly/~public.health/17.csv", function(err, rows){
-                  function unpack(rows, key) {
-                      return rows.map(function(row) { return row[key]; });
-                  }
-            
-            trace1 = {
-              x: unpack(rows, 'date'),
-              autobinx: false,
-              autobiny: true,
-              marker: {color: 'rgb(68, 68, 68)'},
-              name: 'date',
-              type: 'histogram',
-              xbins: {
-                end: '2016-12-31 12:00',
-                size: 'M1',
-                start: '1983-12-31 12:00'
-              }
-            };
-            
-            data = [trace1];
-            
-            layout = {
-              paper_bgcolor: 'rgb(240, 240, 240)',
-              plot_bgcolor: 'rgb(240, 240, 240)',
-              title: '',
-              xaxis: {
-                autorange: true,
-                range: ['1984-07-01 06:00', '2016-07-30 18:00'],
-                title: '',
-                type: 'date'
-              },
-              yaxis: {
-                autorange: true,
-                range: [0, 92.6315789474],
-                title: 'Shootings incidents',
-                type: 'linear'
-              },
-              updatemenus: [{
-                    x: 0.1,
-                    y: 1.15,
-                    xref: 'paper',
-                    yref: 'paper',
-                    yanchor: 'top',
-                    active: 0,
-                    showactive: true,
-                    buttons: [{
-                        args: ['xbins.size', 'M1'],
-                        label: 'Month',
-                        method: 'restyle',
-                    }, {
-                        args: ['xbins.size', 'M3'],
-                        label: 'Quater',
-                        method: 'restyle',
-                    }, {
-                        args: ['xbins.size', 'M6'],
-                        label: 'Half Year',
-                        method: 'restyle',
-                    }, {
-                        args: ['xbins.size', 'M12'],
-                        label: 'Year',
-                        method: 'restyle',
-                    }]
-              }]
-            };
-            
-            Plotly.plot('myDiv4', data, layout);
-            
-            });
-        })
-    }
-    // } /**/
-    
-    /*Mapping with Aggregates */ //{
-    {
-        var resolveDiv5 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv('https://raw.githubusercontent.com/bcdunbar/datasets/master/worldhappiness.csv', function(err, rows){
-                  function unpack(rows, key) {
-                      return rows.map(function(row) { return row[key]; });
-                  }
-            
-              var data = [{
-                    type: 'choropleth',
-                    locationmode: 'country names',
-                    locations: unpack(rows, 'Country'),
-                    z: unpack(rows, 'HappinessScore'),
-                    autocolorscale: false,
-                    reversescale: true,
-                    colorscale: 'Portland',
-                    transforms: [{
-                      type: 'aggregate',
-                      groups: unpack(rows, 'Country'),
-                      aggregations: [
-                        {target: 'z', func: 'avg', enabled: true},
-                    ]
-                }]
-               }];
-            
-                var layout = {
-                  title: '<b>World Happiness</b><br>2015 - 2017',
-                  geo: {
-                      showframe: false,
-                      showcoastlines: false,
-                      projection:{
-                         type: 'orthographic'
-                      }
-                  },
-                  updatemenus: [{
-                    x: 0.85,
-                    y: 1.15,
-                    xref: 'paper',
-                    yref: 'paper',
-                    yanchor: 'top',
-                    active: 0,
-                    showactive: true,
-                    buttons: [{
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'avg'],
-                        label: 'Avg'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'sum'],
-                        label: 'Sum'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'min'],
-                        label: 'Min'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'max'],
-                        label: 'Max'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'mode'],
-                        label: 'Mode'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'median'],
-                        label: 'Median'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'first'],
-                        label: 'First'
-                    }, {
-                        method: 'restyle',
-                        args: ['transforms[0].aggregations[0].func', 'last'],
-                        label: 'Last'
-                    }]
-              }]
-                };
-            
-                Plotly.plot('myDiv5', data, layout);
-            
-            });
-        })
-    }
-    // } /**/
-    
-    /*Filter and Group By */ //{
-    {
-        // var resolveDiv6 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv", function(err, rows){
-            
-              function unpack(rows, key) {
-              return rows.map(function(row) { return row[key]; });
-            }
-            
-            var data = [{
-                  type: 'scatter',
-                  mode: 'markers',
-                  x: unpack(rows, 'lifeExp'),
-                  y: unpack(rows, 'gdpPercap'),
-                  text: unpack(rows, 'continent'),
-                  marker: {
-                    size: unpack(rows, 'pop'),
-                    sizemode: "area",
-                    sizeref: 200000
-                  },
-                  transforms: [
-                    {
-                    type: 'filter',
-                    target: unpack(rows, 'year'),
-                    operation: '=',
-                    value: '2007'
-                    }, {
-                    type: 'groupby',
-                    groups: unpack(rows, 'continent'),
-                    styles: [
-                      {target: 'Asia', value: {marker: {color: 'red'}}},
-                      {target: 'Europe', value: {marker: {color: 'blue'}}},
-                      {target: 'Americas', value: {marker: {color: 'orange'}}},
-                      {target: 'Africa', value: {marker: {color: 'green'}}},
-                      {target: 'Oceania', value: {marker: {color: 'purple'}}}
-                    ]
-              }]
-                }]
-            
-            var layout = {
-              yaxis: {
-                type: 'log'
-              }
-            }
-            
-            Plotly.plot('myDiv6', data, layout)
-            });
-        // })
-    }
-    // } /**/
-    
-    /*Filter and Aggregates */ //{
-    {
-        // var resolveDiv7 = new Promise((resolve,reject) =>{
-            Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv", function(err, rows){
-            
-              function unpack(rows, key) {
-              return rows.map(function(row) { return row[key]; });
-            }
-            
-              var data = [{
-                  type: 'scatter',
-                  mode: 'markers',
-                  x: unpack(rows, 'lifeExp'),
-                  y: unpack(rows, 'gdpPercap'),
-                  text: unpack(rows, 'continent'),
-                  marker: {
-                    size: unpack(rows, 'pop'),
-                    sizemode: "area",
-                    sizeref: 200000
-                  },
-                  transforms: [
-                    {
-                      type: 'filter',
-                      target: unpack(rows, 'year'),
-                      operation: '=',
-                      value: '2007'
-                    }, {
-                      type: 'aggregate',
-                      groups: unpack(rows, 'continent'),
-                      aggregations: [
-                        {target: 'x', func: 'avg'},
-                        {target: 'y', func: 'avg'},
-                        {target: 'marker.size', func: 'sum'}
-                      ]
-                   }]
-                }]
-            
-            var layout = {
-              yaxis: {
-                type: 'log'
-              }
-            }
-            
-            Plotly.plot('myDiv7', data, layout)
-            });
             
         // })
     }
-    // } /**/
-    
-    /*All Transforms */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject) =>{
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv", function(err, rows){
-
-  function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
-
-  var data = [{
-      type: 'scatter',
-      mode: 'markers',
-      x: unpack(rows, 'lifeExp'),
-      y: unpack(rows, 'gdpPercap'),
-      text: unpack(rows, 'continent'),
-      marker: {
-        size: unpack(rows, 'pop'),
-        sizemode: "area",
-        sizeref: 200000
-      },
-      transforms: [
-        {
-          type: 'filter',
-          target: unpack(rows, 'year'),
-          operation: '=',
-          value: '2007'
-        }, {
-          type: 'groupby',
-          groups: unpack(rows, 'continent'),
-          styles: [
-            {target: 'Asia', value: {marker: {color: 'red'}}},
-            {target: 'Europe', value: {marker: {color: 'blue'}}},
-            {target: 'Americas', value: {marker: {color: 'orange'}}},
-            {target: 'Africa', value: {marker: {color: 'green'}}},
-            {target: 'Oceania', value: {marker: {color: 'purple'}}}
-        ]
-        }, {
-          type: 'aggregate',
-          groups: unpack(rows, 'continent'),
-          aggregations: [
-            {target: 'x', func: 'avg'},
-            {target: 'y', func: 'avg'},
-            {target: 'marker.size', func: 'sum'}
-          ]
-       }]
-    }]
-
-var layout = {
-  title: '<b>Gapminder</b><br>2007 Average GDP Per Cap & Life Exp. by Continent',
-  yaxis: {
-    type: 'log'
-  }
-}
-
-Plotly.plot('myDiv8', data, layout)
-});
-        // })
-    }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
+   // } /**/
+   
     /*Basic Example */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject) =>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
             
         // })
     }
-    // } /**/
-    
-    
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*Basic Example */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+   
 </script>
 </html>
