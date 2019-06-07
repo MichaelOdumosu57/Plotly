@@ -1,4 +1,5 @@
 intersted in table, sankey, parallel categories
+buttons, sliders and lasso
 
 
             .___                        .___                        .___                        .___
@@ -13002,25 +13003,408 @@ Plotly.plot("myDiv", data, layout);
 
 });
                                                                         
+
+Slider Events in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+
+ 
+Basic Slider
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.plot('graph', [{
+  x: [1, 2, 3],
+  y: [2, 1, 3]
+}], {
+  sliders: [{
+    pad: {t: 30},
+    currentvalue: {
+      xanchor: 'right',
+      prefix: 'color: ',
+      font: {
+        color: '#888',
+        size: 20
+      }
+    },
+    steps: [{
+      label: 'red',
+      method: 'restyle',
+      args: ['line.color', 'red']
+    }, {
+      label: 'green',
+      method: 'restyle',
+      args: ['line.color', 'green']
+    }, {
+      label: 'blue',
+      method: 'restyle',
+      args: ['line.color', 'blue']
+    }]
+  }]
+});
+      
+                                                                              
+Bind Components to the Appearance of a Plot
+
+adding buttons to a plot
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.plot('graph', [{
+  x: [1, 2, 3],
+  y: [2, 1, 3]
+}], {
+  sliders: [{
+    pad: {t: 30},
+    len: 0.5,
+    x: 0.5,
+    currentvalue: {
+      xanchor: 'right',
+      prefix: 'color: ',
+      font: {
+        color: '#888',
+        size: 20
+      }
+    },
+    // If all of a component's commands affect a single attribute, the component
+    // will be bound to the plot and will automatically update to reflect changes.
+    steps: [{
+      label: 'red',
+      method: 'restyle',
+      args: ['line.color', 'red']
+    }, {
+      label: 'green',
+      method: 'restyle',
+      args: ['line.color', 'green']
+    }, {
+      label: 'blue',
+      method: 'restyle',
+      args: ['line.color', 'blue']
+    }]
+  }],
+  updatemenus: [{
+    pad: {t: 60, r: 30},
+    type: 'buttons',
+    xanchor: 'left',
+    yanchor: 'top',
+    x: 00,
+    y: 0,
+    direction: 'right',
+    buttons: [{
+      label: 'red',
+      method: 'restyle',
+      args: ['line.color', 'red']
+    }, {
+      label: 'green',
+      method: 'restyle',
+      args: ['line.color', 'green']
+    }, {
+      label: 'blue',
+      method: 'restyle',
+      args: ['line.color', 'blue']
+    }]
+  }]
+});
                                                                         
-US Airports Map
+                                                                        
+Add a Play Button to Control a Slider
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+      
+Plotly.plot('graph', {
+  data: [{
+    x: [1, 2, 3],
+    y: [2, 1, 3],
+    line: {
+      color: 'red',
+      simplify: false,
+    }
+  }],
+  layout: {
+    sliders: [{
+      pad: {t: 30},
+      x: 0.05,
+      len: 0.95,
+      currentvalue: {
+        xanchor: 'right',
+        prefix: 'color: ',
+        font: {
+          color: '#888',
+          size: 20
+        }
+      },
+      transition: {duration: 500},
+      // By default, animate commands are bound to the most recently animated frame:
+      steps: [{
+        label: 'red',
+        method: 'animate',
+        args: [['red'], {
+          mode: 'immediate',
+          frame: {redraw: false, duration: 500},
+          transition: {duration: 500}
+        }]
+      }, {
+        label: 'green',
+        method: 'animate',
+        args: [['green'], {
+          mode: 'immediate',
+          frame: {redraw: false, duration: 500},
+          transition: {duration: 500}
+        }]
+      }, {
+        label: 'blue',
+        method: 'animate',
+        args: [['blue'], {
+          mode: 'immediate',
+          frame: {redraw: false, duration: 500},
+          transition: {duration: 500}
+        }]
+      }]
+    }],
+    updatemenus: [{
+      type: 'buttons',
+      showactive: false,
+      x: 0.05,
+      y: 0,
+      xanchor: 'right',
+      yanchor: 'top',
+      pad: {t: 60, r: 20},
+      buttons: [{
+        label: 'Play',
+        method: 'animate',
+        args: [null, {
+          fromcurrent: true,
+          frame: {redraw: false, duration: 1000},
+          transition: {duration: 500}
+        }]
+      }]
+    }]
+  },
+  // The slider itself does not contain any notion of timing, so animating a slider
+  // must be accomplished through a sequence of frames. Here we'll change the color
+  // and the data of a single trace:
+  frames: [{
+    name: 'red',
+    data: [{
+      y: [2, 1, 3],
+      'line.color': 'red'
+    }]
+  }, {
+    name: 'green',
+    data: [{
+      y: [3, 2, 1],
+      'line.color': 'green'}]
+  }, {
+    name: 'blue',
+    data: [{
+      y: [1, 3, 2],
+      'line.color': 'blue'}]
+  }]
+});
+      
+Lasso Selection
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
  
+Lasso Selection
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+var graphDiv = document.getElementById('graph');
+var N = 1000;
+var color1 = '#7b3294';
+var color1Light = '#c2a5cf';
+var colorX = '#ffa7b5';
+var colorY = '#fdae61';
+
+function randomArray() {
+  var out = new Array(N);
+  for(var i = 0; i < N; i++) {
+    out[i] = Math.random();
+  }
+  return out;
+}
+var x = randomArray();
+var y = randomArray();
+
+Plotly.plot(graphDiv, [{
+  type: 'scatter',
+  mode: 'markers',
+  x: x,
+  y: y,
+  xaxis: 'x',
+  yaxis: 'y',
+  name: 'random data',
+  marker: {color: color1, size: 10}
+}, {
+  type: 'histogram',
+  x: x,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  name: 'x coord dist.',
+  marker: {color: colorX}
+}, {
+  type: 'histogram',
+  x: y,
+  xaxis: 'x3',
+  yaxis: 'y3',
+  name: 'y coord dist.',
+  marker: {color: colorY}
+}], {
+  title: 'Lasso around the scatter points to see sub-distributions',
+  dragmode: 'lasso',
+  xaxis: {
+    zeroline: false,
+  },
+  yaxis: {
+    domain: [0.55, 1],
+  },
+  xaxis2: {
+    domain: [0, 0.45],
+    anchor: 'y2',
+  },
+  yaxis2: {
+    domain: [0, 0.45],
+    anchor: 'x2'
+  },
+  xaxis3: {
+    domain: [0.55, 1],
+    anchor: 'y3'
+  },
+  yaxis3: {
+    domain: [0, 0.45],
+    anchor: 'x3'
+  }
+});
+
+graphDiv.on('plotly_selected', function(eventData) {
+  var x = [];
+  var y = [];
+
+  var colors = [];
+  for(var i = 0; i < N; i++) colors.push(color1Light);
+
+  console.log(eventData.points)
+
+  eventData.points.forEach(function(pt) {
+    x.push(pt.x);
+    y.push(pt.y);
+    colors[pt.pointNumber] = color1;
+  });
+
+  Plotly.restyle(graphDiv, {
+    x: [x, y],
+    xbins: {}
+  }, [1, 2]);
+
+  Plotly.restyle(graphDiv, 'marker.color', [colors], [0]);
+});
+
+
+Range Slider and Selector in plotly.js
+
+            .__
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ Basic Range Slider on Time Series
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
+      
+      
+var rawDataURL = 'https://raw.githubusercontent.com/plotly/datasets/master/2016-weather-data-seattle.csv';
+var xField = 'Date';
+var yField = 'Mean_TemperatureC';
+
+var selectorOptions = {
+    buttons: [{
+        step: 'month',
+        stepmode: 'backward',
+        count: 1,
+        label: '1m'
+    }, {
+        step: 'month',
+        stepmode: 'backward',
+        count: 6,
+        label: '6m'
+    }, {
+        step: 'year',
+        stepmode: 'todate',
+        count: 1,
+        label: 'YTD'
+    }, {
+        step: 'year',
+        stepmode: 'backward',
+        count: 1,
+        label: '1y'
+    }, {
+        step: 'all',
+    }],
+};
+
+Plotly.d3.csv(rawDataURL, function(err, rawData) {
+    if(err) throw err;
+
+    var data = prepData(rawData);
+    var layout = {
+        title: 'Time series with range slider and selectors',
+        xaxis: {
+            rangeselector: selectorOptions,
+            rangeslider: {}
+        },
+        yaxis: {
+            fixedrange: true
+        }
+    };
+
+    Plotly.plot('graph', data, layout);
+});
+
+function prepData(rawData) {
+    var x = [];
+    var y = [];
+
+    rawData.forEach(function(datum, i) {
+
+        x.push(new Date(datum[xField]));
+        y.push(datum[yField]);
+    });
+
+    return [{
+        mode: 'lines',
+        x: x,
+        y: y
+    }];
+}
+      
+      
+                                                                              
 US Airports Map
  
  

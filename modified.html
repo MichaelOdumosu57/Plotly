@@ -1516,246 +1516,576 @@ Plotly.plot("myDiv6", data, layout);
             
             
         // })
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
-function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
+// Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+// function unpack(rows, key) {
+//   return rows.map(function(row) { return row[key]; });
+// }
 
-var button_layer_1_height = 1.12
-var button_layer_2_height = 1.0
-var annotation_offset = 0.04
+// var button_layer_1_height = 1.12
+// var button_layer_2_height = 1.0
+// var annotation_offset = 0.04
 
-var z_data=[ ]
-for(i=0;i<24;i++)
-{
-  z_data.push(unpack(rows,i));
-}
+// var z_data=[ ]
+// for(i=0;i<24;i++)
+// {
+//   z_data.push(unpack(rows,i));
+// }
 
-var data = [{
-        z: z_data,
-        type:'surface',
-        colorscale:'Viridis'
-}]
+// var data = [{
+//         z: z_data,
+//         type:'surface',
+//         colorscale:'Viridis'
+// }]
 
-var updatemenus=[
+// var updatemenus=[
+//     {
+//         buttons: [
+//             {
+//                 args: ['type', 'surface'],
+//                 label: '3D Surface',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['type', 'heatmap'],
+//                 label:'Heatmap',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['type', 'contour'],
+//                 label:'Contour',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'left',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'buttons',
+//         x: 0.15,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top',
+//         font: {color: '#5072a8'}
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: ['reversescale', true],
+//                 label: 'Reverse',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['reversescale', false],
+//                 label:'Undo Reverse',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'down',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'dropdown',
+//         x: 0.56,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top',
+//         active: 1,
+//         font: {color: '#5072a8'}
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: [{'contours.showlines':false, 'type':'contour'}],
+//                 label: 'Hide lines',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: [{'contours.showlines':true, 'type':'contour'}],
+//                 label:'Show lines',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'down',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'dropdown',
+//         x: 0.78,
+//         xanchor: 'left',
+//         y: button_layer_2_height,
+//         yanchor: 'top',
+//         font: {color: '#5072a8'}
+//     },
+//     {
+//         buttons: [
+//             {
+//                 args: ['colorscale', 'Viridis'],
+//                 label: 'Viridis',
+//                 method: 'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Electric'],
+//                 label:'Electric',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Earth'],
+//                 label:'Earth',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Hot'],
+//                 label:'Hot',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Jet'],
+//                 label:'Jet',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Portland'],
+//                 label:'Portland',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Rainbow'],
+//                 label:'Rainbow',
+//                 method:'restyle'
+//             },
+//             {
+//                 args: ['colorscale', 'Blackbody'],
+//                 label:'Blackbody',
+//                 method:'restyle'
+//             },
+
+//             {
+//                 args: ['colorscale', 'Cividis'],
+//                 label:'Cividis',
+//                 method:'restyle'
+//             }
+//         ],
+//         direction: 'left',
+//         pad: {'r': 10, 't': 10},
+//         showactive: true,
+//         type: 'buttons',
+//         x: 0.15,
+//         xanchor: 'left',
+//         y: button_layer_1_height,
+//         yanchor: 'top',
+//         active: 1,
+//         bgcolor: '#aaaaaa',
+//         bordercolor: '#FFFFFF'
+//     },
+// ]
+
+// var annotations = [
+//     {
+//       text: 'Trace type:',
+//       x: 0,
+//       y: button_layer_2_height - annotation_offset,
+//       yref: 'paper',
+//       align: 'left',
+//       showarrow: false
+//     },
+//     {
+//       text: 'Colorscale:',
+//       x: 0,
+//       y: button_layer_1_height - annotation_offset,
+//       yref: 'paper',
+//       align: 'left',
+//       showarrow: false
+//     },
+// ]
+
+// var layout = {
+//     paper_bgcolor: 'black',
+//     margin: {t: 0, b: 0, l: 0, r: 0},
+//     updatemenus: updatemenus,
+//     annotations: annotations,
+//     scene: {
+//         bgcolor: 'black',
+//         aspectratio: {x: 1, y: 1, z: 0.7},
+//         aspectmode: 'manual'
+//   }
+// }
+
+
+// Plotly.plot("myDiv7", data, layout);
+
+// });
+    }
+   // } /**/
+   
+    /* Basic Slider  */ //{
     {
-        buttons: [
-            {
-                args: ['type', 'surface'],
-                label: '3D Surface',
-                method: 'restyle'
-            },
-            {
-                args: ['type', 'heatmap'],
-                label:'Heatmap',
-                method:'restyle'
-            },
-            {
-                args: ['type', 'contour'],
-                label:'Contour',
-                method:'restyle'
-            }
-        ],
-        direction: 'left',
-        pad: {'r': 10, 't': 10},
-        showactive: true,
-        type: 'buttons',
-        x: 0.15,
-        xanchor: 'left',
-        y: button_layer_2_height,
-        yanchor: 'top',
-        font: {color: '#5072a8'}
+        var resolveDiv8 = new Promise((resolve,reject)=>{
+Plotly.plot('myDiv8', [{
+  x: [1, 2, 3],
+  y: [2, 1, 3]
+}], {
+  sliders: [{
+    pad: {t: 30},
+    currentvalue: {
+      xanchor: 'right',
+      prefix: 'color: ',
+      font: {
+        color: '#888',
+        size: 20
+      }
     },
-    {
-        buttons: [
-            {
-                args: ['reversescale', true],
-                label: 'Reverse',
-                method: 'restyle'
-            },
-            {
-                args: ['reversescale', false],
-                label:'Undo Reverse',
-                method:'restyle'
-            }
-        ],
-        direction: 'down',
-        pad: {'r': 10, 't': 10},
-        showactive: true,
-        type: 'dropdown',
-        x: 0.56,
-        xanchor: 'left',
-        y: button_layer_2_height,
-        yanchor: 'top',
-        active: 1,
-        font: {color: '#5072a8'}
-    },
-    {
-        buttons: [
-            {
-                args: [{'contours.showlines':false, 'type':'contour'}],
-                label: 'Hide lines',
-                method: 'restyle'
-            },
-            {
-                args: [{'contours.showlines':true, 'type':'contour'}],
-                label:'Show lines',
-                method:'restyle'
-            }
-        ],
-        direction: 'down',
-        pad: {'r': 10, 't': 10},
-        showactive: true,
-        type: 'dropdown',
-        x: 0.78,
-        xanchor: 'left',
-        y: button_layer_2_height,
-        yanchor: 'top',
-        font: {color: '#5072a8'}
-    },
-    {
-        buttons: [
-            {
-                args: ['colorscale', 'Viridis'],
-                label: 'Viridis',
-                method: 'restyle'
-            },
-            {
-                args: ['colorscale', 'Electric'],
-                label:'Electric',
-                method:'restyle'
-            },
-            {
-                args: ['colorscale', 'Earth'],
-                label:'Earth',
-                method:'restyle'
-            },
-            {
-                args: ['colorscale', 'Hot'],
-                label:'Hot',
-                method:'restyle'
-            },
-            {
-                args: ['colorscale', 'Jet'],
-                label:'Jet',
-                method:'restyle'
-            },
-            {
-                args: ['colorscale', 'Portland'],
-                label:'Portland',
-                method:'restyle'
-            },
-            {
-                args: ['colorscale', 'Rainbow'],
-                label:'Rainbow',
-                method:'restyle'
-            },
-            {
-                args: ['colorscale', 'Blackbody'],
-                label:'Blackbody',
-                method:'restyle'
-            },
-
-            {
-                args: ['colorscale', 'Cividis'],
-                label:'Cividis',
-                method:'restyle'
-            }
-        ],
-        direction: 'left',
-        pad: {'r': 10, 't': 10},
-        showactive: true,
-        type: 'buttons',
-        x: 0.15,
-        xanchor: 'left',
-        y: button_layer_1_height,
-        yanchor: 'top',
-        active: 1,
-        bgcolor: '#aaaaaa',
-        bordercolor: '#FFFFFF'
-    },
-]
-
-var annotations = [
-    {
-      text: 'Trace type:',
-      x: 0,
-      y: button_layer_2_height - annotation_offset,
-      yref: 'paper',
-      align: 'left',
-      showarrow: false
-    },
-    {
-      text: 'Colorscale:',
-      x: 0,
-      y: button_layer_1_height - annotation_offset,
-      yref: 'paper',
-      align: 'left',
-      showarrow: false
-    },
-]
-
-var layout = {
-    paper_bgcolor: 'black',
-    margin: {t: 0, b: 0, l: 0, r: 0},
-    updatemenus: updatemenus,
-    annotations: annotations,
-    scene: {
-        bgcolor: 'black',
-        aspectratio: {x: 1, y: 1, z: 0.7},
-        aspectmode: 'manual'
-  }
-}
-
-
-Plotly.plot("myDiv7", data, layout);
-
+    steps: [{
+      label: 'red',
+      method: 'restyle',
+      args: ['line.color', 'red']
+    }, {
+      label: 'green',
+      method: 'restyle',
+      args: ['line.color', 'green']
+    }, {
+      label: 'blue',
+      method: 'restyle',
+      args: ['line.color', 'blue']
+    }]
+  }]
 });
+            
+        })
+
+    }
+   // } /**/
+   
+    /* Bind Components to the Appearance of a Plot  */ //{
+    {
+        var resolveDiv9 = new Promise((resolve,reject)=>{
+        Plotly.plot('myDiv9', [{
+  x: [1, 2, 3],
+  y: [2, 1, 3]
+}], {
+  sliders: [{
+    pad: {t: 30},
+    len: 0.5,
+    x: 0.5,
+    currentvalue: {
+      xanchor: 'right',
+      prefix: 'color: ',
+      font: {
+        color: '#888',
+        size: 20
+      }
+    },
+    // If all of a component's commands affect a single attribute, the component
+    // will be bound to the plot and will automatically update to reflect changes.
+    steps: [{
+      label: 'red',
+      method: 'restyle',
+      args: ['line.color', 'red']
+    }, {
+      label: 'green',
+      method: 'restyle',
+      args: ['line.color', 'green']
+    }, {
+      label: 'blue',
+      method: 'restyle',
+      args: ['line.color', 'blue']
+    }]
+  }],
+  updatemenus: [{
+    pad: {t: 60, r: 30},
+    type: 'buttons',
+    xanchor: 'left',
+    yanchor: 'top',
+    x: 00,
+    y: 0,
+    direction: 'right',
+    buttons: [{
+      label: 'red',
+      method: 'restyle',
+      args: ['line.color', 'red']
+    }, {
+      label: 'green',
+      method: 'restyle',
+      args: ['line.color', 'green']
+    }, {
+      label: 'blue',
+      method: 'restyle',
+      args: ['line.color', 'blue']
+    }]
+  }]
+});
+            
+        })
+
+    }
+   // } /**/
+   
+    /* Add a Play Button to Control a Slider  */ //{
+    {
+        var resolveDiv10 = new Promise((resolve,reject)=>{
+            
+            Plotly.plot('myDiv10', {
+  data: [{
+    x: [1, 2, 3],
+    y: [2, 1, 3],
+    line: {
+      color: 'red',
+      simplify: false,
+    }
+  }],
+  layout: {
+    sliders: [{
+      pad: {t: 30},
+      x: 0.05,
+      len: 0.95,
+      currentvalue: {
+        xanchor: 'right',
+        prefix: 'color: ',
+        font: {
+          color: '#888',
+          size: 20
+        }
+      },
+      transition: {duration: 500},
+      // By default, animate commands are bound to the most recently animated frame:
+      steps: [{
+        label: 'red',
+        method: 'animate',
+        args: [['red'], {
+          mode: 'immediate',
+          frame: {redraw: false, duration: 500},
+          transition: {duration: 500}
+        }]
+      }, {
+        label: 'green',
+        method: 'animate',
+        args: [['green'], {
+          mode: 'immediate',
+          frame: {redraw: false, duration: 500},
+          transition: {duration: 500}
+        }]
+      }, {
+        label: 'blue',
+        method: 'animate',
+        args: [['blue'], {
+          mode: 'immediate',
+          frame: {redraw: false, duration: 500},
+          transition: {duration: 500}
+        }]
+      }]
+    }],
+    updatemenus: [{
+      type: 'buttons',
+      showactive: false,
+      x: 0.05,
+      y: 0,
+      xanchor: 'right',
+      yanchor: 'top',
+      pad: {t: 60, r: 20},
+      buttons: [{
+        label: 'Play',
+        method: 'animate',
+        args: [null, {
+          fromcurrent: true,
+          frame: {redraw: false, duration: 1000},
+          transition: {duration: 500}
+        }]
+      }]
+    }]
+  },
+  // The slider itself does not contain any notion of timing, so animating a slider
+  // must be accomplished through a sequence of frames. Here we'll change the color
+  // and the data of a single trace:
+  frames: [{
+    name: 'red',
+    data: [{
+      y: [2, 1, 3],
+      'line.color': 'red'
+    }]
+  }, {
+    name: 'green',
+    data: [{
+      y: [3, 2, 1],
+      'line.color': 'green'}]
+  }, {
+    name: 'blue',
+    data: [{
+      y: [1, 3, 2],
+      'line.color': 'blue'}]
+  }]
+});
+        })
+
+        
+    }
+   // } /**/
+   
+    /* Lasso Selection  */ //{
+    {
+        var resolveDiv11 = new Promise((resolve,reject)=>{
+var graphDiv = document.getElementById('myDiv11');
+var N = 1000;
+var color1 = '#7b3294';
+var color1Light = '#c2a5cf';
+var colorX = '#ffa7b5';
+var colorY = '#fdae61';
+
+function randomArray() {
+  var out = new Array(N);
+  for(var i = 0; i < N; i++) {
+    out[i] = Math.random();
+  }
+  return out;
+}
+var x = randomArray();
+var y = randomArray();
+
+Plotly.plot(graphDiv, [{
+  type: 'scatter',
+  mode: 'markers',
+  x: x,
+  y: y,
+  xaxis: 'x',
+  yaxis: 'y',
+  name: 'random data',
+  marker: {color: color1, size: 10}
+}, {
+  type: 'histogram',
+  x: x,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  name: 'x coord dist.',
+  marker: {color: colorX}
+}, {
+  type: 'histogram',
+  x: y,
+  xaxis: 'x3',
+  yaxis: 'y3',
+  name: 'y coord dist.',
+  marker: {color: colorY}
+}], {
+  title: 'Lasso around the scatter points to see sub-distributions',
+  dragmode: 'lasso',
+  xaxis: {
+    zeroline: false,
+  },
+  yaxis: {
+    domain: [0.55, 1],
+  },
+  xaxis2: {
+    domain: [0, 0.45],
+    anchor: 'y2',
+  },
+  yaxis2: {
+    domain: [0, 0.45],
+    anchor: 'x2'
+  },
+  xaxis3: {
+    domain: [0.55, 1],
+    anchor: 'y3'
+  },
+  yaxis3: {
+    domain: [0, 0.45],
+    anchor: 'x3'
+  }
+});
+
+graphDiv.on('plotly_selected', function(eventData) {
+  var x = [];
+  var y = [];
+
+  var colors = [];
+  for(var i = 0; i < N; i++) colors.push(color1Light);
+
+  console.log(eventData.points)
+
+  eventData.points.forEach(function(pt) {
+    x.push(pt.x);
+    y.push(pt.y);
+    colors[pt.pointNumber] = color1;
+  });
+
+  Plotly.restyle(graphDiv, {
+    x: [x, y],
+    xbins: {}
+  }, [1, 2]);
+
+  Plotly.restyle(graphDiv, 'marker.color', [colors], [0]);
+});
+            
+        })
     }
    // } /**/
    
     /* Button Events in plotly  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv12 = new Promise((resolve,reject)=>{
+
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/2016-weather-data-seattle.csv', function(err, rawData) {
+    if(err) throw err;
+    
+var rawDataURL = 'https://raw.githubusercontent.com/plotly/datasets/master/2016-weather-data-seattle.csv';
+var xField = 'Date';
+var yField = 'Mean_TemperatureC';
+
+function prepData(rawData) {
+    var x = [];
+    var y = [];
+
+    rawData.forEach(function(datum, i) {
+
+        x.push(new Date(datum[xField]));
+        y.push(datum[yField]);
+    });
+
+    return [{
+        mode: 'lines',
+        x: x,
+        y: y
+    }];
+}
+
+var selectorOptions = {
+    buttons: [{
+        step: 'month',
+        stepmode: 'backward',
+        count: 1,
+        label: '1m'
+    }, {
+        step: 'month',
+        stepmode: 'backward',
+        count: 6,
+        label: '6m'
+    }, {
+        step: 'year',
+        stepmode: 'todate',
+        count: 1,
+        label: 'YTD'
+    }, {
+        step: 'year',
+        stepmode: 'backward',
+        count: 1,
+        label: '1y'
+    }, {
+        step: 'all',
+    }],
+};
+    
+
+    var data = prepData(rawData);
+    var layout = {
+        title: 'Time series with range slider and selectors',
+        xaxis: {
+            rangeselector: selectorOptions,
+            rangeslider: {}
+        },
+        yaxis: {
+            fixedrange: true
+        }
+    };
+
+    Plotly.plot('myDiv12', data, layout);
+});
+
+
             
-            
-        // })
-    }
-   // } /**/
-   
-    /* Button Events in plotly  */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
-    }
-   // } /**/
-   
-    /* Button Events in plotly  */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
-    }
-   // } /**/
-   
-    /* Button Events in plotly  */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
-    }
-   // } /**/
-   
-    /* Button Events in plotly  */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
+        })
     }
    // } /**/
    
