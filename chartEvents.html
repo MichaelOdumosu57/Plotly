@@ -1668,30 +1668,122 @@ myPlot.on('plotly_hover', function (eventdata){
     }
    // } /**/
    
-    /*Basic Example */ //{
+    /*Binding to Zoom Events */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv7 = new Promise((resolve,reject)=>{
             
-            
-        // })
+var myDiv = document.getElementById('myDiv7');
+
+var d3 = Plotly.d3,
+    N = 40,
+    x = d3.range(N),
+    y = d3.range(N).map( d3.random.normal() ),
+    data = [ { x:x, y:y } ];
+    layout = { title:'Click-drag to zoom' };
+
+Plotly.plot(myDiv, data, layout);
+
+myDiv.on('plotly_relayout',
+    function(eventdata){
+        alert( 'ZOOM!' + '\n\n' +
+            'Event data:' + '\n' +
+             JSON.stringify(eventdata) + '\n\n' +
+            'x-axis start:' + eventdata['xaxis.range[0]'] + '\n' +
+            'x-axis end:' + eventdata['xaxis.range[1]'] );
+    });
+        })
     }
    // } /**/
    
-    /*Basic Example */ //{
+    /*Disabling Zoom Events for X Axis */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv8 = new Promise((resolve,reject)=>{
             
+function makeplot() {
+    Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(data){ processData(data) } );
+
+};
+
+function processData(allRows) {
+
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+
+    for (var i=0; i&lt;allRows.length; i++) {
+        row = allRows[i];
+        x.push( row['AAPL_x'] );
+        y.push( row['AAPL_y'] );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+}
+
+function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+        x: x,
+        y: y
+    }];
+
+    var layout = { xaxis:
+                          {
+                            fixedrange: true
+                          }
+                };
+
+    Plotly.newPlot('myDiv8', traces, layout,
+        {title: 'Plotting CSV data from AJAX call'});
+};
+  makeplot();
             
-        // })
+        })
     }
    // } /**/
    
-    /*Basic Example */ //{
+    /*Disabling Zoom Events for X and Y Axis */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv9 = new Promise((resolve,reject)=>{
             
-            
-        // })
+function makeplot() {
+    Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(data){ processData(data) } );
+
+};
+
+function processData(allRows) {
+
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+
+    for (var i=0; i&lt;allRows.length; i++) {
+        row = allRows[i];
+        x.push( row['AAPL_x'] );
+        y.push( row['AAPL_y'] );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+}
+
+function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+        x: x,
+        y: y
+    }];
+
+    var layout = {
+                   yaxis: {
+                           fixedrange: true
+                          },
+                   xaxis : {
+                            fixedrange: true
+                            }
+                  };
+
+    Plotly.newPlot('myDiv9', traces, layout,
+        {title: 'Plotting CSV data from AJAX call'});
+};
+  makeplot();
+        })
     }
    // } /**/
    

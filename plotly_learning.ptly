@@ -13405,6 +13405,8 @@ function prepData(rawData) {
 }
 
 Custom Chart Events
+
+file chartEvents.html
             .___                        .___                        .___                        .___
          |  [__]                        [__]  |                 |   [__]                      | [__]
         .___    .___                .___    .___                .___    .___                .___    .___
@@ -13785,15 +13787,150 @@ Combined Click and Hover Events
       | [__]    [__]  |
       
       
-                                                                        
-                                                                        
-US Airports Map
+Zoom Events in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+
+Binding to Zoom Events
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+var myDiv = document.getElementById('myDiv');
+
+var d3 = Plotly.d3,
+    N = 40,
+    x = d3.range(N),
+    y = d3.range(N).map( d3.random.normal() ),
+    data = [ { x:x, y:y } ];
+    layout = { title:'Click-drag to zoom' };
+
+Plotly.plot(myDiv, data, layout);
+
+myDiv.on('plotly_relayout',
+    function(eventdata){
+        alert( 'ZOOM!' + '\n\n' +
+            'Event data:' + '\n' +
+             JSON.stringify(eventdata) + '\n\n' +
+            'x-axis start:' + eventdata['xaxis.range[0]'] + '\n' +
+            'x-axis end:' + eventdata['xaxis.range[1]'] );
+    });
+
+               
+Disable Zoom Events in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Disabling Zoom Events for X Axis
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+function makeplot() {
+    Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(data){ processData(data) } );
+
+};
+
+function processData(allRows) {
+
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+
+    for (var i=0; i&lt;allRows.length; i++) {
+        row = allRows[i];
+        x.push( row['AAPL_x'] );
+        y.push( row['AAPL_y'] );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+}
+
+function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+        x: x,
+        y: y
+    }];
+
+    var layout = { xaxis:
+                          {
+                            fixedrange: true
+                          }
+                };
+
+    Plotly.newPlot('myDiv', traces, layout,
+        {title: 'Plotting CSV data from AJAX call'});
+};
+  makeplot();
+      
+      
+Disabling Zoom Events for X and Y Axis
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+      
+      
+function makeplot() {
+    Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(data){ processData(data) } );
+
+};
+
+function processData(allRows) {
+
+    console.log(allRows);
+    var x = [], y = [], standard_deviation = [];
+
+    for (var i=0; i&lt;allRows.length; i++) {
+        row = allRows[i];
+        x.push( row['AAPL_x'] );
+        y.push( row['AAPL_y'] );
+    }
+    console.log( 'X',x, 'Y',y, 'SD',standard_deviation );
+    makePlotly( x, y, standard_deviation );
+}
+
+function makePlotly( x, y, standard_deviation ){
+    var plotDiv = document.getElementById("plot");
+    var traces = [{
+        x: x,
+        y: y
+    }];
+
+    var layout = {
+                   yaxis: {
+                           fixedrange: true
+                          },
+                   xaxis : {
+                            fixedrange: true
+                            }
+                  };
+
+    Plotly.newPlot('myDiv', traces, layout,
+        {title: 'Plotting CSV data from AJAX call'});
+};
+  makeplot();
                                                                         
                                                                         
 US Airports Map
