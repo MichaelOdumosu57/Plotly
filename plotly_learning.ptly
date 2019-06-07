@@ -13786,6 +13786,8 @@ Combined Click and Hover Events
         .___    .___
       | [__]    [__]  |
       
+https://codepen.io/plotly/pen/eJOyej
+      
       
 Zoom Events in plotly.js
 
@@ -13932,9 +13934,747 @@ function makePlotly( x, y, standard_deviation ){
 };
   makeplot();
                                                                         
-                                                                        
-US Airports Map
+
+Animmtions
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+Adding Sliders to Animations in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
  
+ 
+ Animating with a Slider
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function (err, data) {
+    if(err){
+        reject(err)
+    }
+  // Create a lookup table to sort and regroup the columns of data,
+  // first by year, then by continent:
+  var lookup = {};
+  function getData(year, continent) {
+    var byYear, trace;
+    if (!(byYear = lookup[year])) {;
+      byYear = lookup[year] = {};
+    }
+	 // If a container for this year + continent doesn't exist yet,
+	 // then create one:
+    if (!(trace = byYear[continent])) {
+      trace = byYear[continent] = {
+        x: [],
+        y: [],
+        id: [],
+        text: [],
+        marker: {size: []}
+      };
+    }
+    return trace;
+  }
+
+  // Go through each row, get the right trace, and append the data:
+  for (var i = 0; i < data.length; i++) {
+    var datum = data[i];
+    var trace = getData(datum.year, datum.continent);
+    trace.text.push(datum.country);
+    trace.id.push(datum.country);
+    trace.x.push(datum.lifeExp);
+    trace.y.push(datum.gdpPercap);
+    trace.marker.size.push(datum.pop);
+  }
+
+  // Get the group names:
+  var years = Object.keys(lookup);
+  // In this case, every year includes every continent, so we
+  // can just infer the continents from the *first* year:
+  var firstYear = lookup[years[0]];
+  var continents = Object.keys(firstYear);
+
+  // Create the main traces, one for each continent:
+  var traces = [];
+  for (i = 0; i < continents.length; i++) {
+    var data = firstYear[continents[i]];
+	 // One small note. We're creating a single trace here, to which
+	 // the frames will pass data for the different years. It's
+	 // subtle, but to avoid data reference problems, we'll slice
+	 // the arrays to ensure we never write any new data into our
+	 // lookup table:
+    traces.push({
+      name: continents[i],
+      x: data.x.slice(),
+      y: data.y.slice(),
+      id: data.id.slice(),
+      text: data.text.slice(),
+      mode: 'markers',
+      marker: {
+        size: data.marker.size.slice(),
+        sizemode: 'area',
+        sizeref: 200000
+      }
+    });
+  }
+
+  // Create a frame for each year. Frames are effectively just
+  // traces, except they don't need to contain the *full* trace
+  // definition (for example, appearance). The frames just need
+  // the parts the traces that change (here, the data).
+  var frames = [];
+  for (i = 0; i < years.length; i++) {
+    frames.push({
+      name: years[i],
+      data: continents.map(function (continent) {
+        return getData(years[i], continent);
+      })
+    })
+  }
+
+  // Now create slider steps, one for each frame. The slider
+  // executes a plotly.js API command (here, Plotly.animate).
+  // In this example, we'll animate to one of the named frames
+  // created in the above loop.
+  var sliderSteps = [];
+  for (i = 0; i < years.length; i++) {
+    sliderSteps.push({
+      method: 'animate',
+      label: years[i],
+      args: [[years[i]], {
+        mode: 'immediate',
+        transition: {duration: 300},
+        frame: {duration: 300, redraw: false},
+      }]
+    });
+  }
+
+  var layout = {
+    xaxis: {
+      title: 'Life Expectancy',
+      range: [30, 85]
+    },
+    yaxis: {
+      title: 'GDP per Capita',
+      type: 'log'
+    },
+    hovermode: 'closest',
+	 // We'll use updatemenus (whose functionality includes menus as
+	 // well as buttons) to create a play button and a pause button.
+	 // The play button works by passing `null`, which indicates that
+	 // Plotly should animate all frames. The pause button works by
+	 // passing `[null]`, which indicates we'd like to interrupt any
+	 // currently running animations with a new list of frames. Here
+	 // The new list of frames is empty, so it halts the animation.
+    updatemenus: [{
+      x: 0,
+      y: 0,
+      yanchor: 'top',
+      xanchor: 'left',
+      showactive: false,
+      direction: 'left',
+      type: 'buttons',
+      pad: {t: 87, r: 10},
+      buttons: [{
+        method: 'animate',
+        args: [null, {
+          mode: 'immediate',
+          fromcurrent: true,
+          transition: {duration: 300},
+          frame: {duration: 500, redraw: false}
+        }],
+        label: 'Play'
+      }, {
+        method: 'animate',
+        args: [[null], {
+          mode: 'immediate',
+          transition: {duration: 0},
+          frame: {duration: 0, redraw: false}
+        }],
+        label: 'Pause'
+      }]
+    }],
+	 // Finally, add the slider and use `pad` to position it
+	 // nicely next to the buttons.
+    sliders: [{
+      pad: {l: 130, t: 55},
+      currentvalue: {
+        visible: true,
+        prefix: 'Year:',
+        xanchor: 'right',
+        font: {size: 20, color: '#666'}
+      },
+      steps: sliderSteps
+    }]
+  };
+
+  // Create the plot:
+  Plotly.plot('myDiv0', {
+    data: traces,
+    layout,
+    frames,
+  });
+});
+      
+      
+Filled-Area Animation in plotly.js
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Filled-Area-Animation
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+  var frames = []
+  var x = unpack(rows, 'AAPL_x')
+  var y = unpack(rows, 'AAPL_y')
+
+  var n = 100;
+  for (var i = 0; i < n; i++) {
+    frames[i] = {data: [{x: [], y: []}]}
+    frames[i].data[0].x = x.slice(0, i+1);
+    frames[i].data[0].y = y.slice(0, i+1);
+  }
+
+  Plotly.plot('myDiv', [{
+    x: frames[1].data[0].x,
+    y: frames[1].data[0].y,
+    fill: 'tozeroy',
+    type: 'scatter',
+    mode: 'lines',
+    line: {color: 'green'}
+  }], {
+    title: "Filled-Area Animation",
+    xaxis: {
+      type: 'date',
+      range: [
+        frames[99].data[0].x[0],
+        frames[99].data[0].x[99]
+      ]
+    },
+    yaxis: {
+      range: [
+        0,
+        90
+      ]
+    },
+    updatemenus: [{
+      x: 0.1,
+      y: 0,
+      yanchor: "top",
+      xanchor: "right",
+      showactive: false,
+      direction: "left",
+      type: "buttons",
+      pad: {"t": 87, "r": 10},
+      buttons: [{
+        method: "animate",
+        args: [null, {
+          fromcurrent: true,
+          transition: {
+            duration: 0,
+          },
+          frame: {
+            duration: 40,
+            redraw: false
+          }
+        }],
+        label: "Play"
+      }, {
+        method: "animate",
+        args: [
+          [null],
+          {
+            mode: "immediate",
+            transition: {
+              duration: 0
+            },
+            frame: {
+              duration: 0,
+              redraw: false
+            }
+          }
+        ],
+        label: "Pause"
+      }]
+    }]
+  }).then(function() {
+    Plotly.addFrames('myDiv', frames);
+  });
+
+})
+                           
+                                                                        
+Multiple Trace Filled-Area
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+  var frames = []
+  var x = unpack(rows, 'Date')
+  var y = unpack(rows, 'AAPL.High')
+  var x2 = unpack(rows, 'Date')
+  var y2 = unpack(rows, 'AAPL.Low')
+
+  var n = 100;
+  for (var i = 0; i < n; i++) {
+    frames[i] = {data: [{x: [], y: []}, {x: [], y: []}]}
+    frames[i].data[1].x = x.slice(0, i+1);
+    frames[i].data[1].y = y.slice(0, i+1);
+    frames[i].data[0].x = x2.slice(0, i+1);
+    frames[i].data[0].y = y2.slice(0, i+1);
+  }
+
+  var trace2 = {
+    type: "scatter",
+    mode: "lines",
+    name: 'AAPL High',
+    fill: 'tonexty',
+    x: frames[5].data[1].x,
+    y: frames[5].data[1].y,
+    line: {color: 'grey'}
+  }
+
+  var trace1 = {
+    type: "scatter",
+    mode: "lines",
+    name: 'AAPL Low',
+    x: frames[5].data[0].x,
+    y: frames[5].data[0].y,
+    line: {color: 'lightgrey'}
+  }
+
+  var data = [trace1,trace2];
+
+  var layout = {
+    title: 'Multiple Trace Filled-Area Animation',
+    xaxis: {
+      range: [frames[99].data[0].x[0], frames[99].data[0].x[99]],
+      showgrid: false
+    },
+    yaxis: {
+      range: [120, 140],
+      showgrid: false
+    },
+    legend: {
+      orientation: 'h',
+      x: 0.5,
+      y: 1.2,
+      xanchor: 'center'
+    },
+    updatemenus: [{
+      x: 0.5,
+      y: 0,
+      yanchor: "top",
+      xanchor: "center",
+      showactive: false,
+      direction: "left",
+      type: "buttons",
+      pad: {"t": 87, "r": 10},
+      buttons: [{
+        method: "animate",
+        args: [null, {
+          fromcurrent: true,
+          transition: {
+            duration: 0,
+          },
+          frame: {
+            duration: 40,
+            redraw: false
+          }
+        }],
+        label: "Play"
+      }, {
+        method: "animate",
+        args: [
+          [null],
+          {
+            mode: "immediate",
+            transition: {
+              duration: 0
+            },
+            frame: {
+              duration: 0,
+              redraw: false
+            }
+          }
+        ],
+        label: "Pause"
+      }]
+    }]
+  };
+
+  Plotly.newPlot('myDiv', data, layout).then(function() {
+    Plotly.addFrames('myDiv', frames);
+  });
+})
+
+
+Animations in plotly.js
+
+
+Plotly.animate transitions traces to a new state or sequence of states. When you tell Plotly to animate, it merges the properties you've supplied into the current state of the plot. Therefore to animate a trace, you must first plot the trace you wish to animate.
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ Animating the Data
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.newPlot('graph', [{
+  x: [1, 2, 3],
+  y: [0, 0.5, 1],
+  line: {simplify: false},
+}]);
+
+function randomize() {
+  Plotly.animate('graph', {
+    data: [{y: [Math.random(), Math.random(), Math.random()]}],
+    traces: [0],
+    layout: {}
+  }, {
+    transition: {
+      duration: 500,
+      easing: 'cubic-in-out'
+    },
+    frame: {
+      duration: 500
+    }
+  })
+}
+
+
+                                                                        
+                                                                        
+Animating the Layout
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+{
+        var resolveDiv4 = new Promise((resolve,reject)=>{
+            
+var n = 500;
+var x = [], y = [];
+for (var i = 0; i < n; i++) {
+  x[i] = i / (n - 1);
+  y[i] = x[i] + 0.2 * (Math.random() - 0.5);
+}
+
+Plotly.plot('myDiv4', [{
+  x: x,
+  y: y,
+  mode: 'markers'
+}], {
+  xaxis: {range: [0, 1]},
+  yaxis: {range: [0, 1]}
+});
+
+function zoom() {
+  var min = 0.45 * Math.random();
+  var max = 0.55 + 0.45 * Math.random();
+  Plotly.animate('myDiv4', {
+    layout: {
+      xaxis: {range: [min, max]},
+      yaxis: {range: [min, max]}
+    }
+  }, {
+    transition: {
+      duration: 500,
+      easing: 'cubic-in-out'
+    }
+  })
+}
+
+            var FL_0_i = {
+                forLoop_0_i:0,
+                forLoopLength:10,
+                fn:function(   dev_obj   ){
+                    zoom()
+                },
+                args: {}
+            }
+            ultraObject.forLoop(   FL_0_i   )
+        })
+    }
+                                                                        
+                                                                        
+Defining Named Frames with Plotly.addFrames
+ 
+ 
+ 
+ The above examples pass the data itself through the Plotly.animate command. You may instead predefine named frames through the Plotly.addFrames command. Then, instead of passing frames through Plotly.animate, you may simply refer to a frame by name.
+
+Similar to traces, frames are assigned a serial index as they are added. Frames may be updated by passing an array of frame indices. For example, the command to update the frame with index 2 would be Plotly.addFrames('graph', [{...}], [2]). Frames can be similarly deleted with, for example, Plotly.deleteFrames('graph', [2]).
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+var frames = [
+  {name: 'sine', data: [{x: [], y: []}]},
+  {name: 'cosine', data: [{x: [], y: []}]},
+  {name: 'circle', data: [{x: [], y: []}]},
+];
+
+var n = 100;
+for (var i = 0; i < n; i++) {
+  var t = i / (n - 1) * 2 - 1;
+
+  // A sine wave:
+  frames[0].data[0].x[i] = t * Math.PI;
+  frames[0].data[0].y[i] = Math.sin(t * Math.PI);
+
+  // A cosine wave:
+  frames[1].data[0].x[i] = t * Math.PI;
+  frames[1].data[0].y[i] = Math.cos(t * Math.PI);
+
+  // A circle:
+  frames[2].data[0].x[i] = Math.sin(t * Math.PI);
+  frames[2].data[0].y[i] = Math.cos(t * Math.PI);
+}
+
+Plotly.plot('graph', [{
+  x: frames[0].data[0].x,
+  y: frames[0].data[0].y,
+  line: {simplify: false},
+}], {
+  xaxis: {range: [-Math.PI, Math.PI]},
+  yaxis: {range: [-1.2, 1.2]},
+  updatemenus: [{
+    buttons: [
+      {method: 'animate', args: [['sine']], label: 'sine'},
+      {method: 'animate', args: [['cosine']], label: 'cosine'},
+      {method: 'animate', args: [['circle']], label: 'circle'}
+    ]
+  }]
+}).then(function() {
+  Plotly.addFrames('graph', frames);
+});
+                                                                        
+                                                                        
+Animating Sequences of Frames
+
+he above examples have used one frame at a time. Whether passing objects as frames or referring to frames by name, you may pass multiple frames together in an array. If null or undefined is passed as the second argument (i.e. Plotly.animate('graph')), then all defined frames will be animated in sequence.
+
+The third argument of Plotly.animate contains animation options. The transition duration defines the amount of time spent interpolating a trace from one state to another (currently limited to scatter traces), while the frame duration defines the total time spent in that state, including time spent transitioning. The example below has two frames, each with their own transition and frame timing.
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Plotly.plot('graph', [{
+  x: [0, 0],
+  y: [-1, 1],
+}], {
+  xaxis: {range: [-Math.PI, Math.PI]},
+  yaxis: {range: [-1.3, 1.3]}
+}).then(function () {
+  Plotly.addFrames('graph', [
+    {
+      data: [{x: [1, -1], y: [0, 0]}],
+      name: 'frame1'
+    }, {
+      data: [{x: [0, 0], y: [-1, 1]}],
+      name: 'frame2'
+    }
+  ]);
+})
+
+function startAnimation() {
+  Plotly.animate('graph', ['frame1', 'frame2'], {
+    frame: [
+      {duration: 1500},
+      {duration: 500},
+    ],
+    transition: [
+      {duration: 800, easing: 'elastic-in'},
+      {duration: 100, easing: 'cubic-in'},
+    ],
+    mode: 'afterall'
+  })
+}
+                                                                        
+                                                                        
+Animating Many Frames Quickly
+
+By default and to ensure any properties that cannot be animated are applied to the plot, a full redraw occurs after each transition. This is generally desirable, but hurts performance when you wish to animate frames as quickly as possible. The example below performs a live simulation of the Lorenz attractor and greatly improves the performance by eliminating the redraw with redraw: false.
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+ var resolveDiv7 = new Promise((resolve,reject)=>{
+            
+var n = 100;
+var x = [], y = [], z = [];
+var dt = 0.015;
+
+for (i = 0; i < n; i++) {
+  x[i] = Math.random() * 2 - 1;
+  y[i] = Math.random() * 2 - 1;
+  z[i] = 30 + Math.random() * 10;
+}
+
+Plotly.plot('myDiv7', [{
+  x: x,
+  y: z,
+  mode: 'markers'
+}], {
+  xaxis: {range: [-40, 40]},
+  yaxis: {range: [0, 60]}
+})
+
+function compute () {
+  var s = 10, b = 8/3, r = 28;
+  var dx, dy, dz;
+  var xh, yh, zh;
+  for (var i = 0; i < n; i++) {
+    dx = s * (y[i] - x[i]);
+    dy = x[i] * (r - z[i]) - y[i];
+    dz = x[i] * y[i] - b * z[i];
+
+    xh = x[i] + dx * dt * 0.5;
+    yh = y[i] + dy * dt * 0.5;
+    zh = z[i] + dz * dt * 0.5;
+
+    dx = s * (yh - xh);
+    dy = xh * (r - zh) - yh;
+    dz = xh * yh - b * zh;
+
+    x[i] += dx * dt;
+    y[i] += dy * dt;
+    z[i] += dz * dt;
+  }
+}
+
+function update () {
+  compute();
+
+  Plotly.animate('myDiv7', {
+    data: [{x: x, y: z}]
+  }, {
+    transition: {
+      duration: 0
+    },
+    frame: {
+      duration: 0,
+      redraw: false
+    }
+  });
+
+  requestAnimationFrame(update);
+}
+
+requestAnimationFrame(update);
+        })
+                                                                        
+                                                                        
+Object Constancy
+
+For scatter traces, you may wish to retain a marker's identity as it is updated. If you include an array of string ids with the trace, the marker identity will be retained. By shuffling the ids, the example below shuffles the markers each time the button is pressed.
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+function shuffleInPlace(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+    var j = Math.floor(Math.random() * (i + 1));
+    var temp = array[i];
+    array[i] = array[j];
+    array[j] = temp;
+  }
+}
+
+var ids = ['1', '2', '3', '4', '5', '6'];
+
+Plotly.plot('graph', [{
+  x: [1, 0.5, -0.5, -1, -0.5, 0.5],
+  y: [0, 0.866, 0.866, 0, -0.866, -0.866],
+  marker:{size:14,
+			 color:['#631357', '#880E4F', '#AD1457',
+					  '#F06292', '#F48FB1']},
+  ids: ids,
+  mode: 'markers'
+}], {
+  xaxis: {range: [-3, 3]},
+  yaxis: {range: [-2, 2]}
+});
+
+function animateShuffle() {
+  shuffleInPlace(ids);
+  Plotly.animate('graph', [{
+    data: [{ids: ids}]
+  }]);
+}
+                                                                        
+                                                                        
+Frame Groups and Animation Modes
+ 
+ 
+ The first row of buttons animates a different set of predefined frames by changing the second argument of Plotly.animate. Passing null or undefined animates all defined frames in sequence, while passing an array of strings (here, the frames in reverse) animates a specific sequence of frames. By passing a plain string (here, lower or upper), it filters the animated frames to those with a group property equal to that name. The stop button is accomplished by interrupting the current animation with an empty list of frames, therefore simply stopping the animation at the end of the current frame.
+
+The second row of buttons animates all frames with different animation modes. The mode option defines whether an animation either interrupts or follows the current animation. immediate mode discards all queued frames and begins a new sequence immediately. The next mode is very similar but doesn't begin the new animation until the end of the current frame. Finally, afterall queues the new frames so that the new animation begins only after all previous animations have completed.
  
             .___
             [__]
@@ -13942,77 +14682,206 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Map Animation in plotly.js
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+    .___            .___
+ |  [__]            [__]
  
  
+ Map Animations
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
+      
+      bad example we need a better data that has massive difference
+      
+Plotly.d3.csv("https://raw.githubusercontent.com/bcdunbar/datasets/master/usa_pop_melted.csv", function(err, rows){
+
+  function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; })
+  }
+
+  var frames = []
+  var z = unpack(rows, 'pop')
+  var locations = unpack(rows, 'abb')
+
+  var n = 7;
+  var j = 51;
+  var k = 0;
+  var num = 2009
+  for (var i = 0; i < n; i++) {
+    k++
+    num++
+    j = 51
+    j = j*k
+    frames[i] = {data: [{z: [], locations: []}], name: num}
+    frames[i].data[0].z = z.slice(0, j);
+    frames[i].data[0].locations = locations.slice(0, j);
+  }
+
+var data = [{
+      type: 'choropleth',
+      locationmode: 'USA-states',
+      locations: frames[0].data[0].locations,
+      z: frames[0].data[0].z,
+      text: frames[0].data[0].locations,
+      zauto: false,
+      zmin: 500000,
+      zmax: 50000000
+
+}];
+
+var layout = {
+    title: 'USA State Population<br>2010 - 2016',
+    geo:{
+       scope: 'usa',
+       countrycolor: 'rgb(255, 255, 255)',
+       showland: true,
+       landcolor: 'rgb(217, 217, 217)',
+       showlakes: true,
+       lakecolor: 'rgb(255, 255, 255)',
+       subunitcolor: 'rgb(255, 255, 255)',
+       lonaxis: {},
+       lataxis: {}
+    },
+    updatemenus: [{
+      x: 0.1,
+      y: 0,
+      yanchor: "top",
+      xanchor: "right",
+      showactive: false,
+      direction: "left",
+      type: "buttons",
+      pad: {"t": 87, "r": 10},
+      buttons: [{
+        method: "animate",
+        args: [null, {
+          fromcurrent: true,
+          transition: {
+            duration: 200,
+          },
+          frame: {
+            duration: 500,
+            redraw: false
+          }
+        }],
+        label: "Play"
+      }, {
+        method: "animate",
+        args: [
+          [null],
+          {
+            mode: "immediate",
+            transition: {
+              duration: 0
+            },
+            frame: {
+              duration: 0,
+              redraw: false
+            }
+          }
+        ],
+        label: "Pause"
+      }]
+    }],
+    sliders: [{
+      active: 0,
+      steps: [{
+        label: "2010",
+        method: "animate",
+        args: [["2010"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      },{
+        label: "2011",
+        method: "animate",
+        args: [["2011"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      }, {
+        label: "2012",
+        method: "animate",
+        args: [["2012"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      }, {
+        label: "2013",
+        method: "animate",
+        args: [["2013"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      }, {
+        label: "2014",
+        method: "animate",
+        args: [["2014"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      }, {
+        label: "2015",
+        method: "animate",
+        args: [["2015"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      }, {
+        label: "2016",
+        method: "animate",
+        args: [["2016"], {
+            mode: "immediate",
+            transition: {duration: 300},
+            frame: {duration: 300, "redraw": false}
+          }
+        ]
+      }],
+      x: 0.1,
+      len: 0.9,
+      xanchor: "left",
+      y: 0,
+      yanchor: "top",
+      pad: {t: 50, b: 10},
+      currentvalue: {
+        visible: true,
+        prefix: "Year:",
+        xanchor: "right",
+        font: {
+          size: 20,
+          color: "#666"
+        }
+      },
+      transition: {
+        duration: 300,
+        easing: "cubic-in-out"
+      }
+    }]
+};
+
+Plotly.plot(myDiv, data, layout).then(function() {
+    Plotly.addFrames('myDiv', frames);
+  });
+})
                                                                         
 US Airports Map
  

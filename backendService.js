@@ -13,7 +13,8 @@ const backend = express.Router()
 //
 
 /* FS API*/ //{
-var r_file = __dirname + '/chartEvents.html'
+var r_file = __dirname + '/animations.html'
+// __dirname + '/chartEvents.html'
 // __dirname + '/customControls.html'
 // __dirname + '/transforms.html'
 // __dirname + '/mapsCharts.html'
