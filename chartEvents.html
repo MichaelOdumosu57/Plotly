@@ -985,7 +985,7 @@ Plotly.newPlot( myPlot, data, layout);
 
 myPlot.on('plotly_click', function(data){
     var pts = '';
-    for(var i=0; i <  data.points.length; i++){
+    for(var i=0; i &lt; data.points.length; i++){
         pts = 'x = '+data.points[i].x +'\ny = '+
             data.points[i].y.toPrecision(4) + '\n\n';
     }
@@ -1019,7 +1019,7 @@ Plotly.newPlot(myPlot, data, layout);
 
 myPlot.on('plotly_click', function(data){
     var pts = '';
-    for(var i=0; i <  data.points.length; i++){
+    for(var i=0; i &lt; data.points.length; i++){
         annotate_text = 'x = '+data.points[i].x +
                       'y = '+data.points[i].y.toPrecision(4);
 
@@ -1478,193 +1478,193 @@ myPlot.on('plotly_hover', function (eventdata){
 //     });
             
 //         })
-           var resolveDiv6 = new Promise((resolve,reject)=>{
-(function(){
+//           var resolveDiv6 = new Promise((resolve,reject)=>{
+// (function(){
   
-    // d3 is bundled with plotly.js!
-    Plotly.d3.csv("https://raw.githubusercontent.com/cldougl/csv/master/alldata2.csv", function(data){
-        processData(data);
-    });
+//     // d3 is bundled with plotly.js!
+//     Plotly.d3.csv("https://raw.githubusercontent.com/cldougl/csv/master/alldata2.csv", function(data){
+//         processData(data);
+//     });
   
-})();
+// })();
                             
-function processData(allRows) {
-	  var x = [],
-		    yFill = [],
-        yPath = [];
-    for (var i = 0; i <= 8; i++){
-        yFill[i] = [];
-    }
-	  for (var i=0; i<allRows.length; i++) {
-        row = allRows[i];
-        x.push( row['date'] );
-        yFill[0].push( row['0.20%'] );
-        yFill[1].push( row['1%'] );
-        yFill[2].push( row['5%'] );
-        yFill[3].push( row['25%'] );
-        yFill[4].push( row['50%'] );
-        yFill[5].push( row['75%'] );
-        yFill[6].push( row['95%'] );
-        yFill[7].push( row['99%'] );
-        yFill[8].push( row['99.80%']) ;
-    }
+// function processData(allRows) {
+// 	  var x = [],
+// 		    yFill = [],
+//         yPath = [];
+//     for (var i = 0; i <= 8; i++){
+//         yFill[i] = [];
+//     }
+// 	  for (var i=0; i<allRows.length; i++) {
+//         row = allRows[i];
+//         x.push( row['date'] );
+//         yFill[0].push( row['0.20%'] );
+//         yFill[1].push( row['1%'] );
+//         yFill[2].push( row['5%'] );
+//         yFill[3].push( row['25%'] );
+//         yFill[4].push( row['50%'] );
+//         yFill[5].push( row['75%'] );
+//         yFill[6].push( row['95%'] );
+//         yFill[7].push( row['99%'] );
+//         yFill[8].push( row['99.80%']) ;
+//     }
     
-    for (var a = 1; a <= 10000; a++){
-        yPath[a] = [];
-    }
-	  for (var i=0; i<allRows.length; i++) {
-		    row = allRows[i];
-      for (var j=1; j <= 10000; j++){
-        yPath[j].push(row['Path '+j]);
-      }
-	}
-  makePlotly(x, yFill, yPath);
-}
+//     for (var a = 1; a <= 10000; a++){
+//         yPath[a] = [];
+//     }
+// 	  for (var i=0; i<allRows.length; i++) {
+// 		    row = allRows[i];
+//       for (var j=1; j <= 10000; j++){
+//         yPath[j].push(row['Path '+j]);
+//       }
+// 	}
+//   makePlotly(x, yFill, yPath);
+// }
 
-function makePlotly(x, yFill, yPath){
-	  var plotDiv = document.getElementById("plot");
-	  var traces = [
-        {x: x, y: yFill[0],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[1],
-         fill: 'tonexty', name: '.2% to 1%',
-         marker: {color: 'rgba(235, 199, 192, .75)'}},
-        {x: x, y: yFill[1],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[2],
-         fill: 'tonexty', name: '1% to 5%',
-         marker: {color: 'rgba(197, 147, 135, .75)'}},
-        {x: x, y: yFill[2],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[3],
-         fill: 'tonexty', name: '5% to 25%',
-         marker: {color: 'rgba(157, 78, 59, .75)'}},
-        {x: x, y: yFill[3],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[4],
-         fill: 'tonexty', name: '25% to 50%',
-         marker: {color: 'rgba(119, 19, 0, .75)'}},
-        {x: x, y: yFill[4],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[5],
-         fill: 'tonexty', name: '50% to 75%',
-         marker: {color: 'rgba(2, 82, 25, .75)'}},
-        {x: x, y: yFill[5],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[6],
-         fill: 'tonexty', name: '75% to 95%',
-         marker: {color: 'rgba(60, 129, 82, .75)'}},
-        {x: x, y: yFill[6],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[7],
-         fill: 'tonexty', name: '95% to 99%',
-         marker: {color: 'rgba(135, 181, 150, .75)'}},
-        {x: x, y: yFill[7],
-         showlegend: false, hoverinfo:'none',
-         marker: {color: 'rgba(0, 0, 0, 0)'}},
-        {x: x, y: yFill[8],
-         fill: 'tonexty', name: '99% to 99.8%',
-         marker: {color: 'rgba(193, 217, 201, .75)'}}
-    ],
-        layout = {
-            title: "Cone Plot with Hover Traces",
-            xaxis: {
-              title: "Time",
-              showgrid: false,
-              dtick: 2,
-            },
-            yaxis: {
-              title: "Data",
-              showline: false
-            }
-        };
+// function makePlotly(x, yFill, yPath){
+// 	  var plotDiv = document.getElementById("plot");
+// 	  var traces = [
+//         {x: x, y: yFill[0],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[1],
+//          fill: 'tonexty', name: '.2% to 1%',
+//          marker: {color: 'rgba(235, 199, 192, .75)'}},
+//         {x: x, y: yFill[1],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[2],
+//          fill: 'tonexty', name: '1% to 5%',
+//          marker: {color: 'rgba(197, 147, 135, .75)'}},
+//         {x: x, y: yFill[2],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[3],
+//          fill: 'tonexty', name: '5% to 25%',
+//          marker: {color: 'rgba(157, 78, 59, .75)'}},
+//         {x: x, y: yFill[3],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[4],
+//          fill: 'tonexty', name: '25% to 50%',
+//          marker: {color: 'rgba(119, 19, 0, .75)'}},
+//         {x: x, y: yFill[4],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[5],
+//          fill: 'tonexty', name: '50% to 75%',
+//          marker: {color: 'rgba(2, 82, 25, .75)'}},
+//         {x: x, y: yFill[5],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[6],
+//          fill: 'tonexty', name: '75% to 95%',
+//          marker: {color: 'rgba(60, 129, 82, .75)'}},
+//         {x: x, y: yFill[6],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[7],
+//          fill: 'tonexty', name: '95% to 99%',
+//          marker: {color: 'rgba(135, 181, 150, .75)'}},
+//         {x: x, y: yFill[7],
+//          showlegend: false, hoverinfo:'none',
+//          marker: {color: 'rgba(0, 0, 0, 0)'}},
+//         {x: x, y: yFill[8],
+//          fill: 'tonexty', name: '99% to 99.8%',
+//          marker: {color: 'rgba(193, 217, 201, .75)'}}
+//     ],
+//         layout = {
+//             title: "Cone Plot with Hover Traces",
+//             xaxis: {
+//               title: "Time",
+//               showgrid: false,
+//               dtick: 2,
+//             },
+//             yaxis: {
+//               title: "Data",
+//               showline: false
+//             }
+//         };
   
-    Plotly.newPlot('DivId', traces, layout, {showSendToCloud: true});
+//     Plotly.newPlot('DivId', traces, layout, {showSendToCloud: true});
   
-    var rmHover,
-        nTraces = 16,
-        plot = document.getElementById('DivId');
+//     var rmHover,
+//         nTraces = 16,
+//         plot = document.getElementById('DivId');
     
     
-    // Show the nearest trace when hovering
-    plot.on('plotly_hover', function(data) {
-        var pointNum = data.points[0].pointNumber,
-            hoverY = (data.yvals[0]).toPrecision(4);
-        if (rmHover){
-            Plotly.deleteTraces('DivId', nTraces);
-        }
-        // loop through yPaths and if the value matches the hover y val plot hover trace
-        for (var yp=1; yp<=10000; yp++) {
-            if((Number(yPath[yp][pointNum])).toPrecision(4) === hoverY){
-                var traceh = {x: x,
-                              y: yPath[yp],
-                              name:'Path '+yp,
-                              mode: 'lines+markers',
-                              hoverinfo: 'none',
-                              marker: {size:6},
-                              line: {width:1,
-                                     color:'rgba(0, 0, 0, .4)'}
-                             };
-              Plotly.addTraces('DivId', traceh);
-              rmHover=true;
-              break;
-            } else{
-              rmHover=false;
-              }
-        }
-    })
+//     // Show the nearest trace when hovering
+//     plot.on('plotly_hover', function(data) {
+//         var pointNum = data.points[0].pointNumber,
+//             hoverY = (data.yvals[0]).toPrecision(4);
+//         if (rmHover){
+//             Plotly.deleteTraces('DivId', nTraces);
+//         }
+//         // loop through yPaths and if the value matches the hover y val plot hover trace
+//         for (var yp=1; yp<=10000; yp++) {
+//             if((Number(yPath[yp][pointNum])).toPrecision(4) === hoverY){
+//                 var traceh = {x: x,
+//                               y: yPath[yp],
+//                               name:'Path '+yp,
+//                               mode: 'lines+markers',
+//                               hoverinfo: 'none',
+//                               marker: {size:6},
+//                               line: {width:1,
+//                                      color:'rgba(0, 0, 0, .4)'}
+//                              };
+//               Plotly.addTraces('DivId', traceh);
+//               rmHover=true;
+//               break;
+//             } else{
+//               rmHover=false;
+//               }
+//         }
+//     })
         
-    // Draw the trace (and leave it in place) when clicked
-    plot.on('plotly_click', function(data){
-      // plot the 'hover' trace as a permanent/colored trace on click
-        var update = {
-            'line': {width: 2}
-        };
-        Plotly.restyle('DivId', update, [nTraces]);
-        nTraces+=1;
-        rmHover=false;
-    });
+//     // Draw the trace (and leave it in place) when clicked
+//     plot.on('plotly_click', function(data){
+//       // plot the 'hover' trace as a permanent/colored trace on click
+//         var update = {
+//             'line': {width: 2}
+//         };
+//         Plotly.restyle('DivId', update, [nTraces]);
+//         nTraces+=1;
+//         rmHover=false;
+//     });
     
-      var pathBtn = document.getElementById('pathButton');
-      pathBtn.addEventListener('click', function(){
-      if (rmHover) {Plotly.deleteTraces('DivId', -1);
-      }
-      var pathnum = document.getElementById('pathnum').value,
-          pathnums = pathnum.split(",").map(Number),
-          inputTraces = [];
-      for (var p=0; p<pathnums.length; p++) {
-          nTraces+=1;
-          inputTraces.push(
-            {
-              x: x, y: yPath[pathnums[p]],
-              name:'Path '+pathnums[p],
-              mode: 'lines+markers',
-              hoverinfo: 'none',
-              marker: {size:6},
-              line: {width:2}
-             });
-      }
-      Plotly.addTraces('DivId', inputTraces);
-      rmHover=false;
-    });
+//       var pathBtn = document.getElementById('pathButton');
+//       pathBtn.addEventListener('click', function(){
+//       if (rmHover) {Plotly.deleteTraces('DivId', -1);
+//       }
+//       var pathnum = document.getElementById('pathnum').value,
+//           pathnums = pathnum.split(",").map(Number),
+//           inputTraces = [];
+//       for (var p=0; p<pathnums.length; p++) {
+//           nTraces+=1;
+//           inputTraces.push(
+//             {
+//               x: x, y: yPath[pathnums[p]],
+//               name:'Path '+pathnums[p],
+//               mode: 'lines+markers',
+//               hoverinfo: 'none',
+//               marker: {size:6},
+//               line: {width:2}
+//              });
+//       }
+//       Plotly.addTraces('DivId', inputTraces);
+//       rmHover=false;
+//     });
   
-    var deleteBtn = document.getElementById('delete');
-    deleteBtn.addEventListener('click', function(){
-        for (var ll=nTraces; ll>16; ll--) {
-            Plotly.deleteTraces('DivId', 16);
-        }
-        nTraces = 16;
-    });
-}
+//     var deleteBtn = document.getElementById('delete');
+//     deleteBtn.addEventListener('click', function(){
+//         for (var ll=nTraces; ll>16; ll--) {
+//             Plotly.deleteTraces('DivId', 16);
+//         }
+//         nTraces = 16;
+//     });
+// }
                
-               })
+//               })
     }
    // } /**/
    

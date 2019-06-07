@@ -52,6 +52,7 @@ section
       | [__]    [__]  |
       
       
+Tips
             .___
             [__]
                  .___
@@ -13402,52 +13403,388 @@ function prepData(rawData) {
         y: y
     }];
 }
+
+Custom Chart Events
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+Click Events in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Click Event Data & Binding to Click Events
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
       
+      
+
+  points: [{
+    curveNumber: 2,  // index in data of the trace associated with the selected point
+    pointNumber: 2,  // index of the selected point
+    x: 5,        // x value
+    y: 600,      // y value
+    data: {/* */},       // ref to the trace as sent to Plotly.plot associated with the selected point
+    fullData: {/* */},   // ref to the trace including all the defaults
+   xaxis: {/* */},   // ref to x-axis object (i.e layout.xaxis) associated with the selected point
+   yaxis: {/* */}    // ref to y-axis object " "
+  }, {
+    /* similarly for other selected points */
+  }]
+var myPlot = document.getElementById('myDiv0'),
+    d3 = Plotly.d3,
+    N = 16,
+    x = d3.range(N),
+    y = d3.range(N).map( d3.random.normal() ),
+    data = [ { x:x, y:y, type:'scatter',
+            mode:'markers', marker:{size:16} } ],
+    layout = {
+        hovermode:'closest',
+        title:'Click on Points'
+     };
+
+Plotly.newPlot( myPlot, data, layout);
+
+myPlot.on('plotly_click', function(data){
+    var pts = '';
+    for(var i=0; i &lt; data.points.length; i++){
+        pts = 'x = '+data.points[i].x +'\ny = '+
+            data.points[i].y.toPrecision(4) + '\n\n';
+    }
+    alert('Closest point clicked:\n\n'+pts);
+});
+                                                                              
+                                                                              
+Create annotation on click event
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+
+var resolveDiv1 = new Promise((resolve,reject)=>{
+var myPlot = document.getElementById('myDiv1'),
+    d3 = Plotly.d3,
+    N = 100,
+    x = d3.range(N),
+    y1 = d3.range(N).map( d3.random.normal() ),
+    y2 = d3.range(N).map( d3.random.normal(-2) ),
+    y3 = d3.range(N).map( d3.random.normal(2) ),
+    trace1 = { x:x, y:y1, type:'scatter', mode:'lines', name:'Jeff' },
+    trace2 = { x:x, y:y2, type:'scatter', mode:'lines', name:'Terren' },
+    trace3 = { x:x, y:y3, type:'scatter', mode:'lines', name:'Arthur' },
+    data = [ trace1, trace2, trace3 ],
+    layout = {
+        hovermode:'closest',
+        title:'Click on Points to add an Annotation on it'
+     };
+
+Plotly.newPlot(myPlot, data, layout);
+
+myPlot.on('plotly_click', function(data){
+    var pts = '';
+    for(var i=0; i &lt; data.points.length; i++){
+        annotate_text = 'x = '+data.points[i].x +
+                      'y = '+data.points[i].y.toPrecision(4);
+
+        annotation = {
+          text: annotate_text,
+          x: data.points[i].x,
+          y: parseFloat(data.points[i].y.toPrecision(4))
+        }
+ultraObject.propertyUndefined({
+        target:self,
+        expected:ultraObject.iterify({iterify:["layout","annotations"]}),
+//         stack:'true'
+        noVal:{'a':'b'}
+})
+
+ var objI_0_i = ultraObject.scope.add(   {value:ultraObject.objIO.abelast[   ultraObject.objIO.abelast.length-1   ]}   )
+
+if(   ultraObject.isPrimitive(   {type:ultraObject.objIO[   ultraObject.scope[objI_0_i]   ].result}   )   ){
+    
+    annotations = self.layout.annotations
+
+}
+
+else if(   !ultraObject.isPrimitive(   {type:ultraObject.objIO[   ultraObject.scope[objI_0_i]   ].result}   )   ){
+    
+    if(   ultraObject.objIO[   ultraObject.scope[objI_0_i]   ].result['a'] === 'b'   ){
+        annotations = []
+    }
+    
+    else if(   !ultraObject.objIO[   ultraObject.scope[objI_0_i]   ].result['a'] === 'b'   ){
+        annotations = self.layout.annotations
+    }
+    
+}
+
+        annotations.push(annotation);
+        Plotly.relayout(myPlot,{annotations: annotations})
+    }
+});
+        })
+                          '
+
+
+Hover Events in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ Capturing Hover Events: Data
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+{
+        
+
+        var resolveDiv2 = new Promise((resolve,reject)=>{
+            
+  points: [{
+    curveNumber: 2,  // index in data of the trace associated with the selected point
+    pointNumber: 2,  // index of the selected point
+    x: 5,        // x value
+    y: 600,      // y value
+    data: {/* */},       // ref to the trace as sent to Plotly.plot associated with the selected point
+    fullData: {/* */},   // ref to the trace including all the defaults
+   xaxis: {/* */},   // ref to x-axis object (i.e layout.xaxis) associated with the selected point
+   yaxis: {/* */}    // ref to y-axis object " "
+  }, {
+    /* similarly for other selected points */
+  }]
+            var element12 = document.createElement("div")
+            document.body.appendChild(element12)
+            var node12 = document.querySelectorAll("div")[document.querySelectorAll("div").length-1]
+            var id12 = document.createAttribute("id")
+            id12.value = 'hoverinfo'
+            element12.setAttributeNode(id12)
+            
+var myPlot = document.getElementById('myDiv2'),
+    hoverInfo = document.getElementById('hoverinfo'),
+    d3 = Plotly.d3,
+    N = 16,
+    x = d3.range(N),
+    y1 = d3.range(N).map( d3.random.normal() ),
+    y2 = d3.range(N).map( d3.random.normal() ),
+    data = [ { x:x, y:y1, type:'scatter', name:'Trial 1',
+        mode:'markers', marker:{size:16} },
+        { x:x, y:y2, type:'scatter', name:'Trial 2',
+        mode:'markers', marker:{size:16} } ];
+    layout = {
+        hovermode:'closest',
+        title:'Hover on Points'
+     };
+
+Plotly.plot(myPlot, data, layout);
+
+myPlot.on('plotly_hover', function(data){
+    var infotext = data.points.map(function(d){
+      return (d.data.name+': x= '+d.x+', y= '+d.y.toPrecision(3));
+    });
+
+    hoverInfo.innerHTML = infotext.join('<br/>');
+})
+ .on('plotly_unhover', function(data){
+    hoverInfo.innerHTML = '';
+});
+        })
+    }
       
                                                                               
-US Airports Map
+Capturing Hover Events: Pixels
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+      
+ {
+        var resolveDiv3 = new Promise((resolve,reject)=>{
+            var element12 = document.createElement("div")
+            document.body.appendChild(element12)
+            var node12 = document.querySelectorAll("div")[document.querySelectorAll("div").length-1]
+            var id12 = document.createAttribute("id")
+            id12.value = 'hoverinfo'
+            element12.setAttributeNode(id12)
+var myPlot = document.getElementById('myDiv3'),
+    hoverInfo = document.getElementById('hoverinfo'),
+    d3 = Plotly.d3,
+    N = 16,
+    x = d3.range(N),
+    y1 = d3.range(N).map(d3.random.normal()),
+    y2 = d3.range(N).map(d3.random.normal()),
+    data = [{x:x, y:y1, type:'scatter', name:'Trial 1',
+        mode:'markers', marker:{size:16}},
+        {x:x, y:y2, type:'scatter', name:'Trial 2',
+        mode:'markers', marker:{size:16}}],
+    layout = {hovermode:'closest',
+              title:'Hover on Points to see<br>Pixel Coordinates'};
+
+Plotly.plot(myPlot, data, layout);
+
+myPlot.on('plotly_hover', function(data){
+    var xaxis = data.points[0].xaxis,
+        yaxis = data.points[0].yaxis;
+    var infotext = data.points.map(function(d){
+      return ('width: '+xaxis.l2p(d.x)+', height: '+yaxis.l2p(d.y));
+    });
+
+    hoverInfo.innerHTML = infotext.join('<br/>');
+})
+ .on('plotly_unhover', function(data){
+    hoverInfo.innerHTML = '';
+});
+        })
+    }
                                                                         
-                                                                        
-US Airports Map
+
+Triggering Hover Events
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+      
+      
+{
+        var resolveDiv4 = new Promise((resolve,reject)=>{
+            var element12 = document.createElement("button")
+            document.body.appendChild(element12)
+            var node12 = document.querySelectorAll("button")[document.querySelectorAll("button").length-1]
+            var id12 = document.createAttribute("id")
+            id12.value = 'hoverbutton'
+            element12.setAttributeNode(id12)
+            var text12 = document.createTextNode("Go");
+            element12.appendChild(text12)
+            
+var myPlot = document.getElementById('myDiv4'),
+    hoverButton = document.getElementById('hoverbutton'),
+    d3 = Plotly.d3,
+    N = 16,
+    x = d3.range(N),
+    y1 = d3.range(N).map( d3.random.normal() ),
+    y2 = d3.range(N).map( d3.random.normal() ),
+    data = [ { x:x, y:y1, type:'scatter', name:'Trial 1',
+        mode:'markers', marker:{size:16} },
+        { x:x, y:y2, type:'scatter', name:'Trial 2',
+        mode:'markers', marker:{size:16} } ];
+    layout = {
+        hovermode:'closest',
+        title:'Click "Go" button to trigger hover'
+     };
+
+Plotly.plot(myPlot, data, layout);
+
+myPlot.on('plotly_beforehover',function(){
+    return false;
+});
+
+hoverButton.addEventListener('click', function(){
+    var curve1 = Math.floor(Math.random()*2),
+        curve2 = Math.floor(Math.random()*2),
+        point1 = Math.floor(Math.random()*14),
+        point2 = Math.floor(Math.random()*14);
+    Plotly.Fx.hover(myPlot,[
+        {curveNumber:curve1, pointNumber:point1},
+        {curveNumber:curve2, pointNumber:point2}
+    ]);
+});
+            
+        })
+    }
                                                                         
                                                                         
-US Airports Map
+Coupled Hover Events
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+      
+      
+{
+        var resolveDiv5 = new Promise((resolve,reject)=>{
+            
+var myPlot = document.getElementById('myDiv5'),
+    d3 = Plotly.d3,
+    N = 12,
+    x1 = d3.range(N).map( d3.random.normal() ),
+    x2 = d3.range(N).map( d3.random.normal() ),
+    x3 = d3.range(N).map( d3.random.normal() ),
+    y1 = d3.range(N).map( d3.random.normal() ),
+    y2 = d3.range(N).map( d3.random.normal() ),
+    y3 = d3.range(N).map( d3.random.normal() ),
+    months = ['January', 'February', 'March', 'April',
+              'May', 'June', 'July', 'August',
+              'September', 'October', 'November', 'December']
+    data = [{ x: x1, y: y1, text: months, type: 'scatter', name: '2014', hoverinfo: 'text+x+y',
+              mode: 'markers', marker: {color: 'rgba(200, 50, 100, .7)', size: 16}
+            },
+            { x: x2, y: y2, text: months, type: 'scatter', name: '2015', hoverinfo: 'text+x+y',
+             mode: 'markers', marker: {color: 'rgba(120, 20, 130, .7)', size: 16}
+            },
+            { x: x3, y: y3, text: months, type: 'scatter', name: '2016', hoverinfo: 'text+x+y',
+             mode: 'markers', marker: {color: 'rgba(10, 180, 180, .8)', size: 16}
+            }];
+    layout = {
+        hovermode:'closest',
+        title:'Display Hover Info for Related Points',
+        xaxis:{zeroline:false, hoverformat: '.2r'},
+        yaxis:{zeroline:false, hoverformat: '.2r'}
+     };
+
+Plotly.newPlot(myPlot, data, layout);
+
+myPlot.on('plotly_hover', function (eventdata){
+    var points = eventdata.points[0],
+        pointNum = points.pointNumber;
+
+    Plotly.Fx.hover(myPlot,[
+        { curveNumber:0, pointNumber:pointNum },
+        { curveNumber:1, pointNumber:pointNum },
+        { curveNumber:2, pointNumber:pointNum },
+    ]);
+});
+        })
+    }
                                                                         
                                                                         
-US Airports Map
+Combined Click and Hover Events
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
+      
+      
                                                                         
                                                                         
 US Airports Map
