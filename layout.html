@@ -2162,326 +2162,326 @@ Plotly.newPlot('myDiv26', data, layout);
     // } /**/
     
     /*Highlighting Clusters of Scatter Points with Circle Shapes */ //{
-        {
-            var resolveDiv27 = new Promise((resolve,reject)=>{
-var d3 = Plotly.d3
+//         {
+//             var resolveDiv27 = new Promise((resolve,reject)=>{
+// var d3 = Plotly.d3
 
-function normal_array( mean, stddev, size ){
-    var arr = new Array(size), i;
-    // from http://bl.ocks.org/nrabinowitz/2034281
-    var generator = (function() {
-        return d3.random.normal(mean, stddev);
-    }());
+// function normal_array( mean, stddev, size ){
+//     var arr = new Array(size), i;
+//     // from http://bl.ocks.org/nrabinowitz/2034281
+//     var generator = (function() {
+//         return d3.random.normal(mean, stddev);
+//     }());
 
-    for( i=0; i< arr.length; i++ ){
-        arr[i] = generator();
-    }
-    return arr;
-}
+//     for( i=0; i< arr.length; i++ ){
+//         arr[i] = generator();
+//     }
+//     return arr;
+// }
 
-var x0 = normal_array(2, 0.45, 300);
-var y0 = normal_array(2, 0.45, 300);
+// var x0 = normal_array(2, 0.45, 300);
+// var y0 = normal_array(2, 0.45, 300);
 
-var x1 = normal_array(6, 0.4, 200);
-var y1 = normal_array(6, 0.4, 200)
+// var x1 = normal_array(6, 0.4, 200);
+// var y1 = normal_array(6, 0.4, 200)
 
-var x2 = normal_array(4, 0.3, 200);
-var y2 = normal_array(4, 0.3, 200);
+// var x2 = normal_array(4, 0.3, 200);
+// var y2 = normal_array(4, 0.3, 200);
 
-console.log(x0);
+// console.log(x0);
 
-var data = [
-    {
-        x: x0,
-        y: y0,
-        mode: 'markers'
-    }, {
-        x: x1,
-        y: y1,
-        mode: 'markers'
-    }, {
-        x: x2,
-        y: y2,
-        mode: 'markers'
-    }, {
-        x: x1,
-        y: y0,
-        mode: 'markers'
-    }
-];
+// var data = [
+//     {
+//         x: x0,
+//         y: y0,
+//         mode: 'markers'
+//     }, {
+//         x: x1,
+//         y: y1,
+//         mode: 'markers'
+//     }, {
+//         x: x2,
+//         y: y2,
+//         mode: 'markers'
+//     }, {
+//         x: x1,
+//         y: y0,
+//         mode: 'markers'
+//     }
+// ];
 
-var layout = {
-    shapes: [
-        {
-            type: 'circle',
-            xref: 'x',
-            yref: 'y',
-            x0: d3.min(x0),
-            y0: d3.min(y0),
-            x1: d3.max(x0),
-            y1: d3.max(y0),
-            opacity: 0.2,
-            fillcolor: 'blue',
-            line: {
-                color: 'blue'
-            }
-        },
-        {
-            type: 'circle',
-            xref: 'x',
-            yref: 'y',
-            x0: d3.min(x1),
-            y0: d3.min(y1),
-            x1: d3.max(x1),
-            y1: d3.max(y1),
-            opacity: 0.2,
-            fillcolor: 'orange',
-            line: {
-                color: 'orange'
-            }
-        },
-        {
-            type: 'circle',
-            xref: 'x',
-            yref: 'y',
-            x0: d3.min(x2),
-            y0: d3.min(y2),
-            x1: d3.max(x2),
-            y1: d3.max(y2),
-            opacity: 0.2,
-            fillcolor: 'green',
-            line: {
-                color: 'green'
-            }
-        },
-        {
-            type: 'circle',
-            xref: 'x',
-            yref: 'y',
-            x0: d3.min(x1),
-            y0: d3.min(y0),
-            x1: d3.max(x1),
-            y1: d3.max(y0),
-            opacity: 0.2,
-            fillcolor: 'red',
-            line: {
-                color: 'red'
-            }
-        }
-    ],
-    height: 400,
-    width: 480,
-    showlegend: false
-}
+// var layout = {
+//     shapes: [
+//         {
+//             type: 'circle',
+//             xref: 'x',
+//             yref: 'y',
+//             x0: d3.min(x0),
+//             y0: d3.min(y0),
+//             x1: d3.max(x0),
+//             y1: d3.max(y0),
+//             opacity: 0.2,
+//             fillcolor: 'blue',
+//             line: {
+//                 color: 'blue'
+//             }
+//         },
+//         {
+//             type: 'circle',
+//             xref: 'x',
+//             yref: 'y',
+//             x0: d3.min(x1),
+//             y0: d3.min(y1),
+//             x1: d3.max(x1),
+//             y1: d3.max(y1),
+//             opacity: 0.2,
+//             fillcolor: 'orange',
+//             line: {
+//                 color: 'orange'
+//             }
+//         },
+//         {
+//             type: 'circle',
+//             xref: 'x',
+//             yref: 'y',
+//             x0: d3.min(x2),
+//             y0: d3.min(y2),
+//             x1: d3.max(x2),
+//             y1: d3.max(y2),
+//             opacity: 0.2,
+//             fillcolor: 'green',
+//             line: {
+//                 color: 'green'
+//             }
+//         },
+//         {
+//             type: 'circle',
+//             xref: 'x',
+//             yref: 'y',
+//             x0: d3.min(x1),
+//             y0: d3.min(y0),
+//             x1: d3.max(x1),
+//             y1: d3.max(y0),
+//             opacity: 0.2,
+//             fillcolor: 'red',
+//             line: {
+//                 color: 'red'
+//             }
+//         }
+//     ],
+//     height: 400,
+//     width: 480,
+//     showlegend: false
+// }
 
-Plotly.newPlot('myDiv27', data, layout);
-            })
-        }
+// Plotly.newPlot('myDiv27', data, layout);
+//             })
+//         }
     // } /**/
     
     /*Vertical and Horizontal Lines Positioned Relative to the Axes */ //{
-        {
-            var resolveDiv28 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [2, 3.5, 6],
-  y: [1, 1.5, 1],
-  text: ['Vertical Line', 'Horizontal Dashed Line', 'Diagonal dotted Line'],
-  mode: 'text'
-};
+//         {
+//             var resolveDiv28 = new Promise((resolve,reject)=>{
+// var trace1 = {
+//   x: [2, 3.5, 6],
+//   y: [1, 1.5, 1],
+//   text: ['Vertical Line', 'Horizontal Dashed Line', 'Diagonal dotted Line'],
+//   mode: 'text'
+// };
 
-var layout = {
-  title: 'Vertical and Horizontal Lines Positioned Relative to the Axes',
-  xaxis: {
-    range: [0, 7]
-  },
-  yaxis: {
-    range: [0, 2.5]
-  },
-  width: 500,
-  height: 500,
-  shapes: [
+// var layout = {
+//   title: 'Vertical and Horizontal Lines Positioned Relative to the Axes',
+//   xaxis: {
+//     range: [0, 7]
+//   },
+//   yaxis: {
+//     range: [0, 2.5]
+//   },
+//   width: 500,
+//   height: 500,
+//   shapes: [
 
-    //line vertical
+//     //line vertical
 
-    {
-      type: 'line',
-      x0: 1,
-      y0: 0,
-      x1: 1,
-      y1: 2,
-      line: {
-        color: 'rgb(55, 128, 191)',
-        width: 3
-      }
-    },
+//     {
+//       type: 'line',
+//       x0: 1,
+//       y0: 0,
+//       x1: 1,
+//       y1: 2,
+//       line: {
+//         color: 'rgb(55, 128, 191)',
+//         width: 3
+//       }
+//     },
 
-    //Line Horizontal
+//     //Line Horizontal
 
-    {
-      type: 'line',
-      x0: 2,
-      y0: 2,
-      x1: 5,
-      y1: 2,
-      line: {
-        color: 'rgb(50, 171, 96)',
-        width: 4,
-        dash: 'dashdot'
-      }
-    },
+//     {
+//       type: 'line',
+//       x0: 2,
+//       y0: 2,
+//       x1: 5,
+//       y1: 2,
+//       line: {
+//         color: 'rgb(50, 171, 96)',
+//         width: 4,
+//         dash: 'dashdot'
+//       }
+//     },
 
-    //Line Diagonal
+//     //Line Diagonal
 
-    {
-      type: 'line',
-      x0: 4,
-      y0: 0,
-      x1: 6,
-      y1: 2,
-      line: {
-        color: 'rgb(128, 0, 128)',
-        width: 4,
-        dash: 'dot'
-      }
-    }
-  ]
-};
+//     {
+//       type: 'line',
+//       x0: 4,
+//       y0: 0,
+//       x1: 6,
+//       y1: 2,
+//       line: {
+//         color: 'rgb(128, 0, 128)',
+//         width: 4,
+//         dash: 'dot'
+//       }
+//     }
+//   ]
+// };
 
-var data = [trace1];
+// var data = [trace1];
 
-Plotly.newPlot('myDiv28', data, layout);
-            })
-        }
+// Plotly.newPlot('myDiv28', data, layout);
+//             })
+//         }
     // } /**/
     
     /*Circle */ //{
-        {
-            var resolveDiv29 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [1.5, 3.5],
-  y: [0.75, 2.5],
-  text: ['Unfilled Circle', 'Filled Circle'],
-  mode: 'text'
-};
+//         {
+//             var resolveDiv29 = new Promise((resolve,reject)=>{
+// var trace1 = {
+//   x: [1.5, 3.5],
+//   y: [0.75, 2.5],
+//   text: ['Unfilled Circle', 'Filled Circle'],
+//   mode: 'text'
+// };
 
-var layout = {
-  title: 'Circles',
-  xaxis: {
-    range: [0, 4.5],
-    zeroline: false
-  },
-  yaxis: {
-    range: [0, 4.5]
-  },
-  width: 500,
-  height: 500,
-  shapes: [
+// var layout = {
+//   title: 'Circles',
+//   xaxis: {
+//     range: [0, 4.5],
+//     zeroline: false
+//   },
+//   yaxis: {
+//     range: [0, 4.5]
+//   },
+//   width: 500,
+//   height: 500,
+//   shapes: [
 
-    // Unfilled Circle
+//     // Unfilled Circle
 
-    {
-      type: 'circle',
-      xref: 'x',
-      yref: 'y',
-      x0: 1,
-      y0: 1,
-      x1: 3,
-      y1: 3,
-      line: {
-        color: 'rgba(50, 171, 96, 1)'
-      }
-    },
+//     {
+//       type: 'circle',
+//       xref: 'x',
+//       yref: 'y',
+//       x0: 1,
+//       y0: 1,
+//       x1: 3,
+//       y1: 3,
+//       line: {
+//         color: 'rgba(50, 171, 96, 1)'
+//       }
+//     },
 
-    // Filled Circle
+//     // Filled Circle
 
-    {
-      type: 'circle',
-      xref: 'x',
-      yref: 'y',
-      fillcolor: 'rgba(50, 171, 96, 0.7)',
-      x0: 3,
-      y0: 3,
-      x1: 4,
-      y1: 4,
-      line: {
-        color: 'rgba(50, 171, 96, 1)'
-      }
-    }
-  ]
-};
+//     {
+//       type: 'circle',
+//       xref: 'x',
+//       yref: 'y',
+//       fillcolor: 'rgba(50, 171, 96, 0.7)',
+//       x0: 3,
+//       y0: 3,
+//       x1: 4,
+//       y1: 4,
+//       line: {
+//         color: 'rgba(50, 171, 96, 1)'
+//       }
+//     }
+//   ]
+// };
 
-var data = [trace1];
+// var data = [trace1];
 
-Plotly.newPlot('myDiv29', data, layout);
-            })
-        }
+// Plotly.newPlot('myDiv29', data, layout);
+//             })
+//         }
     // } /**/
     
     /* Rectangle Positioned Relative to the Plot and to the Axes */ //{
-        {
-            var resolveDiv30 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [1.5, 3],
-  y: [2.5, 2.5],
-  text: ['Rectangle reference to the plot', 'Rectangle reference to the axes'],
-  mode: 'text'
-};
+//         {
+//             var resolveDiv30 = new Promise((resolve,reject)=>{
+// var trace1 = {
+//   x: [1.5, 3],
+//   y: [2.5, 2.5],
+//   text: ['Rectangle reference to the plot', 'Rectangle reference to the axes'],
+//   mode: 'text'
+// };
 
-var layout = {
-  title: 'Rectangles Positioned Relative to the Plot and to the Axes',
-  xaxis: {
-    range: [0, 4],
-    showgrid: false
-  },
-  yaxis: {
-    range: [0, 4]
-  },
-  width: 800,
-  height: 600,
-  shapes: [
+// var layout = {
+//   title: 'Rectangles Positioned Relative to the Plot and to the Axes',
+//   xaxis: {
+//     range: [0, 4],
+//     showgrid: false
+//   },
+//   yaxis: {
+//     range: [0, 4]
+//   },
+//   width: 800,
+//   height: 600,
+//   shapes: [
 
-    //Rectangle reference to the axes
+//     //Rectangle reference to the axes
 
-    {
-      type: 'rect',
-      xref: 'x',
-      yref: 'y',
-      x0: 2.5,
-      y0: 0,
-      x1: 3.5,
-      y1: 2,
-      line: {
-        color: 'rgb(55, 128, 191)',
-        width: 3
-      },
-      fillcolor: 'rgba(55, 128, 191, 0.6)'
-    },
+//     {
+//       type: 'rect',
+//       xref: 'x',
+//       yref: 'y',
+//       x0: 2.5,
+//       y0: 0,
+//       x1: 3.5,
+//       y1: 2,
+//       line: {
+//         color: 'rgb(55, 128, 191)',
+//         width: 3
+//       },
+//       fillcolor: 'rgba(55, 128, 191, 0.6)'
+//     },
 
-    //Rectangle reference to the Plot
+//     //Rectangle reference to the Plot
 
-    {
-      type: 'rect',
-      xref: 'paper',
-      yref: 'paper',
-      x0: 0.25,
-      y0: 0,
-      x1: 0.5,
-      y1: 0.5,
-      line: {
-        color: 'rgb(50, 171, 96)',
-        width: 3
-      },
-      fillcolor: 'rgba(50, 171, 96, 0.6)'
-    }
-  ]
-};
+//     {
+//       type: 'rect',
+//       xref: 'paper',
+//       yref: 'paper',
+//       x0: 0.25,
+//       y0: 0,
+//       x1: 0.5,
+//       y1: 0.5,
+//       line: {
+//         color: 'rgb(50, 171, 96)',
+//         width: 3
+//       },
+//       fillcolor: 'rgba(50, 171, 96, 0.6)'
+//     }
+//   ]
+// };
 
-var data = [trace1];
+// var data = [trace1];
 
-Plotly.newPlot('myDiv30', data, layout);
+// Plotly.newPlot('myDiv30', data, layout);
                 
-            })
-        }
+//             })
+//         }
     // } /**/
     
     /* Rectangle Positioned Relative to the Axes*/ //{
@@ -2786,7 +2786,7 @@ var xValues = JSON.parse(ultraObject.XHR[0][0].responseText)
 
 var yValues = [];
 
-for ( var i = 0 ; i <  xValues.length ; i++ ) {
+for ( var i = 0 ; i &lt; xValues.length ; i++ ) {
   var result = xValues[i] * Math.sin(Math.pow(xValues[i], 2)) + 1;
   yValues.push(result);
 };

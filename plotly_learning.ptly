@@ -1,6 +1,7 @@
 intersted in table, sankey, parallel categories
 buttons, sliders and lasso
 
+ITS Best to refer to the files to see what you need
 
             .___                        .___                        .___                        .___
          |  [__]
@@ -15804,8 +15805,220 @@ data = [data1, data2]
 Plotly.plot('graph', {data:data,
                      layout:layout});
                                                                         
+
+Layout Options
+
+
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+Formatting Ticks
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+
+
+3D Surface Lighting in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+ Ambient Lighting
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Plotly.d3.csv('https://raw.githubusercontent.com/michaelbabyn/plot_data/master/sin_saddle.csv', function(err, rows){
+function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+var z_data = [ ];
+for(i=0;i<100;i++)
+{
+  z_data.push(unpack(rows,i));
+}
+
+var data = [{
+  z: z_data,
+  type: 'surface',
+  colorscale: 'Viridis',
+  lighting: {ambient: 0.9}
+  },
+   {
+  z: z_data,
+  type: 'surface',
+  scene: 'scene2',
+  colorscale:'Viridis',
+  lighting: {ambient: 0.2}
+  }
+];
+
+var layout = {
+  title: 'Ambient Lighting',
+  grid: {
+    rows: 1,
+    columns: 2,
+    pattern: 'independent',
+  },
+  	scene:{
+		aspectmode:'cube',
+		domain:{row:0, column:0}
+	},
+	scene2:{
+		aspectmode:'cube',
+		domain:{row:0, column:1}
+  }
+};
+Plotly.newPlot('myDiv', data, layout);
+});
+            
+      
+Layout Template Examples in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ The Layout Template Attribute
+ 
+ allows a plotly plot to take its styling from a template object
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+      
+      
+Add Named Container Array Items
+
+
+Container array items in a template with a name attribute will be added to any plot using that template. We can use this feature to create a template that adds watermarks to our chart by including named image items in images. The example below also shows how to make one of these images invisible using the templateitemname attribute if you don't want it to display for this specific chart.
+ 
+ 
+ 
+ 
+ 3D Hover Options in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ Customize Hover for Spikelines
+  
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
                                                                         
-US Airports Map
+                                      
+                                      
+                                                                        
+Hover Text and Formatting in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ Adding Hover Text to Data in Line and Scatter Plots
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Rounding X and Y Hover Values
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                    
+                    
+                                                                        
+3D Axes in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+
+Range of Axes
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+
+ 
+ Fixed Ratio Axes
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Ticks Formatting
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Axes Background Color
  
  
             .___
@@ -15814,7 +16027,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Set Axes Title
  
  
             .___
@@ -15823,7 +16036,30 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Camera Controls
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+
+
+Shapes in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+      
+                                                                        
+                                                                        
+Highlighting Time Series Regions with Rectangle Shapes
  
  
             .___
@@ -15832,7 +16068,8 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Highlighting Clusters of Scatter Points with Circle Shapes
+
  
  
             .___
@@ -15841,7 +16078,81 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Vertical and Horizontal Lines Positioned Relative to the Axes
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Circle
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+var trace1 = {
+  x: [1.5, 3.5],
+  y: [0.75, 2.5],
+  text: ['Unfilled Circle', 'Filled Circle'],
+  mode: 'text'
+};
+
+var layout = {
+  title: 'Circles',
+  xaxis: {
+    range: [0, 4.5],
+    zeroline: false
+  },
+  yaxis: {
+    range: [0, 4.5]
+  },
+  width: 500,
+  height: 500,
+  shapes: [
+
+    // Unfilled Circle
+
+    {
+      type: 'circle',
+      xref: 'x',
+      yref: 'y',
+      x0: 1,
+      y0: 1,
+      x1: 3,
+      y1: 3,
+      line: {
+        color: 'rgba(50, 171, 96, 1)'
+      }
+    },
+
+    // Filled Circle
+
+    {
+      type: 'circle',
+      xref: 'x',
+      yref: 'y',
+      fillcolor: 'rgba(50, 171, 96, 0.7)',
+      x0: 3,
+      y0: 3,
+      x1: 4,
+      y1: 4,
+      line: {
+        color: 'rgba(50, 171, 96, 1)'
+      }
+    }
+  ]
+};
+
+var data = [trace1];
+
+Plotly.newPlot('myDiv', data, layout);
+                                                                        
+                                                                        
+Rectangle Positioned Relative to the Axes*
  
  
             .___
@@ -15850,7 +16161,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Lines Positioned REaltive to the Plot and to the Axis
  
  
             .___
@@ -15859,7 +16170,16 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Basic Arbitrary SVG Paths
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                               
+                                                                        
+Venn Diagram with Circle Shapes
  
  
             .___
@@ -15867,99 +16187,10 @@ US Airports Map
         .___    .___
       | [__]    [__]  |
                                                                         
+
                                                                         
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
+Creating Tangent Lines with Shapes
+
  
             .___
             [__]
