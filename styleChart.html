@@ -1710,12 +1710,74 @@ Plotly.plot('myDiv17', {data:data,
     }
    // } /**/
    
-    /*     */ //{
+    /*  Custom Colorscale   */ //{
+    {
+        // var resolveDiv18 = new Promise((resolve,reject)=>{
+            
+            
+        // })
+Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/custom_heatmap_colorscale.json', function(figure) {
+var data = [{
+  z: figure.z,
+  colorscale: [
+    ['0.0', 'rgb(165,0,38)'],
+    ['0.111111111111', 'rgb(215,48,39)'],
+    ['0.222222222222', 'rgb(244,109,67)'],
+    ['0.333333333333', 'rgb(253,174,97)'],
+    ['0.444444444444', 'rgb(254,224,144)'],
+    ['0.555555555556', 'rgb(224,243,248)'],
+    ['0.666666666667', 'rgb(171,217,233)'],
+    ['0.777777777778', 'rgb(116,173,209)'],
+    ['0.888888888889', 'rgb(69,117,180)'],
+    ['1.0', 'rgb(49,54,149)']
+  ],
+  type: 'heatmap'
+}];
+Plotly.newPlot('myDiv18', data);
+   });
+    }
+   // } /**/
+   
+    /*   Blackbody Colorscale  */ //{
     {
         // var resolveDiv = new Promise((resolve,reject)=>{
             
             
         // })
+Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/custom_heatmap_colorscale.json', function(figure) {
+var data = [{
+    z: figure.z,
+    colorscale: 'Blackbody',// 'Electric','Earth','Bluered','YIOrRd','YIGnBu','RdBu','Portland','Picnic','Jet','Hot','Greys','Greens',
+    type: 'heatmap'
+  }
+];
+var layout = {title: 'colorscale'};
+Plotly.newPlot('myDiv19', data, layout);
+});
+    }
+   // } /**/
+   
+    /*  Colorscale for Contour Plot   */ //{
+    {
+        var resolveDiv20 = new Promise((resolve,reject)=>{
+            
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: 'Jet'
+}
+];
+
+var layout = {
+  title: 'Colorscale for Contour Plot'
+};
+
+Plotly.newPlot('myDiv20', data, layout);
+        })
     }
    // } /**/
    
@@ -1728,57 +1790,235 @@ Plotly.plot('myDiv17', {data:data,
     }
    // } /**/
    
-    /*     */ //{
+    /*   Custom Colorscale for Contour Plot  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv21 = new Promise((resolve,reject)=>{
             
-            
-        // })
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: [[0, 'rgb(166,206,227)'], [0.25, 'rgb(31,120,180)'], [0.45, 'rgb(178,223,138)'], [0.65, 'rgb(51,160,44)'], [0.85, 'rgb(251,154,153)'], [1, 'rgb(227,26,28)']]
+}
+];
+
+var layout = {
+  title: 'Custom Contour Plot Colorscale'
+};
+
+Plotly.newPlot('myDiv21', data, layout);
+        })
     }
    // } /**/
    
-    /*     */ //{
+    /*   Custom Discretized Heatmap Colorscale  */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv22 = new Promise((resolve,reject)=>{
             
+var data = [
+  {
+    z: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+    colorscale: [
+
+// Let first 10% (0.1) of the values have color rgb(0, 0, 0)
+
+        [0, 'rgb(0, 0, 0)'],
+        [0.1, 'rgb(0, 0, 0)'],
+
+// Let values between 10-20% of the min and max of z
+// have color rgb(20, 20, 20)
+
+        [0.1, 'rgb(20, 20, 20)'],
+        [0.2, 'rgb(20, 20, 20)'],
+
+// Values between 20-30% of the min and max of z
+//have color rgb(40, 40, 40)
+
+        [0.2, 'rgb(40, 40, 40)'],
+        [0.3, 'rgb(40, 40, 40)'],
+
+        [0.3, 'rgb(60, 60, 60)'],
+        [0.4, 'rgb(60, 60, 60)'],
+
+        [0.4, 'rgb(80, 80, 80)'],
+        [0.5, 'rgb(80, 80, 80)'],
+
+        [0.5, 'rgb(100, 100, 100)'],
+        [0.6, 'rgb(100, 100, 100)'],
+
+        [0.6, 'rgb(120, 120, 120)'],
+        [0.7, 'rgb(120, 120, 120)'],
+
+        [0.7, 'rgb(140, 140, 140)'],
+        [0.8, 'rgb(140, 140, 140)'],
+
+        [0.8, 'rgb(160, 160, 160)'],
+        [0.9, 'rgb(160, 160, 160)'],
+
+        [0.9, 'rgb(180, 180, 180)'],
+        [1.0, 'rgb(180, 180, 180)']
+    ],
+    type: 'heatmap',
+    colorbar:{
+      autotick: false,
+      tick0: 0,
+      dtick: 1
+    }
+  }
+];
+
+var layout = {title: 'CUSTOM DISCRETIZED HEATMAP COLORSCALE'};
+
+Plotly.newPlot('myDiv22', data, layout);
             
-        // })
+        })
     }
    // } /**/
    
-    /*     */ //{
+    /*  Add a Logo   */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv23 = new Promise((resolve,reject)=>{
             
-            
-        // })
+var data = [
+  {
+    x: ["-35.3", "-15.9", "-15.8", "-15.6", "-11.1", "-9.6", "-9.2", "-3.5", "-1.9", "-0.9", "1.0", "1.4", "1.7", "2.0", "2.8", "6.2", "8.1", "8.5", "8.5", "8.6", "11.4", "12.5", "13.3", "13.7", "14.4", "17.5", "17.7", "18.9", "25.1", "28.9", "41.4"],
+    y: ["Designers, musicians, artists, etc.", "Secretaries and administrative assistants", "Waiters and servers", "Archivists, curators, and librarians", "Sales and related", "Childcare workers, home car workers, etc.", "Food preparation occupations", "Janitors, maids, etc.", "Healthcare technicians, assistants. and aides", "Counselors, social and religious workers", "Physical, life and social scientists", "Construction", "Factory assembly workers", "Machinists, repairmen, etc.", "Media and communications workers", "Teachers", "Mechanics, repairmen, etc.", "Financial analysts and advisers", "Farming, fishing and forestry workers", "Truck drivers, heavy equipment operator, etc.", "Accountants and auditors", "Human resources, management analysts, etc.", "Managers", "Lawyers and judges", "Engineers, architects and surveyors", "Nurses", "Legal support workers", "Computer programmers and system admin.", "Police officers and firefighters", "Chief executives", "Doctors, dentists and surgeons"],
+    marker: {
+      color: "rgb(253, 240, 54)",
+      line: {
+        color: "rgb(0, 0, 0)",
+        width: 2
+      }
+    },
+    name: "y",
+    orientation: "h",
+    type: "bar",
+  }
+];
+var layout = {
+  autosize: false,
+  bargap: 0.15,
+  bargroupgap: 0.1,
+  barmode: "stack",
+  height: 800,
+  hovermode: "x",
+  images: [
+    {
+      x: 1,
+      y: 1.05,
+      sizex: 0.2,
+      sizey: 0.2,
+      source: "https://raw.githubusercontent.com/cldougl/plot_images/add_r_img/vox.png",
+      xanchor: "right",
+      xref: "paper",
+      yanchor: "bottom",
+      yref: "paper"
+    }
+  ],
+  margin: {
+    r: 20,
+    t: 125,
+    b: 75,
+    l: 300
+  },
+  title: "Moving Up, Moving Down<br><i>Percentile change in income between childhood and adulthood</i>",
+  width: 700,
+  xaxis: {
+    autotick: false,
+    dtick: 10,
+    gridcolor: "rgba(102, 102, 102, 0.4)",
+    linecolor: "#000",
+    linewidth: 1,
+    mirror: true,
+    nticks: 0,
+    showticklabels: true,
+    tick0: 0,
+    tickwidth: 1,
+    title: "<i>Change in percentile</i>"
+  },
+  yaxis: {
+    anchor: "x",
+    autotick: false,
+    gridcolor: "rgba(102, 102, 102, 0.4)",
+    gridwidth: 1,
+    linecolor: "#000",
+    linewidth: 1,
+    mirror: true,
+    showgrid: false,
+    showline: true,
+    showticklabels: true,
+    tick0: 0,
+    type: "category",
+    zeroline: false
+  }
+};
+
+Plotly.plot('myDiv23', data, layout);
+        })
     }
    // } /**/
    
-    /*     */ //{
+    /*  Add Multiple Images   */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv24 = new Promise((resolve,reject)=>{
             
-            
-        // })
-    }
-   // } /**/
-   
-    /*     */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
-    }
-   // } /**/
-   
-    /*     */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
+Plotly.plot('myDiv24', [{
+  x: [1, 2, 3],
+  y: [1, 2, 3]
+}], {
+  images: [
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/python-logo.png",
+        "xref": "paper",
+        "yref": "paper",
+        "x": 0,
+        "y": 1,
+        "sizex": 0.2,
+        "sizey": 0.2,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      },
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/js-logo.png",
+        "xref": "x",
+        "yref": "y",
+        "x": 1.5,
+        "y": 2,
+        "sizex": 1,
+        "sizey": 1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      },
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/r-logo.png",
+        "xref": "x",
+        "yref": "y",
+        "x": 1,
+        "y": 3,
+        "sizex": 2,
+        "sizey": 2,
+        "sizing": "stretch",
+        "opacity": 0.4,
+        "layer": "below"
+      },
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/matlab-logo.png",
+        "xref": "x",
+        "yref": "paper",
+        "x": 3,
+        "y": 0,
+        "sizex": 0.5,
+        "sizey": 1,
+        "opacity": 1,
+        "xanchor": "right",
+        "yanchor": "middle"
+      },
+    ]
+})
+        })
     }
    // } /**/
    

@@ -15162,6 +15162,109 @@ Plotly.plot('myDiv4', data)
     }
                                                                         
 
+Colorscales in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Custom Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Colorscale for Contour Plot
+
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+      Images in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Add a Logo
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+Blackbody Colorscale
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+
+            
+
 
 LaTeX in plotly.js
 

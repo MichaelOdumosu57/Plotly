@@ -776,7 +776,7 @@
             } //retuns or converts an object with which you can easily iterate but this is an array accroding to chrome 72
     var FL_0_i = {
         forLoop_0_i:0,
-        forLoopLength:65,
+        forLoopLength:35,
         fn:function(   dev_obj   ){
             var element11 = document.createElement("div")
             document.body.appendChild(element11)
@@ -789,3371 +789,3201 @@
     }
     ultraObject.forLoop(   FL_0_i   )
     
-//enabling webgl extensions
-
-var element13 = document.createElement("canvas")
-document.body.appendChild(element13)
+    /*Set Default Trace Colors with colorway */ //{
+    {
+        var resolveDiv0 = new Promise((resolve,reject)=>{
             
-            
-const gl = document.querySelector("canvas").getContext('webgl2');
-
-// enable necessary extensions
-gl.getExtension('EXT_color_buffer_float');
-gl.getExtension('EXT_float_blend');
-    
-/*Tickmode - Linear */ //{
-// var layout = {
-//   xaxis: {
-//     /*  Set the tick mode for the axis "auto" or "linear" or "array" */
-//     tickmode: 'auto',
-
-//     /* Set the placement of the first tick*/
-//     tick0 : '',
-//     /* Set the step in-between ticks*/
-//     dtick: '',
-//     /* Specifies the maximum number of ticks */
-//     nticks: 0,
-
-//     /* Set the values at which ticks on this axis appear */
-//     tickvals: [ /* */ ],
-//     /* Set the text displayed at the ticks position via tickvals */
-//     ticktext: [ /* */ ],
-//     /* Set the source reference for tickvals */
-//     tickvalssrc: '',
-//     /* Set the source reference for ticktext */
-//     tickvtextsrc: '',
-
-//     /* Set the tick label formatting rule using d3 formatting mini-languages */
-//     tickformat: '',
-//     /* Set the tickformat per zoom level */
-//     tickformatstops: {
-//       enabled: true,
-//       /* Set the range of the dtick values which describe the zoom level, it is possible to omit "min" or "max" value by passing "null" */
-//       dtickrange: ["min", "max"],
-//       /* dtickformat for described zoom level, the same as "tickformat" */
-//       value: 'string',
-//     },
-
-//     /* Set the ticks to display with a prefix: "all" or "first" or "last" or "none" */
-//     showtickprefix: 'all',
-//     tickprefix: 'string',
-
-//     /* Set the ticks to display with a suffix: "all" or "first" or "last" or "none" */
-//     showticksuffix: 'all',
-//     ticksuffix: 'string',
-
-//     /* Determines a formatting rule for the tick exponents: "none" or "e" or "E" or "power" or "SI" or "B" */
-//     exponentformat: 'B',
-//   }
-//   /* similarly for yaxis */
-// }
-// } /**/
-    
-    /*Tickmode - Linear */ //{
-        {
-            var resolveDiv0 = new Promise((resolve,reject)=>{
-var x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var y = [28.8, 28.5, 37, 56.8, 69.7, 79.7, 78.5, 77.8, 74.1, 62.6, 45.3, 39.9];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  xaxis: {
-    tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
-    tick0: 0.5,
-    dtick: 0.75
-  }
-}
-
-Plotly.newPlot('myDiv0', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Tickmode - Linear (Date) */ //{
-        {
-            var resolveDiv1 = new Promise((resolve,reject)=>{
-var x = ['2000-01', '2000-02', '2000-03', '2000-04', '2000-05', '2000-06', '2000-07', '2000-08', '2000-09', '2000-10', '2000-11', '2000-12', '2001-01'];
-var y = [-36.5, -26.6, -43.6, -52.3, -71.5, -81.4, -80.5, -82.2, -76, -67.3, -46.1, -35, -40];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  xaxis: {
-    tickmode: "linear", //  If "linear", the placement of the ticks is determined by a starting position `tick0` and a tick step `dtick`
-    tick0: '1999-12-15',
-    dtick: 30 * 24 * 60 * 60 * 1000 // milliseconds
-  }
-}
-
-Plotly.newPlot('myDiv1', data, layout);
-                
-            })
-        }
-    // } /**/
-    
-    /*Tickmode - Array */ //{
-        {
-            var resolveDiv2 = new Promise((resolve,reject)=>{
-var x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var y = [28.8, 28.5, 37, 56.8, 69.7, 79.7, 78.5, 77.8, 74.1, 62.6, 45.3, 39.9];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  xaxis: {
-    tickmode: "array", // If "array", the placement of the ticks is set via `tickvals` and the tick text is `ticktext`.
-    tickvals: [1, 3, 5, 7, 9, 11],
-    ticktext: ['One', 'Three', 'Five', 'Seven', 'Nine', 'Eleven']
-  }
-}
-
-Plotly.newPlot('myDiv2', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Using Tickformat*/ //{
-        {
-            var resolveDiv3 = new Promise((resolve,reject)=>{
-var x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var y = [0.18, 0.38, 0.56, 0.46, 0.59, 0.4, 0.78, 0.77, 0.74, 0.42, 0.45, 0.39];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  yaxis: {
-    tickformat: '%' // For more formatting types, see: https://github.com/d3/d3-format/blob/master/README.md#locale_format
-  }
-}
-
-Plotly.newPlot('myDiv3', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Using Tickformat (Date)*/ //{
-        {
-            // var resolveDiv4 = new Promise((resolve,reject)=>{
-                
-            // })
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function (err, rows) {
-
-  function unpack(rows, key) {
-    return rows.map(function (row) {
-      return row[key];
-    });
-  }
-
-
-  var trace1 = {
-    type: "scatter",
-    mode: "lines",
-    name: 'AAPL High',
-    x: unpack(rows, 'Date'),
-    y: unpack(rows, 'AAPL.High'),
-    line: {
-      color: '#17BECF'
-    }
-  }
-
-  var trace2 = {
-    type: "scatter",
-    mode: "lines",
-    name: 'AAPL Low',
-    x: unpack(rows, 'Date'),
-    y: unpack(rows, 'AAPL.Low'),
-    line: {
-      color: '#7F7F7F'
-    }
-  }
-
-  var data = [trace1, trace2];
-
-  var layout = {
-    title: 'Time series with custom tickformat',
-    xaxis: {
-      tickformat: '%d %B (%a)\n %Y' // For more time formatting types, see: https://github.com/d3/d3-time-format/blob/master/README.md
-    }
-  };
-
-  Plotly.newPlot('myDiv4', data, layout);
+ultraObject.endpoint({
+    xhttp:ultraObject.iterify({iterify:[new XMLHttpRequest()]}),
+    instruct:'XMLHttpRequest',
+    eventName:'load',
+    eventHandler:()=>{
+        console.log(ultraObject.XHR[0][0].responseText)
+    },
+    protocol:"POST",
+    target:"http://24.189.66.225/backend/linspace",
+    asyncBool:true,
+    body:JSON.stringify({
+        'a': 1,
+        'b': 3,
+        'c': 7
+    })
 })
-            
-        }
-    // } /**/
-    
-    /* Tickformatstops to customize for different zoom levels*/ //{
-        {
-            var resolveDiv5 = new Promise((resolve,reject)=>{
-var gd = document.getElementById('myDiv5');
-var x = ["2005-01", "2005-02", "2005-03", "2005-04", "2005-05", "2005-06", "2005-07"];
-var y = [-20, 10, -5, 0, 5, -10, 20];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  xaxis: {
-    tickformatstops: [{
-        "dtickrange": [null, 1000],
-        "value": "%H:%M:%S.%L ms"
-      },
-      {
-        "dtickrange": [1000, 60000],
-        "value": "%H:%M:%S s"
-      },
-      {
-        "dtickrange": [60000, 3600000],
-        "value": "%H:%M m"
-      },
-      {
-        "dtickrange": [3600000, 86400000],
-        "value": "%H:%M h"
-      },
-      {
-        "dtickrange": [86400000, 604800000],
-        "value": "%e. %b d"
-      },
-      {
-        "dtickrange": [604800000, "M1"],
-        "value": "%e. %b w"
-      },
-      {
-        "dtickrange": ["M1", "M12"],
-        "value": "%b '%y M"
-      },
-      {
-        "dtickrange": ["M12", null],
-        "value": "%Y Y"
-      }
-    ]
-  }
-};
 
-Plotly.plot(gd, data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Using Exponentformat */ //{
-        {
-            var resolveDiv6 = new Promise((resolve,reject)=>{
-var x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var y = [68000, 52000, 60000, 20000, 95000, 40000, 60000, 79000, 74000, 42000, 20000, 90000];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  yaxis: {
-    showexponent: 'all',
-    exponentformat: 'e'
-  }
-}
 
-Plotly.newPlot('myDiv6', data, layout);
-                
-            })
-        }
-    // } /**/
-    
-    /* Include Locale Config */ //{
-        {
-            var resolveDiv7 = new Promise((resolve,reject)=>{
-var x = ['2013-02-04', '2013-04-05', '2013-06-06', '2013-08-07', '2013-10-02'];
-var y = [1, 4, 3, 6, 2];
-var data = [{
-  x: x,
-  y: y,
-  type: 'scatter'
-}];
-var layout = {
-  xaxis: {
-    tickformat: '%a %e %b \n %Y'
-  }
-}
-
-Plotly.newPlot('myDiv7', data, layout, {
-  locale: 'fr' // For more info, see: https://github.com/plotly/plotly.js/blob/master/dist/README.md#to-include-localization and https://github.com/plotly/plotly.js/tree/master/dist
-});
-            })
-        }
-    // } /**/
-    
-    /* Ambient Lighting*/ //{
-//         {
-//             // var resolveDiv8 = new Promise((resolve,reject)=>{
-                
-//             // })
-            
-// Plotly.d3.csv('https://raw.githubusercontent.com/michaelbabyn/plot_data/master/sin_saddle.csv', function(err, rows){
-// function unpack(rows, key) {
-//   return rows.map(function(row) { return row[key]; });
-// }
-
-// var z_data = [ ];
-// for(i=0;i<100;i++)
-// {
-//   z_data.push(unpack(rows,i));
-// }
-
-// var data = [{
-//   z: z_data,
-//   type: 'surface',
-//   colorscale: 'Viridis',
-//   lighting: {ambient: 0.9}
-//   },
-//   {
-//   z: z_data,
-//   type: 'surface',
-//   scene: 'scene2',
-//   colorscale:'Viridis',
-//   lighting: {ambient: 0.2}
-//   }
-// ];
-
-// var layout = {
-//   title: 'Ambient Lighting',
-//   grid: {
-//     rows: 1,
-//     columns: 2,
-//     pattern: 'independent',
-//   },
-//   	scene:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:0}
-// 	},
-// 	scene2:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:1}
-//   }
-// };
-// Plotly.newPlot('myDiv8', data, layout);
-// });
-//         }
-    // } /**/
-    
-    
-    
-    /*Roughness */ //{
-//         {
-//             // var resolveDiv9 = new Promise((resolve,reject)=>{
-                
-//             // })
-            
-// Plotly.d3.csv('https://raw.githubusercontent.com/michaelbabyn/plot_data/master/sin_saddle.csv', function(err, rows){
-// function unpack(rows, key) {
-//   return rows.map(function(row) { return row[key]; });
-// }
-
-// var z_data = [];
-// for(i=0;i<100;i++)
-// {
-//   z_data.push(unpack(rows,i));
-// }
-
-// var data = [{
-//   z: z_data,
-//   type: 'surface',
-//   colorscale:'Viridis',
-//   lighting: {roughness: 0.9}
-//         },
-//   {
-//   z: z_data,
-//   type: 'surface',
-//   scene: 'scene2',
-//   colorscale:'Viridis',
-//   lighting: {roughness: 0.2}
-//   }
-// ];
-
-// var layout = {
-//   title: 'Roughness',
-//   grid: {
-//     rows: 1,
-//     columns: 2,
-//     pattern: 'independent',
-//   },
-//   	scene:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:0}
-// 	},
-// 	scene2:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:1}
-//   }
-// };
-// Plotly.newPlot('myDiv9', data, layout);
-// });
-//         }
-    // } /**/
-    
-    /*Diffuse */ //{
-        {
-            // var resolveDiv10 = new Promise((resolve,reject)=>{
-                
-            // })
-// Plotly.d3.csv('https://raw.githubusercontent.com/michaelbabyn/plot_data/master/sin_saddle.csv', function(err, rows){
-// function unpack(rows, key) {
-//   return rows.map(function(row) { return row[key]; });
-// }
-
-// var z_data = []
-// for(i=0;i<100;i++)
-// {
-//   z_data.push(unpack(rows,i));
-// }
-
-// var data = [{
-//   z: z_data,
-//   type: 'surface',
-//   colorscale:'Viridis',
-//   lighting: {diffuse: 0.9}
-//         },
-//   {
-//   z: z_data,
-//   type: 'surface',
-//   scene: 'scene2',
-//   colorscale:'Viridis',
-//   lighting: {diffuse: 0.1}
-//   }
-// ];
-
-// var layout = {
-//   title: 'Diffuse Reflection',
-//   grid: {
-//     rows: 1,
-//     columns: 2,
-//     pattern: 'independent',
-//   },
-//   	scene:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:0}
-// 	},
-// 	scene2:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:1}
-//   }
-// };
-// Plotly.newPlot('myDiv10', data, layout);
-// });
-        }
-    // } /**/
-    
-    /* Specular */ //{
-        {
-            // var resolveDiv11 = new Promise((resolve,reject)=>{
-                
-            // })
-// Plotly.d3.csv('https://raw.githubusercontent.com/michaelbabyn/plot_data/master/sin_saddle.csv', function(err, rows){
-// function unpack(rows, key) {
-//   return rows.map(function(row) { return row[key]; });
-// }
-
-// var z_data = [];
-// for(i=0;i<100;i++)
-// {
-//   z_data.push(unpack(rows,i));
-// }
-
-// var data = [{
-//   z: z_data,
-//   type: 'surface',
-//   colorscale:'Viridis',
-//   lighting: {specular: 0.1}
-//         },
-//   {
-//   z: z_data,
-//   type: 'surface',
-//   scene: 'scene2',
-//   colorscale:'Viridis',
-//   lighting: {specular: 2}
-//   }
-// ];
-
-// var layout = {
-//   title: 'Specular Reflection',
-//   grid: {
-//     rows: 1,
-//     columns: 2,
-//     pattern: 'independent',
-//   },
-//   	scene:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:0}
-// 	},
-// 	scene2:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:1}
-//   },
-// };
-// Plotly.newPlot('myDiv11', data, layout);
-// });
-        }
-    // } /**/
-    
-    /*Fresnel */ //{
-//         {
-//             // var resolveDiv12 = new Promise((resolve,reject)=>{
-                
-//             // })
-// Plotly.d3.csv('https://raw.githubusercontent.com/michaelbabyn/plot_data/master/sin_saddle.csv', function(err, rows){
-// function unpack(rows, key) {
-//   return rows.map(function(row) { return row[key]; });
-// }
-
-// var z_data = [];
-// for(i=0;i<100;i++)
-// {
-//   z_data.push(unpack(rows,i));
-// }
-
-// var data = [{
-//   z: z_data,
-//   type: 'surface',
-//   colorscale:'Viridis',
-//   lighting: {fresnel: 0.1}
-//         },
-//   {
-//   z: z_data,
-//   type: 'surface',
-//   scene: 'scene2',
-//   colorscale:'Viridis',
-//   lighting: {fresnel: 5}
-//   }
-// ];
-
-// var layout = {
-//   title: 'Fresnel',
-//   grid: {
-//     rows: 1,
-//     columns: 2,
-//     pattern: 'independent',
-//   },
-//   	scene:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:0}
-// 	},
-// 	scene2:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:1}
-//   }
-// };
-// Plotly.newPlot('myDiv12', data, layout);
-// });
-//         }
-    // } /**/
-    
-    /* Add Named Container Array Items*/ //{
-        {
-            var resolveDiv12 = new Promise((resolve,reject)=>{
-var baseLayout = {
-    title: 'Watermark Template',
-    // items with a `name` attribute in template.images will be added to any
-    // plot using this template
-    images: [{
-        name: 'watermark_1',
-        source: "https://raw.githubusercontent.com/michaelbabyn/plot_data/master/benzene.png",
-        xref: "paper",
-        yref: "paper",
-        x: 0.40,
-        y: 0.9,
-        sizex: 0.7,
-        sizey: 0.7,
-        opacity: 0.1,
-        layer: "below"
-      },
-      {
-          name: 'watermark_2',
-          source: "https://raw.githubusercontent.com/michaelbabyn/plot_data/master/naphthalene.png",
-          xref: "paper",
-          yref: "paper",
-          x: .75,
-          y: 0.3,
-          sizex: 0.25,
-          sizey: 0.25,
-          sizing: "stretch",
-          opacity: 0.2,
-          layer: "below"
-        }],
-    showlegend: false
-};
-
-var template = {data: {}, layout: baseLayout};
-
-var data = [{
-    x: [0, 1, 2, 3, 4, 5],
-    y: [2, 4, 3, 0, 5, 6],
-}];
-
-var layoutUsingTemplate = {
-  template: template,
-  images: [
-    {
-      // set the second watermark in the template to be invisible
-      templateitemname: 'watermark_2',
-      visible: false
-    }
-  ]
-};
-
-Plotly.plot("myDiv12", data, layoutUsingTemplate);
+ultraObject.XHR[0][0].onload = () =>{
+    resolve(
+        new Promise((resolve,reject)=>{
+            ultraObject.endpoint({
+                xhttp:ultraObject.iterify({iterify:[new XMLHttpRequest()]}),
+                instruct:'XMLHttpRequest',
+                eventName:'load',
+                eventHandler:()=>{
+                    console.log(ultraObject.XHR[1][0].responseText)
+                },
+                protocol:"POST",
+                target:"http://24.189.66.225/backend/linspace",
+                asyncBool:true,
+                body:JSON.stringify({
+                    'a': 2,
+                    'b': 14,
+                    'c': 7
+                })
             })
             
-        }
-    // } /**/
-    
-    /* Matching Named Template Container Items*/ //{
-        {
-            var resolveDiv13 = new Promise((resolve,reject)=>{
-var x = [0, 1, 2, 3, 4, 5];
-var y = [2, 4, 3, 0, 5, 6];
-
-var baseData = [{
-    mode: 'lines',
-    error_y: {visible: true, width: 0},
-    line: {color: 'teal'}
-}];
-
-var baseLayout = {
-    title: 'Template Title',
-    annotations: [{
-      text: 'First point',
-      name:'first',
-      yref: 'y', xref: 'x',
-      ay: 40, ax: 30,
-      font: {size: 16}
-    }],
-    showlegend: false
-};
-
-// use Plotly.makeTemplate to generate the template object
-var template = Plotly.makeTemplate({data: baseData, layout: baseLayout});
-
-var data = [{
-    x: x,
-    y: y,
-}];
-
-var annotations = [
-
-  // plotly will look for an annotation with `name` matching `templateitemname`
-  // and use insert that annotation into the new plot.
-  {
-    templateitemname:'first',
-    x: x[0],
-    y: y[0],
-  },
-  {
-    templateitemname: 'fourth', //since there is no template item with this name,
-                                //this annotation will be set to invisible.
-    text: 'Fourth point',
-    x: x[3],
-    y: y[3],
-    showarrow: true,
-    yref: 'y', xref: 'x',
-  }
- ];
-var layoutWithTemplate = {template: template, annotations: annotations};
-
-Plotly.plot("myDiv13", data, layoutWithTemplate);
-            })
-        }
-    // } /**/
-    
-    /* Creating Default Item Values*/ //{
-        {
-            var resolveDiv14 = new Promise((resolve,reject)=>{
-var x = [0, 1, 2, 3, 4, 5];
-var y = [2, 4, 3, 0, 5, 6];
-
-var baseData = [{
-    mode: 'lines',
-    error_y: {visible: true, width: 0},
-    line: {color: 'teal'}
-}];
-
-var baseLayout = {
-
-  // Plotly.makeTemplate will use the first annotation without a `name` attribute
-  // in the annotations array as the annotationdefaults for the template.
-  annotations: [
-  {
-      text: 'DEFAULT ANNOTATION',
-      x: 0.1,
-      y: 1.1,
-      yref: 'paper', xref: 'paper',
-      showarrow: false,
-      font: {color:'teal', size: 14}
-    }
-  ],
-    showlegend: false
-};
-
-// use Plotly.makeTemplate to generate the template object
-var template = Plotly.makeTemplate({data: baseData, layout: baseLayout});
-
-var data = [{
-    x: x,
-    y: y
-}];
-
-var annotations = [
-  {}, // An empty annotation object will copy annotationdefaults
-  {
-    text: 'Third point',
-    x: x[2],
-    y: y[2],
-    showarrow: true,
-    yref: 'y', xref: 'x',
-    font: {size: 20} // since there is no font.color attribute for this object,
-                     // it will use the annotationdefaults' color
-  }
-];
-var layoutWithTemplate = {template: template, annotations: annotations};
-
-Plotly.plot("myDiv14", data, layoutWithTemplate);
-            })
-        }
-    // } /**/
-    
-    /* Customize Hover for Spikelines*/ //{
-//         {
-//             var resolveDiv15 = new Promise((resolve,reject)=>{
-// function getrandom(num , mul)
-// 	{
-// 	 var value = [ ];
-// 	 for(i=0;i<=num;i++)
-// 	 {
-// 	  var rand = Math.random() * mul;
-// 	  value.push(rand);
-// 	 }
-// 	 return value;
-// 	}
-
-
-// var data=[
-//     {
-//      opacity:0.4,
-//      type: 'scatter3d',
-//      x: getrandom(50 , -75),
-//      y: getrandom(50 , -75),
-//      z: getrandom(50 , -75),
-//     },
-// ];
-// var layout = {
-//   scene:{
-//     xaxis: {
-// 		 spikecolor: '#1fe5bd',
-// 		 spikesides: false,
-// 		 spikethickness: 6
-//   	 	},
-//   	 yaxis: {
-// 		 spikecolor: '#1fe5bd',
-// 		 spikesides: false,
-// 		 spikethickness: 6
-//   		},
-//   	 zaxis: {
-// 		 spikecolor: '#1fe5bd',
-// 		 spikethickness: 6
-//   		}
-//   },
-// };
-// Plotly.newPlot('myDiv15', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Customize Hover for Surface Contours*/ //{
-        {
-            var resolveDiv16 = new Promise((resolve,reject)=>{
-x = [10,20,30,40]
-y = [0,1,2,3]
-z = [
-	[2,2,2,3],
-	[1,1,1,1],
-	[1,1,0,0],
-	[0,0,0,0]
-];
-
-var data=[
-    {
-     opacity:0.9,
-     type: 'surface',
-     x:x, y:y, z:z,
-	  contours: {
-		 x: {
-			 highlight: true,
-			 highlightcolor: "#41a7b3"
-         },
-		 y: { highlight: false },
-		 z: { highlight: false}
-	}
-    },
-];
-var layout = {
-  scene:{
-    xaxis: { showspikes: false },
-    yaxis: { showspikes: false },
-    zaxis: { showspikes: false }
-  },
-};
-Plotly.newPlot('myDiv16', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Adding Hover Text to Data in Line and Scatter Plots */ //{
-        {
-            var resolveDiv17 = new Promise((resolve,reject)=>{
-var data = [
-  {
-    x: [0, .5, 1, 1.5, 2],
-    y: [1, 3, 2, 4, 2],
-    mode: 'markers',
-    marker: {size:16},
-    text: ['Text A', 'Text B', 'Text C', 'Text D', 'Text E'],
-    type: 'scatter'
-  }
-];
-var layout = {title: 'Hover over the points to see the text'};
-Plotly.newPlot('myDiv17', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Rounding X and Y Hover Values */ //{
-        {
-            var resolveDiv18 = new Promise((resolve,reject)=>{
-// Round x and y hover values by setting hoverformat in layout.xaxis and/or layout.yaxis
-// using D3 number formatting ( https://github.com/mbostock/d3/wiki/Formatting )
-
-var d3 = Plotly.d3,
-    N = 40,
-    x = d3.range(N).map( d3.random.normal() ),
-    y1 = d3.range(N).map( d3.random.normal() ),
-    y2 = d3.range(N).map( d3.random.normal() ),
-    data = [{ x:x, y:y1, type:'scatter', mode:'markers',
-              marker:{color:'rgba(200, 50, 100, .7)', size:16},
-              hoverinfo:"x+y"
-             },
-            { x:x, y:y2, type:'scatter', mode:'markers',
-             marker:{color:'rgba(10, 180, 180, .8)', size:16},
-             hoverinfo:"x+y"}];
-    layout = {
-        hovermode:'closest',
-        title:'Formatting X & Y Hover Values',
-        xaxis:{zeroline:false, hoverformat: '.2f', title: 'Rounded: 2 values after the decimal point on hover'},
-        yaxis:{zeroline:false, hoverformat: '.2r', title: 'Rounded: 2 significant values on hover'}
-     };
-
-Plotly.newPlot('myDiv18', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Range of Axes*/ //{
-//         {
-//             var resolveDiv19 = new Promise((resolve,reject)=>{
-// function getrandom(num , mul)
-// 	{
-//   var value = [ ];
-//   for(i=0;i<=num;i++)
-//   {
-//     var rand = Math.random() * mul;
-//     value.push(rand);
-//   }
-//   return value;
-//   }
-
-
-// var data=[
-//     {
-//      opacity:0.4,
-//      type: 'scatter3d',
-//      x: getrandom(50 , -75),
-//      y: getrandom(50 , -75),
-//      z: getrandom(50 , -75),
-//     },
-//     {
-//      opacity:0.5,
-//      type: 'scatter3d',
-//      x: getrandom(50 , -75),
-//      y: getrandom(50 , 75),
-//      z: getrandom(50 , 75),
-//     },
-//   	{
-//      opacity:0.5,
-//      type: 'scatter3d',
-//      x: getrandom(50 , 100),
-//      y: getrandom(50 , 100),
-//      z: getrandom(50 , 100),
-//     }
-// ];
-// var layout = {
-//   scene:{
-// 	 aspectmode: "manual",
-//   aspectratio: {
-//      x: 1, y: 0.7, z: 1,
-//     },
-//   xaxis: {
-//     nticks: 9,
-//     range: [-200, 100],
-//   },
-//   yaxis: {
-//     nticks: 7,
-//     range: [-100, 100],
-//   },
-//   zaxis: {
-//   nticks: 10,
-//   range: [-150, 100],
-//   }},
-// };
-// Plotly.newPlot('myDiv19', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Fixed Ratio Axes*/ //{
-//         {
-//             var resolveDiv20 = new Promise((resolve,reject)=>{
-// function getrandom(num , mul)
-// 	{
-// 	   var value = [ ]
-// 		var i;
-// 		for(i=0;i<=num;i++)
-// 	   {
-// 		 rand = Math.random() * mul;
-// 	    value.push(rand);
-// 	   }
-// 		return value;
-// 	}
-
-// var i;
-// traces = [];
-// names = ['cube', 'data', 'auto', 'manual'];
-// for (i=1; i<5; i++){
-// 	traces.push({
-// 		x: getrandom(20, 4),
-// 		y: getrandom(20, 3),
-// 		z: getrandom(20, 5),
-// 		opacity:0.5,
-// 		mode: "markers",
-// 		type: "mesh3d",
-// 		scene: "scene" + i,
-// 		name: names[i-1]
-// 		}
-// 	)
-// }
-
-// var layout = {
-// 	scene:{
-// 		aspectmode:'cube',
-// 		domain:{row:0, column:0}
-// 	},
-// 	scene2:{
-// 		aspectmode:'data',
-// 		domain:{row:1, column:0}
-// 	},
-// 	scene3:{
-// 		aspectmode:'auto',
-// 		domain:{row:0, column:1}
-// 	},
-// 	scene4:{
-// 		aspectmode:'manual',
-// 		aspectratio: {x:1, y:1, z:2},
-// 		domain: {row:1, column:1}
-// 	},
-// 	grid:{
-// 		pattern: 'independent',
-// 		rows:2,
-// 		columns:2
-// 	},
-
-// };
-
-// Plotly.plot('myDiv20', traces, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Ticks Formatting*/ //{
-//         {
-//             var resolveDiv21 = new Promise((resolve,reject)=>{
-// function getrandom(num , mul)
-// 	{
-// 	 var value = [ ];
-// 	 for(i=0;i<=num;i++)
-// 	 {
-// 	  var rand = Math.random() * mul;
-// 	  value.push(rand);
-// 	 }
-// 	 return value;
-// 	}
-
-
-// var data=[
-//     {
-//      opacity:0.4,
-//      type: 'scatter3d',
-//      x: getrandom(50 , -75),
-//      y: getrandom(50 , -75),
-//      z: getrandom(50 , -75),
-//     },
-// ];
-// var layout = {
-//   scene:{
-//     xaxis: {
-// 	 ticktext:['H20','C02','O2'],
-// 	 tickvals:[-30, -45, -65, -10]
-//   },
-//   yaxis: {
-//   		nticks: 5,
-//   		tickfont:
-//   		{
-//   		 color:'green',
-//   		 family:'Old Standard TT, serif',
-//   		 size: 14
-//   		},
-//   		ticksuffix:'$'
-//   		},
-//   zaxis: {
-//       ticks: 'outside',
-//       tick0: 0,
-//       tickwidth: 4}},
-// };
-// Plotly.newPlot('myDiv21', data, layout);
-//             })
-//         }
-    // } /**/
-    
-
-    
-    /* Axes Background Color*/ //{
-        {
-            var resolveDiv23 = new Promise((resolve,reject)=>{
-function getrandom(num , mul)
-	{
-	 var value = [ ];
-	 for(i=0;i<=num;i++)
-	 {
-	  var rand = Math.random() * mul;
-	  value.push(rand);
-	 }
-	 return value;
-	}
-
-var data=[
-    {
-     opacity:0.4,type: 'scatter3d',
-     x: getrandom(50 , 75),
-     y: getrandom(50 , 75),
-     z: getrandom(50 , 75),
-     mode:'markers'
-    },
-	{
-	 opacity: 0.5,
-	 type: 'scatter3d',
-	 x: getrandom(75 , 75),
-	 y: getrandom(75 , 75),
-	 z: getrandom(75 , 75),
-	 mode:'markers'
-	},
-	{
-	 opacity: 0.5,
-	 type: 'scatter3d',
-	 x: getrandom(75 , 100),
-	 y: getrandom(75 , 100),
-	 z: getrandom(75 , 100),
-	 mode:'markers'
-	}
-];
-var layout = {
-   scene:{
-	xaxis: {
-	 backgroundcolor: "rgb(200, 200, 230)",
-	 gridcolor: "rgb(255, 255, 255)",
-	 showbackground: true,
-	 zerolinecolor: "rgb(255, 255, 255)",
-	},
-    yaxis: {
-     backgroundcolor: "rgb(230, 200,230)",
-     gridcolor: "rgb(255, 255, 255)",
-     showbackground: true,
-     zerolinecolor: "rgb(255, 255, 255)"
-    },
-    zaxis: {
-     backgroundcolor: "rgb(230, 230,200)",
-     gridcolor: "rgb(255, 255, 255)",
-     showbackground: true,
-     zerolinecolor: "rgb(255, 255, 255)"
-    }}
-};
-Plotly.newPlot('myDiv23', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Set Axes Title*/ //{
-//         {
-//             var resolveDiv24 = new Promise((resolve,reject)=>{
-// function getrandom(num , mul) {
-// 	var value = [ ];
-// 	for(i=0;i<=num;i++)
-// 	{
-// 	 var rand = Math.random() * mul;
-// 	 value.push(rand);
-// 	}
-// 	return value;}
-
-// var trace1 = {
-// 	type:'mesh3d',
-// 	x: getrandom(1000,200), y: getrandom(1000,300), z: getrandom(1000,150),
-// 	color: 'lightblue',};
-
-// var trace2 = {
-// 	type:'mesh3d',
-// 	x: getrandom(1000,200), y: getrandom(1000,300), z: getrandom(1000,150),
-// 	color: 'pink'};
-
-// var layout = {
-// 	scene: {
-// 		xaxis:{title: 'X AXIS TITLE'},
-// 		yaxis:{title: 'Y AXIS TITLE'},
-// 		zaxis:{title: 'Z AXIS TITLE'},
-// 		},
-		
-		
-// 	autosize: false,
-// 	width: 550,
-// 	height: 500,
-// 	margin: {
-// 	 l: 0,
-// 	 r: 0,
-// 	 b: 50,
-// 	 t: 50,
-// 	 pad: 4
-// 	},
-// }
-	 
-// Plotly.plot('myDiv24', [trace1,trace2], layout);
-                
-//             })
-//         }
-    // } /**/
-    
-    /*Camera Controls */ //{
-//         {
-//             var resolveDiv25 = new Promise((resolve,reject)=>{
-// function getrandom(num , mul)
-//   {
-//      var value = [ ];
-//      for(i=0;i<=num;i++)
-//      {
-//       var rand = Math.random() * mul;
-//       value.push(rand);
-//      }
-//     return value;
-//   }
-// var data = [
-//   {
-//     x: getrandom(20, 4),
-//     y: getrandom(20, 3),
-//     z: getrandom(20, 5),
-//     opacity:0.5,
-//     mode: "markers",
-//     type: "scatter3d",
-//     scene: "scene1",
-//     name: "Lower the view point"
-//   },
-//   {
-//     x:getrandom(20, 4),
-//     y:getrandom(20, 3),
-//     z:getrandom(20, 5),
-//     opacity:0.5,
-//     mode: "markers",
-//     type: "scatter3d",
-//     scene: "scene2",
-//     name: "x-z plane"
-//   },
-//   {
-//     x:getrandom(20, 4),
-//     y:getrandom(20, 3),
-//     z:getrandom(20, 5),
-//     opacity:0.5,
-//     mode: "markers",
-//     type: "scatter3d",
-//     scene: "scene3",
-//     name: "y-z plane"
-//   },
-//   {
-//     x:getrandom(10, 4),
-//     y:getrandom(10, 3),
-//     z:getrandom(10, 5),
-//     opacity:0.5,
-//     mode: "markers",
-//     type: "scatter3d",
-//     scene: "scene4",
-//     name: "View from above"
-//   },
-//   {
-//     x:getrandom(20, 4),
-//     y:getrandom(20, 3),
-//     z:getrandom(20, 5),
-//     opacity:0.5,
-//     mode: "markers",
-//     type: "scatter3d",
-//     scene: "scene5",
-//     name: "Zooming in"
-//   },
-// ];
-// var layout = {
-//     scene1: {
-//       domain: {
-//             x: [0.00,  0.33],
-//             y: [0.5, 1]
-//         },
-//       camera: {
-//           center: {
-//                 x: 0, y: 0, z: 0 },
-//           eye: {
-//                 x: 2, y: 2, z: 0.1 },
-//           up: {
-//                 x: 0, y: 0, z: 1 }
-//         },},
-  
-//     scene2: {
-//       domain: {
-//              x: [0.33,  0.66],
-//              y: [0.5, 1.0]
-//             },
-//       camera: {
-//           center: {
-//                 x: 0, y: 0, z: 0},
-//           eye: {
-//                 x:0.1, y:2.5, z:0.1},
-//           up: {
-//                 x: 0, y: 0, z: 1}
-//         },},
-  
-//   scene3: {
-//       domain: {
-//              x: [0.66,  0.99],
-//              y: [0.5, 1]
-//             },
-//       camera: {
-//           center: {
-//                 x: 0, y: 0, z: 0},
-//           eye: {
-//                  x:2.5, y:0.1, z:0.1},
-//           up: {
-//                  x: 0, y: 0, z: 1}
-//     },},
-  
-//   scene4: {
-//       domain: {
-//              x: [0.15,  0.5],
-//              y: [-0.25, 0.4]
-//             },
-//       camera: {
-//         center: {
-//               x: 0, y: 0, z: 0},
-//         eye: {
-//               x:0.1, y:0.1, z:2.5},
-//         up: {
-//               x: 0, y: 0, z: 1}
-//     },},
-  
-//   scene5: {
-//         domain: {
-//               x: [0.62,  0.7],
-//               y: [-0.2, 0.4]
-//             },
-//       camera: {
-//         center: {
-//               x: 0, y: 0, z: 0},
-//         eye: {
-//               x:0.1, y:0.1, z:1},
-//         up: {
-//               x: 0, y: 0, z: 1}
-//     },},
-// };
-// Plotly.plot('myDiv25', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /*Highlighting Time Series Regions with Rectangle Shapes */ //{
-        {
-            var resolveDiv26 = new Promise((resolve,reject)=>{
-var data = [
-  {
-    x: ['2015-02-01', '2015-02-02', '2015-02-03', '2015-02-04', '2015-02-05',
-        '2015-02-06', '2015-02-07', '2015-02-08', '2015-02-09', '2015-02-10',
-        '2015-02-11', '2015-02-12', '2015-02-13', '2015-02-14', '2015-02-15',
-        '2015-02-16', '2015-02-17', '2015-02-18', '2015-02-19', '2015-02-20',
-        '2015-02-21', '2015-02-22', '2015-02-23', '2015-02-24', '2015-02-25',
-        '2015-02-26', '2015-02-27', '2015-02-28'],
-    y: [-14, -17, -8, -4, -7, -10, -12, -14, -12, -7, -11, -7, -18, -14, -14,
-        -16, -13, -7, -8, -14, -8, -3, -9, -9, -4, -13, -9, -6],
-    mode: 'line',
-    name: 'temperature'
-  }
-];
-
-var layout = {
-
-    // to highlight the timestamp we use shapes and create a rectangular
-
-    shapes: [
-        // 1st highlight during Feb 4 - Feb 6
-        {
-            type: 'rect',
-            // x-reference is assigned to the x-values
-            xref: 'x',
-            // y-reference is assigned to the plot paper [0,1]
-            yref: 'paper',
-            x0: '2015-02-04',
-            y0: 0,
-            x1: '2015-02-06',
-            y1: 1,
-            fillcolor: '#d3d3d3',
-            opacity: 0.2,
-            line: {
-                width: 0
-            }
-        },
-
-        // 2nd highlight during Feb 20 - Feb 23
+            ultraObject.XHR[1][0].onload = () =>{
+                resolve(
+                    new Promise((resolve,reject) =>{
+                        ultraObject.endpoint({
+                            xhttp:ultraObject.iterify({iterify:[new XMLHttpRequest()]}),
+                            instruct:'XMLHttpRequest',
+                            eventName:'load',
+                            eventHandler:()=>{
+                                console.log(ultraObject.XHR[2][0].responseText)
+                            },
+                            protocol:"POST",
+                            target:"http://24.189.66.225/backend/linspace",
+                            asyncBool:true,
+                            body:JSON.stringify({
+                                'a': -1,
+                                'b': 3,
+                                'c': 50
+                            })
+                        })
+                        ultraObject.XHR[2][0].onload = () =>{
+                            resolve()
+                        }
+                        
+                        
+                    }).then(()=>{
+        const parabolaGen = (a, b) =>
+          x => x*x*a + b;
         
-        {
-            type: 'rect',
-            xref: 'x',
-            yref: 'paper',
-            x0: '2015-02-20',
-            y0: 0,
-            x1: '2015-02-22',
-            y1: 1,
-            fillcolor: '#d3d3d3',
-            opacity: 0.2,
-            line: {
-                width: 0
+        var as = JSON.parse(   ultraObject.XHR[0][0].responseText   );
+        var bs = JSON.parse(   ultraObject.XHR[1][0].responseText   );
+        var x =  JSON.parse(   ultraObject.XHR[2][0].responseText   );
+        var data = [];
+        
+        for (i=0; i< as.length; i++ ){
+          data.push({
+            type: "scatter",
+            mode: "lines",
+            x: x,
+            y: x.map(parabolaGen(as[i],bs[i]))
+          })
+        }
+        
+        var layout = {
+          colorway : ['#f3cec9', '#e7a4b6', '#cd7eaf', '#a262a9', '#6f4d96', '#3d3b72', '#182844']
+        };
+        
+        Plotly.newPlot('myDiv0', data, layout);
+                        })
+                )
             }
-        }
-    ],
-    height: 500,
-    width: 500
-}
-
-Plotly.newPlot('myDiv26', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Highlighting Clusters of Scatter Points with Circle Shapes */ //{
-//         {
-//             var resolveDiv27 = new Promise((resolve,reject)=>{
-// var d3 = Plotly.d3
-
-// function normal_array( mean, stddev, size ){
-//     var arr = new Array(size), i;
-//     // from http://bl.ocks.org/nrabinowitz/2034281
-//     var generator = (function() {
-//         return d3.random.normal(mean, stddev);
-//     }());
-
-//     for( i=0; i< arr.length; i++ ){
-//         arr[i] = generator();
-//     }
-//     return arr;
-// }
-
-// var x0 = normal_array(2, 0.45, 300);
-// var y0 = normal_array(2, 0.45, 300);
-
-// var x1 = normal_array(6, 0.4, 200);
-// var y1 = normal_array(6, 0.4, 200)
-
-// var x2 = normal_array(4, 0.3, 200);
-// var y2 = normal_array(4, 0.3, 200);
-
-// console.log(x0);
-
-// var data = [
-//     {
-//         x: x0,
-//         y: y0,
-//         mode: 'markers'
-//     }, {
-//         x: x1,
-//         y: y1,
-//         mode: 'markers'
-//     }, {
-//         x: x2,
-//         y: y2,
-//         mode: 'markers'
-//     }, {
-//         x: x1,
-//         y: y0,
-//         mode: 'markers'
-//     }
-// ];
-
-// var layout = {
-//     shapes: [
-//         {
-//             type: 'circle',
-//             xref: 'x',
-//             yref: 'y',
-//             x0: d3.min(x0),
-//             y0: d3.min(y0),
-//             x1: d3.max(x0),
-//             y1: d3.max(y0),
-//             opacity: 0.2,
-//             fillcolor: 'blue',
-//             line: {
-//                 color: 'blue'
-//             }
-//         },
-//         {
-//             type: 'circle',
-//             xref: 'x',
-//             yref: 'y',
-//             x0: d3.min(x1),
-//             y0: d3.min(y1),
-//             x1: d3.max(x1),
-//             y1: d3.max(y1),
-//             opacity: 0.2,
-//             fillcolor: 'orange',
-//             line: {
-//                 color: 'orange'
-//             }
-//         },
-//         {
-//             type: 'circle',
-//             xref: 'x',
-//             yref: 'y',
-//             x0: d3.min(x2),
-//             y0: d3.min(y2),
-//             x1: d3.max(x2),
-//             y1: d3.max(y2),
-//             opacity: 0.2,
-//             fillcolor: 'green',
-//             line: {
-//                 color: 'green'
-//             }
-//         },
-//         {
-//             type: 'circle',
-//             xref: 'x',
-//             yref: 'y',
-//             x0: d3.min(x1),
-//             y0: d3.min(y0),
-//             x1: d3.max(x1),
-//             y1: d3.max(y0),
-//             opacity: 0.2,
-//             fillcolor: 'red',
-//             line: {
-//                 color: 'red'
-//             }
-//         }
-//     ],
-//     height: 400,
-//     width: 480,
-//     showlegend: false
-// }
-
-// Plotly.newPlot('myDiv27', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /*Vertical and Horizontal Lines Positioned Relative to the Axes */ //{
-//         {
-//             var resolveDiv28 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [2, 3.5, 6],
-//   y: [1, 1.5, 1],
-//   text: ['Vertical Line', 'Horizontal Dashed Line', 'Diagonal dotted Line'],
-//   mode: 'text'
-// };
-
-// var layout = {
-//   title: 'Vertical and Horizontal Lines Positioned Relative to the Axes',
-//   xaxis: {
-//     range: [0, 7]
-//   },
-//   yaxis: {
-//     range: [0, 2.5]
-//   },
-//   width: 500,
-//   height: 500,
-//   shapes: [
-
-//     //line vertical
-
-//     {
-//       type: 'line',
-//       x0: 1,
-//       y0: 0,
-//       x1: 1,
-//       y1: 2,
-//       line: {
-//         color: 'rgb(55, 128, 191)',
-//         width: 3
-//       }
-//     },
-
-//     //Line Horizontal
-
-//     {
-//       type: 'line',
-//       x0: 2,
-//       y0: 2,
-//       x1: 5,
-//       y1: 2,
-//       line: {
-//         color: 'rgb(50, 171, 96)',
-//         width: 4,
-//         dash: 'dashdot'
-//       }
-//     },
-
-//     //Line Diagonal
-
-//     {
-//       type: 'line',
-//       x0: 4,
-//       y0: 0,
-//       x1: 6,
-//       y1: 2,
-//       line: {
-//         color: 'rgb(128, 0, 128)',
-//         width: 4,
-//         dash: 'dot'
-//       }
-//     }
-//   ]
-// };
-
-// var data = [trace1];
-
-// Plotly.newPlot('myDiv28', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /*Circle */ //{
-//         {
-//             var resolveDiv29 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [1.5, 3.5],
-//   y: [0.75, 2.5],
-//   text: ['Unfilled Circle', 'Filled Circle'],
-//   mode: 'text'
-// };
-
-// var layout = {
-//   title: 'Circles',
-//   xaxis: {
-//     range: [0, 4.5],
-//     zeroline: false
-//   },
-//   yaxis: {
-//     range: [0, 4.5]
-//   },
-//   width: 500,
-//   height: 500,
-//   shapes: [
-
-//     // Unfilled Circle
-
-//     {
-//       type: 'circle',
-//       xref: 'x',
-//       yref: 'y',
-//       x0: 1,
-//       y0: 1,
-//       x1: 3,
-//       y1: 3,
-//       line: {
-//         color: 'rgba(50, 171, 96, 1)'
-//       }
-//     },
-
-//     // Filled Circle
-
-//     {
-//       type: 'circle',
-//       xref: 'x',
-//       yref: 'y',
-//       fillcolor: 'rgba(50, 171, 96, 0.7)',
-//       x0: 3,
-//       y0: 3,
-//       x1: 4,
-//       y1: 4,
-//       line: {
-//         color: 'rgba(50, 171, 96, 1)'
-//       }
-//     }
-//   ]
-// };
-
-// var data = [trace1];
-
-// Plotly.newPlot('myDiv29', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Rectangle Positioned Relative to the Plot and to the Axes */ //{
-//         {
-//             var resolveDiv30 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [1.5, 3],
-//   y: [2.5, 2.5],
-//   text: ['Rectangle reference to the plot', 'Rectangle reference to the axes'],
-//   mode: 'text'
-// };
-
-// var layout = {
-//   title: 'Rectangles Positioned Relative to the Plot and to the Axes',
-//   xaxis: {
-//     range: [0, 4],
-//     showgrid: false
-//   },
-//   yaxis: {
-//     range: [0, 4]
-//   },
-//   width: 800,
-//   height: 600,
-//   shapes: [
-
-//     //Rectangle reference to the axes
-
-//     {
-//       type: 'rect',
-//       xref: 'x',
-//       yref: 'y',
-//       x0: 2.5,
-//       y0: 0,
-//       x1: 3.5,
-//       y1: 2,
-//       line: {
-//         color: 'rgb(55, 128, 191)',
-//         width: 3
-//       },
-//       fillcolor: 'rgba(55, 128, 191, 0.6)'
-//     },
-
-//     //Rectangle reference to the Plot
-
-//     {
-//       type: 'rect',
-//       xref: 'paper',
-//       yref: 'paper',
-//       x0: 0.25,
-//       y0: 0,
-//       x1: 0.5,
-//       y1: 0.5,
-//       line: {
-//         color: 'rgb(50, 171, 96)',
-//         width: 3
-//       },
-//       fillcolor: 'rgba(50, 171, 96, 0.6)'
-//     }
-//   ]
-// };
-
-// var data = [trace1];
-
-// Plotly.newPlot('myDiv30', data, layout);
-                
-//             })
-//         }
-    // } /**/
-    
-    /* Rectangle Positioned Relative to the Axes*/ //{
-        {
-            var resolveDiv31 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [1.5, 4.5],
-  y: [0.75, 0.75],
-  text: ['Unfilled Rectangle', 'Filled Rectangle'],
-  mode: 'text'
-};
-
-var layout = {
-  title: 'Rectangle Positioned Relative to the Axes',
-  xaxis: {
-    range: [0, 7],
-    showgrid: false
-  },
-  yaxis: {
-    range: [0, 3.5]
-  },
-  width: 500,
-  height: 500,
-  shapes: [
-
-    //Unfilled Rectangle
-
-    {
-      type: 'rect',
-      x0: 1,
-      y0: 1,
-      x1: 2,
-      y1: 3,
-      line: {
-        color: 'rgba(128, 0, 128, 1)'
-      }
-    },
-
-    //Filled Rectangle
-
-    {
-      type: 'rect',
-      x0: 3,
-      y0: 1,
-      x1: 6,
-      y1: 2,
-      line: {
-        color: 'rgba(128, 0, 128, 1)',
-        width: 2
-      },
-      fillcolor: 'rgba(128, 0, 128, 0.7)'
+            
+        })
+        )
     }
-  ]
-};
 
-var data = [trace1];
 
-Plotly.newPlot('myDiv31', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* Lines Positioned REaltive to the Plot and to the Axis*/ //{
-//         {
-//             var resolveDiv32 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [2, 6],
-//   y: [1, 1],
-//   text: ['Line positioned relative to the plot', 'Line positioned relative to the axes'],
-//   mode: 'text'
-// };
+}).catch((err)=>{
+    console.log(err)
+    })
+    }
+   // } /**/
+   
+    /*Add MarkeR Border */ //{
+    {
+        var resolveDiv1 = new Promise((resolve,reject)=>{
+            
+var x = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+var y = Array.from({length: 500}, () => Math.random()*(6-3)+3);
 
-// var layout = {
-//   title: 'Lines Positioned Relative to the Plot & to the Axes',
-//   xaxis: {
-//     range: [0, 8]
-//   },
-//   yaxis: {
-//     range: [0, 2]
-//   },
-//   width: 500,
-//   height: 500,
-//   shapes: [
-
-//     //Line reference to the axes
-
-//     {
-//       type: 'line',
-//       xref: 'x',
-//       yref: 'y',
-//       x0: 4,
-//       y0: 0,
-//       x1: 8,
-//       y1: 1,
-//       line: {
-//         color: 'rgb(55, 128, 191)',
-//         width: 3
-//       }
-//     },
-
-//     //Line reference to the plot
-
-//     {
-//       type: 'line',
-//       xref: 'paper',
-//       yref: 'paper',
-//       x0: 0,
-//       y0: 0,
-//       x1: 0.5,
-//       y1: 0.5,
-//       line: {
-//         color: 'rgb(50, 171, 96)',
-//         width: 3
-//       }
-//     }
-//   ]
-// };
-
-// var data = [trace1];
-
-// Plotly.newPlot('myDiv32', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Basic Arbitrary SVG Paths*/ //{
-//         {
-//             var resolveDiv33 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [2, 1, 8, 8],
-//   y: [0.25, 9, 2, 6],
-//   text: ['filled triangle', 'filled Polygon', 'Quadratic Bezier Curves', 'Cubic Bezier Curves'],
-//   mode: 'text'
-// };
-
-// var layout = {
-//   title: 'Basic Arbitrary SVG Paths',
-//   xaxis: {
-//     range: [0, 9],
-//     zeroline: false
-//   },
-//   yaxis: {
-//     range: [0, 11],
-//     showgrid: false
-//   },
-//   width: 500,
-//   height: 500,
-//   shapes: [
-
-//     //Quadratic Bezier Curves
-
-//     {
-//       type: 'path',
-//       path: 'M 4,4 Q 6,0 8,4',
-//       line: {
-//         color: 'rgb(93, 164, 214)'
-//       }
-//     },
-
-//     //Cubic Bezier Curves
-
-//     {
-//       type: 'path',
-//       path: 'M 1,4 C 2,8 6,4 8,8',
-//       line: {
-//         color: 'rgb(207, 114, 255)'
-//       }
-//     },
-
-//     //Filled Triangle
-
-//     {
-//       type: 'path',
-//       path: 'M 1 1 L 1 3 L 4 1 Z',
-//       fillcolor: 'rgba(44, 160, 101, 0.5)',
-//       line: {
-//         color: 'rgb(44, 160, 101)'
-//       }
-//     },
-
-//     //Filled Polygon
-
-//     {
-//       type: 'path',
-//       path: ' M 3,7 L2,8 L2,9 L3,10, L4,10 L5,9 L5,8 L4,7 Z',
-//       fillcolor: 'rgba(255, 140, 184, 0.5)',
-//       line: {
-//         color: 'rgb(255, 140, 184)'
-//       }
-//     }
-//   ]
-// };
-
-// var data = [trace1];
-
-// Plotly.newPlot('myDiv33', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Venn Diagram with Circle Shapes*/ //{
-//         {
-//             var resolveDiv34 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [1, 1.75, 2.5],
-//   y: [1, 1, 1],
-//   type: 'scatter',
-//   mode: 'text',
-//   text: ['A', 'A+B', 'B'],
-//   textfont: {
-//     color: 'black',
-//     size: 18,
-//     family: 'Arial'
-//   }
-// };
-
-// var layout = {
-//   title: 'Venn Diagram with Circle Shapes',
-//   xaxis: {
-//     showticklabels: false,
-//     autotick: false,
-//     showgrid: false,
-//     zeroline: false
-//   },
-//   yaxis: {
-//     showticklabels: false,
-//     autotick: false,
-//     showgrid: false,
-//     zeroline: false
-//   },
-//   shapes: [{
-//     opacity: 0.3,
-//     xref: 'x',
-//     yref: 'y',
-//     fillcolor: 'blue',
-//     x0: 0,
-//     y0: 0,
-//     x1: 2,
-//     y1: 2,
-//     type: 'circle',
-//     line: {
-//       color: 'blue'
-//     }
-//   }, {
-//     opacity: 0.3,
-//     xref: 'x',
-//     yref: 'y',
-//     fillcolor: 'gray',
-//     x0: 1.5,
-//     y0: 0,
-//     x1: 3.5,
-//     y1: 2,
-//     type: 'circle',
-//     line: {
-//       color: 'gray'
-//     }
-//   }],
-//   margin: {
-//     l: 20,
-//     r: 20,
-//     b: 100
-//   },
-//   height: 500,
-//   width: 500
-// };
-
-// var data = [trace1];
-
-// Plotly.newPlot('myDiv34', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Creating Tangent Lines with Shapes*/ //{
-//         {
-//             var resolveDiv35 = new Promise((resolve,reject)=>{
-                
-                
-//                 ultraObject.endpoint({
-//                     xhttp:ultraObject.iterify({iterify:[new XMLHttpRequest()]}),
-//                     instruct:'XMLHttpRequest',
-//                     eventName:'load',
-//                     eventHandler:()=>{
-//                         console.log(ultraObject.XHR[0][0].responseText)
-//                     },
-//                     protocol:"POST",
-//                     target:"http://24.189.66.225/backend/linspace",
-//                     asyncBool:true,
-//                     body:JSON.stringify({
-//                         'a': 1,
-//                         'b': 3,
-//                         'c': 200
-//                     })
-//                 })
-                                
-//                 ultraObject.XHR[0][0].onload = ()=>{
-//                     resolve()
-//                 }
-
-//             }).then((xhrResponse)=>{
-// var xValues = JSON.parse(ultraObject.XHR[0][0].responseText)
-
-// var yValues = [];
-
-// for ( var i = 0 ; i <  xValues.length ; i++ ) {
-//   var result = xValues[i] * Math.sin(Math.pow(xValues[i], 2)) + 1;
-//   yValues.push(result);
-// };
-
-// var trace1 = {
-//   x: xValues,
-//   y: yValues,
-//   type: 'scatter'
-// };
-
-// var data = [trace1];
-
-// var layout = {
-//   title: 'Creating Tangent Lines with Shapes',
-//   shapes: [{
-//     type: 'line',
-//     x0: 1,
-//     y0: 2.30756,
-//     x1: 1.75,
-//     y1: 2.30756,
-//     opacity: 0.7,
-//     line: {
-//       color: 'red',
-//       width: 2.5
-//     }
-//   }, {
-//     type: 'line',
-//     x0: 2.5,
-//     y0: 3.80796,
-//     x1: 3.05,
-//     y1: 3.80796,
-//     opacity: 0.7,
-//     line: {
-//       color: 'red',
-//       width: 2.5
-//     }
-//   }, {
-//     type: 'line',
-//     x0: 1.90,
-//     y0: -1.1827,
-//     x1: 2.50,
-//     y1: -1.1827,
-//     opacity: 0.7,
-//     line: {
-//       color: 'red',
-//       width: 2.5
-//     }
-//   }],
-//   height: 500,
-//   width: 500
-// };
-
-// Plotly.newPlot('myDiv35', data, layout);
-//                 }).catch((xhr)=>{
-                    
-//                     console.log(xhr)
-//                     console.log(typeof xhr)
-//                     })
-//         }
-    // } /**/
-    
-    /*Adjusting Height, Width, and Margins */ //{
-        // {
-        //     var resolveDiv36 = new Promise((resolve,reject)=>{
-        //         var data = [
-        //           {
-        //             x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //             y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //             type: 'scatter'
-        //           }
-        //         ];
-        //         var layout = {
-        //           autosize: false,
-        //           width: 500,
-        //           height: 500,
-        //           margin: {
-        //             l: 50,
-        //             r: 50,
-        //             b: 100,
-        //             t: 100,
-        //             pad: 4
-        //           },
-        //           paper_bgcolor: '#7f7f7f',
-        //           plot_bgcolor: '#c7c7c7'
-        //         };
-        //         Plotly.newPlot('myDiv36', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /* Automatically Adjust Margins*/ //{
-        // {
-        //     var resolveDiv37 = new Promise((resolve,reject)=>{
-        //         var data = [
-        //           {
-        //             x: ['Apples', 'Oranges', 'Watermelon', 'Pears'],
-        //             y: [3, 2, 1, 4],
-        //             type: 'bar'
-        //           }
-        //         ];
-        //         var layout = {
-        //           autosize: false,
-        //           width: 500,
-        //           height: 500,
-        //           yaxis: {
-        //             title: 'Y-axis Title',
-        //             ticktext: ['long label','Very long label','3','label'],
-        //             tickvals: [1, 2, 3, 4],
-        //             tickmode: 'array',
-        //             automargin: true,
-        //             titlefont: { size:30 },
-        //           },
-        //           paper_bgcolor: '#7f7f7f',
-        //           plot_bgcolor: '#c7c7c7'
-        //         };
-        //         Plotly.newPlot('myDiv37', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /*Hiding the Legend */ //{
-        // {
-        //     var resolveDiv38 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         var layout = {showlegend: false};
-        //         Plotly.newPlot('myDiv38', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /*Legend Names */ //{
-        // {
-        //     var resolveDiv39 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-        //           name: 'Blue Trace',
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-        //           name: 'Orange Trace',
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         Plotly.newPlot('myDiv39', data);
-        //     })
-        // }
-    // } /**/
-    
-    /* Positioning the Legend Inside the Plot*/ //{
-        // {
-        //     var resolveDiv40 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         var layout = {
-        //           showlegend: true,
-        //           legend: {
-        //             x: 1,
-        //             y: 1
-        //           }
-        //         };
-        //         Plotly.newPlot('myDiv40', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /* Positioning the Legend Outside the Plot*/ //{
-        // {
-        //     var resolveDiv41 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         var layout = {
-        //           showlegend: true,
-        //           legend: {
-        //             x: 1,
-        //             y: 0.5
-        //           }
-        //         };
-        //         Plotly.newPlot('myDiv41', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /* Styling and Coloring the Legend*/ //{
-        // {
-        //     var resolveDiv42 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         var layout = {legend: {
-        //             x: 0,
-        //             y: 1,
-        //             traceorder: 'normal',
-        //             font: {
-        //               family: 'sans-serif',
-        //               size: 12,
-        //               color: '#000'
-        //             },
-        //             bgcolor: '#E2E2E2',
-        //             bordercolor: '#FFFFFF',
-        //             borderwidth: 2
-        //           }};
-        //         Plotly.newPlot('myDiv42', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /* Changing the orientation of Legend*/ //{
-        // {
-        //     var resolveDiv43 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-        //           y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         var layout = {showlegend: true,
-        //         	legend: {"orientation": "h"}};
-                 
-        //         Plotly.newPlot('myDiv43', data, layout);
-        //     })
-        // }
-    // } /**/
-    
-    /* Hiding Legend Entries*/ //{
-        // {
-        //     var resolveDiv44 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [0, 1, 2],
-        //           y: [1, 2, 3],
-        //           name: 'First Trace',
-        //           showlegend: false,
-        //           type: 'scatter'
-        //         };
-        //         var trace2 = {
-        //           x: [0, 1, 2, 3],
-        //           y: [8, 4, 2, 0],
-        //           name: 'Second Trace',
-        //           showlegend: true,
-        //           type: 'scatter'
-        //         };
-        //         var data = [trace1, trace2];
-        //         Plotly.newPlot('myDiv44', data);
-        //     })
-        // }
-    // } /**/
-    
-    /* Grouped Legend*/ //{
-        // {
-        //     var resolveDiv45 = new Promise((resolve,reject)=>{
-        //         var trace1 = {
-        //           x: [1, 2, 3],
-        //           y: [2, 1, 3],
-        //           legendgroup: 'group',
-        //           marker: {color: 'rgb(164, 194, 244)'},
-        //           mode: 'markers',
-        //           name: 'first legend group',
-        //           type: 'scatter'
-        //         };
-                
-        //         var trace2 = {
-        //           x: [1, 2, 3],
-        //           y: [2, 2, 2],
-        //           legendgroup: 'group',
-        //           line: {color: 'rgb(164, 194, 244)'},
-        //           mode: 'lines',
-        //           name: 'first legend group - average',
-        //           type: 'scatter'
-        //         };
-                
-        //         var trace3 = {
-        //           x: [1, 2, 3],
-        //           y: [4, 9, 2],
-        //           legendgroup: 'group2',
-        //           marker: {color: 'rgb(142, 124, 195)'},
-        //           mode: 'markers',
-        //           name: 'second legend group',
-        //           type: 'scatter'
-        //         };
-                
-        //         var trace4 = {
-        //           x: [1, 2, 3],
-        //           y: [5, 5, 5],
-        //           legendgroup: 'group2',
-        //           line: {color: 'rgb(142, 124, 195)'},
-        //           mode: 'lines',
-        //           name: 'second legend group - average',
-        //           type: 'scatter'
-        //         };
-                
-        //         data = [trace1, trace2, trace3, trace4];
-                
-        //         Plotly.plot('myDiv45', data);
-        //     })
-        // }
-    // } /**/
-    
-    /* Subplot Grouped Legend*/ //{
-//         {
-//             var resolveDiv46 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: ['a'],
-//   y: [2],
-//   legendgroup: 'a',
-//   marker: {
-//     color: 'rgba(102,194,165,1)',
-//     line: {color: 'transparent'}
-//   },
-//   name: 'a',
-//   type: 'bar',
-//   xaxis: 'x',
-//   yaxis: 'y'
-// };
-
-// var trace2 = {
-//   x: ['b'],
-//   y: [3],
-//   legendgroup: 'b',
-//   marker: {
-//     color: 'rgba(252,141,98,1)',
-//     line: {color: 'transparent'}
-//   },
-//   name: 'b',
-//   type: 'bar',
-//   xaxis: 'x',
-//   yaxis: 'y'
-// };
-
-// var trace3 = {
-//   x: ['c'],
-//   y: [2],
-//   legendgroup: 'c',
-//   marker: {
-//     color: 'rgba(141,160,203,1)',
-//     line: {color: 'transparent'}
-//   },
-//   name: 'c',
-//   type: 'bar',
-//   xaxis: 'x',
-//   yaxis: 'y'
-// };
-
-// var trace4 = {
-//   x: ['a'],
-//   y: [4],
-//   legendgroup: 'a',
-//   marker: {
-//     color: 'rgba(102,194,165,1)',
-//     line: {color: 'transparent'}
-//   },
-//   name: 'a',
-//   showlegend: false,
-//   type: 'bar',
-//   xaxis: 'x2',
-//   yaxis: 'y2'
-// };
-
-// var trace5 = {
-//   x: ['b'],
-//   y: [2],
-//   legendgroup: 'b',
-//   marker: {
-//     color: 'rgba(252,141,98,1)',
-//     line: {color: 'transparent'}
-//   },
-//   name: 'b',
-//   showlegend: false,
-//   type: 'bar',
-//   xaxis: 'x2',
-//   yaxis: 'y2'
-// };
-
-// var trace6 = {
-//   x: ['c'],
-//   y: [4],
-//   legendgroup: 'c',
-//   marker: {
-//     color: 'rgba(141,160,203,1)',
-//     line: {color: 'transparent'}
-//   },
-//   name: 'c',
-//   showlegend: false,
-//   type: 'bar',
-//   xaxis: 'x2',
-//   yaxis: 'y2'
-// };
-
-// var data = [trace1, trace2, trace3, trace4, trace5, trace6];
-
-// var layout = {
-//   hovermode: 'closest',
-//   margin: {
-//     r: 10,
-//     t: 25,
-//     b: 40,
-//     l: 60
-//   },
-//   showlegend: true,
-//   xaxis: {
-//     anchor: 'y',
-//     categoryorder: 'array',
-//     domain: [0, 1],
-//     type: 'category',
-// 	 showgrid: false,
-// 	 showticklabels: false
-//   },
-//   xaxis2: {
-//     anchor: 'y2',
-//     categoryorder: 'array',
-//     domain: [0, 1],
-//     type: 'category',
-// 	 showgrid: false
-//   },
-//   yaxis: {
-//     anchor: 'x',
-//     domain: [0.52, 1],
-// 	 showgrid: false
-//   },
-//   yaxis2: {
-//     anchor: 'x2',
-//     domain: [0, 0.48],
-// 	 showgrid: false
-//   }
-// };
-
-// Plotly.plot('myDiv46', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Styling Names*/ //{
-//         {
-//             var resolveDiv47 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-//   y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-//   name: 'Name of Trace 1',
-//   type: 'scatter'
-// };
-// var trace2 = {
-//   x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-//   y: [1, 0, 3, 2, 5, 4, 7, 6, 8],
-//   name: 'Name of Trace 2',
-//   type: 'scatter'
-// };
-// var data = [trace1, trace2];
-// var layout = {
-//   title: {
-//     text:'Plot Title',
-//     font: {
-//       family: 'Courier New, monospace',
-//       size: 24
-//     },
-//     xref: 'paper',
-//     x: 0.05,
-//   },
-//   xaxis: {
-//     title: {
-//       text: 'x Axis',
-//       font: {
-//         family: 'Courier New, monospace',
-//         size: 18,
-//         color: '#7f7f7f'
-//       }
-//     },
-//   },
-//   yaxis: {
-//     title: {
-//       text: 'y Axis',
-//       font: {
-//         family: 'Courier New, monospace',
-//         size: 18,
-//         color: '#7f7f7f'
-//       }
-//     }
-//   }
-// };
-
-// Plotly.newPlot('myDiv47', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Basic Example  horizontal legends*/ //{
-//         {
-//             var resolveDiv48 = new Promise((resolve,reject)=>{
-// var trace1 = {
-// 		x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-// 		y: [0, 3, 6, 4, 5, 2, 3, 5, 4],
-// 		type: 'scatter',
-// 		name:'Plot 1'
-//         };
-// var trace2 = {
-// 	    x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-// 	    y: [0, 4, 7, 8, 3, 6, 3, 3, 4],
-// 	    type: 'scatter',
-// 	    name:'Plot 2'
-//         };
-// var trace3 = {
-// 	    x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-// 	    y: [0, 5, 3, 10, 5.33, 2.24, 4.4, 5.1, 7.2],
-// 	    type: 'scatter',
-// 	    name:'Plot 3'
-//         };
-
-// var data = [trace1, trace2, trace3];
-// var layout = {
-// 		showlegend: true,
-// 		legend: {"orientation": "h"}
-// 	    };
- 
-// Plotly.newPlot('myDiv48', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Tick Placement, Color, and Style*/ //{
-        {
-            var resolveDiv49 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
-  type: 'scatter'
-};
-var trace2 = {
-  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  type: 'scatter'
-};
-var data = [trace1, trace2];
-var layout = {
-  xaxis: {
-    autotick: false,
-    ticks: 'outside',
-    tick0: 0,
-    dtick: 0.25,
-    ticklen: 8,
-    tickwidth: 4,
-    tickcolor: '#000'
-  },
-  yaxis: {
-    autotick: false,
-    ticks: 'outside',
-    tick0: 0,
-    dtick: 0.25,
-    ticklen: 8,
-    tickwidth: 4,
-    tickcolor: '#000'
-  }
-};
-Plotly.newPlot('myDiv49', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Set and Style Axes Title Labels and Ticks */ //{
-        {
-            // var resolveDiv50 = new Promise((resolve,reject)=>{
-                
-            // })
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
-  function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
-
-  var x = unpack(rows, 'Date')
-  var y = unpack(rows, 'AAPL.Volume')
-
-  var trace = {
-    type: "scatter",
-    mode: "lines",
-    name: 'AAPL Volume',
-    x: x,
-    y: y,
-    line: {color: 'grey'}
-  }
-
-  var data = [trace];
-    
-var layout = {
-  title: 'Volume of Apple Shares Traded',
-  xaxis: {
-    title: 'AXIS TITLE',
-    titlefont: {
-      family: 'Arial, sans-serif',
-      size: 18,
-      color: 'lightgrey'
-    },
-    showticklabels: true,
-    tickangle: 'auto',
-    tickfont: {
-      family: 'Old Standard TT, serif',
-      size: 14,
-      color: 'black'
-    },
-    exponentformat: 'e',
-    showexponent: 'all'
-  },
-  yaxis: {
-    title: 'AXIS TITLE',
-    titlefont: {
-      family: 'Arial, sans-serif',
-      size: 18,
-      color: 'lightgrey'
-    },
-    showticklabels: true,
-    tickangle: 45,
-    tickfont: {
-      family: 'Old Standard TT, serif',
-      size: 14,
-      color: 'black'
-    },
-    exponentformat: 'e',
-    showexponent: 'all'
-  }
-};
-
-Plotly.newPlot('myDiv50', data, layout);
-})
-        }
-    // } /**/
-    
-    /* Styling and Coloring Axes and the Zero-Line */ //{
-        {
-            var resolveDiv51 = new Promise((resolve,reject)=>{
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
-  function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
-
-  var x = unpack(rows, 'Date')
-  var y = unpack(rows, 'AAPL.Volume')
-
-  var trace = {
-    type: "scatter",
-    mode: "lines",
-    name: 'AAPL Volume',
-    x: x,
-    y: y,
-    line: {color: 'grey'}
-  }
-
-  var data = [trace];
-    
-var layout = {
-  title: 'Volume of Apple Shares Traded',
-  xaxis: {
-    title: 'AXIS TITLE',
-    titlefont: {
-      family: 'Arial, sans-serif',
-      size: 18,
-      color: 'lightgrey'
-    },
-    showticklabels: true,
-    tickangle: 'auto',
-    tickfont: {
-      family: 'Old Standard TT, serif',
-      size: 14,
-      color: 'black'
-    },
-    exponentformat: 'e',
-    showexponent: 'all'
-  },
-  yaxis: {
-    title: 'AXIS TITLE',
-    titlefont: {
-      family: 'Arial, sans-serif',
-      size: 18,
-      color: 'lightgrey'
-    },
-    showticklabels: true,
-    tickangle: 45,
-    tickfont: {
-      family: 'Old Standard TT, serif',
-      size: 14,
-      color: 'black'
-    },
-    exponentformat: 'e',
-    showexponent: 'all'
-  }
-};
-
-Plotly.newPlot('myDiv51', data, layout);
-})
-            })
-        }
-    // } /**/
-    
-    /*Styling and Coloring Axes and the Zero-Line */ //{
-        {
-            var resolveDiv51 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
-  type: 'scatter'
-};
-var trace2 = {
-  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  type: 'scatter'
-};
-var data = [trace1, trace2];
-var layout = {
-  xaxis: {
-    showgrid: true,
-    zeroline: true,
-    showline: true,
-    mirror: 'ticks',
-    gridcolor: '#bdbdbd',
-    gridwidth: 2,
-    zerolinecolor: '#969696',
-    zerolinewidth: 4,
-    linecolor: '#636363',
-    linewidth: 6
-  },
-  yaxis: {
-    showgrid: true,
-    zeroline: true,
-    showline: true,
-    mirror: 'ticks',
-    gridcolor: '#bdbdbd',
-    gridwidth: 2,
-    zerolinecolor: '#969696',
-    zerolinewidth: 4,
-    linecolor: '#636363',
-    linewidth: 6
-  }
-};
-Plotly.newPlot('myDiv51', data, layout);
-                
-            })
-        }
-    // } /**/
-    
-    /* Setting the Range of Axes Manually*/ //{
-        {
-            var resolveDiv52 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
-  type: 'scatter'
-};
-var trace2 = {
-  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-  type: 'scatter'
-};
-var data = [trace1, trace2];
-var layout = {
-  xaxis: {range: [2, 5]},
-  yaxis: {range: [2, 5]}
-};
-Plotly.newPlot('myDiv52', data, layout);
-                
-            })
-        }
-    // } /**/
-    
-    /*Toggling Axes Lines, Ticks, Labels, and Autorange */ //{
-        {
-            var resolveDiv53 = new Promise((resolve,reject)=>{
-                var trace1 = {
-                  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
-                  type: 'scatter'
-                };
-                var trace2 = {
-                  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                  type: 'scatter'
-                };
-                var data = [trace1, trace2];
-                var layout = {
-                  xaxis: {
-                    autorange: true,
-                    showgrid: false,
-                    zeroline: false,
-                    showline: false,
-                    autotick: true,
-                    ticks: '',
-                    showticklabels: false
-                  },
-                  yaxis: {
-                    autorange: true,
-                    showgrid: false,
-                    zeroline: false,
-                    showline: false,
-                    autotick: true,
-                    ticks: '',
-                    showticklabels: false
-                  }
-                };
-                Plotly.newPlot('myDiv53', data, layout);
-            })
-        }
-    // } /**/
-    
-    /* nonnegative, tozero, and normal Rangemode*/ //{
-        {
-            var resolveDiv53 = new Promise((resolve,reject)=>{
-var data = [
-  {
-    x: [2, 4, 6],
-    y: [-3, 0, 3],
-    type: 'scatter'
-  }
-];
-var layout = {
-  showlegend: false,
-  xaxis: {
-    rangemode: 'tozero',
-    autorange: true
-  },
-  yaxis: {
-    rangemode: 'nonnegative',
-    autorange: true
-  }
-};
-Plotly.newPlot('myDiv53', data, layout);
-                
-            })
-        }
-    // } /**/
-    
-    /* Enumerated Ticks with Tickvals and Ticktext*/ //{
-        {
-            var resolveDiv54 = new Promise((resolve,reject)=>{
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/stockdata.csv', function(err, rows){
-function unpack(rows, key) {
-  return rows.map(function(row)
-  { return row[key]; });}
-
-var trace1 = {
-  x:unpack(rows, 'Date'),
-  y: unpack(rows, 'IBM'),
+var data = [{
+  x: x,
+  y: y,
+  type: 'scatter',
   mode: 'markers',
   marker: {
-    size: 7,
+    color: 'rgb(17, 157, 255)',
+    size: 20,
     line: {
-    width: 0.5},
-    opacity: 0.8},
+      color: 'rgb(231, 99, 250)',
+      width: 2
+    }
+  },
+  showlegend: false
+  }, {
+  x: [2],
+  y: [4.5],
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    size: 60,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 6
+    }
+  },
+  showlegend: false
+}]
+
+Plotly.plot('myDiv1', data)
+        })
+    }
+   // } /**/
+   
+    /*  Fully Opaque   */ //{
+    {
+        var resolveDiv2 = new Promise((resolve,reject)=>{
+            
+var x = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+var y = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+
+var data = [{
+  x: x,
+  y: y,
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    size: 20,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 2
+    }
+  },
+  showlegend: false
+  }, {
+  x: [2,2],
+  y: [4.25,4.75],
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    size: 60,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 6
+    }
+  },
+  showlegend: false
+}]
+
+Plotly.plot('myDiv2', data)
+        })
+    }
+   // } /**/
+   
+    /*   Trace Opacity  */ //{
+    {
+        var resolveDiv3 = new Promise((resolve,reject)=>{
+            
+var x = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+var y = Array.from({length: 500}, () => Math.random()*(4.5-3)+3);
+var x2 = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+var y2 = Array.from({length: 500}, () => Math.random()*(6-4.5)+4.5);
+
+var data = [{
+  x: x,
+  y: y,
+  type: 'scatter',
+  mode: 'markers',
+  opacity: 0.5,
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    size: 20,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 2
+    }
+  },
+  name: 'Opacity 0.5'
+  }, {
+  x: x2,
+  y: y2,
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    size: 20,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 2
+    }
+  },
+  name: 'Opacity 1.0'
+  }, {
+  x: [2,2],
+  y: [4.25,4.75],
+  type: 'scatter',
+  mode: 'markers',
+  opacity: 0.5,
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    size: 60,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 6
+    }
+  },
+  showlegend: false
+}]
+
+Plotly.plot('myDiv3', data)
+        })
+    }
+   // } /**/
+   
+    /*  Marker Opacity   */ //{
+    {
+        var resolveDiv4 = new Promise((resolve,reject)=>{
+            
+var x = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+var y = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+
+var data = [{
+  x: x,
+  y: y,
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    opacity: 0.5,
+    size: 20,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 2
+    }
+  },
+  showlegend: false
+  }, {
+  x: [2,2],
+  y: [4.25,4.75],
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgb(17, 157, 255)',
+    opacity: 0.5,
+    size: 60,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 6
+    }
+  },
+  showlegend: false
+}]
+
+Plotly.plot('myDiv4', data)
+        })
+    }
+   // } /**/
+   
+    /* Color Opacity */ //{
+    {
+        var resolveDiv5 = new Promise((resolve,reject)=>{
+            
+var x = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+var y = Array.from({length: 500}, () => Math.random()*(6-3)+3);
+
+var data = [{
+  x: x,
+  y: y,
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgba(17, 157, 255,0.5)',
+    size: 20,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 2
+    }
+  },
+  showlegend: false
+  }, {
+  x: [2,2],
+  y: [4.25,4.75],
+  type: 'scatter',
+  mode: 'markers',
+  marker: {
+    color: 'rgba(17, 157, 255,0.5)',
+    size: 60,
+    line: {
+      color: 'rgb(231, 99, 250)',
+      width: 6
+    }
+  },
+  showlegend: false
+}]
+
+Plotly.plot('myDiv5', data)
+        })
+    }
+   // } /**/
+   
+    /*   LaTeX Typesetting  */ //{
+    {
+        var resolveDiv6 = new Promise((resolve,reject)=>{
+            
+var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [1, 4, 9, 16],
+  name: '$\alpha_{1c} = 352 \pm 11 \text{ km s}^{-1}$',
   type: 'scatter'
 };
-
+var trace2 = {
+  x: [1, 2, 3, 4],
+  y: [0.5, 2, 4.5, 8],
+  name: '$\beta_{1c} = 25 \pm 11 \text{ km s}^{-1}$',
+  type: 'scatter'
+};
+var data = [trace1, trace2];
 var layout = {
-  title: 'IBM Stock Data: Jan 2007 - Mar 2016',
-  xaxis: {tickvals:['2007-01-01', '2007-09-01', '2008-01-01', '2008-09-01', '2009-01-01', '2010-01-01', '2011-01-01', '2011-02-14',  '2012-01-01', '2013-01-01', '2014-01-01', '2015-01-01', '2016-01-01'],
-        ticktext : ['2007', 'Financial Crisis Starts', '2008', 'Financial Crisis Ends', '2009', '2010', '2011', 'IBM wins Jeopardy!', '2012', '2013', '2014', '2015', '2016']},
-}
-  
-var data = [trace1];
-Plotly.newPlot('myDiv54', data, layout);
-});
-            })
-        }
-    // } /**/
-    
-    /* Logarithmic Axes*/ //{
-        {
-            var resolveDiv55 = new Promise((resolve,reject)=>{
-                var trace1 = {
-                  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                  y: [8, 7, 6, 5, 4, 3, 2, 1, 0],
-                  type: 'scatter'
-                };
-                var trace2 = {
-                  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                  y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
-                  type: 'scatter'
-                };
-                var data = [trace1, trace2];
-                var layout = {
-                  xaxis: {
-                    type: 'log',
-                    autorange: true
-                  },
-                  yaxis: {
-                    type: 'log',
-                    autorange: true
-                  }
-                };
-                Plotly.newPlot('myDiv55', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Reversed Axes */ //{
-        {
-            var resolveDiv56 = new Promise((resolve,reject)=>{
-                var data = [
-                  {
-                    x: [1, 2],
-                    y: [1, 2],
-                    type: 'scatter'
-                  }
-                ];
-                var layout = {xaxis: {autorange: 'reversed'}};
-                Plotly.newPlot('myDiv56', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Reversed Axes with Range ( Min/Max ) Specified */ //{
-        {
-            var resolveDiv56 = new Promise((resolve,reject)=>{
+  xaxis: {title: '$\sqrt{(n_\text{c}(t|{T_\text{early}}))}$'},
+  yaxis: {title: '$d, r \text{ (solar radius)}$'}
+};
+Plotly.newPlot('myDiv6', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*   Global Font Properties   */ //{
+    {
+        var resolveDiv7 = new Promise((resolve,reject)=>{
+            
 var data = [
   {
-    x: [0.0, 0.1, 0.2, 0.3, 0.4, 0.51, 0.61, 0.71, 0.81, 0.91, 1.01, 1.11, 1.21, 1.31, 1.41, 1.52, 1.62, 1.72, 1.82, 1.92, 2.02, 2.12, 2.22, 2.32, 2.42, 2.53, 2.63, 2.73, 2.83, 2.93, 3.03, 3.13, 3.23, 3.33, 3.43, 3.54, 3.64, 3.74, 3.84, 3.94, 4.04, 4.14, 4.24, 4.34, 4.44, 4.55, 4.65, 4.75, 4.85, 4.95, 5.05, 5.15, 5.25, 5.35, 5.45, 5.56, 5.66, 5.76, 5.86, 5.96, 6.06, 6.16, 6.26, 6.36, 6.46, 6.57, 6.67, 6.77, 6.87, 6.97, 7.07, 7.17, 7.27, 7.37, 7.47, 7.58, 7.68, 7.78, 7.88, 7.98, 8.08, 8.18, 8.28, 8.38, 8.48, 8.59, 8.69, 8.79, 8.89, 8.99, 9.09, 9.19, 9.29, 9.39, 9.49, 9.6, 9.7, 9.8, 9.9, 10.0],
-    y: [63, 65, 78, 92, 12, 50, 17, 31, 1, 25, 76, 66, 83, 38, 95, 23, 20, 88, 31, 26, 39, 74, 11, 84, 7, 13, 30, 85, 80, 47, 12, 89, 12, 35, 99, 78, 77, 56, 26, 13, 96, 55, 19, 88, 31, 1, 42, 39, 99, 62, 68, 61, 45, 44, 10, 25, 89, 82, 28, 2, 24, 1, 32, 16, 29, 40, 55, 75, 20, 41, 67, 33, 92, 14, 16, 22, 86, 55, 37, 42, 42, 85, 60, 11, 54, 3, 34, 29, 59, 28, 25, 67, 90, 10, 29, 16, 51, 17, 2, 34],
-    mode: "markers"
+    x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    y: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    type: 'scatter'
   }
 ];
 var layout = {
-  title: "Reversed Axis with Min/Max",
-  xaxis: {
-    range: [10, 0]
+  title: 'Global Font',
+  font: {
+    family: 'Courier New, monospace',
+    size: 18,
+    color: '#7f7f7f'
   }
 };
-Plotly.plot('myDiv56', data, layout);
-                
-            })
-        }
-    // } /**/
-    
-    /*Categorical Axes */ //{
-//         {
-//             var resolveDiv57 = new Promise((resolve,reject)=>{
-// var trace1 = {
-//   x: ['A12', 'BC2', 109, '12F', 215, 304],
-//   y: [1, 6, 3, 5, 1, 4],
-//   mode: 'markers',
-//   type: 'bar',
-//   name: 'Team A',
-//   text: ['Apples', 'Pears', 'Peaches', 'Bananas', 'Pineapples', 'Cherries'],
-// };
-
-// var data = [ trace1 ];
-
-// var layout = {
-//   xaxis: {
-//     type: 'category',
-//     title: 'Product Code',
-//   },
-//   yaxis: {
-//     range: [0, 7],
-//     title: 'Number of Items in Stock'
-//   },
-//   title:'Inventory'
-// };
-
-// Plotly.plot('myDiv57', data, layout);
-//             })
-//         }
-    // } /**/
-    
-    /* Multi-Category Axes*/ //{
-        {
-            var resolveDiv58 = new Promise((resolve,reject)=>{
+Plotly.newPlot('myDiv7', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Adding Text to Data in Line and Scatter Plots   */ //{
+    {
+        var resolveDiv8 = new Promise((resolve,reject)=>{
+            
 var trace1 = {
-  x: [
-    ['SF Zoo','SF Zoo','SF Zoo'],
-    ['giraffes', 'orangutans', 'monkeys']
-  ],
-  y: [20, 14, 23],
-  name: 'SF Zoo',
-  type: 'bar'
+  x: [0, 1, 2],
+  y: [1, 1, 1],
+  mode: 'lines+markers+text',
+  name: 'Lines, Markers and Text',
+  text: ['Text A', 'Text B', 'Text C'],
+  textposition: 'top',
+  type: 'scatter'
 };
-
 var trace2 = {
-  x: [
-    ['LA Zoo','LA Zoo','LA Zoo'],
-    ['giraffes', 'orangutans', 'monkeys']
-  ],
-  y: [12, 18, 29],
-  name: 'LA Zoo',
-  type: 'bar'
+  x: [0, 1, 2],
+  y: [2, 2, 2],
+  mode: 'markers+text',
+  name: 'Markers and Text',
+  text: ['Text D', 'Text E', 'Text F'],
+  textposition: 'bottom',
+  type: 'scatter'
 };
-
+var trace3 = {
+  x: [0, 1, 2],
+  y: [3, 3, 3],
+  mode: 'lines+text',
+  name: 'Lines and Text',
+  text: ['Text G', 'Text H', 'Text I'],
+  textposition: 'bottom',
+  type: 'scatter'
+};
+var data = [trace1, trace2, trace3];
+var layout = {showlegend: false};
+Plotly.newPlot('myDiv8', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Paper Referenced Annotations   */ //{
+    {
+        var resolveDiv9 = new Promise((resolve,reject)=>{
+            
+Plotly.plot('myDiv9', [{
+  x: [1,2,3],
+  y: [2,1,2]
+}], {
+  annotations: [{
+    xref: 'paper',
+    yref: 'paper',
+    x: 0,
+    xanchor: 'right',
+    y: 1,
+    yanchor: 'bottom',
+    text: 'X axis label',
+    showarrow: false
+  }, {
+    xref: 'paper',
+    yref: 'paper',
+    x: 1,
+    xanchor: 'left',
+    y: 0,
+    yanchor: 'top',
+    text: 'Y axis label',
+    showarrow: false
+  }]
+  
+})
+        })
+    }
+   // } /**/
+   
+    /* Simple Annotation    */ //{
+    {
+        var resolveDiv10 = new Promise((resolve,reject)=>{
+            
+var trace1 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 1, 3, 2, 4, 3, 4, 6, 5],
+  type: 'scatter'
+};
+var trace2 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 4, 5, 1, 2, 2, 3, 4, 2],
+  type: 'scatter'
+};
 var data = [trace1, trace2];
 var layout = {
   showlegend: false,
+  annotations: [
+    {
+      x: 2,
+      y: 5,
+      xref: 'x',
+      yref: 'y',
+      text: 'Annotation Text',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    }
+  ]
+};
+Plotly.newPlot('myDiv10', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Multiple Annotations   */ //{
+    {
+        var resolveDiv11 = new Promise((resolve,reject)=>{
+            
+var trace1 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 1, 3, 2, 4, 3, 4, 6, 5],
+  type: 'scatter'
+};
+var trace2 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 4, 5, 1, 2, 2, 3, 4, 2],
+  type: 'scatter'
+};
+var data = [trace1, trace2];
+var layout = {
+  showlegend: false,
+  annotations: [
+    {
+      x: 2,
+      y: 5,
+      xref: 'x',
+      yref: 'y',
+      text: 'Annotation Text',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    },
+    {
+      x: 4,
+      y: 4,
+      xref: 'x',
+      yref: 'y',
+      text: 'Annotation Text 2',
+      showarrow: true,
+      arrowhead: 7,
+      ax: 0,
+      ay: -40
+    }
+  ]
+};
+Plotly.newPlot('myDiv11', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Subplot Annotations   */ //{
+    {
+        var resolveDiv12 = new Promise((resolve,reject)=>{
+            
+var trace0 = {
+  x: [1, 2, 3],
+  y: [4, 5, 6],
+  type: 'scatter'
+};
+
+var trace1 = {
+  x: [20, 30, 40],
+  y: [50, 60, 70],
+  xaxis: 'x2',
+  yaxis: 'y2',
+  type: 'scatter'
+};
+
+var data = [trace0, trace1];
+
+var layout = {
+  title: 'Subplot Annontations',
+  xaxis: {domain: [0, 0.45]},
+  yaxis2: {anchor: 'x2'},
+  xaxis2: {domain: [0.55, 1]},
+  annotations: [
+    {
+      x: 2,
+      y: 5,
+      xref: 'x',
+      yref: 'y',
+      text: 'Annotation A',
+      showarrow: true,
+      arrowhead: 3,
+      ax: -30,
+      ay: -40
+    },
+    {
+      x: 30,
+      y: 60,
+      xref: 'x2',
+      yref: 'y2',
+      text: 'Annotation B',
+      showarrow: true,
+      arrowhead: 2,
+      ax: -25,
+      ay: -40
+    }
+  ]
+};
+
+Plotly.newPlot('myDiv12', data, layout);
+        })
+    }
+   // } /**/
+   
+    /* 3D Annotations    */ //{
+    {
+        var resolveDiv13 = new Promise((resolve,reject)=>{
+            
+var data = [{
+    type: "scatter3d",
+    x: ["2017-01-01", "2017-02-10", "2017-03-20"],
+    y: ["A", "B", "C"],
+    z: [1, 1e3, 1e5]
+ }]
+
+var layout = {
+    scene: {
+      camera: {
+        eye: {x: 2.1, y: 0.1, z: 0.9}
+      },
+      xaxis: {
+        title: ""
+      },
+      yaxis: {
+        title: ""
+      },
+      zaxis: {
+        type: "log",
+        title: ""
+      },
+      annotations: [{
+        showarrow: false,
+        x: "2017-01-01",
+        y: "A",
+        z: 0,
+        text: "Point 1",
+        font: {
+          color: "black",
+          size: 12
+        },
+        xanchor: "left",
+        xshift: 10,
+        opacity: 0.7
+      }, {
+        x: "2017-02-10",
+        y: "B",
+        z: 4,
+        text: "Point 2",
+        textangle: 0,
+        ax: 0,
+        ay: -75,
+        font: {
+          color: "black",
+          size: 12
+        },
+        arrowcolor: "black",
+        arrowsize: 3,
+        arrowwidth: 1,
+        arrowhead: 1
+      }, {
+        x: "2017-03-20",
+        y: "C",
+        z: 5,
+        ax: 50,
+        ay: 0,
+        text: "Point 3",
+        arrowhead: 1,
+        xanchor: "left",
+        yanchor: "bottom"
+      }]
+}
+}
+
+Plotly.plot('myDiv13', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*   Custom Text Color and Styling  */ //{
+    {
+        var resolveDiv14 = new Promise((resolve,reject)=>{
+            
+var trace1 = {
+  x: [0, 1, 2],
+  y: [1, 1, 1],
+  mode: 'lines+markers+text',
+  name: 'Lines, Markers and Text',
+  text: ['Text A', 'Text B', 'Text C'],
+  textposition: 'top right',
+  textfont: {
+    family: 'sans serif',
+    size: 18,
+    color: '#1f77b4'
+  },
+  type: 'scatter'
+};
+var trace2 = {
+  x: [0, 1, 2],
+  y: [2, 2, 2],
+  mode: 'lines+markers+text',
+  name: 'Lines and Text',
+  text: ['Text G', 'Text H', 'Text I'],
+  textposition: 'bottom',
+  textfont: {
+    family: 'sans serif',
+    size: 18,
+    color: '#ff7f0e'
+  },
+  type: 'scatter'
+};
+var data = [trace1, trace2];
+var layout = {showlegend: false};
+Plotly.newPlot('myDiv14', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Styling and Coloring Annotations    */ //{
+    {
+        var resolveDiv15 = new Promise((resolve,reject)=>{
+            
+var trace1 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 1, 3, 2, 4, 3, 4, 6, 5],
+  type: 'scatter'
+};
+var trace2 = {
+  x: [0, 1, 2, 3, 4, 5, 6, 7, 8],
+  y: [0, 4, 5, 1, 2, 2, 3, 4, 2],
+  type: 'scatter'
+};
+var data = [trace1, trace2];
+var layout = {
+  showlegend: false,
+  annotations: [
+    {
+      x: 2,
+      y: 5,
+      xref: 'x',
+      yref: 'y',
+      text: 'max=5',
+      showarrow: true,
+      font: {
+        family: 'Courier New, monospace',
+        size: 16,
+        color: '#ffffff'
+      },
+      align: 'center',
+      arrowhead: 2,
+      arrowsize: 1,
+      arrowwidth: 2,
+      arrowcolor: '#636363',
+      ax: 20,
+      ay: -30,
+      bordercolor: '#c7c7c7',
+      borderwidth: 2,
+      borderpad: 4,
+      bgcolor: '#ff7f0e',
+      opacity: 0.8
+    }
+  ]
+};
+Plotly.newPlot('myDiv15', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Styling and Formatting Annotations   */ //{
+    {
+         var resolveDiv16 = new Promise((resolve,reject)=>{
+            
+var myPlot = document.getElementById('myDiv16'),
+   d3 = Plotly.d3,
+   N = 12,
+    x = d3.range(N).map( d3.random.normal(3) ),
+    y1 = d3.range(N).map( d3.random.normal(4) ),
+    y2 = d3.range(N).map( d3.random.normal(4) ),
+    y3 = d3.range(N).map( d3.random.normal(4) ),
+    months = ['Jan', 'Feb', 'Mar',
+          'Apr', 'May', 'June',
+          'July', 'Aug', 'Sept',
+          'Oct', 'Nov', 'Dec'],
+    data = [{ x:x, y:y1,
+             type:'scatter', mode:'markers',
+         name:'2014', text: months,
+             marker:{color:'rgba(200, 50, 100, .7)',
+                      size:16}
+             },
+            { x:x, y:y2,
+             type:'scatter', mode:'markers',
+         name:'2015', text:months,
+             marker:{color:'rgba(120, 20, 130, .7)',
+                     size:16}
+             },
+            { x:x, y:y3,
+             type:'scatter', mode:'markers',
+         name: '2016', text:months,
+             marker:{color:'rgba(10, 180, 180, .8)',
+                     size:16}}];
+    layout = {
+        hovermode:'closest',
+        title:'<b>Formatting Annotations</b> <br> click on a point to plot an annotation',
+        xaxis:{zeroline:false, title: 'Value A'},
+        yaxis:{zeroline:false, title: 'Value B'}
+     };
+
+Plotly.newPlot('myDiv16', data, layout);
+
+myPlot.on('plotly_click',
+    function(data){
+      var point = data.points[0],
+          newAnnotation = {
+            x: point.xaxis.d2l(point.x),
+            y: point.yaxis.d2l(point.y),
+            arrowhead: 6,
+            ax: 0,
+            ay: -80,
+            bgcolor: 'rgba(255, 255, 255, 0.9)',
+            arrowcolor: point.fullData.marker.color,
+            font: {size:12},
+            bordercolor: point.fullData.marker.color,
+            borderwidth: 3,
+            borderpad: 4,
+            text: '<i>Series Identification</i><br>' +
+                  '<b>Year</b>       '+(point.data.name) + '<br>' +
+                  '<i>Point Identification</i><br>' +
+                  '<b>Month</b>      '+ (months[point.pointNumber]) +
+                  '<br><i>Point Values</i><br>' +
+                  '<b>A</b>     '+(point.x).toPrecision(4) +
+                  '<br><b>B</b>     '+(point.y).toPrecision(4)
+
+        },
+        divid = document.getElementById('myDiv16'),
+        newIndex = (divid.layout.annotations || []).length;
+    console.log(point.pointNumber)
+     // delete instead if clicked twice
+    if(newIndex) {
+       var foundCopy = false;
+       divid.layout.annotations.forEach(function(ann, sameIndex) {
+         if(ann.text === newAnnotation.text ) {
+           Plotly.relayout('myDiv', 'annotations[' + sameIndex + ']', 'remove');
+           foundCopy = true;
+         }
+       });
+       if(foundCopy) return;
+     }
+     Plotly.relayout('myDiv16', 'annotations[' + newIndex + ']', newAnnotation);
+  })
+  .on('plotly_clickannotation', function(event, data) {
+    Plotly.relayout('myDiv16', 'annotations[' + data.index + ']', 'remove');
+  });
+         })
+    }
+   // } /**/
+   
+    /*  WebGL Text and Annotations   */ //{
+    {
+        var resolveDiv17 = new Promise((resolve,reject)=>{
+            
+var n = 250;
+var t = 12;
+var x = [];
+var y = [];
+var z = [];
+var text = [];
+var arr = ["A","T","G", "C"];
+
+for (var j = 0; j < t; j++){
+  ztemp = [];
+  for (var i = 0; i < n; i++) {
+    x.push(i);
+    y.push(j);
+    ztemp.push(Math.floor(Math.random() * 10));
+    text.push(arr[Math.floor(Math.random() * 4)])
+  }
+  z.push(ztemp)
+}
+
+var steps = [];
+for (var e = 0; e < n-30; e++){
+  steps.push({
+      label: e,
+      value: e,
+      method: 'relayout',
+      args: ['xaxis', {range: [-0.5 + e, 30.5 + e]}]
+    })
+}
+
+data1 = {
+  x: x,
+  y: y,
+  mode: "text",
+  text: text,
+  type: "scattergl",
+  textfont: {
+    size: 20
+    }
+  }
+       
+data2 = {
+  z: z,
+  type: "heatmap"
+  }
+
+sliders = [{
+      active: 0,
+      steps: steps
+    }]
+
+layout = {
+  sliders: sliders,
   xaxis: {
-    tickson: "boundaries",
-    ticklen: 15,
-    showdividers: true,
-    dividercolor: 'grey',
-    dividerwidth: 2
+    range: [-0.5, 30.5],
+    showline: false,
+    zeroline: false,
+     showgrid: false
+  },
+  yaxis: {
+    showline: false,
+    zeroline: false,
+     showgrid: false
+  }
+  }
+
+data = [data1, data2]
+Plotly.plot('myDiv17', {data:data,
+                     layout:layout});
+        })
+    }
+   // } /**/
+   
+    /*  Custom Colorscale   */ //{
+    {
+        // var resolveDiv18 = new Promise((resolve,reject)=>{
+            
+            
+        // })
+Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/custom_heatmap_colorscale.json', function(figure) {
+var data = [{
+  z: figure.z,
+  colorscale: [
+    ['0.0', 'rgb(165,0,38)'],
+    ['0.111111111111', 'rgb(215,48,39)'],
+    ['0.222222222222', 'rgb(244,109,67)'],
+    ['0.333333333333', 'rgb(253,174,97)'],
+    ['0.444444444444', 'rgb(254,224,144)'],
+    ['0.555555555556', 'rgb(224,243,248)'],
+    ['0.666666666667', 'rgb(171,217,233)'],
+    ['0.777777777778', 'rgb(116,173,209)'],
+    ['0.888888888889', 'rgb(69,117,180)'],
+    ['1.0', 'rgb(49,54,149)']
+  ],
+  type: 'heatmap'
+}];
+Plotly.newPlot('myDiv18', data);
+   });
+    }
+   // } /**/
+   
+    /*   Blackbody Colorscale  */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+Plotly.d3.json('https://raw.githubusercontent.com/plotly/datasets/master/custom_heatmap_colorscale.json', function(figure) {
+var data = [{
+    z: figure.z,
+    colorscale: 'Blackbody',// 'Electric','Earth','Bluered','YIOrRd','YIGnBu','RdBu','Portland','Picnic','Jet','Hot','Greys','Greens',
+    type: 'heatmap'
+  }
+];
+var layout = {title: 'colorscale'};
+Plotly.newPlot('myDiv19', data, layout);
+});
+    }
+   // } /**/
+   
+    /*  Colorscale for Contour Plot   */ //{
+    {
+        var resolveDiv20 = new Promise((resolve,reject)=>{
+            
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: 'Jet'
+}
+];
+
+var layout = {
+  title: 'Colorscale for Contour Plot'
+};
+
+Plotly.newPlot('myDiv20', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*   Custom Colorscale for Contour Plot  */ //{
+    {
+        var resolveDiv21 = new Promise((resolve,reject)=>{
+            
+var data = [ {
+  z: [[10, 10.625, 12.5, 15.625, 20],
+       [5.625, 6.25, 8.125, 11.25, 15.625],
+       [2.5, 3.125, 5., 8.125, 12.5],
+       [0.625, 1.25, 3.125, 6.25, 10.625],
+       [0, 0.625, 2.5, 5.625, 10]],
+  type: 'contour',
+  colorscale: [[0, 'rgb(166,206,227)'], [0.25, 'rgb(31,120,180)'], [0.45, 'rgb(178,223,138)'], [0.65, 'rgb(51,160,44)'], [0.85, 'rgb(251,154,153)'], [1, 'rgb(227,26,28)']]
+}
+];
+
+var layout = {
+  title: 'Custom Contour Plot Colorscale'
+};
+
+Plotly.newPlot('myDiv21', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*   Custom Discretized Heatmap Colorscale  */ //{
+    {
+        var resolveDiv22 = new Promise((resolve,reject)=>{
+            
+var data = [
+  {
+    z: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+    colorscale: [
+
+// Let first 10% (0.1) of the values have color rgb(0, 0, 0)
+
+        [0, 'rgb(0, 0, 0)'],
+        [0.1, 'rgb(0, 0, 0)'],
+
+// Let values between 10-20% of the min and max of z
+// have color rgb(20, 20, 20)
+
+        [0.1, 'rgb(20, 20, 20)'],
+        [0.2, 'rgb(20, 20, 20)'],
+
+// Values between 20-30% of the min and max of z
+//have color rgb(40, 40, 40)
+
+        [0.2, 'rgb(40, 40, 40)'],
+        [0.3, 'rgb(40, 40, 40)'],
+
+        [0.3, 'rgb(60, 60, 60)'],
+        [0.4, 'rgb(60, 60, 60)'],
+
+        [0.4, 'rgb(80, 80, 80)'],
+        [0.5, 'rgb(80, 80, 80)'],
+
+        [0.5, 'rgb(100, 100, 100)'],
+        [0.6, 'rgb(100, 100, 100)'],
+
+        [0.6, 'rgb(120, 120, 120)'],
+        [0.7, 'rgb(120, 120, 120)'],
+
+        [0.7, 'rgb(140, 140, 140)'],
+        [0.8, 'rgb(140, 140, 140)'],
+
+        [0.8, 'rgb(160, 160, 160)'],
+        [0.9, 'rgb(160, 160, 160)'],
+
+        [0.9, 'rgb(180, 180, 180)'],
+        [1.0, 'rgb(180, 180, 180)']
+    ],
+    type: 'heatmap',
+    colorbar:{
+      autotick: false,
+      tick0: 0,
+      dtick: 1
+    }
+  }
+];
+
+var layout = {title: 'CUSTOM DISCRETIZED HEATMAP COLORSCALE'};
+
+Plotly.newPlot('myDiv22', data, layout);
+            
+        })
+    }
+   // } /**/
+   
+    /*  Add a Logo   */ //{
+    {
+        var resolveDiv23 = new Promise((resolve,reject)=>{
+            
+var data = [
+  {
+    x: ["-35.3", "-15.9", "-15.8", "-15.6", "-11.1", "-9.6", "-9.2", "-3.5", "-1.9", "-0.9", "1.0", "1.4", "1.7", "2.0", "2.8", "6.2", "8.1", "8.5", "8.5", "8.6", "11.4", "12.5", "13.3", "13.7", "14.4", "17.5", "17.7", "18.9", "25.1", "28.9", "41.4"],
+    y: ["Designers, musicians, artists, etc.", "Secretaries and administrative assistants", "Waiters and servers", "Archivists, curators, and librarians", "Sales and related", "Childcare workers, home car workers, etc.", "Food preparation occupations", "Janitors, maids, etc.", "Healthcare technicians, assistants. and aides", "Counselors, social and religious workers", "Physical, life and social scientists", "Construction", "Factory assembly workers", "Machinists, repairmen, etc.", "Media and communications workers", "Teachers", "Mechanics, repairmen, etc.", "Financial analysts and advisers", "Farming, fishing and forestry workers", "Truck drivers, heavy equipment operator, etc.", "Accountants and auditors", "Human resources, management analysts, etc.", "Managers", "Lawyers and judges", "Engineers, architects and surveyors", "Nurses", "Legal support workers", "Computer programmers and system admin.", "Police officers and firefighters", "Chief executives", "Doctors, dentists and surgeons"],
+    marker: {
+      color: "rgb(253, 240, 54)",
+      line: {
+        color: "rgb(0, 0, 0)",
+        width: 2
+      }
+    },
+    name: "y",
+    orientation: "h",
+    type: "bar",
+  }
+];
+var layout = {
+  autosize: false,
+  bargap: 0.15,
+  bargroupgap: 0.1,
+  barmode: "stack",
+  height: 800,
+  hovermode: "x",
+  images: [
+    {
+      x: 1,
+      y: 1.05,
+      sizex: 0.2,
+      sizey: 0.2,
+      source: "https://raw.githubusercontent.com/cldougl/plot_images/add_r_img/vox.png",
+      xanchor: "right",
+      xref: "paper",
+      yanchor: "bottom",
+      yref: "paper"
+    }
+  ],
+  margin: {
+    r: 20,
+    t: 125,
+    b: 75,
+    l: 300
+  },
+  title: "Moving Up, Moving Down<br><i>Percentile change in income between childhood and adulthood</i>",
+  width: 700,
+  xaxis: {
+    autotick: false,
+    dtick: 10,
+    gridcolor: "rgba(102, 102, 102, 0.4)",
+    linecolor: "#000",
+    linewidth: 1,
+    mirror: true,
+    nticks: 0,
+    showticklabels: true,
+    tick0: 0,
+    tickwidth: 1,
+    title: "<i>Change in percentile</i>"
+  },
+  yaxis: {
+    anchor: "x",
+    autotick: false,
+    gridcolor: "rgba(102, 102, 102, 0.4)",
+    gridwidth: 1,
+    linecolor: "#000",
+    linewidth: 1,
+    mirror: true,
+    showgrid: false,
+    showline: true,
+    showticklabels: true,
+    tick0: 0,
+    type: "category",
+    zeroline: false
   }
 };
 
-Plotly.newPlot('myDiv58', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Using Dates on the X-Axis */ //{
-        {
-            var resolveDiv59 = new Promise((resolve,reject)=>{
-var trace1 = {
-  x: ['2000-01-01', '2000-01-02', '2000-01-03', '2000-01-04', '2000-01-05', '2000-01-06', '2000-01-07', '2000-01-08', '2000-01-09', '2000-01-10', '2000-01-11', '2000-01-12', '2000-01-13', '2000-01-14', '2000-01-15', '2000-01-16', '2000-01-17', '2000-01-18', '2000-01-19', '2000-01-20', '2000-01-21', '2000-01-22', '2000-01-23', '2000-01-24', '2000-01-25', '2000-01-26', '2000-01-27', '2000-01-28', '2000-01-29', '2000-01-30', '2000-01-31'],
-  y: [4.3, 8.2, 4.1, 5.6, -3, -0.2, 0.3, 0.4, 4.1, 5, 4.6, -0.2, -8.5, -9.1, -2.7, -2.7, -17, -11.3, -5.5, -6.5, -16.9, -12, -6.1, -6.6, -7.9, -10.8, -14.8, -11, -4.4, -1.3, -1.1],
-  mode: 'lines',
-  type: 'scatter',
-  name: '2000'
-};
-
-var data = [ trace1 ];
-
-var layout = {
-  xaxis: {
-    type: 'date',
-    title: 'January Weather'
-  },
-  yaxis: {
-    title: 'Daily Mean Temperature'
-  },
-  title:'2000 Toronto January Weather'
-};
-
-Plotly.plot('myDiv59', data, layout);
-            })
-        }
-    // } /**/
-    
-    /*Fixed-Ratio Axes */ //{
-        {
-            var resolveDiv60 = new Promise((resolve,reject)=>{
-var trace0 = {
-  x: [0,1,1,0,0,1,1,2,2,3,3,2,2,3],
-  y: [0,0,1,1,3,3,2,2,3,3,1,1,0,0]
-}
-
-var trace1 = {
-  x: [0,1,2,3],
-  y: [1,2,4,8],
-  yaxis:"y2"
-}
-
-var trace2 = {
-  x: [1,10,100,10,1],
-  y: [0,1,2,3,4],
-  xaxis: "x2",
-  yaxis:"y3",
-}
-
-var trace3 = {
-  x: [1,100,30,80,1],
-  y: [1,1.5,2,2.5,3],
-  xaxis:"x2",
-  yaxis:"y4"
-}
-
-var data = [trace0,trace1,trace2,trace3]
-
-var layout = {
-    width: 800,
-    height: 500,
-    title: "fixed-ratio axes",
-    xaxis: {
-      nticks: 10,
-      domain: [0, 0.45],
-      title: "shared X axis"
-    },
-    yaxis: {
-      scaleanchor: "x",
-      domain: [0, 0.45],
-      title: "1:1"
-    },
-    yaxis2: {
-      scaleanchor: "x",
-      scaleratio: 0.2,
-      domain: [0.55,1],
-      title: "1:5"
-    },
-    xaxis2: {
-      type: "log",
-      domain: [0.55, 1],
-      anchor: "y3",
-      title: "unconstrained log X"
-    },
-    yaxis3: {
-      domain: [0, 0.45],
-      anchor: "x2",
-      title: "Scale matches ->"
-    },
-    yaxis4: {
-      scaleanchor: "y3",
-      domain: [0.55, 1],
-      anchor: "x2",
-      title: "Scale matches <-"
-    },
-    showlegend: false
-}
-
-Plotly.plot('myDiv60', data, layout)
-                
-            })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    /* */ //{
-        {
-            // var resolveDiv0 = new Promise((resolve,reject)=>{
-                
-            // })
-        }
-    // } /**/
-    
-    
-    </script>
+Plotly.plot('myDiv23', data, layout);
+        })
+    }
+   // } /**/
+   
+    /*  Add Multiple Images   */ //{
+    {
+        var resolveDiv24 = new Promise((resolve,reject)=>{
+            
+Plotly.plot('myDiv24', [{
+  x: [1, 2, 3],
+  y: [1, 2, 3]
+}], {
+  images: [
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/python-logo.png",
+        "xref": "paper",
+        "yref": "paper",
+        "x": 0,
+        "y": 1,
+        "sizex": 0.2,
+        "sizey": 0.2,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      },
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/js-logo.png",
+        "xref": "x",
+        "yref": "y",
+        "x": 1.5,
+        "y": 2,
+        "sizex": 1,
+        "sizey": 1,
+        "xanchor": "right",
+        "yanchor": "bottom"
+      },
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/r-logo.png",
+        "xref": "x",
+        "yref": "y",
+        "x": 1,
+        "y": 3,
+        "sizex": 2,
+        "sizey": 2,
+        "sizing": "stretch",
+        "opacity": 0.4,
+        "layer": "below"
+      },
+      {
+        "source": "https://images.plot.ly/language-icons/api-home/matlab-logo.png",
+        "xref": "x",
+        "yref": "paper",
+        "x": 3,
+        "y": 0,
+        "sizex": 0.5,
+        "sizey": 1,
+        "opacity": 1,
+        "xanchor": "right",
+        "yanchor": "middle"
+      },
+    ]
+})
+        })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+    /*     */ //{
+    {
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
+    }
+   // } /**/
+   
+   
+</script>
 </html>
