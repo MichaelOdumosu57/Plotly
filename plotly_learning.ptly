@@ -16196,9 +16196,53 @@ Creating Tangent Lines with Shapes
             [__]
         .___    .___
       | [__]    [__]  |
+
+
+
+Setting Graph Size in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+Adjusting Height, Width, and Margins
+
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+
+      
+Automatically Adjust Margins
+
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+      
+Legends in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+       
                                                                         
                                                                         
-US Airports Map
+Hiding the Legend
  
  
             .___
@@ -16207,7 +16251,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Legend Names
  
  
             .___
@@ -16216,7 +16260,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Styling and Coloring the Legend
  
  
             .___
@@ -16225,7 +16269,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+changing the orientation of Legend
  
  
             .___
@@ -16234,7 +16278,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Hiding Legend Entries
  
  
             .___
@@ -16243,7 +16287,98 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+
+Grouped Legend
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Subplot Grouped Legend
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+
+
+Setting the Title, Legend Entries, and Axis Titles in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+ 
+Styling Names
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Horizontal Legends in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+ 
+Basic Example
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+
+Axes in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+Tick Placement, Color, and Style
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+      
+ 
+      
+                               
+                                                                        
+Styling and Coloring Axes and the Zero-Line
  
  
             .___
@@ -16252,7 +16387,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Styling and Coloring Axes and the Zero-Line
  
  
             .___
@@ -16261,7 +16396,15 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+nonnegative, tozero, and normal Rangemode
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Toggling Axes Lines, Ticks, Labels, and Autorange
  
  
             .___
@@ -16270,7 +16413,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Setting the Range of Axes Manually
  
  
             .___
@@ -16279,7 +16422,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Styling and Coloring Axes and the Zero-Line
  
  
             .___
@@ -16288,7 +16431,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Enumerated Ticks with Tickvals and Ticktext
  
  
             .___
@@ -16297,7 +16440,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Logarithmic Axes
  
  
             .___
@@ -16306,7 +16449,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Reversed Axes
  
  
             .___
@@ -16315,7 +16458,15 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Reversed Axes with Range ( Min/Max ) Specified
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Categorical Axes
  
  
             .___
@@ -16324,7 +16475,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Multi-Category Axes
  
  
             .___
@@ -16333,7 +16484,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Using Dates on the X-Axis
  
  
             .___
@@ -16342,61 +16493,7 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+Fixed-Ratio Axes
  
  
             .___
