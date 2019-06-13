@@ -7,13 +7,14 @@ const fs = require('fs');
 const compression = require('compression')
 const cors = require('cors')
 const linspace = require('linspace')
+const assert = require('assert')
 //middleware
 global.ultraObject = require('./ultraObject.js')
 const backend = express.Router()
 //
 
 /* FS API*/ //{
-var r_file =   __dirname + '/styleChart.html'
+var rFile =   __dirname + '/styleChart.html'
 // __dirname + '/layout.html'
 // __dirname + '/styleChart.html'
 //  __dirname + '/animations.html'
@@ -50,8 +51,10 @@ function trisurf(Tri, X, Y, Z, C) {
 
 app.use(  cors()   )
 app.use(   '/backend',backend   )
-backend.get(   '/index',function(req,res){
+backend.get(   '/index/:file',function(req,res){
  
+ 
+
         var response = res
         
         const wStream = fs.createWriteStream(w_file,{
@@ -67,8 +70,7 @@ backend.get(   '/index',function(req,res){
                 console.log('error thrown in writeStream close everything ',err)
                 this.end()
                 // console.log(this)
-                close_file(rr_fd,'read_file',this)
-                close_file(ww_fd,'write_file',this)
+
             });
         });
         wStream.once('finish',function(   ){
@@ -84,39 +86,93 @@ backend.get(   '/index',function(req,res){
           // assert.equal(src, r_stream);
         });
         // console.log('writable stream intializaed')
-        const r_stream = fs.createReadStream(r_file,{
-          start:0,
-          autoClose:true
-        })
-        r_stream.on('end',()=>{
-          setImmediate(() => {
-            // console.log('nothing more to read closing  readstream')
-            // console.log(typeof(r_stream),typeof(wStream))
-            r_stream.resume(); //this helps clear the buffer
-            wStream.end()
-          })
-        })
-        r_stream.on('close',()=>{
-          setImmediate(() =>{
-            // console.log("looks like the fd was closed by the stream ")
-          })
-        })
-        r_stream.on('data',a)
-        console.log('readable stream intializaed')
-        
- function a(chunk){
-        console.log(chunk)
-        setImmediate(() =>{
-            if(   !wStream.write(   chunk.toString().split("&lt;").join("< ").split("&lt").join("< ")  )  ){
-                r_stream.off('data',a)
-                r_stream.pause()
-                wStream.once('drain',function(){
-                     r_stream.resume()
-                     r_stream.on('data',a)
+        var receiving = new Promise((resolve,reject)=>{
+            const r_stream = fs.createReadStream(__dirname +'/' + req.params.file + '.html',{
+              start:0,
+              autoClose:true
+            })
+            resolve( new Promise((resolve,reject)=>{
+                function a(chunk){
+                        console.log(chunk)
+                        setImmediate(() =>{
+                            if(   !wStream.write(   chunk.toString().split("&lt;").join("< ").split("&lt").join("< ")  )  ){
+                                r_stream.off('data',a)
+                                r_stream.pause()
+                                wStream.once('drain',function(){
+                                     r_stream.resume()
+                                     r_stream.on('data',a)
+                                })
+                            }
+                        })
+                }
+                r_stream.on('end',()=>{
+                  setImmediate(() => {
+                    r_stream.resume(); //this helps clear the buffer
+                    wStream.end()
+                  })
                 })
-            }
+                r_stream.on('close',()=>{
+                  setImmediate(() =>{
+                    // console.log("looks like the fd was closed by the stream ")
+                  })
+                })
+                r_stream.on('data',a)
+                console.log('readable stream intializaed')
+                resolve()
+            })).catch((err)=>{
+                    console.log('2')
+                    console.log(err)
+                    console.log('couldnt get the read stream started')
+                    wStream.end()
+                })
+        }).catch((err)=>{
+            console.log(err)
+            const r_stream = fs.createReadStream(rFile,{
+              start:0,
+              autoClose:true
+            })
+            resolve( new Promise((resolve,reject)=>{
+                function a(chunk){
+                        console.log(chunk)
+                        setImmediate(() =>{
+                            if(   !wStream.write(   chunk.toString().split("&lt;").join("< ").split("&lt").join("< ")  )  ){
+                                r_stream.off('data',a)
+                                r_stream.pause()
+                                wStream.once('drain',function(){
+                                     r_stream.resume()
+                                     r_stream.on('data',a)
+                                })
+                            }
+                        })
+                }
+                r_stream.on('end',()=>{
+                  setImmediate(() => {
+                    r_stream.resume(); //this helps clear the buffer
+                    wStream.end()
+                  })
+                })
+                r_stream.on('close',()=>{
+                  setImmediate(() =>{
+                    // console.log("looks like the fd was closed by the stream ")
+                  })
+                })
+                r_stream.on('data',a)
+                console.log('readable stream intializaed')
+                resolve()
+            })).catch((err)=>{
+                    console.log('2')
+                    console.log(err)
+                    console.log('couldnt get the read stream started')
+                    wStream.end()
+                })
+        }).catch((err)=>{
+            console.log('2')
+            console.log(err)
+            console.log('couldnt get the read stream started')
+            wStream.end()
         })
-}
+        
+
         
         
         
@@ -239,7 +295,7 @@ backend.post(   '/Treemap',function(req,res){
 		},
 		keep:'true',
 		finish:function(dev_obj){
-		    dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
+		  //  dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
 		    res.send(   'where is Treemaps'   )
 		}
 		
