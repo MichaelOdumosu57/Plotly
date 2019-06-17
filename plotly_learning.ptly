@@ -16603,7 +16603,97 @@ Fixed-Ratio Axes
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
+
+
+Fundamentals
+file:fundamentals.html
+
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+
+Static Image Export in plotly.js
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+saving plotly graphs to svg
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+
+Plotly.toImage(
+gd,{
+  format:'jpeg',
+  height:desired_height,
+  width:desired_width,
+  layout:'jpg' // default
+});
+
+for layout jpg and svg can be used
+
+
+
+Responsive / Fluid Layout in plotly.js
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+ 
+Responsive Plots
+
+
+
+ plotly.js config to { responsive: true }, when the window is resized plotly changes
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+     
+                   
+
+
+
+uirevision in Plotly.react in plotly.js
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+ 
+Responsive Plots
+
+Persist User Changes
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                           
                                                                         
 US Airports Map
  
@@ -16612,7 +16702,7 @@ US Airports Map
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
+                                                                         
                                                                         
 US Airports Map
  

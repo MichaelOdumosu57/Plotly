@@ -1,13 +1,13 @@
 <html>
 <head>
-	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/plotly_chrome/plotly-latest.min.js"></script>
-	<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>
-	<script src="/backend/plotly"></script>
-	<!--<script src="http://24.189.66.225/backend/plotly"></script>-->
+	<script src="plotly-latest.min.js"></script>
+	<!--<script src="file:///home/chronos/u-8c76189d6d79b89d2195035f0cec044aa6fc2aff/MyFiles/Downloads/elgesis_folder/ultraObject_chrome/ultraObject.js"></script>-->
+	<script src="./plotly"></script>
 	<!--<script src = "./ultraObject"></script>-->
 </head>
 <body>
 </body>
+<img id="jpg-export"></img>
     <script>
     ultraObject = {
         forLoop:function(   dev_obj   ){
@@ -120,55 +120,6 @@
                     
             })(), // creates an xhr obj
         DOM_child:{},
-        addEventListener:function(   dev_obj   ){
-                    var fn;
-                    
-                    
-                    if(   dev_obj !== undefined   ){
-                        
-                        
-                        if(   dev_obj.fn !== undefined   ){
-                            
-                            
-                            fn = dev_obj.fn
-                            
-                            
-                        }
-                        
-                        
-                        else if(   dev_obj.xhttp === 'true'   ){
-                            
-                            
-                            fn= ultraObject.xhttpreadystatechange
-                            
-                            
-                        }
-                        
-                        
-                        else if(   dev_obj.fn === undefined   ){
-                            
-                            
-                            fn = ultraObject.passing_args
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    
-                    else if(   dev_obj === undefined   ){
-                        
-                        
-                        fn = ultraObject.passing_args
-                        
-                        
-                    }
-                    
-                    
-                    
-                    ultraObject.DOM_child[0].addEventListener(   ultraObject.eventName,fn   )
-            }, //  dev_obj.fn is used for 1st party dev to add their custom function to the listener dev_obj.xhttp is for xhr
         xhttpreadystatechange:function(   dev_obj   ){
                 console.log(    this   )
                 
@@ -790,959 +741,221 @@
     }
     ultraObject.forLoop(   FL_0_i   )
     
-    /*Animating with a Slider */ //{
+    /* saving plotly graphs to svg    */ //{
     {
         var resolveDiv0 = new Promise((resolve,reject)=>{
-Plotly.d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv', function (err, data) {
-    if(err){
-        reject(err)
-    }
-    console.log(data)
-  // Create a lookup table to sort and regroup the columns of data,
-  // first by year, then by continent:
-  var lookup = {};
-  function getData(year, continent) {
-    var byYear, trace;
-    if (!(byYear = lookup[year])) {;
-      byYear = lookup[year] = {};
-    }
-	 // If a container for this year + continent doesn't exist yet,
-	 // then create one:
-    if (!(trace = byYear[continent])) {
-      trace = byYear[continent] = {
-        x: [],
-        y: [],
-        id: [],
-        text: [],
-        marker: {size: []}
-      };
-    }
-    return trace;
-  }
-
-  // Go through each row, get the right trace, and append the data:
-  for (var i = 0; i < data.length; i++) {
-    var datum = data[i];
-    var trace = getData(datum.year, datum.continent);
-    trace.text.push(datum.country);
-    trace.id.push(datum.country);
-    trace.x.push(datum.lifeExp);
-    trace.y.push(datum.gdpPercap);
-    trace.marker.size.push(datum.pop);
-  }
-
-  // Get the group names:
-  var years = Object.keys(lookup);
-  // In this case, every year includes every continent, so we
-  // can just infer the continents from the *first* year:
-  var firstYear = lookup[years[0]];
-  var continents = Object.keys(firstYear);
-
-  // Create the main traces, one for each continent:
-  var traces = [];
-  for (i = 0; i < continents.length; i++) {
-    var data = firstYear[continents[i]];
-	 // One small note. We're creating a single trace here, to which
-	 // the frames will pass data for the different years. It's
-	 // subtle, but to avoid data reference problems, we'll slice
-	 // the arrays to ensure we never write any new data into our
-	 // lookup table:
-    traces.push({
-      name: continents[i],
-      x: data.x.slice(),
-      y: data.y.slice(),
-      id: data.id.slice(),
-      text: data.text.slice(),
-      mode: 'markers',
-      marker: {
-        size: data.marker.size.slice(),
-        sizemode: 'area',
-        sizeref: 200000
-      }
-    });
-  }
-
-  // Create a frame for each year. Frames are effectively just
-  // traces, except they don't need to contain the *full* trace
-  // definition (for example, appearance). The frames just need
-  // the parts the traces that change (here, the data).
-  var frames = [];
-  for (i = 0; i < years.length; i++) {
-    frames.push({
-      name: years[i],
-      data: continents.map(function (continent) {
-        return getData(years[i], continent);
-      })
-    })
-  }
-
-  // Now create slider steps, one for each frame. The slider
-  // executes a plotly.js API command (here, Plotly.animate).
-  // In this example, we'll animate to one of the named frames
-  // created in the above loop.
-  var sliderSteps = [];
-  for (i = 0; i < years.length; i++) {
-    sliderSteps.push({
-      method: 'animate',
-      label: years[i],
-      args: [[years[i]], {
-        mode: 'immediate',
-        transition: {duration: 300},
-        frame: {duration: 300, redraw: false},
-      }]
-    });
-  }
-
-  var layout = {
-    xaxis: {
-      title: 'Life Expectancy',
-      range: [30, 85]
-    },
-    yaxis: {
-      title: 'GDP per Capita',
-      type: 'log'
-    },
-    hovermode: 'closest',
-	 // We'll use updatemenus (whose functionality includes menus as
-	 // well as buttons) to create a play button and a pause button.
-	 // The play button works by passing `null`, which indicates that
-	 // Plotly should animate all frames. The pause button works by
-	 // passing `[null]`, which indicates we'd like to interrupt any
-	 // currently running animations with a new list of frames. Here
-	 // The new list of frames is empty, so it halts the animation.
-    updatemenus: [{
-      x: 0,
-      y: 0,
-      yanchor: 'top',
-      xanchor: 'left',
-      showactive: false,
-      direction: 'left',
-      type: 'buttons',
-      pad: {t: 87, r: 10},
-      buttons: [{
-        method: 'animate',
-        args: [null, {
-          mode: 'immediate',
-          fromcurrent: true,
-          transition: {duration: 300},
-          frame: {duration: 500, redraw: false}
-        }],
-        label: 'Play'
-      }, {
-        method: 'animate',
-        args: [[null], {
-          mode: 'immediate',
-          transition: {duration: 0},
-          frame: {duration: 0, redraw: false}
-        }],
-        label: 'Pause'
-      }]
-    }],
-	 // Finally, add the slider and use `pad` to position it
-	 // nicely next to the buttons.
-    sliders: [{
-      pad: {l: 130, t: 55},
-      currentvalue: {
-        visible: true,
-        prefix: 'Year:',
-        xanchor: 'right',
-        font: {size: 20, color: '#666'}
-      },
-      steps: sliderSteps
-    }]
-  };
-
-  // Create the plot:
-  Plotly.plot('myDiv0', {
-    data: traces,
-    layout,
-    frames,
-  });
-});
             
-        }).then(()=>{}).catch((err)=>{
-            console.log(err)
-        })
-    }
+            var d3 = Plotly.d3;
+            var img_jpg= d3.select('#jpg-export');
+            
+            // Plotting the Graph
+            
+            var trace={x:[3,9,8,10,4,6,5],y:[5,7,6,7,8,9,8],type:"scatter"};
+            var trace1={x:[3,4,1,6,8,9,5],y:[4,2,5,2,1,7,3],type:"scatter"};
+            var data = [trace,trace1];
+            var layout = {title : "Simple JavaScript Graph"};
+            Plotly.plot(
+              'myDiv0',
+               data,
+               layout)
+            
+            // static image in jpg format
+            
+            .then(
+                function(gd)
+                 {
+                  Plotly.toImage(gd,{height:300,width:3000,format:'svg'})
+                     .then(
+                         function(url)
+                     {
+                         img_jpg.attr("src", url);
+                         return Plotly.toImage(gd,{format:'jpeg',height:400,width:400});
+                     }
+                     )
+                });
+                    })
+   }
    // } /**/
    
-    /*     */ //{
+    /*Responsive Plots*/ //{
     {
         var resolveDiv1 = new Promise((resolve,reject)=>{
             
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/2014_apple_stock.csv", function(err, rows){
-
-  function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
-
-  var frames = []
-  var x = unpack(rows, 'AAPL_x')
-  var y = unpack(rows, 'AAPL_y')
-
-  var n = 100;
-  for (var i = 0; i < n; i++) {
-    frames[i] = {data: [{x: [], y: []}]}
-    frames[i].data[0].x = x.slice(0, i+1);
-    frames[i].data[0].y = y.slice(0, i+1);
-  }
-
-  Plotly.plot('myDiv1', [{
-    x: frames[1].data[0].x,
-    y: frames[1].data[0].y,
-    fill: 'tozeroy',
-    type: 'scatter',
-    mode: 'lines',
-    line: {color: 'green'}
-  }], {
-    title: "Filled-Area Animation",
-    xaxis: {
-      type: 'date',
-      range: [
-        frames[99].data[0].x[0],
-        frames[99].data[0].x[99]
-      ]
-    },
-    yaxis: {
-      range: [
-        0,
-        90
-      ]
-    },
-    updatemenus: [{
-      x: 0.1,
-      y: 0,
-      yanchor: "top",
-      xanchor: "right",
-      showactive: false,
-      direction: "left",
-      type: "buttons",
-      pad: {"t": 87, "r": 10},
-      buttons: [{
-        method: "animate",
-        args: [null, {
-          fromcurrent: true,
-          transition: {
-            duration: 0,
-          },
-          frame: {
-            duration: 40,
-            redraw: false
-          }
-        }],
-        label: "Play"
-      }, {
-        method: "animate",
-        args: [
-          [null],
-          {
-            mode: "immediate",
-            transition: {
-              duration: 0
-            },
-            frame: {
-              duration: 0,
-              redraw: false
-            }
-          }
-        ],
-        label: "Pause"
-      }]
-    }]
-  }).then(function() {
-    Plotly.addFrames('myDiv1', frames);
-  });
-
-})
+            var trace1 = {
+                type: 'bar',
+                x: [1, 2, 3, 4],
+                y: [5, 10, 2, 8],
+                marker: {
+                    color: '#C8A2C8',
+                    line: {
+                        width: 2.5
+                    }
+                }
+            };
+            
+            var data = [ trace1 ];
+            
+            var layout = {
+              title: "Responsive to window's size!",
+              font: {size: 18}
+            };
+            
+            Plotly.newPlot('myDiv1', data, layout, {responsive: true});
         })
     }
    // } /**/
    
-    /*  Multiple Trace Filled-Area   */ //{
+    /* Persist User Changes    */ //{
     {
         var resolveDiv2 = new Promise((resolve,reject)=>{
             
-Plotly.d3.csv("https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv", function(err, rows){
-
-  function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; });
-}
-
-  var frames = []
-  var x = unpack(rows, 'Date')
-  var y = unpack(rows, 'AAPL.High')
-  var x2 = unpack(rows, 'Date')
-  var y2 = unpack(rows, 'AAPL.Low')
-
-  var n = 100;
-  for (var i = 0; i < n; i++) {
-    frames[i] = {data: [{x: [], y: []}, {x: [], y: []}]}
-    frames[i].data[1].x = x.slice(0, i+1);
-    frames[i].data[1].y = y.slice(0, i+1);
-    frames[i].data[0].x = x2.slice(0, i+1);
-    frames[i].data[0].y = y2.slice(0, i+1);
-  }
-
-  var trace2 = {
-    type: "scatter",
-    mode: "lines",
-    name: 'AAPL High',
-    fill: 'tonexty',
-    x: frames[5].data[1].x,
-    y: frames[5].data[1].y,
-    line: {color: 'grey'}
-  }
-
-  var trace1 = {
-    type: "scatter",
-    mode: "lines",
-    name: 'AAPL Low',
-    x: frames[5].data[0].x,
-    y: frames[5].data[0].y,
-    line: {color: 'lightgrey'}
-  }
-
-  var data = [trace1,trace2];
-
-  var layout = {
-    title: 'Multiple Trace Filled-Area Animation',
-    xaxis: {
-      range: [frames[99].data[0].x[0], frames[99].data[0].x[99]],
-      showgrid: false
-    },
-    yaxis: {
-      range: [120, 140],
-      showgrid: false
-    },
-    legend: {
-      orientation: 'h',
-      x: 0.5,
-      y: 1.2,
-      xanchor: 'center'
-    },
-    updatemenus: [{
-      x: 0.5,
-      y: 0,
-      yanchor: "top",
-      xanchor: "center",
-      showactive: false,
-      direction: "left",
-      type: "buttons",
-      pad: {"t": 87, "r": 10},
-      buttons: [{
-        method: "animate",
-        args: [null, {
-          fromcurrent: true,
-          transition: {
-            duration: 0,
-          },
-          frame: {
-            duration: 40,
-            redraw: false
-          }
-        }],
-        label: "Play"
-      }, {
-        method: "animate",
-        args: [
-          [null],
-          {
-            mode: "immediate",
-            transition: {
-              duration: 0
-            },
-            frame: {
-              duration: 0,
-              redraw: false
-            }
-          }
-        ],
-        label: "Pause"
-      }]
-    }]
-  };
-
-  Plotly.newPlot('myDiv2', data, layout).then(function() {
-    Plotly.addFrames('myDiv2', frames);
-  });
-})
+            const rand = () => Math.random();
+            var x = [1, 2, 3, 4, 5];
+            const new_data = (trace) => Object.assign(trace, {y: x.map(rand)});
+            
+            // add random data to three line traces
+            var data = [
+            	{mode:'lines', line: {color: "#b55400"}},
+            	{mode: 'lines', line: {color: "#393e46"}},
+            	{mode: 'lines', line: {color: "#222831"}}
+            ].map(new_data);
+            
+            var layout = {
+            	title: 'User Zoom Persists<br>When uirevision Unchanged',
+            	uirevision:'true',
+            	xaxis: {autorange: true},
+            	yaxis: {autorange: true}
+            };
+            
+            Plotly.react('myDiv2', data, layout);
+            
+            var myPlot = document.getElementById('myDiv2');
+            
+            var cnt = 0;
+            var interval = setInterval(function() {
+            	data = data.map(new_data);
+            
+            	// user interation will mutate layout and set autorange to false
+            	// so we need to reset it to true
+            	layout.xaxis.autorange = true;
+            	layout.yaxis.autorange = true;
+            
+            	// not changing uirevision will ensure that user interactions are unchanged
+            	// layout.uirevision = rand();
+            
+            	Plotly.react('myDiv2', data, layout);
+              if(cnt === 100) clearInterval(interval);
+            }, 25000);
+        })
+    }
+   // } /**/
+   
+    /*  Reset User Changes   */ //{
+    {
+        var resolveDiv3 = new Promise((resolve,reject)=>{
+            
+        const rand = () => Math.random();
+        var x = [1, 2, 3, 4, 5];
+        const new_data = (trace) => Object.assign(trace, {y: x.map(rand)});
+        
+        // add random data to three line traces
+        var data = [
+        	{mode:'lines', line: {color: "#b55400"}},
+        	{mode: 'lines', line: {color: "#393e46"}},
+        	{mode: 'lines', line: {color: "#222831"}}
+        ].map(new_data);
+        
+        var layout = {
+        	title: 'User Zoom Resets<br>When uirevision Changes',
+        	uirevision:'true',
+        	xaxis: {autorange: true},
+        	yaxis: {autorange: true}
+        };
+        
+        Plotly.react(graphDiv, data, layout);
+        
+        var myPlot = document.getElementById('myDiv3');
+        
+        var cnt = 0;
+        var interval = setInterval(function() {
+        	data = data.map(new_data);
+        
+        	// user interation will mutate layout and set autorange to false
+        	// so we need to reset it to true
+        	layout.xaxis.autorange = true;
+        	layout.yaxis.autorange = true;
+        
+        	// a new random number should ensure that uirevision will be different
+        	// and so the graph will autorange after the Plotly.react
+        	layout.uirevision = rand();
+        
+        	Plotly.react(graphDiv, data, layout);
+          if(cnt === 100) clearInterval(interval);
+        }, 2500);
         })
     }
    // } /**/
    
     /*     */ //{
     {
-        var resolveDiv3 = new Promise((resolve,reject)=>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-Plotly.newPlot('myDiv3', [{
-  x: [1, 2, 3],
-  y: [0, 0.5, 1],
-  line: {simplify: false},
-}]);
-
-function randomize() {
-  Plotly.animate('myDiv3', {
-    data: [{y: [Math.random(), Math.random(), Math.random()]}],
-    traces: [0],
-    layout: {}
-  }, {
-    transition: {
-      duration: 500,
-      easing: 'cubic-in-out'
-    },
-    frame: {
-      duration: 500
-    }
-  })
-}
-            var FL_0_i = {
-                forLoop_0_i:0,
-                forLoopLength:10,
-                fn:function(   dev_obj   ){
-                    randomize()
-                },
-                args: {}
-            }
-            ultraObject.forLoop(   FL_0_i   )
-        })
+            
+        // })
     }
    // } /**/
    
-    /*    Animating the Layout */ //{
+    /*     */ //{
     {
-        var resolveDiv4 = new Promise((resolve,reject)=>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-var n = 500;
-var x = [], y = [];
-for (var i = 0; i < n; i++) {
-  x[i] = i / (n - 1);
-  y[i] = x[i] + 0.2 * (Math.random() - 0.5);
-}
-
-Plotly.plot('myDiv4', [{
-  x: x,
-  y: y,
-  mode: 'markers'
-}], {
-  xaxis: {range: [0, 1]},
-  yaxis: {range: [0, 1]}
-});
-
-function zoom() {
-  var min = 0.45 * Math.random();
-  var max = 0.55 + 0.45 * Math.random();
-  Plotly.animate('myDiv4', {
-    layout: {
-      xaxis: {range: [min, max]},
-      yaxis: {range: [min, max]}
-    }
-  }, {
-    transition: {
-      duration: 500,
-      easing: 'cubic-in-out'
-    }
-  })
-}
-
-            var FL_0_i = {
-                forLoop_0_i:0,
-                forLoopLength:10,
-                fn:function(   dev_obj   ){
-                    zoom()
-                },
-                args: {}
-            }
-            ultraObject.forLoop(   FL_0_i   )
-        })
+            
+        // })
     }
    // } /**/
    
-    /*   Defining Named Frames with Plotly.addFrames   */ //{
+    /*     */ //{
     {
-        var resolveDiv5 = new Promise((resolve,reject)=>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-var frames = [
-  {name: 'sine', data: [{x: [], y: []}]},
-  {name: 'cosine', data: [{x: [], y: []}]},
-  {name: 'circle', data: [{x: [], y: []}]},
-];
-
-var n = 100;
-for (var i = 0; i < n; i++) {
-  var t = i / (n - 1) * 2 - 1;
-
-  // A sine wave:
-  frames[0].data[0].x[i] = t * Math.PI;
-  frames[0].data[0].y[i] = Math.sin(t * Math.PI);
-
-  // A cosine wave:
-  frames[1].data[0].x[i] = t * Math.PI;
-  frames[1].data[0].y[i] = Math.cos(t * Math.PI);
-
-  // A circle:
-  frames[2].data[0].x[i] = Math.sin(t * Math.PI);
-  frames[2].data[0].y[i] = Math.cos(t * Math.PI);
-}
-
-Plotly.plot('myDiv5', [{
-  x: frames[0].data[0].x,
-  y: frames[0].data[0].y,
-  line: {simplify: false},
-}], {
-  xaxis: {range: [-Math.PI, Math.PI]},
-  yaxis: {range: [-1.2, 1.2]},
-  updatemenus: [{
-    buttons: [
-      {method: 'animate', args: [['sine']], label: 'sine'},
-      {method: 'animate', args: [['cosine']], label: 'cosine'},
-      {method: 'animate', args: [['circle']], label: 'circle'}
-    ]
-  }]
-}).then(function() {
-  Plotly.addFrames('myDiv5', frames);
-});
-        })
+            
+        // })
     }
    // } /**/
    
-    /*  Animating Sequences of Frames    */ //{
+    /*     */ //{
     {
-        var resolveDiv6 = new Promise((resolve,reject)=>{
-        
-        
-function startAnimation() {
-  Plotly.animate('myDiv6', ['frame1', 'frame2'], {
-    frame: [
-      {duration: 1500},
-      {duration: 500},
-    ],
-    transition: [
-      {duration: 800, easing: 'elastic-in'},
-      {duration: 100, easing: 'cubic-in'},
-    ],
-    mode: 'afterall'
-  })
-}
-Plotly.plot('myDiv6', [{
-  x: [0, 0],
-  y: [-1, 1],
-}], {
-  xaxis: {range: [-Math.PI, Math.PI]},
-  yaxis: {range: [-1.3, 1.3]}
-}).then(function () {
-  Plotly.addFrames('myDiv6', [
-    {
-      data: [{x: [1, -1], y: [0, 0]}],
-      name: 'frame1'
-    }, {
-      data: [{x: [0, 0], y: [-1, 1]}],
-      name: 'frame2'
-    }
-  ]);
-}).then(()=>{
-    startAnimation()
-    })
-
-
-
-
-        })
+        // var resolveDiv = new Promise((resolve,reject)=>{
+            
+            
+        // })
     }
    // } /**/
    
-    /*   Animating Many Frames Quickly  */ //{
+    /*     */ //{
     {
-        var resolveDiv7 = new Promise((resolve,reject)=>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-var n = 100;
-var x = [], y = [], z = [];
-var dt = 0.015;
-
-for (i = 0; i < n; i++) {
-  x[i] = Math.random() * 2 - 1;
-  y[i] = Math.random() * 2 - 1;
-  z[i] = 30 + Math.random() * 10;
-}
-
-Plotly.plot('myDiv7', [{
-  x: x,
-  y: z,
-  mode: 'markers'
-}], {
-  xaxis: {range: [-40, 40]},
-  yaxis: {range: [0, 60]}
-})
-
-function compute () {
-  var s = 10, b = 8/3, r = 28;
-  var dx, dy, dz;
-  var xh, yh, zh;
-  for (var i = 0; i < n; i++) {
-    dx = s * (y[i] - x[i]);
-    dy = x[i] * (r - z[i]) - y[i];
-    dz = x[i] * y[i] - b * z[i];
-
-    xh = x[i] + dx * dt * 0.5;
-    yh = y[i] + dy * dt * 0.5;
-    zh = z[i] + dz * dt * 0.5;
-
-    dx = s * (yh - xh);
-    dy = xh * (r - zh) - yh;
-    dz = xh * yh - b * zh;
-
-    x[i] += dx * dt;
-    y[i] += dy * dt;
-    z[i] += dz * dt;
-  }
-}
-
-function update () {
-  compute();
-
-  Plotly.animate('myDiv7', {
-    data: [{x: x, y: z}]
-  }, {
-    transition: {
-      duration: 0
-    },
-    frame: {
-      duration: 0,
-      redraw: false
-    }
-  });
-
-  requestAnimationFrame(update);
-}
-
-requestAnimationFrame(update);
-        })
+            
+        // })
     }
    // } /**/
    
-    /*   Object Constancy  */ //{
+    /*     */ //{
     {
-        var resolveDiv8 = new Promise((resolve,reject)=>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-function shuffleInPlace(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    var temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-}
-
-var ids = ['1', '2', '3', '4', '5', '6'];
-
-Plotly.plot('myDiv8', [{
-  x: [1, 0.5, -0.5, -1, -0.5, 0.5],
-  y: [0, 0.866, 0.866, 0, -0.866, -0.866],
-  marker:{size:14,
-			 color:['#631357', '#880E4F', '#AD1457',
-					  '#F06292', '#F48FB1']},
-  ids: ids,
-  mode: 'markers'
-}], {
-  xaxis: {range: [-3, 3]},
-  yaxis: {range: [-2, 2]}
-});
-
-function animateShuffle() {
-  shuffleInPlace(ids);
-  Plotly.animate('myDiv8', [{
-    data: [{ids: ids}]
-  }]);
-}
-
-            var FL_0_i = {
-                forLoop_0_i:0,
-                forLoopLength:10,
-                fn:function(      ){
-                   animateShuffle()
-                },
-                args: {}
-            }
-            ultraObject.forLoop(   FL_0_i   )
-        })
+            
+        // })
     }
    // } /**/
    
-    /*  Frame Groups and Animation Modes   */ //{
+    /*     */ //{
     {
-        var resolveDiv9 = new Promise((resolve,reject)=>{
+        // var resolveDiv = new Promise((resolve,reject)=>{
             
-var i, j, t, x, y, name;
-var frames = [];
-var nFrames = 10;
-var n = 80;
-var reverseFrames = [];
-
-for (i = 0; i < nFrames; i++) {
-  var fill = 0.1 + 0.9 * i / (nFrames - 1);
-  x = [-1];
-  y = [0];
-
-  // A wave across the top:
-  for (j = 0; j < n; j++) {
-    t = j / (n - 1);
-    x.push(-1 - fill + (2 + 2 * fill) * t);
-    y.push(fill + 0.05 * Math.sin(t * Math.PI * 2 * i));
-  }
-
-  // Close the loop to draw the water:
-  x.push(1, -1);
-  y.push(0, 0);
-
-  // Choose a name:
-  name = 'frame' + i;
-
-  // Store it in an array so we can animate in reverse order:
-  reverseFrames.unshift(name);
-
-  // Create the frame:
-  frames.push({
-    name: name,
-    data: [{x: x, y: y}],
-    group: i < nFrames / 2 ? 'lower' : 'upper'
-  })
-}
-
-Plotly.plot('myDiv9', [{
-  // Set up the initial water:
-  x: frames[0].data[0].x,
-  y: frames[0].data[0].y,
-  mode: 'lines',
-  fill: 'toself',
-  showlegend: false,
-  line: {simplify: false}
-}, {
-  // Draw a glass:
-  x: [-1, 1, 2.1, -2.1, -1],
-  y: [0, 0, 1.1, 1.1, 0],
-  mode: 'lines',
-  fill: 'toself',
-  showlegend: false,
-  fillcolor: 'rgba(0, 0, 0, 0.1)',
-  line: {color: 'rgba(100,100,100,0.2)'}
-}], {
-  xaxis: {range: [-3, 3]},
-  yaxis: {range: [-0.1, 1.5]}
-}).then(function() {
-  // Add the frames so we can animate them:
-  Plotly.addFrames('myDiv9', frames);
-});
-
-// Stop the animation by animating to an empty set of frames:
-function stopAnimation () {
-  Plotly.animate('myDiv9', [], {mode: 'next'});
-}
-
-
-function startAnimation (groupOrFrames, mode) {
-  Plotly.animate('myDiv9', groupOrFrames, {
-    transition: {
-      duration: 500,
-      easing: 'linear'
-    },
-    frame: {
-      duration: 500,
-      redraw: false,
-    },
-    mode: mode
-  });
-}
-
-startAnimation(frames,'lines')
-        })
-    }
-   // } /**/
-   
-    /*   Map animation  */ //{
-    {
-        var resolveDiv10 = new Promise((resolve,reject)=>{
             
-Plotly.d3.csv("https://raw.githubusercontent.com/bcdunbar/datasets/master/usa_pop_melted.csv", function(err, rows){
-
-  function unpack(rows, key) {
-  return rows.map(function(row) { return row[key]; })
-  }
-
-  var frames = []
-  var z = unpack(rows, 'pop')
-  var locations = unpack(rows, 'abb')
-
-  var n = 7;
-  var j = 51;
-  var k = 0;
-  var num = 2009
-  for (var i = 0; i < n; i++) {
-    k++
-    num++
-    j = 50
-    j = j/k
-    frames[i] = {data: [{z: [], locations: []}], name: num}
-    frames[i].data[0].z = z.slice(0, j);
-    frames[i].data[0].locations = locations.slice(0, j);
-  }
-
-var data = [{
-      type: 'choropleth',
-      locationmode: 'USA-states',
-      locations: frames[0].data[0].locations,
-      z: frames[0].data[0].z,
-      text: frames[0].data[0].locations,
-      zauto: false,
-      zmin: 500000,
-      zmax: 50000000
-
-}];
-
-var layout = {
-    title: 'USA State Population<br>2010 - 2016',
-    geo:{
-       scope: 'usa',
-       countrycolor: 'rgb(255, 255, 255)',
-       showland: true,
-       landcolor: 'rgb(217, 217, 217)',
-       showlakes: true,
-       lakecolor: 'rgb(255, 255, 255)',
-       subunitcolor: 'rgb(255, 255, 255)',
-       lonaxis: {},
-       lataxis: {}
-    },
-    updatemenus: [{
-      x: 0.1,
-      y: 0,
-      yanchor: "top",
-      xanchor: "right",
-      showactive: false,
-      direction: "left",
-      type: "buttons",
-      pad: {"t": 87, "r": 10},
-      buttons: [{
-        method: "animate",
-        args: [null, {
-          fromcurrent: true,
-          transition: {
-            duration: 200,
-          },
-          frame: {
-            duration: 500,
-            redraw: false
-          }
-        }],
-        label: "Play"
-      }, {
-        method: "animate",
-        args: [
-          [null],
-          {
-            mode: "immediate",
-            transition: {
-              duration: 0
-            },
-            frame: {
-              duration: 0,
-              redraw: false
-            }
-          }
-        ],
-        label: "Pause"
-      }]
-    }],
-    sliders: [{
-      active: 0,
-      steps: [{
-        label: "2010",
-        method: "animate",
-        args: [["2010"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      },{
-        label: "2011",
-        method: "animate",
-        args: [["2011"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      }, {
-        label: "2012",
-        method: "animate",
-        args: [["2012"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      }, {
-        label: "2013",
-        method: "animate",
-        args: [["2013"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      }, {
-        label: "2014",
-        method: "animate",
-        args: [["2014"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      }, {
-        label: "2015",
-        method: "animate",
-        args: [["2015"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      }, {
-        label: "2016",
-        method: "animate",
-        args: [["2016"], {
-            mode: "immediate",
-            transition: {duration: 300},
-            frame: {duration: 300, "redraw": false}
-          }
-        ]
-      }],
-      x: 0.1,
-      len: 0.9,
-      xanchor: "left",
-      y: 0,
-      yanchor: "top",
-      pad: {t: 50, b: 10},
-      currentvalue: {
-        visible: true,
-        prefix: "Year:",
-        xanchor: "right",
-        font: {
-          size: 20,
-          color: "#666"
-        }
-      },
-      transition: {
-        duration: 300,
-        easing: "cubic-in-out"
-      }
-    }]
-};
-
-Plotly.plot('myDiv10', data, layout).then(function() {
-    Plotly.addFrames('myDiv10', frames);
-  });
-})
-        })
+        // })
     }
    // } /**/
    
