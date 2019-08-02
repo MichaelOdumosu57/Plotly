@@ -5,9 +5,18 @@
 	<script src="/backend/plotly"></script>
 	<!--<script src="http://24.189.66.225/backend/plotly"></script>-->
 	<!--<script src = "./ultraObject"></script>-->
+
 </head>
 <body>
+    <button class = 'myButton'> Click me to see the situation</button>
 </body>
+	<script>
+	    /*Communication with the embedding page*/
+        document.querySelector(".myButton").addEventListener("click",function() {
+            window.postMessage({ type: "FROM_PAGE", text: "Hello from the webpage!" }, "*");
+        }, false);
+        /**/
+	</script>
     <script>
     ultraObject = {
         forLoop:function(   dev_obj   ){

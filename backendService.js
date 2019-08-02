@@ -87,6 +87,12 @@ backend.get(   '/index/:file',function(req,res){
         });
         // console.log('writable stream intializaed')
         var receiving = new Promise((resolve,reject)=>{
+            try {
+              fs.accessSync(__dirname +'/' + req.params.file + '.html', fs.constants.R_OK);
+              console.log('can read/write');
+            } catch (err) {
+              throw(err)
+            }
             const r_stream = fs.createReadStream(__dirname +'/' + req.params.file + '.html',{
               start:0,
               autoClose:true
@@ -131,7 +137,7 @@ backend.get(   '/index/:file',function(req,res){
               start:0,
               autoClose:true
             })
-            resolve( new Promise((resolve,reject)=>{
+            new Promise((resolve,reject)=>{
                 function a(chunk){
                         console.log(chunk)
                         setImmediate(() =>{
@@ -159,7 +165,7 @@ backend.get(   '/index/:file',function(req,res){
                 r_stream.on('data',a)
                 console.log('readable stream intializaed')
                 resolve()
-            })).catch((err)=>{
+            }).catch((err)=>{
                     console.log('2')
                     console.log(err)
                     console.log('couldnt get the read stream started')
@@ -177,8 +183,9 @@ backend.get(   '/index/:file',function(req,res){
         
         
 })
-backend.post(   '/saveFile/',function(req,res){
+backend.post(   '/saveFile',function(req,res){
  
+        console.log('needa write a file somewhere')
         var response = res
         var request = req
         // console.log(req.query)
@@ -251,12 +258,13 @@ function a(chunk){
 })
 backend.post(   '/linspace',function(req,res){
     
+    
 	ultraObject.reqBody({
 		stream:req,
 		fn:function(dev_obj){
 		    console.log('linspace')
 		},
-		keep:'true',
+		keep:'false',
 		finish:function(dev_obj){
 		    dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
 		    res.send(   linspace(   dev_obj.stream.body.a,dev_obj.stream.body.b,dev_obj.stream.body.c   )   )
@@ -274,7 +282,7 @@ backend.post(   '/trisurf',function(req,res){
 		fn:function(dev_obj){
 		    console.log('trisurf')
 		},
-		keep:'true',
+		keep:'false',
 		finish:function(dev_obj){
 		    dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
 		  //  console.log(   dev_obj.stream.body   )
@@ -293,7 +301,7 @@ backend.post(   '/Treemap',function(req,res){
 		stream:req,
 		fn:function(dev_obj){
 		},
-		keep:'true',
+		keep:'false',
 		finish:function(dev_obj){
 		  //  dev_obj.stream.body = JSON.parse(dev_obj.stream.body)
 		    res.send(   'where is Treemaps'   )
