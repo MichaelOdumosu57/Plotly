@@ -16767,8 +16767,123 @@ myPlot.on('plotly_click', function(){
       | [__]    [__]  |
                                                                          
                                                                         
-US Airports Map
+Event Data
+
+five types that emit event data
+
+plotly_click, plotly_hover, plotly_unhover, plotly_selecting, and plotly_selected.
  
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                        
+                        
+Click event
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+                                                                         
+                                                                        
+changing marker color
+
+examples
+https://plot.ly/javascript/click-events/
+
+in 1
+
+however in the loop there is only the marker you clicked, probably the XY css coordinate, if there were more markers it would probably reflect the needs for a loop
+
+var myPlot = document.getElementById('myDiv'),
+    x = [1, 2, 3, 4, 5, 6],
+    y = [1, 2, 3, 2, 3, 4],
+    colors = ['#00000','#00000','#00000',
+              '#00000','#00000','#00000'],
+    data = [{x:x, y:y, type:'scatter',
+             mode:'markers', marker:{size:16, color:colors}}],
+    layout = {
+        hovermode:'closest',
+        title:'Click on a Point to Change Color<br>Double Click (anywhere) to Change it Back'
+     };
+
+Plotly.newPlot('myDiv', data, layout);
+
+myPlot.on('plotly_click', function(data){
+  var pn='',
+      tn='',
+      colors=[];
+  for(var i=0; i < data.points.length; i++){
+    pn = data.points[i].pointNumber;
+    tn = data.points[i].curveNumber;
+    colors = data.points[i].data.marker.color;
+  };
+  colors[pn] = '#C54C82';
+
+  var update = {'marker':{color: colors, size:16}};
+  Plotly.restyle('myDiv', update, [tn]);
+});
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                        
+Legend Click Events
+
+plotly_legendclick and plotly_legenddoubleclick
+                
+                
+in 2
+
+var myPlot = document.getElementById('myDiv'),
+    x = [1, 2, 3, 4, 5, 6],
+    y = [1, 2, 3, 2, 3, 4],
+    y2 = [1, 4, 7, 6, 1, 5],
+    colors = [['#5C636E','#5C636E','#5C636E','#5C636E','#5C636E','#5C636E'],
+              ['#393e46','#393e46','#393e46','#393e46','#393e46','#393e46']],
+    data = [{x:x, y:y, type:'scatter',
+             mode:'line', line:{ color:'#5C636E'},marker:{size:16, color:colors[0]}},
+            {x:x, y:y2, type:'scatter',
+             mode:'line',line:{ color:'#393e46'}, marker:{size:16, color:colors[1]}}],
+    layout = {
+        showlegend: true,
+        hovermode:'closest',
+        title:'Click on a Point to Change Color<br>Click on a Trace in the Legend to Change Back One Trace Only'
+     };
+
+Plotly.newPlot('myDiv', data, layout);
+
+myPlot.on('plotly_click', function(data){
+  var pn='',
+      tn='',
+      colors=[];
+  for(var i=0; i < data.points.length; i++){
+    pn = data.points[i].pointNumber;
+    tn = data.points[i].curveNumber;
+    colors = data.points[i].data.marker.color;
+  };
+  colors[pn] = '#C54C82';
+  var update = {'marker':{color: colors, size:16}};
+  Plotly.restyle('myDiv', update,[tn]);
+});
+
+myPlot.on('plotly_legendclick', function(data){
+  var trColors = [['#5C636E','#5C636E','#5C636E','#5C636E','#5C636E','#5C636E'],
+              ['#393e46','#393e46','#393e46','#393e46','#393e46','#393e46']];
+  var update = {'marker':{color: trColors[data.curveNumber], size:16}};
+  Plotly.restyle('myDiv', update,[data.curveNumber]);
+  return false;
+});
+
+
+legendclick default is to hide the trace
+legenddoubleclick default is to hide all traces and choose one trace
+                                                                        
  
             .___
             [__]
@@ -16776,25 +16891,69 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
- 
- 
+Hover Event
+
+
+for more examples https://plot.ly/javascript/hover-events/
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+    .___            .___
+ |  [__]            [__]
+                           
+
+var myPlot = document.getElementById('myDiv'),
+    x = [1, 2, 3, 4, 5, 6, 7],
+    y = [1, 2, 3, 2, 3, 4, 3],
+    colors =['#00000','#00000','#00000',
+             '#00000','#00000','#00000',
+             '#00000'],
+    data = [{x:x, y:y,
+             type:'scatter',
+             mode:'markers', marker:{size:16, color:colors}}],
+    layout = {
+        hovermode:'closest',
+        title:'Hover on a Point<br>to Change Color'
+     };
+
+Plotly.newPlot('myDiv', data, layout);
+
+myPlot.on('plotly_hover', function(data){
+  var pn='',
+      tn='',
+      colors=[];
+  for(var i=0; i < data.points.length; i++){
+    pn = data.points[i].pointNumber;
+    tn = data.points[i].curveNumber;
+    colors = data.points[i].data.marker.color;
+  };
+  colors[pn] = '#C54C82';
+
+  var update = {'marker':{color: colors, size:16}};
+  Plotly.restyle('myDiv', update, [tn]);
+});
+
+myPlot.on('plotly_unhover', function(data){
+  var pn='',
+      tn='',
+      colors=[];
+  for(var i=0; i < data.points.length; i++){
+    pn = data.points[i].pointNumber;
+    tn = data.points[i].curveNumber;
+    colors = data.points[i].data.marker.color;
+  };
+  colors[pn] = '#00000';
+
+  var update = {'marker':{color: colors, size:16}};
+  Plotly.restyle('myDiv', update, [tn]);
+});
+
+
+
+ploty_hover plotly_unhover
+
+
  
  
             .___
