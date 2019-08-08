@@ -318,7 +318,9 @@ backend.get(   '/plotly',function(req,res){
 backend.get(   '/ultraObject',function(req,res){
     res.sendFile(__dirname + '/ultraObject.js')
 })
-
+backend.get(   '/parcats',function(req,res){
+    res.sendFile('/home/uoul/My_Computer/JAVASCRIPT/ultraObject/endpointAndFS/plotly/parcats.html')
+})
 
 
 

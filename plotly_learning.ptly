@@ -16696,6 +16696,69 @@ Persist User Changes
                                                            
                                                                         
 US Airports Map
+
+
+
+
+Event Handlers in plotly.js
+
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+
+Using plotly.js events
+
+file:  events.html
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ 
+ 
+plotly events are pre fixed with plotly
+
+ex
+
+graphDiv.on('plotly_event', function(){
+    	// do something;
+	});
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Simple event example
+
+in 0
+
+var myPlot = document.getElementById('myDiv'),
+    x = [1, 2, 3, 4, 5],
+    y = [10, 20, 30, 20, 10],
+    data = [{x:x, y:y, type:'scatter',
+             mode:'markers', marker:{size:20}
+            }],
+    layout = {hovermode:'closest',
+              title:'Click on Points'
+     };
+
+Plotly.newPlot('myDiv', data, layout);
+
+myPlot.on('plotly_click', function(){
+    alert('You clicked this Plotly chart!');
+});
  
  
             .___
