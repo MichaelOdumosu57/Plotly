@@ -17241,8 +17241,60 @@ myPlot.on('plotly_doubleclick', function(data){
         .___    .___
       | [__]    [__]  |
                                                                         
+                                        
+Function in plotly.js
+            .___                        .___                        .___                        .___
+         |  [__]                        [__]  |                 |   [__]                      | [__]
+        .___    .___                .___    .___                .___    .___                .___    .___
+      | [__]    [__]  |           | [__]    [__]              | [__]    [__]                [__]    [__]
+    .___            .___        .___            .___        .___            .___        .___            .___
+ |  [__]            [__]      |  [__]            [__] |     [__]            [__]     |  [__]            [__]
+.___                   .___ .___                   .___.___                   .___ .___                   .___
+[__]                   [__] [__]                   [__][__]                   [__] [__]                   [__]
+
+
+ 
+Common parameters
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+                          
+                          
+                           
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+      
+file functions.html
+
+Graph Div
+
+the first argument to most of the function also know as plotDiv. you can use document.getElementbyID or give the id as a string
+to specify dimensions use the layout object or edit the element yrself
+
                                                                         
-US Airports Map
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+data
+
+The data to be plotted is described in an array usually called data
+
+mabye check out the full reference
+                                                                        
+                                                                        
  
  
             .___
@@ -17251,7 +17303,172 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+layout
+    
+    The layout of the plot – non-data-related visual attributes such as the title, annotations etc – is described in an object usually called layout,
+    mabye check out the full reference
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+
+config
+
+High-level configuration options for the plot, such as the scroll/zoom/hover behaviour, is described in an object usually called config,
+layout is about the plot itself, config is about how the plot is shown
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+frames
+
+Animation frames are described in an object usually called frames as per the example here. They can contain data and layout objects, which define any changes to be animated, and a traces object that defines which traces to animate. Additionally, frames containing name and/or group attributes can be referenced by Plotly.animate after they are added by Plotly.addFrames
+
+in other words, when you need to animate, your frames are contained here
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Plotly.newPlot
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+                                
+                                                                        
+                                                                        
+draws a newplot in a given div, to update an existing plot use Plotly.react
+
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+signature
+
+Plotly.newPlot(graphDiv, data, layout, config)
+                                                                        
+                                                                        
+Plotly.newPlot(graphDiv, obj)
+for all past arguments[0]
+
+{data: [], layout: {}, config: {}, frames: []})
+
+
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+data and layout can be retrieved from the containing div
+
+
+in 0
+
+var graphDiv = document.getElementById('id_of_the_div')
+
+var data = [{
+  x: [1999, 2000, 2001, 2002],
+  y: [10, 15, 13, 17],
+  type: 'scatter'
+}];
+
+var layout = {
+  title: 'Sales Growth',
+  xaxis: {
+    title: 'Year',
+    showgrid: false,
+    zeroline: false
+  },
+  yaxis: {
+    title: 'Percent',
+    showline: false
+  }
+};
+Plotly.newPlot(graphDiv, data, layout);
+
+...
+var dataRetrievedLater = graphDiv.data;
+var layoutRetrievedLater = graphDiv.layout;
+                                                                        
+                                                                        
+Plotly.react
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+
+
+its has the same signaure as plotly.newPlot, but this is used to update the graph, when updating use thise
+
+to use it the data array must have been chanded or layout.datarevision must have chaged
+
+
+Plotly.plot
+
+is another method but it got deprecated in favor of plotly.react
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Plotly.restyle
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+An efficient means of changing attributes in the data array in an existing plot.
+you must chooses your traces or all traces get restyled
+ 
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+function signature
+
+Plotly.restyle(graphDiv, update [, traceIndices])
+
+graphDiv
+    DOM node or string id of a DOM node
+update
+    object, see below for examples
+traceIndices
+    array of integer indices into existing value of data
+    (optional, default behaviour is to apply to all traces)
+                                                                        
+                                                                        
+
  
  
             .___
@@ -17260,89 +17477,28 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
+examples
+
+// restyle a single trace using attribute strings
+var update = {
+    opacity: 0.4,
+    'marker.color': 'red'
+};
+Plotly.restyle(graphDiv, update, 0);
+
+// restyle all traces using attribute strings
+var update = {
+    opacity: 0.4,
+    'marker.color': 'red'
+};
+Plotly.restyle(graphDiv, update);
+
+// restyle two traces using attribute strings
+var update = {
+    opacity: 0.4,
+    'marker.color': 'red'
+};
+Plotly.restyle(graphDiv, update, [1, 2]);
  
             .___
             [__]
