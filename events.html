@@ -8,772 +8,8 @@
 <body>
 </body>
     <script>
-    ultraObject = {
-        forLoop:function(   dev_obj   ){
-                //.forLoop_0_i the iteration
-                //.forLoopLength the length to iterate to
-                //.fn what to do
-                // .args, since they are out scroped this is a way to access the args
-                // .bubble 'true' or 'false' indicating whether to send the break back up nested
-                
-                var forLoopbreak = false
-                if(   dev_obj !== undefined   ){
-            
-                    if(   dev_obj.custom !== 'true'   ){
-                        
-                        
-                        for(   dev_obj.forLoop_0_i; dev_obj.forLoop_0_i !== dev_obj.forLoopLength; dev_obj.forLoop_0_i++   ){ // change this to be a fuctiont that allow the dev to do anything here
-                            // console.log(   dev_obj.forLoop_0_i   )
-                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
-                            
-                                            
-                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
-                                // premature  provided when you dont want to bubble up the value just break
-                                
-                                if(   dev_obj.bubble === 'true'   ){
-                                    
-                                    
-                                    return forLoopbreak
-                                    
-                                    
-                                }
-                                break;
-                                
-    
-                            }
-                            
-                            
-                        }
-                        dev_obj.forLoop_0_i = 0
-                        
-                        
-                    }
-            
-                    
-                    else if(   dev_obj.custom === 'true'   ){
-                        
-                        
-                        for(   dev_obj.forLoop_0_i; dev_obj.forLoopLength_fn(); dev_obj.forLoop_0_i_fn()   ){ // change this to be a fuctiont that allow the dev to do anything here
-                            // console.log(   dev_obj.forLoop_0_i   )
-                            forLoopbreak = dev_obj.fn(   dev_obj.args   )// find a better way to do this
-                            
-                                            
-                            if(   forLoopbreak === 'true' || forLoopbreak === 'premature'  ){
-                                // premature  provided when you dont want to bubble up the value just break
-                                
-                                if(   dev_obj.bubble === 'true'   ){
-                                    
-                                    
-                                    return forLoopbreak
-                                    
-                                    
-                                }
-                                break;
-                                
-                                
-                            }
-                            
-                            
-                        }
-                        dev_obj.forLoop_0_i = 0
-                        
-                        
-                    }
-                    
-                    
-                }
-            },
-        open:function(   dev_obj   ){
-                
-                dev_obj.xhttp.open(   dev_obj.protocol,dev_obj.target,dev_obj.unk_bool   )
-            }, // gets in contact with the host
-        xhttp: (function(   dev_obj   ){
-                    
-                    
-                    if(   typeof(   XMLHttpRequest   ) !== 'undefined'   ){
-                        
-                        
-                        if(   dev_obj === undefined   ){
-                            
-                            
-                            var xhttp_0_i = new XMLHttpRequest()
-                            return xhttp_0_i
-                            
-                            
-                        }
-                        
-                        
-                        else if(   dev_obj !== undefined   ){
-                            
-                            
-                            var xhttp_0_i = new XMLHttpRequest()
-                            return xhttp_0_i
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    
-                    
-            })(), // creates an xhr obj
-        DOM_child:{},
-        addEventListener:function(   dev_obj   ){
-                    var fn;
-                    
-                    
-                    if(   dev_obj !== undefined   ){
-                        
-                        
-                        if(   dev_obj.fn !== undefined   ){
-                            
-                            
-                            fn = dev_obj.fn
-                            
-                            
-                        }
-                        
-                        
-                        else if(   dev_obj.xhttp === 'true'   ){
-                            
-                            
-                            fn= ultraObject.xhttpreadystatechange
-                            
-                            
-                        }
-                        
-                        
-                        else if(   dev_obj.fn === undefined   ){
-                            
-                            
-                            fn = ultraObject.passing_args
-                            
-                            
-                        }
-                        
-                        
-                    }
-                    
-                    
-                    else if(   dev_obj === undefined   ){
-                        
-                        
-                        fn = ultraObject.passing_args
-                        
-                        
-                    }
-                    
-                    
-                    
-                    ultraObject.DOM_child[0].addEventListener(   ultraObject.eventName,fn   )
-            }, //  dev_obj.fn is used for 1st party dev to add their custom function to the listener dev_obj.xhttp is for xhr
-        xhttpreadystatechange:function(   dev_obj   ){
-                console.log(    this   )
-                
-                if (    this.readyState == 4 && this.status == 200   ) {
-                
 
-                    if(   dev_obj !==undefined   ){
-                        
-                        
-                        dev_obj.fn()
 
-                        
-                        
-                    }
-                    
-                    
-                    else if(   dev_obj ===undefined   ){
-                        
-                        
-                        ultraObject.xhrResponse = this.responseText
-                        
-                        
-                    }
-                    
-                    
-                }
-                
-            }, // handles getting remote reposnes
-        endpoint: function(   dev_obj   ){
-                /*
-                    key points
-                    the developer places into XHR itO what function they will use to make the request
-                    you provide functionality to help make goobly gook easier like inserting all values into a function then giving it a go
-                */
-                /* ablelasts
-                    1 for XHR
-                */
-                /*
-                    .xhttp:the xhr functionality the developer wants to use
-                        what goes here is an itO for all the items the dev needs to get the job done
-                    .instruct: telling the function how to use what in XHR[index] to get the job done
-                    .eventName: in case of  XMLHttpRequest i need to a function as an event handler to make use of the responseText
-                    .eventHandler:in case of  XMLHttpRequest  fn for eventName
-                    .protocol :  in case of  XMLHttpRequest  HTTP methods for XHR
-                    .target:  string location
-                    .asyncBool: unkwown use best to leave on true
-                    .body: in case of  XMLHttpRequest for certain http methods this is the important data the endpoint needs, should be a string or one object
-                */
-                
-                /*adding the dev_obj to args*/ //{
-                var endpoint_dev_obj = ultraObject.args.add(   {value:ultraObject.iterify(   {iterify:dev_obj}   )   }   )
-                // }  /**/
-                
-                /*XHR +scope +self +abelast */ //{
-                var ePXHR_0_i = ultraObject.scope.add(   {value:ultraObject.XHR.add(   {value:dev_obj.xhttp}   )}   )
-                ultraObject.XHR.abelast.add(   {value:ultraObject.scope[ePXHR_0_i ]}   )
-                // }  /**/
-                
-                /*XHR +scope +self +abelast */ //{
-                
-                    /* XMLHttpRequest*/ //{
-                    if(   dev_obj.instruct === 'XMLHttpRequest'   ){
-                        
-                        
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventName = dev_obj.eventName
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventHandler = dev_obj.eventHandler
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ][0].addEventListener(   ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventName,ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].eventHandler   )
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].protocol = dev_obj.protocol
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].target = dev_obj.target
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].asyncBool = dev_obj.asyncBool
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].body = dev_obj.body
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ][0].open(
-                            ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].protocol,
-                            ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].target,
-                            ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].asyncBool
-                        )
-                        ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ][0].send(   ultraObject.XHR[   ultraObject.scope[ePXHR_0_i]   ].body   )
-                        
-                        
-                    }
-                    // }  /**/
-                    
-                // }  /**/
-                
-                /*XHR -scope */ //{
-                var ePXHR_0_i = ultraObject.scope.minus(   {index:ePXHR_0_i}   )
-                // }  /**/
-                
-            },// function handling all things endpoint
-        iterify: function(   dev_obj   ){
-                //. iterify the item to turn into an iterableObject
-            
-                if(   dev_obj !== undefined   ){
-                    
-                    
-                    var iterableO = ultraObject.iterableObject()
-                    
-                    
-                    if(   ultraObject.isArray(   {type:dev_obj.iterify}   ) || ultraObject.isNodeList(   {type:dev_obj.iterify}   )   ){
-                        
-                        
-                        var iterableFL_0_i = {
-                            forLoop_0_i:0,
-                            forLoopLength:dev_obj.iterify.length,
-                            fn:function(   dev_obj   ){
-                                iterableO.add(   {value:dev_obj.iterify[iterableFL_0_i.forLoop_0_i]}   )
-                            },
-                            args:{iterify:dev_obj.iterify}
-                        }
-                        ultraObject.forLoop(   iterableFL_0_i   )
-                        
-                        
-                    }
-                    
-                    
-                    else if(   ultraObject.isObject(   {type:dev_obj.iterify}   )   ){
-                        //places the key and value inside every index , So 0,1 represents the key and 1 the value
-                        
-                        var iterableArr = Object.entries(   dev_obj.iterify   )
-                        var iterableFL_0_i = {
-                            forLoop_0_i:0,
-                            forLoopLength:iterableArr.length,
-                            fn:function(   dev_obj   ){
-                                iterableO.add({
-                                    value:ultraObject.iterify({iterify:iterableArr[iterableFL_0_i.forLoop_0_i]})
-                                })
-                            },
-                            args:{iterify:dev_obj.iterify}
-                        }
-                        ultraObject.forLoop(   iterableFL_0_i   )
-                        
-                        
-                    }
-                    
-                    
-                    else if(   ultraObject.isPrimitive(   {type:dev_obj.iterify}   )   ){
-                        //for strings it neatly splits it into an itO
-                        
-                        var iterableFL_0_i = {
-                            forLoop_0_i:0,
-                            forLoopLength:dev_obj.iterify.length,
-                            fn:function(   dev_obj   ){
-                                iterableO.add(   {value:dev_obj.iterify[iterableFL_0_i.forLoop_0_i]}   )
-                            },
-                            args:{iterify:dev_obj.iterify}
-                        }
-                        ultraObject.forLoop(   iterableFL_0_i   )
-                        
-                        
-                    }
-                    
-                    
-                    return iterableO
-                    
-                                    
-                }
-                
-                
-            },
-        iterableObject: iterableObject,
-        isArray: function(   dev_obj   ){ // should combine all type query or keep seperate??
-                //.type the item in question
-                
-                 if(   dev_obj !== undefined   ){
-                     
-                     
-                    if(   Array.isArray(dev_obj.type) && typeof(   dev_obj.type   ) === 'object'   ){
-                         //an array
-                         
-                        return true
-                        
-                        
-                    }
-                    
-                    
-                 }
-                 
-                 
-                 return false
-            }, // is item an object will be upgraded to test for more objects, you can use instance of but its not available everywher
-        isObject:  function(   dev_obj   ){ // should combine all type query or keep seperate??
-                //.type the item in question
-                
-                 if(   dev_obj !== undefined   ){
-                     
-                     
-                    if(   !Array.isArray(dev_obj.type) && typeof(   dev_obj.type   ) === 'object' && dev_obj.type.isitO === undefined   ){
-                         //an array
-                         
-                        return true
-                        
-                        
-                    }
-                    
-                    
-                 }
-                 
-                 
-                 return false
-            },
-        isPrimitive:  function(   dev_obj   ){
-            
-            
-                if(   dev_obj !== undefined   ){
-                    
-                    
-                    if(   dev_obj.type !== Object(   dev_obj.type   )   ){
-                        
-                        
-                        return true
-                        
-                        
-                    }
-                    
-                    
-                }
-                
-                
-                return false
-            },
-        isNodeList: function(   dev_obj   ){
-            
-            
-                if(   dev_obj !== undefined   ){
-                    
-                    
-                    if(   (   dev_obj.type.toString() || dev_obj.type.toLocaleString() || 'str'   ) === '[object NodeList]'   ){
-                        // if a polyfill is needed use severalOr to get a string
-                        
-                        return true
-                        
-                        
-                    }
-                    
-                    
-                    else if(   (   dev_obj.type.toString() || dev_obj.type.toLocaleString() || 'str'   ) !== '[object NodeList]'   ){
-                        
-                        
-                        return false
-                        
-                        
-                    }
-                    
-                }
-                
-                
-            },
-        args:iterableObject(),
-        scope:iterableObject(),
-        XHR:iterableObject(),
-        objectLength: function(   dev_obj   ){ // finds object lenghts
-                    //.val the object itself
-                    // .getLen function descrbing how to get the length
-                    // .result if function reutrns it equal increase the length by one
-                    dev_obj.val.length = 0
-                    var objectLengthFL_0_i = {
-                        forLoop_0_i:0,
-                        forLoopLength:Object.keys(   dev_obj.val   ).length,
-                        fn:function(   dev_obj   ){
-                            
-                             
-                            if(   dev_obj.getLen(   {val:dev_obj.val,   index:objectLengthFL_0_i.forLoop_0_i}   ) === dev_obj.result    ){
-                                                    
-                                
-                                dev_obj.val.length += 1
-                                
-                                
-                            }
-                            
-                            
-                        },
-                        args:{
-                            val:dev_obj.val,
-                            getLen:dev_obj.getLen,
-                            result:dev_obj.result
-                            }
-                    }
-                    ultraObject.forLoop(   objectLengthFL_0_i   )
-                
-            }
-     }
-    function iterableObject(   dev_obj   ){
-                /*
-                    key points
-                    when you add with index & value NEVER minus with index, ALWAYS minus with index & dev_obj.messy = 'true'
-                */
-                // .stop for the abelast
-                
-                 var iterableObjectO = {
-                    length:0,
-                    
-                    add:function(   dev_obj   ){// returns the index that it was added to an object
-                            
-                            
-                            if(   dev_obj.index !== undefined   ){
-                                
-                                
-                                if(   Object.keys(iterableObjectO).indexOf(dev_obj.index.toString()) === -1   ){
-                                //hopefully this is es5
-                                
-                                    iterableObjectO.length += 1
-                                
-                                
-                                }
-                                
-                                
-                                iterableObjectO[dev_obj.index] = dev_obj.value
-                                return dev_obj.index
-                                
-                                
-                            }
-                            
-                            
-                            else if(   dev_obj.index === undefined   ){
-                                
-                                
-                                iterableObjectO[iterableObjectO.length] = dev_obj.value
-                                iterableObjectO.length += 1
-                                return iterableObjectO.length -1
-                                
-                                
-                            }
-                            
-                        },// adds a value and retuns its place in the array
-                    minus:function(   dev_obj   ){
-                        //.value value to remove
-                        //.index remove and index
-                        if(   dev_obj.index !== undefined   ){
-                            
-                            
-                            delete iterableObjectO[dev_obj.index]
-                            iterableObjectO.resetLength()// resets the length
-                            
-                            
-                            if(   dev_obj.messy !== 'true'   ){
-                                
-                                
-                                var iterableObjectFL_0_i = {
-                                    forLoop_0_i:0,
-                                    forLoopLength:iterableObjectO.length,
-                                    fn:function(   dev_obj   ){
-                                        
-                                        /*fixing the array part of the itO*/ //{
-                                        if(   dev_obj.index <= iterableObjectFL_0_i.forLoop_0_i && iterableObjectFL_0_i.forLoop_0_i !== iterableObjectO.length   ){ // at that point something must be missing
-                                            
-                                            
-                                            iterableObjectO[iterableObjectFL_0_i.forLoop_0_i] =  iterableObjectO[iterableObjectFL_0_i.forLoop_0_i+1]
-                                            delete iterableObjectO[iterableObjectFL_0_i.forLoop_0_i+1]//problems look here usually wants a variable or primitive to properly delete
-                                            
-                                            
-                                        }
-                                        // } /**/
-                                        
-                                    },
-                                    args:{
-                                        index:dev_obj.index
-                                        }
-                                }
-                                ultraObject.forLoop(   iterableObjectFL_0_i   ) // realigns the iterable so the index are consecutive again
-                            
-                            
-                            }
-                            
-                            
-                        }
-                        
-                        
-                        if(   dev_obj.value !== undefined   ){
-                            
-                            
-                            var iterableObjectO_BOOL = {0:false}
-                            iterableObjectO_BOOL = ultraObject.severalOr({
-                                        compTo: dev_obj.value,
-                                        compAgn: iterableObjectO,
-                                        boolean:iterableObjectO_BOOL,
-                                        which:0
-                            })
-                            
-                            
-                            if(   iterableObjectO_BOOL[0]   ){
-                                
-                                
-                                var iterableObjectTDI = iterableObjectO_BOOL.spot // index to remove
-                                delete iterableObjectO[iterableObjectTDI]
-                                iterableObjectO.resetLength()
-                                var iterableObjectFL_1_i = {
-                                    forLoop_0_i:0,
-                                    forLoopLength:iterableObjectO.length,
-                                    fn:function(   dev_obj   ){
-                                        
-                                        
-                                        if(   iterableObjectTDI <= iterableObjectFL_1_i.forLoop_0_i && iterableObjectFL_1_i.forLoop_0_i !== iterableObjectO.length  ){ // at that point something must be missing
-                                            
-                                            
-                                            iterableObjectO[iterableObjectFL_1_i.forLoop_0_i] =  iterableObjectO[iterableObjectFL_1_i.forLoop_0_i+1]
-                                            delete iterableObjectO[iterableObjectFL_1_i.forLoop_0_i+1 ]//problems look here usually wants a variable or primitive to properly delete
-                                            
-                                            
-                                        }
-                                        
-                                        
-                                    },
-                                    args:{}
-                                }
-                                ultraObject.forLoop(   iterableObjectFL_1_i   ) // realigns the iterable so the index are consecutive again
-                                
-                                
-                                if(    dev_obj.correct === 'false'   ){
-                                    
-                                    
-                                    //leave the index alone
-                                    
-                                    
-                                }
-            
-                            }
-                            
-                            
-                        }
-                        
-                        
-                    },// removes an item from an array if its there
-                    resetLength:function(   dev_obj   ){
-                        ultraObject.objectLength({
-                                val:iterableObjectO,
-                                getLen:function(   dev_obj   ){
-                                    
-                                    
-                                    if(   !isNaN(   Object.keys(   dev_obj.val   )[dev_obj.index]   )   ){
-                                        
-                                        
-                                        return 'true'
-                                        
-                                        
-                                    }
-                                    
-                                    
-                                },
-                                result:'true'
-                        })
-                    }, //if corrputed resets the lengths
-                    isitO:function(   dev_obj   ){
-                        return 'true'
-                    }//confirms if its an itO, make it refuse to bind
-                 }
-                 iterableObjectO.abelast = {
-                    length:0,
-                    
-                    add:function(   dev_obj   ){// returns the index that it was added to an object
-                    
-                    
-                            if(   dev_obj.index !== undefined   ){
-                                
-                                
-                                if(   Object.keys(iterableObjectO.abelast).indexOf(dev_obj.index.toString()) === -1   ){
-                                
-                                
-                                    iterableObjectO.abelast.length += 1
-                                
-                                
-                                }
-                                                                
-                                iterableObjectO.abelast[dev_obj.index] = dev_obj.value
-                                return dev_obj.index
-                                
-                                
-                            }
-                            
-                            
-                            else if(   dev_obj.index === undefined   ){
-                                
-                                
-                                iterableObjectO.abelast[iterableObjectO.abelast.length] = dev_obj.value
-                                iterableObjectO.abelast.length += 1
-                                // iterableObjectO.abelast['q'+(iterableObjectO.abelast.length -1).toString()] = iterableObjectO.abelast.length -1
-                                return iterableObjectO.abelast.length -1
-                                
-                            
-                            }
-                            
-                            
-                        },// adds a value and retuns its place in the array
-                    minus:function(   dev_obj   ){
-                        //.value value to remove
-                        //.index remove and index
-                        
-                        if(   dev_obj.index !== undefined   ){
-                            
-                            
-                            delete iterableObjectO.abelast[dev_obj.index]
-                            iterableObjectO.abelast.resetLength()// resets the length
-                            
-                            
-                            if(   dev_obj.messy !== 'true'   ){
-                                
-                                
-                                var iterableObjectFL_0_i = {
-                                    forLoop_0_i:0,
-                                    forLoopLength:iterableObjectO.abelast.length,
-                                    fn:function(   dev_obj   ){
-                                        
-                                        
-                                        if(   dev_obj.index <= iterableObjectFL_0_i.forLoop_0_i && iterableObjectFL_0_i.forLoop_0_i !== iterableObjectO.abelast.length  ){ // at that point something must be missing
-                                            
-                                            
-                                            iterableObjectO.abelast[iterableObjectFL_0_i.forLoop_0_i] =  iterableObjectO.abelast[iterableObjectFL_0_i.forLoop_0_i+1]
-                                            delete iterableObjectO.abelast[iterableObjectFL_0_i.forLoop_0_i+1]//problems look here usually wants a variable or primitive to properly delete
-                                            
-                                            
-                                        }
-                                        
-                                        
-                                    },
-                                    args:{
-                                        index:dev_obj.index
-                                        }
-                                }
-                                ultraObject.forLoop(   iterableObjectFL_0_i   ) // realigns the iterable so the index are consecutive again
-                            
-                            
-                            }
-                            
-                            
-                        }
-                        
-                        
-                        if(   dev_obj.value !== undefined   ){
-                            
-                            
-                            var iterableObjectO_abelast_BOOL = {0:false}
-                            iterableObjectO_abelast_BOOL = ultraObject.severalOr({
-                                        compTo: dev_obj.value,
-                                        compAgn: iterableObjectO.abelast,
-                                        boolean:iterableObjectO_abelast_BOOL,
-                                        which:0
-                            })
-                            
-                            
-                            if(   iterableObjectO_abelast_BOOL[0]   ){
-                                
-                                
-                                var iterableObjectTDI = iterableObjectO_abelast_BOOL.spot // index to remove
-                                delete iterableObjectO.abelast[iterableObjectTDI]
-                                iterableObjectO.abelast.resetLength()
-                                var iterableObjectFL_1_i = {
-                                    forLoop_0_i:0,
-                                    forLoopLength:iterableObjectO.abelast.length,
-                                    fn:function(   dev_obj   ){
-                                        
-                                        
-                                        if(   iterableObjectTDI <= iterableObjectFL_1_i.forLoop_0_i && iterableObjectFL_1_i.forLoop_0_i !== iterableObjectO.abelast.length  ){ // at that point something must be missing
-                                            
-                                            
-                                            iterableObjectO.abelast[iterableObjectFL_1_i.forLoop_0_i] =  iterableObjectO.abelast[iterableObjectFL_1_i.forLoop_0_i+1]
-                                            delete iterableObjectO.abelast[iterableObjectFL_1_i.forLoop_0_i+1 ]//problems look here usually wants a variable or primitive to properly delete
-                                            
-                                            
-                                        }
-                                        
-                                        
-                                    },
-                                    args:{}
-                                }
-                                ultraObject.forLoop(   iterableObjectFL_1_i   ) // realigns the iterable so the index are consecutive again
-                                
-                                
-                                if(    dev_obj.correct === 'false'   ){
-                                    
-                                    
-                                    //leave the index alone
-                                    
-                                    
-                                }
-            
-                            }
-                            
-                            
-                        }
-                        
-                        
-                    },// removes an item from an array if its there
-                    resetLength:function(   dev_obj   ){
-                        ultraObject.objectLength({
-                                val:iterableObjectO.abelast,
-                                getLen:function(   dev_obj   ){
-                                    
-                                    
-                                    if(   !isNaN(   Object.keys(   dev_obj.val   )[dev_obj.index]   )   ){
-                                        
-                                        
-                                        return 'true'
-                                        
-                                        
-                                    }
-                                    
-                                    
-                                },
-                                result:'true'
-                        })
-                    }, //if corrputed resets the lengths
-                    isAbelast:function(   dev_obj   ){
-                        return 'true'
-                    }//confirms if its an itO, make it refuse to bind
-                 }  // make a deep copy if outer function do not have access to scope from the inner functions, the inner function places the required info heree
-                 return iterableObjectO
-            } //retuns or converts an object with which you can easily iterate but this is an array accroding to chrome 72
     var FL_0_i = {
         forLoop_0_i:0,
         forLoopLength:35,
@@ -791,27 +27,27 @@
     
     /*     */ //{
     {
-        var resolveDiv0 = new Promise((resolve,reject)=>{
-        var myPlot = document.getElementById('myDiv0'),
-            x = [1, 2, 3, 4, 5],
-            y = [10, 20, 30, 20, 10],
-            data = [{x:x, y:y, type:'scatter',
-                     mode:'markers', marker:{size:20}
-                    }],
-            layout = {hovermode:'closest',
-                      title:'Click on Points'
-             };
+        // var resolveDiv0 = new Promise((resolve,reject)=>{
+        // var myPlot = document.getElementById('myDiv0'),
+        //     x = [1, 2, 3, 4, 5],
+        //     y = [10, 20, 30, 20, 10],
+        //     data = [{x:x, y:y, type:'scatter',
+        //              mode:'markers', marker:{size:20}
+        //             }],
+        //     layout = {hovermode:'closest',
+        //               title:'Click on Points'
+        //      };
         
-        Plotly.newPlot('myDiv0', data, layout);
+        // Plotly.newPlot('myDiv0', data, layout);
         
-        myPlot.on('plotly_click', function(data){
-            console.log(data)
-            alert('You clicked this Plotly chart!');
-        });
+        // myPlot.on('plotly_click', function(data){
+        //     console.log(data)
+        //     alert('You clicked this Plotly chart!');
+        // });
          
              
             
-        })
+        // })
     }
    // } /**/
    
@@ -859,48 +95,48 @@
    
     /*     */ //{
     {
-        var resolveDiv2 = new Promise((resolve,reject)=>{
+        // var resolveDiv2 = new Promise((resolve,reject)=>{
             
-            var myPlot = document.getElementById('myDiv2'),
-                x = [1, 2, 3, 4, 5, 6],
-                y = [1, 2, 3, 2, 3, 4],
-                y2 = [1, 4, 7, 6, 1, 5],
-                colors = [['#5C636E','#5C636E','#5C636E','#5C636E','#5C636E','#5C636E'],
-                          ['#393e46','#393e46','#393e46','#393e46','#393e46','#393e46']],
-                data = [{x:x, y:y, type:'scatter',
-                         mode:'line', line:{ color:'#5C636E'},marker:{size:64, color:colors[0]}},
-                        {x:x, y:y2, type:'scatter',
-                         mode:'line',line:{ color:'#ff0000'}, marker:{size:64, color:colors[1]}}],
-                layout = {
-                    showlegend: true,
-                    hovermode:'closest',
-                    title:'Click on a Point to Change Color<br>Click on a Trace in the Legend to Change Back One Trace Only'
-                 };
+        //     var myPlot = document.getElementById('myDiv2'),
+        //         x = [1, 2, 3, 4, 5, 6],
+        //         y = [1, 2, 3, 2, 3, 4],
+        //         y2 = [1, 4, 7, 6, 1, 5],
+        //         colors = [['#5C636E','#5C636E','#5C636E','#5C636E','#5C636E','#5C636E'],
+        //                   ['#393e46','#393e46','#393e46','#393e46','#393e46','#393e46']],
+        //         data = [{x:x, y:y, type:'scatter',
+        //                  mode:'line', line:{ color:'#5C636E'},marker:{size:64, color:colors[0]}},
+        //                 {x:x, y:y2, type:'scatter',
+        //                  mode:'line',line:{ color:'#ff0000'}, marker:{size:64, color:colors[1]}}],
+        //         layout = {
+        //             showlegend: true,
+        //             hovermode:'closest',
+        //             title:'Click on a Point to Change Color<br>Click on a Trace in the Legend to Change Back One Trace Only'
+        //          };
             
-            Plotly.newPlot('myDiv2', data, layout);
+        //     Plotly.newPlot('myDiv2', data, layout);
             
-            myPlot.on('plotly_click', function(data){
-              var pn='',
-                  tn='',
-                  colors=[];
-              for(var i=0; i < data.points.length; i++){
-                pn = data.points[i].pointNumber;
-                tn = data.points[i].curveNumber;
-                colors = data.points[i].data.marker.color;
-              };
-              colors[pn] = '#C54C82';
-              var update = {'marker':{color: colors, size:64}};
-              Plotly.restyle('myDiv2', update,[tn]);
-            });
+        //     myPlot.on('plotly_click', function(data){
+        //       var pn='',
+        //           tn='',
+        //           colors=[];
+        //       for(var i=0; i < data.points.length; i++){
+        //         pn = data.points[i].pointNumber;
+        //         tn = data.points[i].curveNumber;
+        //         colors = data.points[i].data.marker.color;
+        //       };
+        //       colors[pn] = '#C54C82';
+        //       var update = {'marker':{color: colors, size:64}};
+        //       Plotly.restyle('myDiv2', update,[tn]);
+        //     });
             
-            myPlot.on('plotly_legendclick', function(data){
-              var trColors = [['#5C636E','#5C636E','#5C636E','#5C636E','#5C636E','#5C636E'],
-                          ['#393e46','#393e46','#393e46','#393e46','#393e46','#393e46']];
-              var update = {'marker':{color: trColors[data.curveNumber], size:64}};
-              Plotly.restyle('myDiv2', update,[data.curveNumber]);
-              return false;
-            });
-        })
+        //     myPlot.on('plotly_legendclick', function(data){
+        //       var trColors = [['#5C636E','#5C636E','#5C636E','#5C636E','#5C636E','#5C636E'],
+        //                   ['#393e46','#393e46','#393e46','#393e46','#393e46','#393e46']];
+        //       var update = {'marker':{color: trColors[data.curveNumber], size:64}};
+        //       Plotly.restyle('myDiv2', update,[data.curveNumber]);
+        //       return false;
+        //     });
+        // })
     }
    // } /**/
    
@@ -959,28 +195,160 @@
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+//         var resolveDiv4 = new Promise((resolve,reject)=>{
             
-            
-        // })
+// var myDiv4 = document.getElementById('myDiv4');
+// var N = 1000;
+// var color1 = '#7b3294';
+// var color1Light = '#c2a5cf';
+// var colorX = '#ffa7b5';
+// var colorY = '#fdae61';
+
+// function randomArray() {
+//   var out = new Array(N);
+//   for(var i = 0; i < N; i++) {
+//     out[i] = Math.random();
+//   }
+//   return out;
+// }
+// var x = randomArray();
+// var y = randomArray();
+
+// Plotly.plot('myDiv4', [{
+//   type: 'scatter',
+//   mode: 'markers',
+//   x: x,
+//   y: y,
+//   xaxis: 'x',
+//   yaxis: 'y',
+//   name: 'random data',
+//   marker: {color: color1, size: 10}
+// }, {
+//   type: 'histogram',
+//   x: x,
+//   xaxis: 'x2',
+//   yaxis: 'y2',
+//   name: 'x coord dist.',
+//   marker: {color: colorX}
+// }, {
+//   type: 'histogram',
+//   x: y,
+//   xaxis: 'x3',
+//   yaxis: 'y3',
+//   name: 'y coord dist.',
+//   marker: {color: colorY}
+// }], {
+//   title: 'Lasso around the scatter points to see sub-distributions',
+//   dragmode: 'lasso',
+//   xaxis: {
+//     zeroline: false,
+//   },
+//   yaxis: {
+//     domain: [0.55, 1],
+//   },
+//   xaxis2: {
+//     domain: [0, 0.45],
+//     anchor: 'y2',
+//   },
+//   yaxis2: {
+//     domain: [0, 0.45],
+//     anchor: 'x2'
+//   },
+//   xaxis3: {
+//     domain: [0.55, 1],
+//     anchor: 'y3'
+//   },
+//   yaxis3: {
+//     domain: [0, 0.45],
+//     anchor: 'x3'
+//   }
+// });
+
+// myDiv4.on('plotly_selected', function(eventData) {
+//   var x = [];
+//   var y = [];
+
+//   var colors = [];
+//   for(var i = 0; i < N; i++) colors.push(color1Light);
+
+//   eventData.points.forEach(function(pt) {
+//     x.push(pt.x);
+//     y.push(pt.y);
+//     colors[pt.pointNumber] = color1;
+//   });
+
+//   Plotly.restyle('myDiv4', {
+//     x: [x, y],
+//     xbins: {}
+//   }, [1, 2]);
+
+//   Plotly.restyle('myDiv4', 'marker.color', [colors], [0]);
+// });
+//         })
     }
    // } /**/
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv5 = new Promise((resolve,reject)=>{
+            var myPlot = document.getElementById('myDiv5'),
+                d3 = Plotly.d3,
+                N = 20,
+                x = d3.range(N),
+                y = d3.range(N).map( d3.random.normal() ),
+                data = [{x:x, y:y, type:'scatter',
+                        mode:'markers', marker:{size:14}}
+                       ];
             
+            Plotly.plot('myDiv5', data);
             
-        // })
+            myPlot.on('plotly_afterplot', function(){
+                console.log('done plotting');
+            });
+        })
     }
    // } /**/
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv6 = new Promise((resolve,reject)=>{
             
+            var myPlot = document.getElementById('myDiv6'),
+                x = [1, 2, 3, 4, 5, 6],
+                y = [1, 2, 3, 2, 3, 4],
+                colors = ['#00000','#00000','#00000',
+                          '#00000','#00000','#00000'],
+                data = [{x:x, y:y, type:'scatter',
+                         mode:'markers', marker:{size:16, color:colors}}],
+                layout = {
+                    hovermode:'closest',
+                    title:'Click on a Point to Change Color<br>Double Click (anywhere) to Change it Back'
+                 };
             
-        // })
+            Plotly.newPlot('myDiv6', data, layout);
+            
+            myPlot.on('plotly_click', function(data){
+              var pn='',
+                  tn='',
+                  colors=[];
+              for(var i=0; i < data.points.length; i++){
+                pn = data.points[i].pointNumber;
+                tn = data.points[i].curveNumber;
+                colors = data.points[i].data.marker.color;
+              };
+              colors[pn] = '#C54C82';
+            
+              var update = {'marker':{color: colors, size:16}};
+              Plotly.restyle('myDiv', update, [tn]);
+            });
+            
+            myPlot.on('plotly_doubleclick', function(data){
+              var orgColors = ['#00000','#00000','#00000',
+                               '#00000','#00000','#00000'];
+              var update = {'marker':{color: orgColors, size:16}};
+              Plotly.restyle('myDiv6', update);
+            });
+        })
     }
    // } /**/
    

@@ -16728,6 +16728,7 @@ file:  events.html
  
 plotly events are pre fixed with plotly
 
+so to update the chart, you take the div where the chart is you take the property of the object you passed to plotly,create or .newPlot you want to modify, and use plotly.restyle and bam
 ex
 
 graphDiv.on('plotly_event', function(){
@@ -16895,6 +16896,11 @@ Hover Event
 
 
 for more examples https://plot.ly/javascript/hover-events/
+
+
+ploty_hover plotly_unhover
+
+
             .___
             [__]
         .___    .___
@@ -16951,10 +16957,236 @@ myPlot.on('plotly_unhover', function(data){
 
 
 
-ploty_hover plotly_unhover
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Select Event
+
+ plotly_selected plotly_selecting
+ 
+ examples plotly_selected and plotly_selecting events, see: https://plot.ly/javascript/lasso-selection/
+ 
+ they are used in persistent events, like a drag or zoom, you use these when persistent events are presently occuring
+ 
+ var graphDiv = document.getElementById('graph');
+var N = 1000;
+var color1 = '#7b3294';
+var color1Light = '#c2a5cf';
+var colorX = '#ffa7b5';
+var colorY = '#fdae61';
+
+function randomArray() {
+  var out = new Array(N);
+  for(var i = 0; i < N; i++) {
+    out[i] = Math.random();
+  }
+  return out;
+}
+var x = randomArray();
+var y = randomArray();
+
+Plotly.plot(graphDiv, [{
+  type: 'scatter',
+  mode: 'markers',
+  x: x,
+  y: y,
+  xaxis: 'x',
+  yaxis: 'y',
+  name: 'random data',
+  marker: {color: color1, size: 10}
+}, {
+  type: 'histogram',
+  x: x,
+  xaxis: 'x2',
+  yaxis: 'y2',
+  name: 'x coord dist.',
+  marker: {color: colorX}
+}, {
+  type: 'histogram',
+  x: y,
+  xaxis: 'x3',
+  yaxis: 'y3',
+  name: 'y coord dist.',
+  marker: {color: colorY}
+}], {
+  title: 'Lasso around the scatter points to see sub-distributions',
+  dragmode: 'lasso',
+  xaxis: {
+    zeroline: false,
+  },
+  yaxis: {
+    domain: [0.55, 1],
+  },
+  xaxis2: {
+    domain: [0, 0.45],
+    anchor: 'y2',
+  },
+  yaxis2: {
+    domain: [0, 0.45],
+    anchor: 'x2'
+  },
+  xaxis3: {
+    domain: [0.55, 1],
+    anchor: 'y3'
+  },
+  yaxis3: {
+    domain: [0, 0.45],
+    anchor: 'x3'
+  }
+});
+
+graphDiv.on('plotly_selected', function(eventData) {
+  var x = [];
+  var y = [];
+
+  var colors = [];
+  for(var i = 0; i < N; i++) colors.push(color1Light);
+
+  eventData.points.forEach(function(pt) {
+    x.push(pt.x);
+    y.push(pt.y);
+    colors[pt.pointNumber] = color1;
+  });
+
+  Plotly.restyle(graphDiv, {
+    x: [x, y],
+    xbins: {}
+  }, [1, 2]);
+
+  Plotly.restyle(graphDiv, 'marker.color', [colors], [0]);
+});
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Update Data
+
+plotly_restyle   plotly_relayout
+
+these happens when the plot is updated
+
+For Cartesian (2D) plots, plotly_relayout emits only the xaxis and yaxis ranges which were directly changed by the triggering event
+ 3D plots, layout.scene.camera data is similarly emitted.
+ 
+ 
+this is what you would get
+
+// plotly_restyle update
+[
+  {update},  // update object -- attribute updated: new value
+  [0]       // array of traces updated
+]
+
+// plotly_relayout update: Cartesian
+//// Upon resizing plot:
+{
+ xaxis.range[0]: , // new value if xaxis.range[0] was updated
+ xaxis.range[1]: ,
+ yaxis.range[0]: , // new value if yaxis.range[0] was updated
+ yaxis.range[1]:
+}
+//// Upon autosizing plot:
+{
+ xaxis.autorange: true,
+ yaxis.autorange: true
+}
+
+// plotly_relayout update: 3D
+// a subset of the following data will be emitted depending on
+// which attributes were changed by the triggering event.
+{
+  scene: {
+    center: { // https://plot.ly/javascript/reference/#layout-scene-camera-center
+      x: 0,
+      y: 0,
+      z: 0
+    }
+  },
+  {
+    eye: { // https://plot.ly/javascript/reference/#layout-scene-camera-eye
+      x: 1.25,
+      y: 1.25,
+      z: 1.25
+    }
+  }.
+  {
+    up: { // https://plot.ly/javascript/reference/#layout-scene-camera-up
+      x: 0,
+      y: 0,
+      z: 1
+    }
+  }
+}
+ 
+
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+                           
 
 
- 
+      
+Additional Events
+
+plotly_webglcontextlost, plotly_afterplot, plotly_autosize, plotly_deselect, plotly_doubleclick, plotly_redraw, and plotly_animated.
+
+they do not return any data
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+      
+      
+Webgl Context Lost Event
+
+to use the gpu plotly comes in and ask inthe form of webgl, when plotly uses too much the process gets killed
+
+
+
+                                                                        
+                                                                        
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Afterplot Event
+
+plotly_afterplot
+
+
+every time you plot a chart this fires
+
+in 5
+
+
+var myPlot = document.getElementById('myDiv'),
+    d3 = Plotly.d3,
+    N = 20,
+    x = d3.range(N),
+    y = d3.range(N).map( d3.random.normal() ),
+    data = [{x:x, y:y, type:'scatter',
+            mode:'markers', marker:{size:14}}
+           ];
+
+Plotly.plot('myDiv', data);
+
+myPlot.on('plotly_afterplot', function(){
+    console.log('done plotting');
+});
  
             .___
             [__]
@@ -16962,53 +17194,47 @@ ploty_hover plotly_unhover
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
+Double Click Event
+
+its registered by clicking anywhere on the graph it doesnt return data
+
+in 6
+
+var myPlot = document.getElementById('myDiv'),
+    x = [1, 2, 3, 4, 5, 6],
+    y = [1, 2, 3, 2, 3, 4],
+    colors = ['#00000','#00000','#00000',
+              '#00000','#00000','#00000'],
+    data = [{x:x, y:y, type:'scatter',
+             mode:'markers', marker:{size:16, color:colors}}],
+    layout = {
+        hovermode:'closest',
+        title:'Click on a Point to Change Color<br>Double Click (anywhere) to Change it Back'
+     };
+
+Plotly.newPlot('myDiv', data, layout);
+
+myPlot.on('plotly_click', function(data){
+  var pn='',
+      tn='',
+      colors=[];
+  for(var i=0; i < data.points.length; i++){
+    pn = data.points[i].pointNumber;
+    tn = data.points[i].curveNumber;
+    colors = data.points[i].data.marker.color;
+  };
+  colors[pn] = '#C54C82';
+
+  var update = {'marker':{color: colors, size:16}};
+  Plotly.restyle('myDiv', update, [tn]);
+});
+
+myPlot.on('plotly_doubleclick', function(data){
+  var orgColors = ['#00000','#00000','#00000',
+                   '#00000','#00000','#00000'];
+  var update = {'marker':{color: orgColors, size:16}};
+  Plotly.restyle('myDiv', update);
+});
  
             .___
             [__]
