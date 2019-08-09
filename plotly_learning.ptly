@@ -17552,40 +17552,26 @@ Plotly.restyle(graphDiv, {
 
 
 
+Plotly.relayout
+
+use this to update the layout of a plot
+
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+    .___            .___
+ |  [__]            [__]
  
  
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+ signature
  
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
- 
- 
-            .___
-            [__]
-        .___    .___
-      | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+ Plotly.relayout(graphDiv, update)
+graphDiv
+    DOM node or string id of a DOM node
+update
+    object, see below for examples
+    (defaults to {})
  
  
             .___
@@ -17594,8 +17580,92 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+// update only values within nested objects
+var update = {
+    title: 'some new title', // updates the title
+    'xaxis.range': [0, 5],   // updates the xaxis range
+    'yaxis.range[1]': 15     // updates the end of the yaxis range
+};
+Plotly.relayout(graphDiv, update)
  
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+Plotly.update
+
+basically a combination of Plotly.restyle and Plotly.relayout.
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+signature
+
+
+Plotly.update(graphDiv, data_update, layout_update, [, traceIndices])
+graphDiv
+    DOM node or string id of a DOM node
+data_update
+    object, see Plotly.restyle above
+    (defaults to {})
+layout_update
+    object, see Plotly.relayout above
+    (defaults to {})
+traceIndices
+    array of integer indices into existing value of data, see Plotly.restyle above
+    (optional, default behaviour is to apply to all traces)
+ 
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+                                                                        
+examples
+
+
+//update the layout and all the traces
+var layout_update = {
+    title: 'some new title', // updates the title
+};
+var data_update = {
+    'marker.color': 'red'
+};
+Plotly.update(graphDiv, data_update, layout_update)
+
+//update the layout and a single trace
+var layout_update = {
+    title: 'some new title', // updates the title
+};
+var data_update = {
+    'marker.color': 'red'
+};
+Plotly.update(graphDiv, data_update, layout_update,0)
+
+//update the layout and two specific traces
+var layout_update = {
+    title: 'some new title', // updates the title
+};
+var data_update = {
+    'marker.color': 'red'
+};
+Plotly.update(graphDiv, data_update, layout_update, [0,2])
+
  
             .___
             [__]
