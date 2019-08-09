@@ -8,7 +8,7 @@
 <body>
 </body>
     <script>
-
+    
     var FL_0_i = {
         forLoop_0_i:0,
         forLoopLength:35,
@@ -272,47 +272,193 @@
    // } /**/
    
     /*     */ //{
+    // {
+    //     var resolveDiv4 = new Promise((resolve,reject)=>{
+            
+    //         var data = [{
+    //           type: 'bar',
+    //           y: [2, 1, 3, 2],
+    //           orientation: 'horizontal'
+    //         }];
+            
+    //         var out = Plotly.validate(data);
+    //         console.log(out[0].msg)
+                         
+    //     })
+    // }
+   // } /**/
+   
+    /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv5 = new Promise((resolve,reject)=>{
             
+            var figure = {
+              data: [{
+                type: 'bar',
+                marker: {color: 'red'},
+                y: [2, 1, 3, 2],
+              }],
+              layout:{
+                title: 'Quarterly Earnings'
+              }
+            };
             
-        // })
+            var template = Plotly.makeTemplate(figure);
+            
+            newData = [{
+              type:'bar',
+              y:[3,2,5,8]
+            }]
+            layoutWithTemplate = {template:template}
+            
+            Plotly.newPlot( document.getElementById('myDiv5'),figure.data,figure.layout)
+            document.getElementById('myDiv5').on("plotly_click",()=>{
+                Plotly.newPlot(    document.getElementById('myDiv5'),newData ,figure.layout )
+            })
+                        
+        })
     }
    // } /**/
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv6 = new Promise((resolve,reject)=>{
             
+            var graphDiv = document.getElementById('myDiv6')
+            var figure = {
+              data: [{
+                type: 'bar',
+                marker: {color: 'red'},
+                y: [2, 1, 3, 2],
+              }],
+              layout:{
+                title: 'Quarterly Earnings'
+              }
+            };
             
-        // })
+            var template = Plotly.makeTemplate(figure);
+            
+            var newFigure = {
+                data:
+                [
+                    {
+                      type:'box',
+                      y:[3,2,5,8]
+                    },
+                    {
+                      type:'box',
+                      y:[3,2,5,8]
+                    }
+                ],
+              layout:{
+                title: ' Earnings'
+              }
+            }
+            layoutWithTemplate = {template}
+            var out = Plotly.validateTemplate(newFigure, template);
+            console.log(out)
+                        
+        })
     }
    // } /**/
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv7 = new Promise((resolve,reject)=>{
             
+            var graphDiv = document.getElementById('myDiv7')
+            var figure = {
+              data: [{
+                type: 'bar',
+                marker: {color: 'red'},
+                y: [2, 1, 3, 2],
+              }],
+              layout:{
+                title: 'Quarterly Earnings'
+              }
+            };
             
-        // })
+            var template = Plotly.makeTemplate(figure);
+            
+            var newFigure = {
+                data:
+                [
+                    {
+                      type:'box',
+                      y:[3,2,5,8]
+                    },
+                    {
+                      type:'box',
+                      y:[3,2,5,8]
+                    }
+                ],
+              layout:{
+                title: ' Earnings'
+              }
+            }
+            layoutWithTemplate = {template}
+            Plotly.newPlot(   graphDiv,figure.data,figure.layout   )
+            Plotly.addTraces(graphDiv, [{y: [2,1,2]}, {y: [4, 5, 7]}]);
+            Plotly.addTraces(graphDiv, {y: [1, 5, 7]}, 0);
+            
+            graphDiv.on("plotly_click",()=>{
+                // remove the first trace
+                // Plotly.deleteTraces(graphDiv, 0);
+                
+                // remove the last two traces
+                Plotly.deleteTraces(graphDiv, [-2, -1]);
+            })
+
+                        
+        })
     }
    // } /**/
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv8 = new Promise((resolve,reject)=>{
             
+            var graphDiv = document.getElementById('myDiv8')
+            var figure = {
+              data: [{
+                type: 'bar',
+                marker: {color: 'red'},
+                y: [2, 1, 3, 2],
+              },{
+                type: 'scatter',
+                marker: {color: 'red'},
+                y: [3, 2, 5, 2],
+              }],
+              layout:{
+                title: 'Quarterly Earnings'
+              }
+            };
             
-        // })
-    }
-   // } /**/
-   
-    /*     */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+            Plotly.newPlot(   graphDiv,figure.data,figure.layout   )
             
+            ultraObject.random({
+                type:'stream',
+                value:(   dev_obj   )=>{
+                    return Math.floor(Math.random() * Math.floor(   dev_obj.value   ))
+                    }
+            })
+            var functions_Misc_0_i =ultraObject.scope.add(   {value:ultraObject.misc.abelast[ultraObject.misc.abelast.length -1]}   )
+            console.log(   functions_Misc_0_i   )
+            graphDiv.on("plotly_click",()=>{
+
+                // extend one trace
+                Plotly.extendTraces(graphDiv, {y: [[
+                    ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12})
+                    ]]}, [0])
+                
+                // extend multiple traces
+                Plotly.extendTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ], [ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ]]}, [0, 1])
+                
+                // extend multiple traces up to a maximum of 10 points per trace
+                Plotly.extendTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ], [ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ]]}, [0, 1], 10)
+            })
             
-        // })
+        })
     }
    // } /**/
    
