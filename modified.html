@@ -58,14 +58,90 @@
    // } /**/
    
     /*     */ //{
+    // {
+    //     var resolveDiv1 = new Promise((resolve,reject)=>{
+    //         var data = [],
+    //         x = [1, 2, 3, 4, 5, 6],
+    //         y = [1, 2, 3, 2, 3, 4],
+    //         colors = ['#ff0000','#ff0000','#ff0000',
+    //                   '#ff0000','#ff0000','#ff0000']
+    //         var graphDiv = document.getElementById('myDiv1')
+    //         var FL_1_i = {
+    //             forLoop_0_i:0,
+    //             forLoopLength:3,
+    //             fn:function(   dev_obj   ){
+    //                 data.push({
+    //                   x: [Math.floor(  Math.random() *10 )+1995, Math.floor(  Math.random() *10 )+1995, Math.floor(  Math.random() *10 )+1995, Math.floor(  Math.random() *10 )+1995],
+    //                   y:[
+    //                       Math.floor(  Math.random() *10 )+10,
+    //                       Math.floor(  Math.random() *10 )+10,
+    //                       Math.floor(  Math.random() *10 )+10,
+    //                       Math.floor(  Math.random() *10 )+10
+    //                     ],
+    //                   type: 'scatter'
+    //                 })
+    //             },
+    //             args: {}
+    //         }
+    //         ultraObject.forLoop(   FL_1_i   )
+            
+    //         var layout = {
+    //           title: 'Sales Growth',
+    //           xaxis: {
+    //             title: 'Year',
+    //             showgrid: false,
+    //             zeroline: false
+    //           },
+    //           yaxis: {
+    //             title: 'Percent',
+    //             showline: false
+    //           }
+    //         };
+
+    //         Plotly.newPlot(graphDiv, data, layout);
+    //         var b = function(data){
+    //             console.log(data)
+    //             var update = {
+    //                 opacity: 0.4,
+    //                 'marker.color': 'red'
+    //             };
+    //             Plotly.restyle(graphDiv, update,[1,2]);
+    //         }
+    //         graphDiv.on("plotly_hover",b)
+
+            
+
+            
+            
+            
+    //         // // restyle all traces using attribute strings
+    //         // var update = {
+    //         //     opacity: 0.4,
+    //         //     'marker.color': 'red'
+    //         // };
+    //         // Plotly.restyle(graphDiv, update);
+            
+    //         // // restyle two traces using attribute strings
+    //         // var update = {
+    //         //     opacity: 0.4,
+    //         //     'marker.color': 'red'
+    //         // };
+    //         // Plotly.restyle(graphDiv, update, [1, 2]);
+            
+            
+    //     })
+    // }
+   // } /**/
+   
+    /*     */ //{
     {
-        var resolveDiv1 = new Promise((resolve,reject)=>{
+        var resolveDiv2 = new Promise((resolve,reject)=>{
             var data = [],
             x = [1, 2, 3, 4, 5, 6],
             y = [1, 2, 3, 2, 3, 4],
             colors = ['#ff0000','#ff0000','#ff0000',
                       '#ff0000','#ff0000','#ff0000']
-            var graphDiv = document.getElementById('myDiv1')
+            var graphDiv = document.getElementById('myDiv2')
             var FL_1_i = {
                 forLoop_0_i:0,
                 forLoopLength:3,
@@ -100,45 +176,32 @@
 
             Plotly.newPlot(graphDiv, data, layout);
             var b = function(data){
-                console.log(data)
-                var update = {
-                    opacity: 0.4,
-                    'marker.color': 'red'
-                };
-                Plotly.restyle(graphDiv, update,[1,2]);
+
+                Plotly.restyle(graphDiv, {
+                  'marker.color': ['red', null, undefined]
+                }, [0, 1, 2])
+                
+
             }
-            graphDiv.on("plotly_hover",b)
-            graphDiv.off("plotly_hover",b)
+            // graphDiv.on("plotly_hover",b)
+            var c = function(data){
+
+                Plotly.restyle(graphDiv, {
+                  'marker.color': ['blue', 'blue', 'blue']
+                }, [0, 1, 2])
+                
+
+            }
+            graphDiv.on("plotly_click",c)
+           
             
 
             
             
             
-            // // restyle all traces using attribute strings
-            // var update = {
-            //     opacity: 0.4,
-            //     'marker.color': 'red'
-            // };
-            // Plotly.restyle(graphDiv, update);
-            
-            // // restyle two traces using attribute strings
-            // var update = {
-            //     opacity: 0.4,
-            //     'marker.color': 'red'
-            // };
-            // Plotly.restyle(graphDiv, update, [1, 2]);
-            
+
             
         })
-    }
-   // } /**/
-   
-    /*     */ //{
-    {
-        // var resolveDiv = new Promise((resolve,reject)=>{
-            
-            
-        // })
     }
    // } /**/
    

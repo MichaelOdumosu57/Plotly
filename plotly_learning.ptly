@@ -17504,9 +17504,23 @@ Plotly.restyle(graphDiv, update, [1, 2]);
             [__]
         .___    .___
       | [__]    [__]  |
+      
+arrays go in conjunction with traces to apply arrays as a value you must wrap it in another array
                                                                         
+examples
+
+var update = {
+    'marker.color': [['red', 'green']]
+}
+Plotly.restyle(graphDiv, update, [0])
+
+// update two traces with new z data
+var update = {z: [[[1,2,3], [2,1,2], [1,1,1]], [[0,1,1], [0,2,1], [3,2,1]]]};
+Plotly.restyle(graphDiv, update, [1, 2])
+
+
                                                                         
-US Airports Map
+
  
  
             .___
@@ -17515,18 +17529,29 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+attribute strings
+
+{marker: {color: 'red'}} vs. {'marker.color': red}).
  
+ 
+ the first you replace the whole object, the second you change only the property
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
                                                                         
-                                                                        
-US Airports Map
- 
- 
+
+resetting the graph null turns it to its default value undefined does nothing
+
+in 2
+
+Plotly.restyle(graphDiv, {
+  'line.color': ['red', null, undefined]
+}, [0, 1, 2])
+
+
+
             .___
             [__]
         .___    .___
