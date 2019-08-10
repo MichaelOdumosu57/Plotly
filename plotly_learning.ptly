@@ -17876,7 +17876,7 @@ Plotly.deleteTraces(graphDiv, [-2, -1]);
 Plotly.moveTraces
 
 
-This allows you to reorder traces in an existing graphDi
+This allows you to reorder traces in an existing graphDiv, it doesnt mean it will repaint one over the other
             .___
             [__]
         .___    .___
@@ -17929,8 +17929,7 @@ Plotly.extendTraces(graphDiv, {y: [[rand()], [rand()]]}, [0, 1])
 Plotly.extendTraces(graphDiv, {y: [[rand()], [rand()]]}, [0, 1], 10)
                                                                                                  
                                                                         
-US Airports Map
- 
+
  
             .___
             [__]
@@ -17938,13 +17937,45 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Plotly.prependTraces
+
+allows you  to prepend data to an existing div
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ // prepend one trace
+Plotly.prependTraces(graphDiv, {y: [[rand()]]}, [0])
+
+// prepend multiple traces
+Plotly.prependTraces(graphDiv, {y: [[rand()], [rand()]]}, [0, 1])
+
+// prepend multiple traces up to a maximum of 10 points per trace
+Plotly.prependTraces(graphDiv, {y: [[rand()], [rand()]]}, [0, 1], 10)
  
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
+      
+      
+Plotly.prependTraces
+
+allows you  to prepend data to an existing div
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+       
                                                                         
                                                                         
 US Airports Map

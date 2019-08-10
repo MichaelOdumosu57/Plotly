@@ -11,6 +11,7 @@ const assert = require('assert')
 //middleware
 global.ultraObject = require('./ultraObject.js')
 const backend = express.Router()
+const database = express.Router()
 //
 
 /* FS API*/ //{
@@ -51,6 +52,7 @@ function trisurf(Tri, X, Y, Z, C) {
 
 app.use(  cors()   )
 app.use(   '/backend',backend   )
+app.use(   '/database',database   )
 backend.get(   '/index/:file',function(req,res){
  
  
@@ -320,7 +322,7 @@ backend.get(   '/ultraObject',function(req,res){
 })
 backend.get(   '/parcats',function(req,res){
     res.sendFile('/home/uoul/My_Computer/JAVASCRIPT/ultraObject/endpointAndFS/plotly/parcats.html')
-})
+},(err)=>{console.log(err)})
 
 
 

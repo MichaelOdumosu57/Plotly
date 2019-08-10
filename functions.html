@@ -447,15 +447,15 @@
             graphDiv.on("plotly_click",()=>{
 
                 // extend one trace
-                Plotly.extendTraces(graphDiv, {y: [[
-                    ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12})
-                    ]]}, [0])
+                // Plotly.extendTraces(graphDiv, {y: [[
+                //     ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12})
+                //     ]]}, [0])
                 
                 // extend multiple traces
                 Plotly.extendTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ], [ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ]]}, [0, 1])
                 
-                // extend multiple traces up to a maximum of 10 points per trace
-                Plotly.extendTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ], [ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ]]}, [0, 1], 10)
+                // // extend multiple traces up to a maximum of 10 points per trace
+                // Plotly.extendTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ], [ultraObject.misc[   ultraObject.scope[functions_Misc_0_i]   ]({value:12}) ]]}, [0, 1], 10)
             })
             
         })
@@ -464,17 +464,55 @@
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+    
+        var resolveDiv9 = new Promise((resolve,reject)=>{
             
+            var graphDiv = document.getElementById('myDiv9')
+            var figure = {
+              data: [{
+                type: 'bar',
+                marker: {color: 'red'},
+                y: [2, 1, 3, 2],
+              },{
+                type: 'scatter',
+                marker: {color: 'red'},
+                y: [3, 2, 5, 2],
+              }],
+              layout:{
+                title: 'Quarterly Earnings'
+              }
+            };
             
-        // })
+            Plotly.newPlot(   graphDiv,figure.data,figure.layout   )
+            
+            ultraObject.random({
+                type:'stream',
+                value:(   dev_obj   )=>{
+                    return Math.floor(Math.random() * Math.floor(   dev_obj.value   ))
+                    }
+            })
+            var functions_Misc_1_i =ultraObject.scope.add(   {value:ultraObject.misc.abelast[ultraObject.misc.abelast.length -1]}   )
+            console.log(   functions_Misc_1_i   )
+            graphDiv.on("plotly_click",()=>{
+                // prepend one trace
+                // Plotly.prependTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_1_i]   ]({value:12})]]}, [0])
+                
+                // // prepend multiple traces
+                // Plotly.prependTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_1_i]   ]({value:12})], [ultraObject.misc[   ultraObject.scope[functions_Misc_1_i]   ]({value:12})]]}, [0, 1])
+                
+                // // prepend multiple traces up to a maximum of 10 points per trace
+                Plotly.prependTraces(graphDiv, {y: [[ultraObject.misc[   ultraObject.scope[functions_Misc_1_i]   ]({value:12})], [ultraObject.misc[   ultraObject.scope[functions_Misc_1_i]   ]({value:12})]]}, [0, 1], 10)
+            })
+            
+        })
+    
     }
    // } /**/
    
     /*     */ //{
     {
         // var resolveDiv = new Promise((resolve,reject)=>{
-            
+        
             
         // })
     }
