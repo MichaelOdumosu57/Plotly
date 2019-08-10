@@ -17965,10 +17965,11 @@ Plotly.prependTraces(graphDiv, {y: [[rand()], [rand()]]}, [0, 1], 10)
       | [__]    [__]  |
       
       
-Plotly.prependTraces
+Plotly.addFrames
 
-allows you  to prepend data to an existing div
+https://plot.ly/javascript/gapminder-example/
 
+This allows you to add animation frames to a graphDiv frames are subobject for each traces represent what needs to be changed
             .___
             [__]
         .___    .___
@@ -17978,7 +17979,57 @@ allows you  to prepend data to an existing div
        
                                                                         
                                                                         
-US Airports Map
+Plotly.animate
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
+ 
+ 
+ signature
+ 
+ 
+Plotly.animate(graphDiv, frameOrGroupNameOrFrameList, animationAttributes)
+graphDiv
+    DOM node or string id of a DOM node
+frameOrGroupNameOrFrameList
+A frame to be animated or an array of frames to be animated in sequence. Frames added by Plotly.addFrames which have a group attribute, can be animated by passing their group name here. Similarly, you can reference frames by an array of strings of frame name values.
+animationAttributes
+    An object, see documentation for examples.
+       
+ 
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+                                                                        
+example
+in 10
+
+Plotly.newPlot('graph', [{
+  x: [1, 2, 3],
+  y: [0, 0.5, 1],
+  line: {simplify: false},
+}]);
+
+function randomize() {
+  Plotly.animate('graph', {
+    data: [{y: [Math.random(), Math.random(), Math.random()]}],
+    traces: [0],
+    layout: {}
+  }, {
+    transition: {
+      duration: 500,
+      easing: 'cubic-in-out'
+    },
+	  frame: {
+		  duration: 500
+	  }
+  })
+}
+
  
  
             .___
@@ -17987,26 +18038,50 @@ US Airports Map
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Plotly.purge
+
+Using purge will clear the div, and remove any Plotly plots that have been placed in it.
+
+
+
+            .___
+            [__]
+        .___    .___
+      | [__]    [__]  |
+    .___            .___
+ |  [__]            [__]
  
  
+ sample
+ Plotly.purge(graphDiv);
             .___
             [__]
         .___    .___
       | [__]    [__]  |
                                                                         
                                                                         
-US Airports Map
+Plotly.toImage
+toImage will generate a promise to an image of the plot in data URL format.
  
+ 
+Plotly.downloadImage
+downloadImage will trigger a request to download the image of a Plotly plot.
  
             .___
             [__]
         .___    .___
       | [__]    [__]  |
-                                                                        
-                                                                        
-US Airports Map
+    .___            .___
+ |  [__]            [__]
  
+ 
+ in 11
+ Plotly.toImage(graphDiv, {format: 'png', width: 800, height: 600}).then(function(dataUrl) {
+    // use the dataUrl
+})
+
+Plotly.downloadImage(graphDiv, {format: 'png', width: 800, height: 600, filename: 'newplot'});
+
  
             .___
             [__]

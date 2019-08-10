@@ -511,19 +511,70 @@
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv10 = new Promise((resolve,reject)=>{
         
+            Plotly.newPlot('myDiv10', [{
+              x: [1, 2, 3],
+              y: [0, 0.5, 1],
+              line: {simplify: false},
+            }]);
             
-        // })
+            function randomize() {
+                Plotly.animate('myDiv10', {
+                data: [{y: [Math.random(), Math.random(), Math.random()]}],
+                traces: [0],
+                layout: {}
+              }, {
+                transition: {
+                  duration: 500,
+                  easing: 'cubic-in-out'
+                },
+            	  frame: {
+            		  duration: 500
+            	  }
+              })
+            }
+            
+            document.getElementById('myDiv10').on('plotly_hover',function(){
+                var FL_1_i = {
+                    forLoop_0_i:0,
+                    forLoopLength:5,
+                    fn:function(   dev_obj   ){
+                        randomize()
+                    },
+                    args: {}
+                }
+                ultraObject.forLoop(   FL_1_i   )
+            })
+            
+        })
     }
    // } /**/
    
     /*     */ //{
     {
-        // var resolveDiv = new Promise((resolve,reject)=>{
+        var resolveDiv11 = new Promise((resolve,reject)=>{
             
+            var graphDiv = document.getElementById('myDiv11')
+            Plotly.newPlot('myDiv11', [{
+                x: [1, 2, 3],
+                y: [0, 0.5, 1],
+                line: {simplify: false},
+            }]);
             
-        // })
+            graphDiv.on('plotly_click',()=>{
+                Plotly.downloadImage(graphDiv, {format: 'png', width: 800, height: 600, filename: 'newplot'});
+            })
+            
+            graphDiv.on('plotly_hover',()=>{
+                Plotly.toImage(graphDiv, {format: 'png', width: 800, height: 600})
+                    .then(function(dataUrl) {
+                        console.log(   dataUrl   )
+                    })
+            })
+                // use the dataUrl
+        
+        })
     }
    // } /**/
    
