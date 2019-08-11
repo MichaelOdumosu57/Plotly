@@ -517,12 +517,16 @@
               x: [1, 2, 3],
               y: [0, 0.5, 1],
               line: {simplify: false},
+            },{
+              x: [1, 2, 3],
+              y: [0, 1.5, 7],
+              line: {simplify: false},
             }]);
             
             function randomize() {
                 Plotly.animate('myDiv10', {
                 data: [{y: [Math.random(), Math.random(), Math.random()]}],
-                traces: [0],
+                traces: [1],
                 layout: {}
               }, {
                 transition: {
